@@ -1,4 +1,5 @@
 #pragma once
+#include "Jugador.h"
 
 namespace TrabajoFinal {
 
@@ -18,9 +19,8 @@ namespace TrabajoFinal {
 		Juego(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+			jugador = new Jugador();
+			jugadorImg = gcnew Bitmap("Recursos\\Doctor.png");
 		}
 
 	protected:
@@ -41,9 +41,8 @@ namespace TrabajoFinal {
 	private: System::ComponentModel::IContainer^ components;
 
 	private:
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
+		Jugador* jugador;
+		Bitmap^ jugadorImg;
 
 
 #pragma region Windows Form Designer generated code
@@ -74,7 +73,7 @@ namespace TrabajoFinal {
 		}
 #pragma endregion
 	private: System::Void TiempoRespuesta_Tick(System::Object^ sender, System::EventArgs^ e) {
-		Graphics^ gr = this -> CreateGraphics();
+		Graphics^ gr = this->CreateGraphics();
 		BufferedGraphicsContext^ bc = BufferedGraphicsManager::Current;
 
 		BufferedGraphics^ bg = bc->Allocate(gr, this->ClientRectangle);
@@ -84,6 +83,7 @@ namespace TrabajoFinal {
 		Form::ClientSize = image->Size;
 		bg->Graphics->DrawImage(image, 0, 0, image->Size.Width, image->Size.Height);
 
+		jugador->mostrar(bg->Graphics, jugadorImg);
 
 		bg->Render(gr);
 

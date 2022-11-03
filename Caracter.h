@@ -1,10 +1,11 @@
 #pragma once
-
+using namespace System;
 using namespace System :: Drawing;
+#include <iostream>
 
 enum Direccion{Arriba, Abajo, Izquierda,Derecha};
 
-class Model
+class Caracter
 {
 protected:
 	int x;
@@ -20,8 +21,14 @@ protected:
 	int Width;
 
 public:
-	Model();
-	~Model();
+	Caracter() {
+		//Screen : 960 * 800
+		this->x = rand() % 960;
+		this->y = 50;
+		this->dx = this->dy = 5;
+		this->indexHeight = this->indexWidth = 0;
+	};
+	~Caracter() {};
 
 	int getx() { return this->x; }
 	int gety() { return this->y; }
@@ -36,13 +43,6 @@ public:
 	void setdy(int dy) { this->dy = dy; }
 
 	virtual void mover(Graphics ^ gr,Direccion direccion){}
-	virtual void mostrar(Graphics^ gr, Bitmap ^imagen){}
+	void mostrar(Graphics^ gr, Bitmap^ imagen){}
 };
 
-Model::Model()
-{
-}
-
-Model::~Model()
-{
-}
