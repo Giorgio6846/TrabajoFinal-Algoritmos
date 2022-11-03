@@ -68,6 +68,7 @@ namespace TrabajoFinal {
 			this->ClientSize = System::Drawing::Size(284, 261);
 			this->Name = L"Juego";
 			this->Text = L"Juego";
+			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &Juego::Juego_KeyDown);
 			this->ResumeLayout(false);
 
 		}
@@ -88,6 +89,27 @@ namespace TrabajoFinal {
 		bg->Render(gr);
 
 		delete bc, bg, gr;
+	}
+	private: System::Void Juego_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
+
+		switch (e->KeyCode)
+		{
+		case Keys::Up:
+			jugador->mover(Arriba);
+			break;
+		case Keys::Down:
+			jugador->mover(Abajo);
+			break;
+		case Keys::Left:
+			jugador->mover(Izquierda);
+			break;
+		case Keys::Right:
+			jugador->mover(Derecha);
+			break;
+		default:
+			break;
+		}
+
 	}
 	};
 }
