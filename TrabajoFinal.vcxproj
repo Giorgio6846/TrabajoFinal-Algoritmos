@@ -122,6 +122,8 @@
     <ClCompile Include="Juego.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Caracter.h" />
+    <ClInclude Include="GameEngine.h" />
     <ClInclude Include="Juego.h">
       <FileType>CppForm</FileType>
     </ClInclude>
