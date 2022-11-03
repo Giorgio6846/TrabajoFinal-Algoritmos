@@ -52,7 +52,7 @@ void VectorBebes::MoverBebes(Graphics ^ gr)
 		}
 		else
 		{
-			if (arrBebes->at(i)->getx() + arrBebes->at(i)->getdx() > gr->VisibleClipBounds.Height)
+			if (arrBebes->at(i)->getx() + arrBebes->at(i)->getdx() > gr->VisibleClipBounds.Width)
 			{
 				arrBebes->at(i)->mover(Izquierda);
 			}
