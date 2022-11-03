@@ -3,6 +3,9 @@ using namespace System;
 using namespace System :: Drawing;
 #include <iostream>
 
+#define ScreenWidth 960
+#define ScreenHeight 800
+
 enum Direccion{Arriba, Abajo, Izquierda,Derecha};
 
 class Caracter
@@ -17,16 +20,23 @@ protected:
 	int indexHeight;
 	int indexWidth;
 
+	int OpcionCaracterHeight;
+	int OpcionCaracterWidth;
+
+
+
 	int Height;
 	int Width;
 
 public:
 	Caracter() {
 		//Screen : 960 * 800
-		this->x = rand() % 960;
-		this->y = 50;
-		this->dx = this->dy = 5;
-		this->indexHeight = this->indexWidth = 0;
+		this->x = 0;
+		this->y = 0;
+		this->dx = 5;
+		this->dy = 5;
+		this->indexHeight = 0;
+		this->indexWidth = 0;
 	};
 	~Caracter() {};
 
@@ -42,7 +52,7 @@ public:
 	void setdx(int dx) { this->dx = dx; }
 	void setdy(int dy) { this->dy = dy; }
 
-	virtual void mover(Graphics ^ gr,Direccion direccion){}
-	void mostrar(Graphics^ gr, Bitmap^ imagen){}
+	virtual void mover(Direccion direccion) {}
+	void mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWidth) {}
 };
 

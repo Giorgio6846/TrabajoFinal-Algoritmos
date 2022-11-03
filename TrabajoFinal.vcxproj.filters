@@ -29,9 +29,21 @@
     <ClInclude Include="GameEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Jugador.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bebes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorBebes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Recursos\Campo_de_concentracion.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Recursos\Bebes.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

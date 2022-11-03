@@ -1,23 +1,24 @@
 #pragma once
 #include "Caracter.h"
 
+#define RangePlayerHeight 151
+
 class Jugador : public Caracter
 {
 public:
-	Jugador() {};
-	~Jugador(){};
+	Jugador() ;
+	~Jugador(){}
 
 
 
+	void mostrar(Graphics^ gr, Bitmap^ imagen,int cantHeight, int cantWidth) {
 
-	void mostrar(Graphics^ gr, Bitmap^ imagen) {
+		this->Width = imagen->Width / cantWidth;
+		this->Height = imagen->Height / cantHeight;
 
-		this->Width = imagen->Width / 9;
-		this->Height = imagen->Height / 8;
-
-		Rectangle porcion = Rectangle(indexHeight * Width, indexWidth * Height, Width, Height);
+		Rectangle porcion = Rectangle(indexHeight * Height,indexWidth * Width, Width, Height);
 		
-		if (y > 151) y = 150;
+		if (y >= RangePlayerHeight) y = 150;
 		gr->DrawImage(imagen, x, y, porcion, GraphicsUnit::Pixel);
 	}
 
@@ -25,29 +26,42 @@ public:
 		switch (direccion)
 		{
 		case Arriba:
-			indexWidth = 3;
+			indexWidth = 3 + OpcionCaracterWidth;
 			indexHeight++;
 			y -= dy;
 			break;
 		case Abajo:
-			indexWidth = 0;
+			indexWidth = 0 + OpcionCaracterWidth;
 			indexHeight++;
-			y += dy;
+			if (y + dy< RangePlayerHeight)
+			{
+				y += dy;
+			}
 			break;
 		case Izquierda:
-			indexWidth = 1;
+			indexWidth = 1 + OpcionCaracterWidth;
 			indexHeight++;
 			x -= dx;
 			break;
 		case Derecha:
-			indexWidth = 2;
+			indexWidth = 2 + OpcionCaracterWidth;
 			indexHeight++;
 			x += dx;
 			break;
 		default: break;
 		}
-		if (indexHeight == 3) indexHeight = 0;
+		if (indexHeight == 3 + OpcionCaracterWidth) indexHeight = OpcionCaracterWidth;
 	}
 
 };
+
+Jugador::Jugador() : Caracter()
+{
+	x = rand() % ScreenWidth;
+	y = rand() % RangePlayerHeight;
+
+	OpcionCaracterHeight = 3 * rand() % 3;
+	OpcionCaracterWidth = 4 * rand() % 2;
+
+}
 

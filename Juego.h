@@ -1,5 +1,7 @@
 #pragma once
+
 #include "Jugador.h"
+#include "VectorBebes.h"
 
 namespace TrabajoFinal {
 
@@ -21,6 +23,9 @@ namespace TrabajoFinal {
 			InitializeComponent();
 			jugador = new Jugador();
 			jugadorImg = gcnew Bitmap("Recursos\\Doctor.png");
+			
+			vectBebes = new VectorBebes();
+			bebeImg = gcnew Bitmap("Recursos\\Bebes.png");
 		}
 
 	protected:
@@ -42,8 +47,9 @@ namespace TrabajoFinal {
 
 	private:
 		Jugador* jugador;
+		VectorBebes* vectBebes;
 		Bitmap^ jugadorImg;
-
+		Bitmap^ bebeImg;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -84,7 +90,11 @@ namespace TrabajoFinal {
 		Form::ClientSize = image->Size;
 		bg->Graphics->DrawImage(image, 0, 0, image->Size.Width, image->Size.Height);
 
-		jugador->mostrar(bg->Graphics, jugadorImg);
+		vectBebes->agregarBebes();
+		vectBebes->MoverBebes(bg->Graphics);
+
+		jugador->mostrar(bg->Graphics, jugadorImg,8,9);
+		vectBebes->MostrarBebes(bg->Graphics, bebeImg);
 
 		bg->Render(gr);
 
