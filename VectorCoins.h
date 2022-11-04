@@ -1,6 +1,7 @@
 #pragma once
 #include "Coin.h"
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -10,9 +11,10 @@ public:
 	VectorCoins() {
 
 		arrCoin = new vector <Coin*>();
+		contadorMonedas = new int;
+		*contadorMonedas = 0;
 	};
-	~VectorCoins(){delete[]arrCoin;
-	};
+	~VectorCoins(){delete[]arrCoin;};
 
 	void agregarCoin(){arrCoin->push_back(new Coin);}
 
@@ -25,8 +27,14 @@ public:
 		}
 	}
 
-	void coinAtrapada(int pos) {
-		arrCoin->erase(arrCoin->begin() + pos);
+	void coinAtrapada(int pos) { arrCoin->erase(arrCoin->begin() + pos); *contadorMonedas = *contadorMonedas+1; }
+
+	void monedasObtenidasText(Graphics^ gr) {
+		Font^ myFont = gcnew Font("Times new Roman", 15);
+
+		if (*contadorMonedas == 1 ) gr->DrawString("Tienes: " + *contadorMonedas + " moneda", myFont, Brushes::Black, 100, 5);
+		else gr->DrawString("Tienes: " + *contadorMonedas + " monedas", myFont, Brushes::Black, 100, 5);
+		
 	}
 
 	void eliminarCoins()
@@ -51,5 +59,8 @@ public:
 
 
 private:
+
 	vector<Coin*>* arrCoin;
+	int * contadorMonedas;
+
 };

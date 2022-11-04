@@ -171,6 +171,8 @@ namespace TrabajoFinal {
 			if (a.IntersectsWith(b)) vectCoins->coinAtrapada(i);
 		}
 
+		vectCoins->monedasObtenidasText(bg->Graphics);
+
 		bg->Render(gr);
 
 		delete bc, bg, gr;

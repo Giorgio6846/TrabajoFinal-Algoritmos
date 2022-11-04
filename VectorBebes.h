@@ -18,12 +18,10 @@ public:
 	void agregarMesVida();
 
 private:
-	vector<Bebes*>* arrBebes;
-};
+	vector<Bebes*>* arrBebes;};
 
 VectorBebes::VectorBebes()
 {
-
 	arrBebes = new vector <Bebes*>();
 }
 
@@ -155,6 +153,7 @@ void VectorBebes::eliminarBebes()
 		}
 	}
 }
+
 
 void VectorBebes::agregarBebes()
 {

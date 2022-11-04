@@ -59,10 +59,7 @@ public:
 				player->PlaySync();
 			}
 		}
-		else
-		{
-			jugadorAtStore = 0;
-		}
+		else jugadorAtStore = 0;
 	}
 
 	void mover(Direccion direccion) {
@@ -96,10 +93,9 @@ public:
 			break;
 		default: break;
 		}
-		if (indexHeight == 3 + OpcionCaracterWidth)
-		{
-			indexHeight = OpcionCaracterWidth;
-		}
+
+		if (indexHeight == 3 + OpcionCaracterWidth) indexHeight = OpcionCaracterWidth;
+
 	}
 
 	int getMunicion() { return this->municion; }
