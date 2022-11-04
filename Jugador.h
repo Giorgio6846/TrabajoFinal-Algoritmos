@@ -1,5 +1,6 @@
 #pragma once
 #include "Caracter.h"
+#include "Jugador.h"
 
 /*
 JugadorAreaIzqSupX
@@ -42,9 +43,15 @@ public:
 
 		if (this->x > 870)
 		{
-			gr->DrawString("Estás en la tienda:", myFont, Brushes::Black, 670, 50);
+			gr->DrawString("Estás en la tienda:", myFont, Brushes::Black, 670, 35);
 			gr->DrawString("Pulse X para comprar munición", myFont, Brushes::Black, 670, 50);
+<<<<<<< HEAD
 
+=======
+						
+			/*
+			Musica Tienda
+>>>>>>> 617b20c28d86d2fbb00a4d9495697643d7f1d1eb
 			player->Load();
 			player->PlaySync();
 		
@@ -87,5 +94,11 @@ public:
 			indexHeight = OpcionCaracterWidth;
 		}
 	}
+
+	int getMunicion() { return this->municion; }
+	void setMunicion(int municion) { this->municion = municion; }
+
+private: 
+	int municion;
 
 };

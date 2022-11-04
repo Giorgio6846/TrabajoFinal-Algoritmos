@@ -29,7 +29,7 @@ public:
 	{
 		for (int i = 0; i < arrCoin->size(); i++)
 		{
-			if (arrCoin->at(i) -> gety() > 170)
+			if (arrCoin->at(i) -> gety() > MonedaAreaDerInfY)
 			{
 				arrCoin->erase(arrCoin->begin() + i);
 			}

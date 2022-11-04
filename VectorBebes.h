@@ -15,6 +15,7 @@ public:
 	void eliminarBebes();
 	void moverBebes(Graphics^ gr);
 	void mostrarBebes(Graphics^ gr, Bitmap^ imagen);
+	void agregarMesVida();
 
 private:
 	vector<Bebes*>* arrBebes;
@@ -157,4 +158,12 @@ void VectorBebes::eliminarBebes()
 void VectorBebes::agregarBebes()
 {
 		arrBebes->push_back(new Bebes);
+}
+
+void VectorBebes::agregarMesVida()
+{
+	for (int i = 0; i < arrBebes->size(); i++)
+	{
+		arrBebes->at(i)->add1MesVida();
+	}
 }

@@ -58,7 +58,8 @@ public:
 	~Bebes(){};
 
 	int getmesVida() { return this->mesVida; }
-	
+	void add1MesVida() { this->mesVida = mesVida + 1; }
+
 	int getdestX() { return this->destX; }
 	void setdestX(int destX) { this->destX = destX; }
 
