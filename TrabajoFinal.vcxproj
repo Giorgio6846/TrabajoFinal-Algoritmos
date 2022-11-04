@@ -134,6 +134,7 @@
     <ClInclude Include="VectorCoins.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\TrabajoFinal\Recursos\Doctor.png" />
     <Image Include="Recursos\Bebes.png" />
     <Image Include="Recursos\Campo_de_concentracion.png" />
   </ItemGroup>

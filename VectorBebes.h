@@ -23,10 +23,6 @@ private:
 VectorBebes::VectorBebes()
 {
 	arrBebes = new vector <Bebes*>();
-	for (int i = 0; i < 15; i++)
-	{
-		arrBebes->push_back(new Bebes);
-	}
 }
 
 VectorBebes::~VectorBebes()
@@ -38,7 +34,7 @@ void VectorBebes::MostrarBebes(Graphics ^ gr, Bitmap ^ imagen)
 {
 	for (int i = 0; i < arrBebes->size(); i++)
 	{
-		arrBebes->at(i)->mostrar(gr, imagen, 8, 12, 1.5, 1.5);
+		arrBebes->at(i)->Mostrar(gr, imagen, 8, 12, 1.5, 1.5);
 	}
 }
 
@@ -74,5 +70,14 @@ void VectorBebes::eliminarBebes()
 		{
 			arrBebes->erase(arrBebes->begin() + i);
 		}
+		if (arrBebes->at(i)->getmesVida() == 60)
+		{
+			arrBebes->erase(arrBebes->begin() + i);
+		}
 	}
+}
+
+void VectorBebes::agregarBebes()
+{
+	arrBebes->push_back(new Bebes);
 }

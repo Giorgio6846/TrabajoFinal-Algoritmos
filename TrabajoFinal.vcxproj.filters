@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Personajes">
+      <UniqueIdentifier>{2b43fada-2949-4870-b0c9-9d45766899ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Juego.cpp">
@@ -23,19 +26,7 @@
     <ClInclude Include="Juego.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Caracter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameEngine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Jugador.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Bebe.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VectorBebes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Coin.h">
@@ -44,12 +35,27 @@
     <ClInclude Include="VectorCoins.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Bebe.h">
+      <Filter>Personajes</Filter>
+    </ClInclude>
+    <ClInclude Include="Jugador.h">
+      <Filter>Personajes</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorBebes.h">
+      <Filter>Personajes</Filter>
+    </ClInclude>
+    <ClInclude Include="Caracter.h">
+      <Filter>Personajes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Recursos\Campo_de_concentracion.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Recursos\Bebes.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\TrabajoFinal\Recursos\Doctor.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

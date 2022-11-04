@@ -20,11 +20,21 @@ public:
 
 		for (int i = 0; i < arrCoin->size(); i++)
 		{
-			arrCoin->at(i)->mostrar(gr, imagen, 1, 6, 0.2, 0.2);
+			arrCoin->at(i)->Mostrar(gr, imagen, 1, 6, 0.2, 0.2);
 			arrCoin->at(i)->mover();
 		}
 	}
 
+	void eliminarCoins()
+	{
+		for (int i = 0; i < arrCoin->size(); i++)
+		{
+			if (arrCoin->at(i) -> gety() > 170)
+			{
+				arrCoin->erase(arrCoin->begin() + i);
+			}
+		}
+	}
 
 
 	int getX(int pos) {return arrCoin->at(pos)->getx();}

@@ -3,6 +3,12 @@
 #include "Caracter.h"
 
 #define RangeBabyHeight 277
+
+/*
+mesVida = La cantidad de meses que el bebe tiene. Este dura 2 segundos, cantidad maxima de meses es 60 meses
+esVacunado = El bebe es vacunado o no
+*/
+
 //cantWidth 12
 //cantHeight 8
 class Bebes : public Caracter
@@ -17,12 +23,15 @@ public:
 
 		esVacunado = false;
 
-		OpcionCaracterHeight = 3 * rand() % 4;
-		OpcionCaracterWidth = 4 * rand() % 2;
+		OpcionCaracterHeight = 3 * (rand() % 4);
+		OpcionCaracterWidth = 4 * (rand() % 2);
+
+		mesVida = rand() % 30;
 
 	};
 	~Bebes(){};
 
+	int getmesVida() { return this->mesVida; }
 	bool getesVacunado() { return this->esVacunado; }
 	void setesVacunado(bool esVacunado) { this->esVacunado = esVacunado; }
 
@@ -31,21 +40,23 @@ public:
 		switch (direccion)
 		{
 		case Izquierda:
-			indexWidth = 1 + OpcionCaracterWidth;
-			indexHeight++;
+			indexHeight = 1 + OpcionCaracterHeight;
+			indexWidth++;
 			x -= dx;
 			break;
 		case Derecha:
-			indexWidth = 2 + OpcionCaracterWidth;
-			indexHeight++;
+			indexHeight = 2 + OpcionCaracterHeight;
+			indexWidth++;
 			x += dx;
 			break;
 		default:
 			break;
 		}
 
-		if (indexHeight == 3 + OpcionCaracterWidth) indexHeight = OpcionCaracterWidth;
-
+		if (indexWidth == 3 + OpcionCaracterWidth)
+		{
+			indexWidth = OpcionCaracterWidth;
+		}
 	}
 
 private:

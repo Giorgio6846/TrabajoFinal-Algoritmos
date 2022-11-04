@@ -3,6 +3,8 @@
 
 #define RangePlayerHeight 151
 
+
+
 class Jugador : public Caracter
 {
 public:
@@ -60,7 +62,10 @@ public:
 			break;
 		default: break;
 		}
-		if (indexHeight == 3 + OpcionCaracterWidth) indexHeight = OpcionCaracterWidth;
+		if (indexHeight == 3 + OpcionCaracterWidth)
+		{
+			indexHeight = OpcionCaracterWidth;
+		}
 	}
 
 };
