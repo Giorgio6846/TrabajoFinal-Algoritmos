@@ -94,6 +94,7 @@ namespace TrabajoFinal {
 		vectBebes->MoverBebes(bg->Graphics);
 
 		jugador->mostrar(bg->Graphics, jugadorImg,8,9);
+		jugador->atShop(bg->Graphics);
 		vectBebes->MostrarBebes(bg->Graphics, bebeImg);
 
 		bg->Render(gr);

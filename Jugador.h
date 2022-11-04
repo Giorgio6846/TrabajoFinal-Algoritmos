@@ -6,9 +6,31 @@
 class Jugador : public Caracter
 {
 public:
-	Jugador() ;
+	Jugador() {
+
+		x = rand() % ScreenWidth;
+		y = rand() % RangePlayerHeight;
+
+		OpcionCaracterHeight = 3 * rand() % 3;
+		OpcionCaracterWidth = 4 * rand() % 2;
+	};
 	~Jugador(){}
 
+
+
+	void atShop(Graphics^ gr) {
+		
+		Font^ myFont = gcnew Font("Times new Roman", 15);
+
+
+		if (this->x > 870)
+		{
+			gr->DrawString("Estás en la tienda:", myFont, Brushes::Black, 670, 50);
+			gr->DrawString("Pulse X para comprar munición", myFont, Brushes::Black, 670, 50);
+
+		}
+
+	}
 
 
 	void mostrar(Graphics^ gr, Bitmap^ imagen,int cantHeight, int cantWidth) {
@@ -54,14 +76,3 @@ public:
 	}
 
 };
-
-Jugador::Jugador() : Caracter()
-{
-	x = rand() % ScreenWidth;
-	y = rand() % RangePlayerHeight;
-
-	OpcionCaracterHeight = 3 * rand() % 3;
-	OpcionCaracterWidth = 4 * rand() % 2;
-
-}
-

@@ -8,8 +8,20 @@
 class Bebes : public Caracter
 {
 public:
-	Bebes();
-	~Bebes();
+	Bebes() {
+
+		x = rand() % ScreenWidth;
+		y = RangeBabyHeight + rand() % (ScreenHeight - RangeBabyHeight);
+
+		dx = rand() % 10;
+
+		esVacunado = false;
+
+		OpcionCaracterHeight = 3 * rand() % 4;
+		OpcionCaracterWidth = 4 * rand() % 2;
+
+	};
+	~Bebes(){};
 
 	bool getesVacunado() { return this->esVacunado; }
 	void setesVacunado(bool esVacunado) { this->esVacunado = esVacunado; }
@@ -49,19 +61,3 @@ private:
 	int mesVida;
 	bool esVacunado;
 };
-
-Bebes::Bebes()
-{
-	x = rand() % ScreenWidth;
-	y = RangeBabyHeight + rand() % (ScreenHeight - RangeBabyHeight);
-
-	dx = rand() % 10;
-
-	OpcionCaracterHeight = 3 * rand() % 4;
-	OpcionCaracterWidth = 4 * rand() % 2;
-}
-
-Bebes::~Bebes()
-{
-
-}
