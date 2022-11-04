@@ -10,6 +10,10 @@ JugadorAreaDerInfY
 
 Rectangulo en donde el jugador solo se puede mover
 No se ha usado el tamaño de la ventana porque este se va a agrandar para poner la interfaz del juego
+
+jugadorAtStore = Si el jugador entra a la tienda; no entra a la tienda y; recien va a entrar;
+0 = No esta en la tienda
+1 = Esta en la tienda
 */
 
 #define JugadorAreaIzqSupX 0
@@ -35,21 +39,29 @@ public:
 	};
 	~Jugador(){}
 
-
+	int getjugadorAtStore() { return this->jugadorAtStore; }
+	void setjugadorAtStore(int jugadorAtStore) { this->jugadorAtStore = jugadorAtStore; }
 
 	void atShop(Graphics^ gr, SoundPlayer ^ player) {
 		
 		Font^ myFont = gcnew Font("Times new Roman", 15);
-
+	
 		if (this->x > 870)
 		{
 			gr->DrawString("Estás en la tienda:", myFont, Brushes::Black, 670, 35);
 			gr->DrawString("Pulse X para comprar munición", myFont, Brushes::Black, 670, 50);
-					
-			/*
-			player->Load();
-			player->PlaySync();
-			*/		
+		
+			if (jugadorAtStore == 0)
+			{
+				jugadorAtStore = 1;
+
+				player->Load();
+				player->PlaySync();
+			}
+		}
+		else
+		{
+			jugadorAtStore = 0;
 		}
 	}
 
@@ -95,5 +107,5 @@ public:
 
 private: 
 	int municion;
-
+	int jugadorAtStore;
 };
