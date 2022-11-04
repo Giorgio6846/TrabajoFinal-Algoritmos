@@ -45,16 +45,11 @@ public:
 		{
 			gr->DrawString("Estás en la tienda:", myFont, Brushes::Black, 670, 35);
 			gr->DrawString("Pulse X para comprar munición", myFont, Brushes::Black, 670, 50);
-<<<<<<< HEAD
-
-=======
-						
+					
 			/*
-			Musica Tienda
->>>>>>> 617b20c28d86d2fbb00a4d9495697643d7f1d1eb
 			player->Load();
 			player->PlaySync();
-		
+			*/		
 		}
 	}
 
