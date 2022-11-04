@@ -50,25 +50,25 @@ public:
 		case Arriba:
 			indexWidth = 3 + OpcionCaracterWidth;
 			indexHeight++;
-			y -= dy;
+				y = y - dy;
 			break;
 		case Abajo:
 			indexWidth = 0 + OpcionCaracterWidth;
 			indexHeight++;
 			if (y + dy< RangePlayerHeight)
 			{
-				y += dy;
+				y = y + dy;
 			}
 			break;
 		case Izquierda:
 			indexWidth = 1 + OpcionCaracterWidth;
 			indexHeight++;
-			x -= dx;
+			x = x - dx;
 			break;
 		case Derecha:
 			indexWidth = 2 + OpcionCaracterWidth;
 			indexHeight++;
-			x += dx;
+				x = x + dx;
 			break;
 		default: break;
 		}
