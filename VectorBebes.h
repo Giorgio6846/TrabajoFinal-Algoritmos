@@ -14,7 +14,7 @@ public:
 	void agregarBebes();
 	void eliminarBebes();
 	void moverBebes(Graphics^ gr);
-	void MostrarBebes(Graphics^ gr, Bitmap^ imagen);
+	void mostrarBebes(Graphics^ gr, Bitmap^ imagen);
 
 private:
 	vector<Bebes*>* arrBebes;
@@ -30,11 +30,11 @@ VectorBebes::~VectorBebes()
 	delete[]arrBebes; 
 }
 
-void VectorBebes::MostrarBebes(Graphics ^ gr, Bitmap ^ imagen)
+void VectorBebes::mostrarBebes(Graphics ^ gr, Bitmap ^ imagen)
 {
 	for (int i = 0; i < arrBebes->size(); i++)
 	{
-		arrBebes->at(i)->Mostrar(gr, imagen, 8, 12, 1.5, 1.5);
+		arrBebes->at(i)->mostrar(gr, imagen, 8, 12, 1.5, 1.5);
 	}
 }
 

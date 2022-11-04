@@ -1,6 +1,16 @@
 #pragma once
 #include "Caracter.h"
 
+/*
+JugadorAreaIzqSupX
+JugadorAreaIzqSupY
+JugadorAreaDerInfX
+JugadorAreaDerInfY
+
+Rectangulo en donde el jugador solo se puede mover
+No se ha usado el tamaño de la ventana porque este se va a agrandar para poner la interfaz del juego
+*/
+
 #define JugadorAreaIzqSupX 0
 #define JugadorAreaIzqSupY 0
 #define JugadorAreaDerInfX 959

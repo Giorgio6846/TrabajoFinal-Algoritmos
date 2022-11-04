@@ -65,7 +65,7 @@ public:
 
 	virtual void mover(Direccion direccion) {}
 
-	void Mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWidth, float dimensionAncho, float dimensionAlto) {
+	void mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWidth, float dimensionAncho, float dimensionAlto) {
 	
 		this->Width = imagen->Width / cantWidth;
 		this->Height = imagen->Height / cantHeight;

@@ -136,9 +136,9 @@ namespace TrabajoFinal {
 
 		//Graficos
 
-		jugador->Mostrar(bg->Graphics, jugadorImg,8,9, 1.5, 1.5);
+		jugador->mostrar(bg->Graphics, jugadorImg,8,9, 1.5, 1.5);
 		jugador->atShop(bg->Graphics);
-		vectBebes->MostrarBebes(bg->Graphics, bebeImg);
+		vectBebes->mostrarBebes(bg->Graphics, bebeImg);
 		
 		Rectangle a = Rectangle(jugador->getx(), jugador->gety(),jugador->getAncho(), jugador->getAlto());
 		Rectangle b = Rectangle(jugador->getx(), jugador->gety(), jugador->getAncho(), jugador->getAlto());

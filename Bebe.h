@@ -8,6 +8,14 @@
 #define BebeAreaDerInfY 727
 
 /*
+BebeAreaIzqSupX
+BebeAreaIzqSupY
+BebeAreaDerInfX
+BebeAreaDerInfY
+
+Rectangulo en donde el jugador solo se puede mover
+No se ha usado el tamaño de la ventana porque este se va a agrandar para poner la interfaz del juego
+
 mesVida = La cantidad de meses que el bebe tiene. Este dura 2 segundos, cantidad maxima de meses es 60 meses
 esVacunado = El bebe es vacunado o no
 
