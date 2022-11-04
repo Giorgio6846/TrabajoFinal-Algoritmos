@@ -128,9 +128,10 @@ namespace TrabajoFinal {
 
 		//Mecanicas Juego
 
-		vectBebes->MoverBebes(bg->Graphics);
-
 		vectCoins->eliminarCoins();
+
+
+		vectBebes->moverBebes(bg->Graphics);
 		vectCoins->moverCoins(bg->Graphics, coinImg);
 
 		//Graficos

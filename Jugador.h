@@ -1,8 +1,10 @@
 #pragma once
 #include "Caracter.h"
 
-#define RangePlayerHeight 151
-
+#define JugadorAreaIzqSupX 0
+#define JugadorAreaIzqSupY 0
+#define JugadorAreaDerInfX 959
+#define JugadorAreaDerInfY 182
 
 
 class Jugador : public Caracter
@@ -10,8 +12,12 @@ class Jugador : public Caracter
 public:
 	Jugador() {
 
-		x = rand() % ScreenWidth;
-		y = rand() % RangePlayerHeight;
+		x = rand() % JugadorAreaDerInfX;
+		y = rand() % JugadorAreaDerInfY;
+
+		//Arreglar Opcion Bebe
+		//OpcionCaracterHeight = 3 * (rand() % 3);
+		//OpcionCaracterWidth = 4 * (rand() % 2);
 
 		OpcionCaracterHeight = 3 * rand() % 3;
 		OpcionCaracterWidth = 4 * rand() % 2;
@@ -45,7 +51,7 @@ public:
 		case Abajo:
 			indexWidth = 0 + OpcionCaracterWidth;
 			indexHeight++;
-			if (y + dy< RangePlayerHeight)
+			if (y + dy< JugadorAreaDerInfY)
 			{
 				y = y + dy;
 			}

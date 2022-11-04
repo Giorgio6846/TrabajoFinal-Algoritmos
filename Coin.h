@@ -1,6 +1,11 @@
 #pragma once
 #include "Caracter.h"
 
+#define MonedaAreaIzqSupX 0
+#define MonedaAreaIzqSupY 0
+#define MonedaAreaDerInfX 959
+#define MonedaAreaDerInfY 182
+
 class Coin: public Caracter
 {
 public:
