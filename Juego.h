@@ -119,7 +119,7 @@ namespace TrabajoFinal {
 			// ContadorMonedas
 			// 
 			this->ContadorMonedas->Enabled = true;
-			this->ContadorMonedas->Interval = 500;
+			this->ContadorMonedas->Interval = 1600;
 			this->ContadorMonedas->Tick += gcnew System::EventHandler(this, &Juego::ContadorMonedas_Tick);
 			// 
 			// Juego
