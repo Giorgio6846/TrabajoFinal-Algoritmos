@@ -44,6 +44,12 @@
     <ClInclude Include="Caracter.h">
       <Filter>Personajes</Filter>
     </ClInclude>
+    <ClInclude Include="Vacuna.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorVacunas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Recursos\Campo_de_concentracion.png">

@@ -129,8 +129,10 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Jugador.h" />
+    <ClInclude Include="Vacuna.h" />
     <ClInclude Include="VectorBebes.h" />
     <ClInclude Include="VectorCoins.h" />
+    <ClInclude Include="VectorVacunas.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\TrabajoFinal\Recursos\Doctor.png" />

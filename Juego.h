@@ -4,6 +4,7 @@
 #include "VectorBebes.h"
 #include "Coin.h"
 #include "VectorCoins.h"
+//#include "VectorVacunas.h"
 
 namespace TrabajoFinal {
 
@@ -33,6 +34,8 @@ namespace TrabajoFinal {
 
 			vectCoins = new VectorCoins();
 			coinImg = gcnew Bitmap("Recursos/Imagenes\\Monedas.png");
+
+			//vectVacunas = new VectorVacunas();
 
 			player = gcnew SoundPlayer("Recursos/Musica\\TiendaEntrada.wav");
 
@@ -74,6 +77,8 @@ namespace TrabajoFinal {
 		
 		//Imagen Background
 		Bitmap^ Background;
+
+		//VectorVacunas* vectVacunas;
 
 	private: System::Windows::Forms::Timer^ TiempoSegundos;
 	private: System::Windows::Forms::Timer^ ContadorBebes;
@@ -177,6 +182,28 @@ namespace TrabajoFinal {
 			break;
 		case Keys::Right:
 			jugador->mover(Derecha);
+			break;
+		/*
+		case Keys::Space:
+			switch (jugador->getOpcionCaracterWidth() - jugador->getOpcionCaracterHeight())
+			{
+			case 0:
+				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getx(), jugador->gety(), jugador->getdx(), jugador->getdy(), Abajo);
+				break;
+			case 1:
+				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getx(), jugador->gety(), jugador->getdx(), jugador->getdy(), Izquierda);
+				break;
+			case 2:
+				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getx(), jugador->gety(), jugador->getdx(), jugador->getdy(), Derecha);
+				break;
+			case 3:
+				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getx(), jugador->gety(), jugador->getdx(), jugador->getdy(), Arriba);
+				break;
+
+			default:
+				break;
+			}
+			*/
 			break;
 		default:
 			break;

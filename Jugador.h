@@ -1,5 +1,6 @@
 #pragma once
 #include "Caracter.h"
+#include "Jugador.h"
 
 /*
 JugadorAreaIzqSupX
@@ -89,5 +90,11 @@ public:
 			indexHeight = OpcionCaracterWidth;
 		}
 	}
+
+	int getMunicion() { return this->municion; }
+	void setMunicion(int municion) { this->municion = municion; }
+
+private: 
+	int municion;
 
 };
