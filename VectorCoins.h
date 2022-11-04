@@ -55,6 +55,8 @@ public:
 
 	int getAncho(int pos) { return arrCoin->at(pos)->getAncho(); }
 	int getAlto(int pos) { return arrCoin->at(pos)->getAlto(); }
+
+	int getMonedas() { return *contadorMonedas; }
 	
 
 
