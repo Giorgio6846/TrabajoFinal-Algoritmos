@@ -29,7 +29,7 @@ public:
 
 		y += dy;
 		indexHeight++;
-		if (indexHeight == 7) indexHeight = 0;
+		if (indexHeight == 4) indexHeight = 1;
 
 	}
 

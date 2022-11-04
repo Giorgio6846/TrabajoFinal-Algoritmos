@@ -25,6 +25,10 @@ public:
 		}
 	}
 
+	void coinAtrapada(int pos) {
+		arrCoin->erase(arrCoin->begin() + pos);
+	}
+
 	void eliminarCoins()
 	{
 		for (int i = 0; i < arrCoin->size(); i++)
@@ -36,7 +40,8 @@ public:
 		}
 	}
 
-	
+	int getN() { return arrCoin->size(); }
+
 	int getX(int pos) {return arrCoin->at(pos)->getx();}
 	int getY(int pos) { return arrCoin->at(pos)->gety(); }
 

@@ -41,11 +41,11 @@ public:
 		//OpcionCaracterWidth = 4 * (rand() % 2);
 
 
-		CaracterHeight = 3 *3;
-		CaracterWidth = 4 * 1;
+		CaracterHeight = 3 * rand() % 4;
+		CaracterWidth = 4 * rand() % 2;
 
 		
-		indexHeight = 1 + CaracterHeight;
+		indexHeight = 0 + CaracterHeight;
 
 
 		mesVida = rand() % 30;

@@ -129,6 +129,7 @@ namespace TrabajoFinal {
 			this->ClientSize = System::Drawing::Size(284, 261);
 			this->Name = L"Juego";
 			this->Text = L"Juego";
+			this->Load += gcnew System::EventHandler(this, &Juego::Juego_Load);
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &Juego::Juego_KeyDown);
 			this->ResumeLayout(false);
 
@@ -162,7 +163,13 @@ namespace TrabajoFinal {
 
 
 		Rectangle a = Rectangle(jugador->getx(), jugador->gety(),jugador->getAncho(), jugador->getAlto());
-		Rectangle b = Rectangle(jugador->getx(), jugador->gety(), jugador->getAncho(), jugador->getAlto());
+
+		for (int i = 0; i < vectCoins->getN(); i++)
+		{
+			Rectangle b = Rectangle(vectCoins->getX(i), vectCoins->getY(i), vectCoins->getAncho(i)/4, vectCoins->getAlto(i)/4);
+
+			if (a.IntersectsWith(b)) vectCoins->coinAtrapada(i);
+		}
 
 		bg->Render(gr);
 
@@ -226,6 +233,8 @@ namespace TrabajoFinal {
 private: System::Void ContadorMonedas_Tick(System::Object^ sender, System::EventArgs^ e) {
 	//Agrega dos monedas por segundo
 	vectCoins->agregarCoin();
+}
+private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
