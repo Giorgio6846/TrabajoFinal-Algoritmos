@@ -34,7 +34,7 @@ void VectorBebes::MostrarBebes(Graphics ^ gr, Bitmap ^ imagen)
 {
 	for (int i = 0; i < arrBebes->size(); i++)
 	{
-		arrBebes->at(i)->mostrar(gr, imagen, 8, 12);
+		arrBebes->at(i)->mostrar(gr, imagen, 8, 12, 1.5, 1.5);
 	}
 }
 

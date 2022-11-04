@@ -53,6 +53,18 @@ public:
 	void setdy(int dy) { this->dy = dy; }
 
 	virtual void mover(Direccion direccion) {}
-	void mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWidth) {}
+
+	void mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWidth, float dimensionAncho, float dimensionAlto) {
+	
+		this->Width = imagen->Width / cantWidth;
+		this->Height = imagen->Height / cantHeight;
+
+		Rectangle porcion = Rectangle(indexHeight * Height, indexWidth * Width, Width, Height);
+		Rectangle areaSprite = Rectangle(x, y, Width * dimensionAncho, Height * dimensionAlto);
+		gr->DrawImage(imagen, areaSprite, porcion, GraphicsUnit::Pixel);
+	}
+
+
+
 };
 

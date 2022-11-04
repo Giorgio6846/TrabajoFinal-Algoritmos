@@ -26,15 +26,6 @@ public:
 	bool getesVacunado() { return this->esVacunado; }
 	void setesVacunado(bool esVacunado) { this->esVacunado = esVacunado; }
 
-	void mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWidth) {
-
-		this->Width = imagen->Width / cantWidth;
-		this->Height = imagen->Height / cantHeight;
-
-		Rectangle porcion = Rectangle(indexHeight * Width, indexWidth * Height, Width, Height);
-
-		gr->DrawImage(imagen, x, y, porcion, GraphicsUnit::Pixel);
-	}
 
 	void mover(Direccion direccion) {
 		switch (direccion)

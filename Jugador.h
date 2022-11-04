@@ -32,18 +32,6 @@ public:
 
 	}
 
-
-	void mostrar(Graphics^ gr, Bitmap^ imagen,int cantHeight, int cantWidth) {
-
-		this->Width = imagen->Width / cantWidth;
-		this->Height = imagen->Height / cantHeight;
-
-		Rectangle porcion = Rectangle(indexHeight * Height,indexWidth * Width, Width, Height);
-		
-		if (y >= RangePlayerHeight) y = 150;
-		gr->DrawImage(imagen, x, y, porcion, GraphicsUnit::Pixel);
-	}
-
 	void mover(Direccion direccion) {
 		switch (direccion)
 		{

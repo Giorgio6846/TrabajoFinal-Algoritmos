@@ -2,6 +2,7 @@
 
 #include "Jugador.h"
 #include "VectorBebes.h"
+#include "Coin.h"
 
 namespace TrabajoFinal {
 
@@ -26,6 +27,10 @@ namespace TrabajoFinal {
 			
 			vectBebes = new VectorBebes();
 			bebeImg = gcnew Bitmap("Recursos\\Bebes.png");
+
+			coin = new Coin();
+			coinImg = gcnew Bitmap("Recursos\\Monedas.png");
+
 		}
 
 	protected:
@@ -47,9 +52,11 @@ namespace TrabajoFinal {
 
 	private:
 		Jugador* jugador;
+		Coin* coin;
 		VectorBebes* vectBebes;
 		Bitmap^ jugadorImg;
 		Bitmap^ bebeImg;
+		Bitmap^ coinImg;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -93,9 +100,12 @@ namespace TrabajoFinal {
 		vectBebes->agregarBebes();
 		vectBebes->MoverBebes(bg->Graphics);
 
-		jugador->mostrar(bg->Graphics, jugadorImg,8,9);
+		jugador->mostrar(bg->Graphics, jugadorImg,8,9, 1.5, 1.5);
 		jugador->atShop(bg->Graphics);
 		vectBebes->MostrarBebes(bg->Graphics, bebeImg);
+
+		coin->mostrar(bg->Graphics, coinImg, 1, 6, 0.2, 0.2);
+		coin->mover();
 
 		bg->Render(gr);
 
