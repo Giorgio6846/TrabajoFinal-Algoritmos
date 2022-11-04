@@ -77,6 +77,7 @@ namespace TrabajoFinal {
 
 	private: System::Windows::Forms::Timer^ TiempoSegundos;
 	private: System::Windows::Forms::Timer^ ContadorBebes;
+	private: System::Windows::Forms::Timer^ ContadorMonedas;
 		   Bitmap^ coinImg;
 
 #pragma region Windows Form Designer generated code
@@ -90,18 +91,18 @@ namespace TrabajoFinal {
 			this->TiempoRespuesta = (gcnew System::Windows::Forms::Timer(this->components));
 			this->TiempoSegundos = (gcnew System::Windows::Forms::Timer(this->components));
 			this->ContadorBebes = (gcnew System::Windows::Forms::Timer(this->components));
+			this->ContadorMonedas = (gcnew System::Windows::Forms::Timer(this->components));
 			this->SuspendLayout();
 			// 
 			// TiempoRespuesta
 			// 
 			this->TiempoRespuesta->Enabled = true;
-			this->TiempoRespuesta->Interval = 100;
 			this->TiempoRespuesta->Tick += gcnew System::EventHandler(this, &Juego::TiempoRespuesta_Tick);
 			// 
 			// TiempoSegundos
 			// 
 			this->TiempoSegundos->Enabled = true;
-			this->TiempoSegundos->Interval = 1000;
+			this->TiempoSegundos->Interval = 2000;
 			this->TiempoSegundos->Tick += gcnew System::EventHandler(this, &Juego::TiempoSegundos_Tick);
 			// 
 			// ContadorBebes
@@ -109,6 +110,12 @@ namespace TrabajoFinal {
 			this->ContadorBebes->Enabled = true;
 			this->ContadorBebes->Interval = 500;
 			this->ContadorBebes->Tick += gcnew System::EventHandler(this, &Juego::ContadorBebes_Tick);
+			// 
+			// ContadorMonedas
+			// 
+			this->ContadorMonedas->Enabled = true;
+			this->ContadorMonedas->Interval = 500;
+			this->ContadorMonedas->Tick += gcnew System::EventHandler(this, &Juego::ContadorMonedas_Tick);
 			// 
 			// Juego
 			// 
@@ -178,7 +185,7 @@ namespace TrabajoFinal {
 	}
 
 	private: System::Void TiempoSegundos_Tick(System::Object^ sender, System::EventArgs^ e) {
-					
+		vectBebes->agregarMesVida();
 	}
 	
 	private: System::Void ContadorBebes_Tick(System::Object^ sender, System::EventArgs^ e) {
@@ -187,8 +194,11 @@ namespace TrabajoFinal {
 		{
 			vectBebes->agregarBebes();
 		}
-		vectCoins->agregarCoin();
 	}
 	
+private: System::Void ContadorMonedas_Tick(System::Object^ sender, System::EventArgs^ e) {
+	//Agrega dos monedas por segundo
+	vectCoins->agregarCoin();
+}
 };
 }

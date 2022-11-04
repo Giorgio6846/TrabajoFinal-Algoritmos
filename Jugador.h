@@ -42,10 +42,9 @@ public:
 
 		if (this->x > 870)
 		{
-			gr->DrawString("Estás en la tienda:", myFont, Brushes::Black, 670, 50);
+			gr->DrawString("Estás en la tienda:", myFont, Brushes::Black, 670, 35);
 			gr->DrawString("Pulse X para comprar munición", myFont, Brushes::Black, 670, 50);
-
-			
+						
 			/*
 			Musica Tienda
 			player->Load();
