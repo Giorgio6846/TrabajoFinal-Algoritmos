@@ -41,8 +41,8 @@ public:
 		//OpcionCaracterWidth = 4 * (rand() % 2);
 
 
-		CaracterHeight = 3 * rand() % 4;
-		CaracterWidth = 4 * rand() % 2;
+		CaracterHeight = 3 *3;
+		CaracterWidth = 4 * 1;
 
 		
 		indexHeight = 1 + CaracterHeight;

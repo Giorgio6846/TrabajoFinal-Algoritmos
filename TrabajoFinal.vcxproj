@@ -119,7 +119,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Juego.cpp" />
+    <ClCompile Include="MenuJuego.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bebe.h" />
@@ -129,6 +129,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Jugador.h" />
+    <ClInclude Include="MenuJuego.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Vacuna.h" />
     <ClInclude Include="VectorBebes.h" />
     <ClInclude Include="VectorCoins.h" />
@@ -142,6 +145,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Juego.resx">
       <DependentUpon>Juego.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuJuego.resx">
+      <DependentUpon>MenuJuego.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

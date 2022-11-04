@@ -18,8 +18,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Juego.cpp">
-      <Filter>Header Files</Filter>
+    <ClCompile Include="MenuJuego.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VectorVacunas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuJuego.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
