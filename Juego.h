@@ -112,6 +112,9 @@ namespace TrabajoFinal {
 		vectCoins->agregarCoin();
 		vectCoins->moverCoins(bg->Graphics, coinImg);
 
+		Rectangle a = Rectangle(jugador->getx(), jugador->gety(),jugador->getAncho(), jugador->getAlto());
+		Rectangle b = Rectangle(jugador->getx(), jugador->gety(), jugador->getAncho(), jugador->getAlto());
+
 		bg->Render(gr);
 
 		delete bc, bg, gr;

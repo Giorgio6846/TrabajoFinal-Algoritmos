@@ -46,6 +46,9 @@ public:
 	int getdx() { return this->dx; }
 	int getdy() { return this->dy; }
 
+	int getAncho() { return Width; }
+	int getAlto() { return Height; }
+
 	void setx(int x) { this->x = x; }
 	void sety(int y) { this->y = y; }
 
