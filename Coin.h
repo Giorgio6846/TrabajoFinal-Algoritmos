@@ -11,6 +11,7 @@ public:
 	~Coin(){};
 	
 	void mover() {
+
 		y += dy;
 		//if (y > ScreenHeight)
 		//{

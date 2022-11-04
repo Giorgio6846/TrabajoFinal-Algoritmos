@@ -122,7 +122,7 @@
     <ClCompile Include="Juego.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bebes.h" />
+    <ClInclude Include="Bebe.h" />
     <ClInclude Include="Caracter.h" />
     <ClInclude Include="Coin.h" />
     <ClInclude Include="GameEngine.h" />
@@ -131,6 +131,7 @@
     </ClInclude>
     <ClInclude Include="Jugador.h" />
     <ClInclude Include="VectorBebes.h" />
+    <ClInclude Include="VectorCoins.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Recursos\Bebes.png" />

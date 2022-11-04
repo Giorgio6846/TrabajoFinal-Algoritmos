@@ -32,13 +32,16 @@
     <ClInclude Include="Jugador.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bebes.h">
+    <ClInclude Include="Bebe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VectorBebes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Coin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorCoins.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,6 +3,7 @@
 #include "Jugador.h"
 #include "VectorBebes.h"
 #include "Coin.h"
+#include "VectorCoins.h"
 
 namespace TrabajoFinal {
 
@@ -28,8 +29,10 @@ namespace TrabajoFinal {
 			vectBebes = new VectorBebes();
 			bebeImg = gcnew Bitmap("Recursos\\Bebes.png");
 
-			coin = new Coin();
+			vectCoins = new VectorCoins();
 			coinImg = gcnew Bitmap("Recursos\\Monedas.png");
+
+
 
 		}
 
@@ -54,6 +57,7 @@ namespace TrabajoFinal {
 		Jugador* jugador;
 		Coin* coin;
 		VectorBebes* vectBebes;
+		VectorCoins* vectCoins;
 		Bitmap^ jugadorImg;
 		Bitmap^ bebeImg;
 		Bitmap^ coinImg;
@@ -97,15 +101,16 @@ namespace TrabajoFinal {
 		Form::ClientSize = image->Size;
 		bg->Graphics->DrawImage(image, 0, 0, image->Size.Width, image->Size.Height);
 
-		vectBebes->agregarBebes();
+
+
 		vectBebes->MoverBebes(bg->Graphics);
 
 		jugador->mostrar(bg->Graphics, jugadorImg,8,9, 1.5, 1.5);
 		jugador->atShop(bg->Graphics);
 		vectBebes->MostrarBebes(bg->Graphics, bebeImg);
 
-		coin->mostrar(bg->Graphics, coinImg, 1, 6, 0.2, 0.2);
-		coin->mover();
+		vectCoins->agregarCoin();
+		vectCoins->moverCoins(bg->Graphics, coinImg);
 
 		bg->Render(gr);
 

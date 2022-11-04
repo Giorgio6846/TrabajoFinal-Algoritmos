@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Bebes.h"
+#include "Bebe.h"
 #include <vector>
 
 using namespace std;
@@ -23,6 +23,10 @@ private:
 VectorBebes::VectorBebes()
 {
 	arrBebes = new vector <Bebes*>();
+	for (int i = 0; i < 15; i++)
+	{
+		arrBebes->push_back(new Bebes);
+	}
 }
 
 VectorBebes::~VectorBebes()
@@ -61,13 +65,6 @@ void VectorBebes::MoverBebes(Graphics ^ gr)
 	}
 }
 
-void VectorBebes::agregarBebes()
-{
-	Bebes* bebe;
-
-	bebe = new Bebes();
-	arrBebes->push_back(bebe);
-}
 
 void VectorBebes::eliminarBebes()
 {
