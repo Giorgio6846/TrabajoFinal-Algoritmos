@@ -12,18 +12,13 @@ BebeAreaIzqSupX
 BebeAreaIzqSupY
 BebeAreaDerInfX
 BebeAreaDerInfY
-
 Rectangulo en donde el bebe solo se puede mover
 No se ha usado el tamaño de la ventana porque este se va a agrandar para poner la interfaz del juego
-
 mesVida = La cantidad de meses que el bebe tiene. Este dura 2 segundos, cantidad maxima de meses es 60 meses
 esVacunado = El bebe es vacunado o no
-
 destX, destY = Para darles algo de vida a los bebes estos van a cualquier destino del mapa
 FinishedWalkingX, FinishedWalkingY = Si el bebe ha llegado a la posicion X o Y de la posicion destinada
-
 Walking = Decision del bebe para caminar por la por X o Y primero.  1 = Ruta por Y, 0 Ruta por X.
-
 */
 
 //cantWidth 12
@@ -45,8 +40,13 @@ public:
 		//OpcionCaracterHeight = 3 * (rand() % 4);
 		//OpcionCaracterWidth = 4 * (rand() % 2);
 
-		OpcionCaracterHeight = 3 * rand() % 4;
-		OpcionCaracterWidth = 4 * rand() % 2;
+
+		CaracterHeight = 3 * rand() % 4;
+		CaracterWidth = 4 * rand() % 2;
+
+		
+		indexHeight = 1 + CaracterHeight;
+
 
 		mesVida = rand() % 30;
 
@@ -55,7 +55,7 @@ public:
 		destX = rand() % BebeAreaDerInfX;
 		destY = BebeAreaIzqSupY + rand() % (BebeAreaDerInfY - BebeAreaIzqSupY);
 	};
-	~Bebes(){};
+	~Bebes() {};
 
 	int getmesVida() { return this->mesVida; }
 	void add1MesVida() { this->mesVida = mesVida + 1; }
@@ -79,25 +79,27 @@ public:
 	void setesVacunado(bool esVacunado) { this->esVacunado = esVacunado; }
 
 	void mover(Direccion direccion) {
+
+
 		switch (direccion)
 		{
 		case Arriba:
-			indexWidth = 3 + OpcionCaracterWidth;
+			indexWidth = 3 + CaracterWidth;
 			indexHeight++;
 			y = y - dy;
 			break;
 		case Abajo:
-			indexWidth = 0 + OpcionCaracterWidth;
+			indexWidth = 0 + CaracterWidth;
 			indexHeight++;
 			y = y + dy;
 			break;
 		case Izquierda:
-			indexWidth = 1 + OpcionCaracterWidth;
+			indexWidth = 1 + CaracterWidth;
 			indexHeight++;
 			x = x - dx;
 			break;
 		case Derecha:
-			indexWidth = 2 + OpcionCaracterWidth;
+			indexWidth = 2 + CaracterWidth;
 			indexHeight++;
 			x = x + dx;
 			break;
@@ -105,10 +107,13 @@ public:
 			break;
 		}
 
-		if (indexHeight == 3 + OpcionCaracterWidth)
-		{
-			indexHeight = OpcionCaracterWidth;
-		}
+
+		if (indexHeight == 12) indexHeight = 9;
+		if (indexHeight == 9) indexHeight = 6;
+		if (indexHeight == 6) indexHeight = 3;
+		if (indexHeight == 3) indexHeight = 0;
+
+
 	}
 
 private:
@@ -122,4 +127,7 @@ private:
 
 	bool FinishedWalkingX;
 	bool FinishedWalkingY;
+
+	int CaracterWidth;
+	int CaracterHeight;
 };

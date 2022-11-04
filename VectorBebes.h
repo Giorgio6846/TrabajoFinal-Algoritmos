@@ -23,6 +23,7 @@ private:
 
 VectorBebes::VectorBebes()
 {
+
 	arrBebes = new vector <Bebes*>();
 }
 
