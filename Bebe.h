@@ -3,7 +3,7 @@
 #include "Caracter.h"
 
 #define BebeAreaIzqSupX 0
-#define BebeAreaIzqSupY 277
+#define BebeAreaIzqSupY 260
 #define BebeAreaDerInfX 959
 #define BebeAreaDerInfY 727
 

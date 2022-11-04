@@ -13,8 +13,8 @@ No se ha usado el tamaño de la ventana porque este se va a agrandar para poner l
 
 #define JugadorAreaIzqSupX 0
 #define JugadorAreaIzqSupY 0
-#define JugadorAreaDerInfX 959
-#define JugadorAreaDerInfY 140
+#define JugadorAreaDerInfX 930
+#define JugadorAreaDerInfY 135
 
 
 class Jugador : public Caracter
@@ -78,7 +78,10 @@ public:
 		case Derecha:
 			indexWidth = 2 + OpcionCaracterWidth;
 			indexHeight++;
+			if (x + dx < JugadorAreaDerInfX)
+			{
 				x = x + dx;
+			}
 			break;
 		default: break;
 		}

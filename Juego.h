@@ -144,10 +144,10 @@ namespace TrabajoFinal {
 		vectCoins->moverCoins(bg->Graphics, coinImg);
 
 		//Graficos
-
 		jugador->mostrar(bg->Graphics, jugadorImg,8,9, 1.5, 1.5);
 		jugador->atShop(bg->Graphics,player);
 		vectBebes->mostrarBebes(bg->Graphics, bebeImg);
+
 
 		Rectangle a = Rectangle(jugador->getx(), jugador->gety(),jugador->getAncho(), jugador->getAlto());
 		Rectangle b = Rectangle(jugador->getx(), jugador->gety(), jugador->getAncho(), jugador->getAlto());
