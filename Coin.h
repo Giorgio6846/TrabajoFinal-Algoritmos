@@ -6,6 +6,16 @@
 #define MonedaAreaDerInfX 959
 #define MonedaAreaDerInfY 182
 
+/*
+BebeAreaIzqSupX
+BebeAreaIzqSupY
+BebeAreaDerInfX
+BebeAreaDerInfY
+
+Rectangulo en donde la moneda solo se puede mover
+No se ha usado el tamaño de la ventana porque este se va a agrandar para poner la interfaz del juego
+*/
+
 class Coin: public Caracter
 {
 public:

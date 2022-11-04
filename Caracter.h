@@ -1,6 +1,8 @@
 #pragma once
 using namespace System;
 using namespace System :: Drawing;
+using namespace System :: Media;
+
 #include <iostream>
 
 #define ScreenWidth 960

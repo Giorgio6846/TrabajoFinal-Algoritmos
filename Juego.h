@@ -13,6 +13,7 @@ namespace TrabajoFinal {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Media;
 
 	/// <summary>
 	/// Summary for Juego
@@ -25,14 +26,17 @@ namespace TrabajoFinal {
 			InitializeComponent();
 			
 			jugador = new Jugador();
-			jugadorImg = gcnew Bitmap("Recursos\\Doctor.png");
+			jugadorImg = gcnew Bitmap("Recursos/Imagenes\\Doctor.png");
 			
 			vectBebes = new VectorBebes();
-			bebeImg = gcnew Bitmap("Recursos\\Bebes.png");
+			bebeImg = gcnew Bitmap("Recursos/Imagenes\\Bebes.png");
 
 			vectCoins = new VectorCoins();
-			coinImg = gcnew Bitmap("Recursos\\Monedas.png");
+			coinImg = gcnew Bitmap("Recursos/Imagenes\\Monedas.png");
 
+			player = gcnew SoundPlayer("Recursos/Musica\\TiendaEntrada.wav");
+
+			Background = gcnew Bitmap("Recursos/Imagenes\\Campo_de_concentracion.png");
 		}
 
 	protected:
@@ -64,7 +68,13 @@ namespace TrabajoFinal {
 		//Datos Monedas
 		Coin* coin;
 		VectorCoins* vectCoins;
-				
+
+		//Datos Tienda
+		SoundPlayer^ player;
+		
+		//Imagen Background
+		Bitmap^ Background;
+
 	private: System::Windows::Forms::Timer^ TiempoSegundos;
 	private: System::Windows::Forms::Timer^ ContadorBebes;
 		   Bitmap^ coinImg;
@@ -114,7 +124,6 @@ namespace TrabajoFinal {
 #pragma endregion
 	private: System::Void TiempoRespuesta_Tick(System::Object^ sender, System::EventArgs^ e) {
 		//Buffer
-
 		Graphics^ gr = this->CreateGraphics();
 		BufferedGraphicsContext^ bc = BufferedGraphicsManager::Current;
 
@@ -122,24 +131,24 @@ namespace TrabajoFinal {
 		bg->Graphics->Clear(Color::White);
 
 		//Background Juego
-		Image^ image = Image::FromFile("Recursos\\Campo_de_concentracion.png");
-		Form::ClientSize = image->Size;
-		bg->Graphics->DrawImage(image, 0, 0, image->Size.Width, image->Size.Height);
+		Form::ClientSize = Background->Size;
+		bg->Graphics->DrawImage(Background, 0, 0, Background->Size.Width, Background->Size.Height);
 
 		//Mecanicas Juego
-
+			//Eliminacion Objetos
 		vectCoins->eliminarCoins();
+		vectBebes->eliminarBebes();
 
-
+			//Movimiento Objetos
 		vectBebes->moverBebes(bg->Graphics);
 		vectCoins->moverCoins(bg->Graphics, coinImg);
 
 		//Graficos
 
 		jugador->mostrar(bg->Graphics, jugadorImg,8,9, 1.5, 1.5);
-		jugador->atShop(bg->Graphics);
+		jugador->atShop(bg->Graphics,player);
 		vectBebes->mostrarBebes(bg->Graphics, bebeImg);
-		
+
 		Rectangle a = Rectangle(jugador->getx(), jugador->gety(),jugador->getAncho(), jugador->getAlto());
 		Rectangle b = Rectangle(jugador->getx(), jugador->gety(), jugador->getAncho(), jugador->getAlto());
 

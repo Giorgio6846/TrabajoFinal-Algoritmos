@@ -26,9 +26,6 @@
     <ClInclude Include="Juego.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Coin.h">
       <Filter>Header Files</Filter>
     </ClInclude>

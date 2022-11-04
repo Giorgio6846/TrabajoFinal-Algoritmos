@@ -14,7 +14,7 @@ No se ha usado el tamaño de la ventana porque este se va a agrandar para poner l
 #define JugadorAreaIzqSupX 0
 #define JugadorAreaIzqSupY 0
 #define JugadorAreaDerInfX 959
-#define JugadorAreaDerInfY 182
+#define JugadorAreaDerInfY 140
 
 
 class Jugador : public Caracter
@@ -36,18 +36,22 @@ public:
 
 
 
-	void atShop(Graphics^ gr) {
+	void atShop(Graphics^ gr, SoundPlayer ^ player) {
 		
 		Font^ myFont = gcnew Font("Times new Roman", 15);
-
 
 		if (this->x > 870)
 		{
 			gr->DrawString("Estás en la tienda:", myFont, Brushes::Black, 670, 50);
 			gr->DrawString("Pulse X para comprar munición", myFont, Brushes::Black, 670, 50);
 
+			
+			/*
+			Musica Tienda
+			player->Load();
+			player->PlaySync();
+			*/
 		}
-
 	}
 
 	void mover(Direccion direccion) {
