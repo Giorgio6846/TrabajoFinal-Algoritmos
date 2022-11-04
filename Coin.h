@@ -13,10 +13,9 @@ public:
 	void mover() {
 
 		y += dy;
-		//if (y > ScreenHeight)
-		//{
-		//
-		//}
+		indexHeight++;
+		if (indexHeight == 7) indexHeight = 0;
+
 	}
 
 };
