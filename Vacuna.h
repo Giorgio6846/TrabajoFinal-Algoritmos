@@ -35,15 +35,13 @@ Vacuna::Vacuna(int x, int y, int dx, int dy, int direccion) : Caracter()
 
 void Vacuna::mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWidth, float dimensionAncho, float dimensionAlto) 
 {
-
 	this->Width = imagen->Width / cantWidth;
 	this->Height = imagen->Height / cantHeight;
 
-	Rectangle Porcion = Rectangle((indexHeight + opcionCaracterHeight) * Width, (indexWidth + opcionCaracterWidth) * Height, Width, Height);
+	Rectangle Porcion = Rectangle((indexHeight) * Width, (indexWidth) * Height, Width, Height);
 
-	//Rectangle porcion = Rectangle((indexHeight + OpcionCaracterHeight) * Height, (indexWidth + OpcionCaracterWidth) * Width, Width, Height);
-	Rectangle areaSprite = Rectangle(x, y, Width * dimensionAncho, Height * dimensionAlto);
-	gr->DrawImage(imagen, areaSprite, Porcion, GraphicsUnit::Pixel);
+	Rectangle areaSprite = Rectangle(x - 5, y - 5, Width * dimensionAncho, Height * dimensionAlto);
+	gr->DrawImage(imagen, areaSprite, Porcion, GraphicsUnit::Pixel);	
 }
 
 void Vacuna :: mover()
@@ -52,15 +50,19 @@ void Vacuna :: mover()
 	{
 	case 3:
 		y = y - dy;
+		indexWidth = 1;
 		break;
 	case 0:
 		y = y + dy;
+		indexWidth = 0;
 		break;
 	case 1:
 		x = x - dx;
+		indexWidth = 2;
 		break;
 	case 2:
 		x = x + dx;
+		indexWidth = 3;
 		break;
 	default:
 		break;

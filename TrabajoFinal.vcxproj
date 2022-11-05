@@ -125,6 +125,7 @@
     <ClInclude Include="Bebe.h" />
     <ClInclude Include="Caracter.h" />
     <ClInclude Include="Coin.h" />
+    <ClInclude Include="Engine.h" />
     <ClInclude Include="Juego.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -140,11 +141,8 @@
   <ItemGroup>
     <Image Include="..\..\TrabajoFinal\Recursos\Doctor.png" />
     <Image Include="Recursos\Bebes.png" />
-    <Image Include="Recursos\Campo_de_concentracion.png" />
-    <Image Include="Recursos\Imagenes\Bebes.png" />
     <Image Include="Recursos\Imagenes\BigBabies.png" />
     <Image Include="Recursos\Imagenes\Campo_de_concentracion.png" />
-    <Image Include="Recursos\Imagenes\Doctor.png" />
     <Image Include="Recursos\Imagenes\FondoMenu.png" />
     <Image Include="Recursos\Imagenes\Monedas.png" />
     <Image Include="Recursos\Imagenes\Oshawott.png" />
