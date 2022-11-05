@@ -147,7 +147,6 @@ namespace TrabajoFinal {
 		//Buffer
 		Graphics^ gr = this->CreateGraphics();
 		BufferedGraphicsContext^ bc = BufferedGraphicsManager::Current;
-
 		BufferedGraphics^ bg = bc->Allocate(gr, this->ClientRectangle);
 		bg->Graphics->Clear(Color::White);
 
@@ -156,7 +155,11 @@ namespace TrabajoFinal {
 		bg->Graphics->DrawImage(Background, 0, 0, Background->Size.Width, Background->Size.Height);
 
 		//Mecanicas Juego
-			//Eliminacion Objetos
+			
+		vectCoins->monedasObtenidasText(bg->Graphics);
+
+		
+		//Eliminacion Objetos
 		vectCoins->eliminarCoins();
 		vectBebes->eliminarBebes();
 
@@ -176,16 +179,47 @@ namespace TrabajoFinal {
 			else if(vectBebes->getMesVida(i) > 30) vectBebes->mostrarBebes(bg->Graphics, bigBabyImg, i);
 		}
 		
-		Rectangle a = Rectangle(jugador->getX(), jugador->getY(),jugador->getAncho(), jugador->getAlto());
+		//Colisiones
+
+		Rectangle jugadorR = Rectangle(jugador->getX(), jugador->getY(),jugador->getAncho(), jugador->getAlto());
 
 		for (int i = 0; i < vectCoins->getN(); i++)
 		{
-			Rectangle b = Rectangle(vectCoins->getX(i), vectCoins->getY(i), vectCoins->getAncho(i)/4, vectCoins->getAlto(i)/4);
+			Rectangle monedaR = Rectangle(vectCoins->getX(i), vectCoins->getY(i), vectCoins->getAncho(i)/4, vectCoins->getAlto(i)/4);
 
-			if (a.IntersectsWith(b)) vectCoins->coinAtrapada(i);
+			if (jugadorR.IntersectsWith(monedaR)) vectCoins->coinAtrapada(i);
 		}
 
-		vectCoins->monedasObtenidasText(bg->Graphics);
+
+		//for (int i = 0; i < vectVacunas->getN(); i++)
+		//{
+		//	Rectangle vacunaR = Rectangle(vectVacunas->getX(i), vectVacunas->getY(i), vectVacunas->getAncho(i), vectVacunas->getAlto(i));
+		//	for (int j = 0; j < vectBebes->getN(); j++)
+		//	{
+		//		Rectangle bebeR = Rectangle(vectBebes->getX(j), vectBebes->getY(j), vectBebes->getAncho(j), vectBebes->getAlto(j));
+		//		if (bebeR.IntersectsWith(vacunaR))
+		//		{
+		//			vectVacunas->vacunaUsada(i);
+		//		}
+		//	}
+		//}
+
+		for (int j = 0; j < vectBebes->getN(); j++)
+		{
+			Rectangle bebeR = Rectangle(vectBebes->getX(j), vectBebes->getY(j), vectBebes->getAncho(j), vectBebes->getAlto(j));
+
+			for (int i = 0; i < vectVacunas->getN(); i++)
+			{
+				Rectangle vacunaR = Rectangle(vectVacunas->getX(i), vectVacunas->getY(i), 10,5);
+				if (vacunaR.IntersectsWith(bebeR))
+				{
+					vectVacunas->vacunaUsada(i);
+				}
+			}
+			
+			
+		}
+
 
 		bg->Render(gr);
 

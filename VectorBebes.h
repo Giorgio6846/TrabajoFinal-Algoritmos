@@ -20,12 +20,15 @@ public:
 
 	int getMesVida(int pos) { return arrBebes->at(pos)->getMesVida(); }
 
-	void mostrarBebes(Graphics^ gr, Bitmap^ imagen, int pos)
-	{
-		
-			arrBebes->at(pos)->mostrar(gr, imagen, 8, 12, 1.5, 1.5);
-		
-	}
+	void mostrarBebes(Graphics^ gr, Bitmap^ imagen, int pos) { arrBebes->at(pos)->mostrar(gr, imagen, 8, 12, 1.5, 1.5); }
+
+
+	int getX(int pos) { return arrBebes->at(pos)->getX(); }
+	int getY(int pos) { return arrBebes->at(pos)->getY(); }
+
+	int getAncho(int pos) { return arrBebes->at(pos)->getAncho(); }
+	int getAlto(int pos) { return arrBebes->at(pos)->getAlto(); }
+
 
 
 

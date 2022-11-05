@@ -16,6 +16,18 @@ public:
 	void mostrarVacunas(Graphics^ gr, Bitmap^ imagen);
 	void eliminarVacunas();
 
+	int getX(int pos) { return arrVacunas->at(pos)->getX(); }
+	int getY(int pos) { return arrVacunas->at(pos)->getY(); }
+
+	int getAncho(int pos) { return arrVacunas->at(pos)->getAncho(); }
+	int getAlto(int pos) { return arrVacunas->at(pos)->getAlto(); }
+
+	int getN() { return arrVacunas->size(); }
+
+	void vacunaUsada(int pos) { arrVacunas->erase(arrVacunas->begin() + pos); }
+
+
+
 private:
 	vector<Vacuna*>* arrVacunas;
 };
@@ -56,6 +68,8 @@ void VectorVacunas::moverVacunas()
 		arrVacunas->at(i)->setContador();
 	}
 }
+
+
 
 void VectorVacunas::agregarVacunas(int municion, int xJugador, int yJugador, int dxJugador, int dyJugador, int direccion)
 {
