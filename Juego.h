@@ -4,7 +4,7 @@
 #include "VectorBebes.h"
 #include "Coin.h"
 #include "VectorCoins.h"
-//#include "VectorVacunas.h"
+#include "VectorVacunas.h"
 
 namespace TrabajoFinal {
 
@@ -36,7 +36,8 @@ namespace TrabajoFinal {
 			vectCoins = new VectorCoins();
 			coinImg = gcnew Bitmap("Recursos/Imagenes\\Monedas.png");
 
-			//vectVacunas = new VectorVacunas();
+			vectVacunas = new VectorVacunas();
+			vacunasImg = gcnew Bitmap("Recursos/Imagenes\\Vacuna.png");
 
 			player = gcnew SoundPlayer("Recursos/Musica\\TiendaEntrada.wav");
 
@@ -73,6 +74,7 @@ namespace TrabajoFinal {
 		//Datos Monedas
 		Coin* coin;
 		VectorCoins* vectCoins;
+		Bitmap^ coinImg;
 
 		//Datos Tienda
 		SoundPlayer^ player;
@@ -80,12 +82,13 @@ namespace TrabajoFinal {
 		//Imagen Background
 		Bitmap^ Background;
 
-		//VectorVacunas* vectVacunas;
+		//Datos Vacunas
+		VectorVacunas* vectVacunas;
+		Bitmap^ vacunasImg;
 
 	private: System::Windows::Forms::Timer^ TiempoSegundos;
 	private: System::Windows::Forms::Timer^ ContadorBebes;
 	private: System::Windows::Forms::Timer^ ContadorMonedas;
-		   Bitmap^ coinImg;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -158,9 +161,11 @@ namespace TrabajoFinal {
 			//Movimiento Objetos
 		vectBebes->moverBebes(bg->Graphics);
 		vectCoins->moverCoins(bg->Graphics, coinImg);
+		vectVacunas->moverVacunas();
 
 		//Graficos
 		jugador->mostrar(bg->Graphics, jugadorImg,8,9, 1.5, 1.5);
+		vectVacunas->mostrarVacunas(bg->Graphics, vacunasImg);
 		jugador->atShop(bg->Graphics,player);
 
 		for (int i = 0; i < vectBebes->getN(); i++)
@@ -169,10 +174,7 @@ namespace TrabajoFinal {
 			else if(vectBebes->getMesVida(i) > 30) vectBebes->mostrarBebes(bg->Graphics, bigBabyImg, i);
 		}
 		
-		
-
-
-		Rectangle a = Rectangle(jugador->getx(), jugador->gety(),jugador->getAncho(), jugador->getAlto());
+		Rectangle a = Rectangle(jugador->getX(), jugador->getY(),jugador->getAncho(), jugador->getAlto());
 
 		for (int i = 0; i < vectCoins->getN(); i++)
 		{
@@ -202,27 +204,27 @@ namespace TrabajoFinal {
 		case Keys::Right:
 			jugador->mover(Derecha);
 			break;
-		/*
+		
 		case Keys::Space:
 			switch (jugador->getOpcionCaracterWidth() - jugador->getOpcionCaracterHeight())
 			{
 			case 0:
-				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getx(), jugador->gety(), jugador->getdx(), jugador->getdy(), Abajo);
+				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), jugador->getDx(), jugador->getDy(), jugador->getIndexWidth());
 				break;
 			case 1:
-				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getx(), jugador->gety(), jugador->getdx(), jugador->getdy(), Izquierda);
+				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), jugador->getDx(), jugador->getDy(), jugador->getIndexWidth());
 				break;
 			case 2:
-				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getx(), jugador->gety(), jugador->getdx(), jugador->getdy(), Derecha);
+				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), jugador->getDx(), jugador->getDy(), jugador->getIndexWidth());
 				break;
 			case 3:
-				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getx(), jugador->gety(), jugador->getdx(), jugador->getdy(), Arriba);
+				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), jugador->getDx(), jugador->getDy(), jugador->getIndexWidth());
 				break;
 
 			default:
 				break;
 			}
-			*/
+			
 			break;
 		default:
 			break;

@@ -19,10 +19,12 @@ No se ha usado el tamaño de la ventana porque este se va a agrandar para poner l
 class Coin: public Caracter
 {
 public:
-	Coin(){
-	x = 15 + (rand() % ScreenWidth-80);
-	dy = 3;
+	Coin()
+	{
+		x = 15 + (rand() % MonedaAreaDerInfX - 80);
+		dy = 3;
 	};
+
 	~Coin(){};
 	
 	void mover() {

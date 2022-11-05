@@ -64,5 +64,29 @@
     <Image Include="..\..\TrabajoFinal\Recursos\Doctor.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Recursos\Imagenes\Bebes.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Recursos\Imagenes\BigBabies.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Recursos\Imagenes\Campo_de_concentracion.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Recursos\Imagenes\Doctor.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Recursos\Imagenes\FondoMenu.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Recursos\Imagenes\Monedas.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Recursos\Imagenes\Oshawott.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Recursos\Imagenes\Vacuna.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
