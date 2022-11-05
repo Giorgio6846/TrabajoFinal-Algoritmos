@@ -100,6 +100,7 @@ namespace TrabajoFinal {
 			this->button3->TabIndex = 2;
 			this->button3->Text = L"DIFICULTAD";
 			this->button3->UseVisualStyleBackColor = false;
+			this->button3->Click += gcnew System::EventHandler(this, &MenuJuego::button3_Click);
 			// 
 			// button4
 			// 
@@ -115,6 +116,7 @@ namespace TrabajoFinal {
 			this->button4->TabIndex = 3;
 			this->button4->Text = L"INSTRUCCIONES";
 			this->button4->UseVisualStyleBackColor = false;
+			this->button4->Click += gcnew System::EventHandler(this, &MenuJuego::button4_Click);
 			// 
 			// button5
 			// 
@@ -186,5 +188,15 @@ namespace TrabajoFinal {
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		exit(0);
 	}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	Juego^ juego = gcnew Juego();
+	juego->setDificultad('M');
+	juego->Show();
+}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	Juego^ juego = gcnew Juego();
+	juego->setDificultad('D');
+	juego->Show();
+}
 };
 }
