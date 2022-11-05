@@ -12,7 +12,7 @@ public:
 
 	bool mover() {
 
-		if ((rand()%50) > 10)
+		if (false)
 		{
 			indexWidth = 3;
 			indexHeight += 2;

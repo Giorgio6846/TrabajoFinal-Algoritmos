@@ -300,7 +300,7 @@ namespace TrabajoFinal {
 
 		for (int j = 0; j < vectEnemigos->getN(); j++)
 		{
-			Rectangle enemigoR = Rectangle(vectEnemigos->getX(j), vectEnemigos->getY(j), vectEnemigos->getAncho(j), vectEnemigos->getAlto(j));
+			Rectangle enemigoR = Rectangle(vectEnemigos->getX(j), vectEnemigos->getY(j), vectEnemigos->getAncho(j)-30, vectEnemigos->getAlto(j));
 
 			for (int i = 0; i < vectVacunas->getN(); i++)
 			{
