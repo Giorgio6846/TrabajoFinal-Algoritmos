@@ -10,13 +10,14 @@ public:
 		dx = (rand()%15) + 10;
 	};
 
-	void mover() {
+	bool mover() {
 
 		if ((rand()%50) > 10)
 		{
 			indexWidth = 3;
 			indexHeight += 2;
 			if (indexHeight >= 4) indexHeight = 0;
+			return true;
 		}
 		else
 		{
@@ -30,8 +31,10 @@ public:
 
 			x += dx;
 		}
-		
+		return false;
 	}
+
+
 
 	
 	

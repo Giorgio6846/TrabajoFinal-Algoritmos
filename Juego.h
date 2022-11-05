@@ -298,6 +298,21 @@ namespace TrabajoFinal {
 			}
 		}
 
+		for (int j = 0; j < vectEnemigos->getN(); j++)
+		{
+			Rectangle enemigoR = Rectangle(vectEnemigos->getX(j), vectEnemigos->getY(j), vectEnemigos->getAncho(j), vectEnemigos->getAlto(j));
+
+			for (int i = 0; i < vectVacunas->getN(); i++)
+			{
+				Rectangle vacunaR = Rectangle(vectVacunas->getX(i), vectVacunas->getY(i), 1, 1);
+				if (vacunaR.IntersectsWith(enemigoR) && vectEnemigos->pararVacuna(j))
+				{
+					vectVacunas->vacunaUsada(i);
+				}
+			}
+		}
+
+
 
 		bg->Render(gr);
 
