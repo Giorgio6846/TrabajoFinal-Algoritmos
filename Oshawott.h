@@ -20,7 +20,7 @@ public:
 		if (dx >= 0) { indexWidth = 2; indexHeight++; }
 		else { indexWidth = 1;  indexHeight++; }
 
-		if (indexHeight == 5) indexHeight = 0;
+		if (indexHeight == 4) indexHeight = 0;
 	}
 	
 	~Oshawott(){};
