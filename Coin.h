@@ -4,7 +4,7 @@
 #define MonedaAreaIzqSupX 0
 #define MonedaAreaIzqSupY 0
 #define MonedaAreaDerInfX 959
-#define MonedaAreaDerInfY 198
+#define MonedaAreaDerInfY 195
 
 /*
 BebeAreaIzqSupX
@@ -20,7 +20,7 @@ class Coin: public Caracter
 {
 public:
 	Coin(){
-	x = rand() % ScreenWidth;
+	x = 15 + (rand() % ScreenWidth-80);
 	dy = 3;
 	};
 	~Coin(){};

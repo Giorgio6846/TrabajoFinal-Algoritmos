@@ -115,7 +115,7 @@ namespace TrabajoFinal {
 			// ContadorBebes
 			// 
 			this->ContadorBebes->Enabled = true;
-			this->ContadorBebes->Interval = 500;
+			this->ContadorBebes->Interval = 1500;
 			this->ContadorBebes->Tick += gcnew System::EventHandler(this, &Juego::ContadorBebes_Tick);
 			// 
 			// ContadorMonedas
@@ -235,11 +235,9 @@ namespace TrabajoFinal {
 	}
 	
 	private: System::Void ContadorBebes_Tick(System::Object^ sender, System::EventArgs^ e) {
-		//Agrega 1-2 bebes por segundo
-		if (rand() % 101 > 50)
-		{
+		
 			vectBebes->agregarBebes();
-		}
+
 	}
 	
 private: System::Void ContadorMonedas_Tick(System::Object^ sender, System::EventArgs^ e) {
