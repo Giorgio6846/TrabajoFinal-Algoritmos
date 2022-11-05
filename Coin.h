@@ -4,7 +4,7 @@
 #define MonedaAreaIzqSupX 0
 #define MonedaAreaIzqSupY 0
 #define MonedaAreaDerInfX 959
-#define MonedaAreaDerInfY 170
+#define MonedaAreaDerInfY 198
 
 /*
 BebeAreaIzqSupX
