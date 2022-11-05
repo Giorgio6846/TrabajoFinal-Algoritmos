@@ -263,7 +263,6 @@ namespace TrabajoFinal {
 		vectEnemigos->mostrar(bg->Graphics, OshawottImg);
 		jugador->mostrar(bg->Graphics, jugadorImg,8,9, 1.5, 1.5);
 		vectVacunas->mostrarVacunas(bg->Graphics, vacunasImg);
-		jugador->atShop(bg->Graphics,player);
 
 		for (int i = 0; i < vectBebes->getN(); i++)
 		{
@@ -310,6 +309,13 @@ namespace TrabajoFinal {
 					vectVacunas->vacunaUsada(i);
 				}
 			}
+		}
+
+		Rectangle tiendaR = Rectangle(860, 5, 100, 50);
+
+		if (jugadorR.IntersectsWith(tiendaR) && jugador->getX() >= 830)
+		{
+			jugador->atShop(bg->Graphics, player);
 		}
 
 

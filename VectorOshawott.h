@@ -46,14 +46,8 @@ public:
 	}
 
 	bool pararVacuna(int pos) {
-		if (arrOshawott->at(pos)->mover() == 1)
-		{
-			return 1;
-		}
-		else
-		{
-			return false;
-		}
+		if (arrOshawott->at(pos)->mover() == 1)	return true;
+		else return false;
 	}
 
 

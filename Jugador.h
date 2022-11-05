@@ -48,20 +48,29 @@ public:
 		
 		Font^ myFont = gcnew Font("Times new Roman", 15);
 	
-		if (this->x > 870)
-		{
+		
 			gr->DrawString("Estás en la tienda:", myFont, Brushes::Black, 670, 35);
-			gr->DrawString("Pulse X para comprar munición", myFont, Brushes::Black, 625, 60);
+			gr->DrawString("Pulse X para comprar munición", myFont, Brushes::Black, 600, 60);
+			
+
+			if (y >= 50 && x >= 830)
+			{
+				y = 55;
+			}
+			else if (x >= 820 && y <= 56)
+			{
+				x = 819;
+			}
 		
 			if (jugadorAtStore == 0)
 			{
 				jugadorAtStore = 1;
-
 				player->Load();
 				player->PlaySync();
 			}
-		}
-		else jugadorAtStore = 0;
+			else jugadorAtStore == 0;
+			
+
 	}
 
 	void mover(Direccion direccion) {
