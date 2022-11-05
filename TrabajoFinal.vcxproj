@@ -126,6 +126,15 @@
     <ClInclude Include="Bebe.h" />
     <ClInclude Include="Caracter.h" />
     <ClInclude Include="Coin.h" />
+    <ClInclude Include="Creditos.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Dificultad.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Instrucciones.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Juego.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -151,6 +160,15 @@
     <Image Include="Recursos\Imagenes\Vacuna.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Creditos.resx">
+      <DependentUpon>Creditos.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dificultad.resx">
+      <DependentUpon>Dificultad.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instrucciones.resx">
+      <DependentUpon>Instrucciones.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Juego.resx">
       <DependentUpon>Juego.h</DependentUpon>
     </EmbeddedResource>
