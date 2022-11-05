@@ -27,8 +27,8 @@ class Jugador : public Caracter
 public:
 	Jugador() {
 
-		x = rand() % JugadorAreaDerInfX;
-		y = rand() % JugadorAreaDerInfY;
+		x = 10;
+		y = 50;
 
 		//Arreglar Opcion Bebe
 		//OpcionCaracterHeight = 3 * (rand() % 3);
