@@ -44,7 +44,8 @@ namespace TrabajoFinal {
 		/// Variable del diseñador necesaria.
 		/// </summary>
 		System::ComponentModel::Container ^components;
-		Graphics^ gr;
+	private: System::Windows::Forms::Button^ button2;
+		   Graphics^ gr;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -54,6 +55,7 @@ namespace TrabajoFinal {
 		void InitializeComponent(void)
 		{
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -67,12 +69,25 @@ namespace TrabajoFinal {
 			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &MenuJuego::button1_Click);
 			// 
+			// button2
+			// 
+			this->button2->BackColor = System::Drawing::Color::Chocolate;
+			this->button2->Location = System::Drawing::Point(362, 325);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(222, 93);
+			this->button2->TabIndex = 1;
+			this->button2->Text = L"Exit";
+			this->button2->UseVisualStyleBackColor = false;
+			this->button2->Click += gcnew System::EventHandler(this, &MenuJuego::button2_Click);
+			// 
 			// MenuJuego
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(900, 600);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->MaximizeBox = false;
 			this->MinimizeBox = false;
 			this->Name = L"MenuJuego";
@@ -95,6 +110,9 @@ namespace TrabajoFinal {
 
 		Image^ Fondo = Image::FromFile("Recursos/Imagenes\\FondoMenu.png");
 		gr->DrawImage(Fondo, 0, 0, 900, 600);
+	}
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		exit(0);
 	}
 	};
 }
