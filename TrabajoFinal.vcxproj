@@ -125,7 +125,6 @@
     <ClInclude Include="Bebe.h" />
     <ClInclude Include="Caracter.h" />
     <ClInclude Include="Coin.h" />
-    <ClInclude Include="Engine.h" />
     <ClInclude Include="Juego.h">
       <FileType>CppForm</FileType>
     </ClInclude>
