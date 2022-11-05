@@ -80,11 +80,6 @@ Bebes::Bebes() {
 
 	esVacunado = false;
 
-	//Arreglar Opcion Bebe
-	//OpcionCaracterHeight = 3 * (rand() % 4);
-	//OpcionCaracterWidth = 4 * (rand() % 2);
-
-
 	caracterHeight = 3 * rand() % 4;
 	caracterWidth = 4 * rand() % 2;
 
