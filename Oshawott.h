@@ -14,8 +14,13 @@ public:
 
 	void mover() {
 		x += dx;
-		if (x + dx + Width > ScreenWidth) dx *= -1;
-		else if (x + dx < 0) dx *= -1;
+		if (x + dx + Width > ScreenWidth) { dx *= -1; }
+		else if (x + dx < 0) { dx *= -1; }
+
+		if (dx >= 0) { indexWidth = 2; indexHeight++; }
+		else { indexWidth = 1;  indexHeight++; }
+
+		if (indexHeight == 5) indexHeight = 0;
 	}
 	
 	~Oshawott(){};
