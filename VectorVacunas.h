@@ -33,9 +33,10 @@ void VectorVacunas::mostrarVacunas(Graphics ^ gr, Bitmap ^ imagen)
 {
 	for (int i = 0; i < arrVacunas->size(); i++)
 	{
-		arrVacunas->at(i)->mostrar(gr, imagen, 1,1, 0.03,0.03);
+		arrVacunas->at(i)->mostrar(gr, imagen, 4,1, 0.028,0.028);
 	}
 }
+
 void VectorVacunas::eliminarVacunas()
 {
 	for (int i = 0; i < arrVacunas->size(); i++)

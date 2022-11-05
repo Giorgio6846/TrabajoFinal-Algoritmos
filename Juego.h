@@ -98,6 +98,7 @@ namespace TrabajoFinal {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Juego::typeid));
 			this->TiempoRespuesta = (gcnew System::Windows::Forms::Timer(this->components));
 			this->TiempoSegundos = (gcnew System::Windows::Forms::Timer(this->components));
 			this->ContadorBebes = (gcnew System::Windows::Forms::Timer(this->components));
@@ -132,6 +133,7 @@ namespace TrabajoFinal {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(960, 800);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"Juego";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Juego";
