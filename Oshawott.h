@@ -7,7 +7,7 @@ public:
 	Oshawott(){
 		y = 235;
 		x = rand()%ScreenWidth;
-		dx = (rand()%15) + 10;
+		dx = (rand()%12) + 10;
 	};
 
 	bool mover() {
