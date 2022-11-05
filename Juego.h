@@ -31,6 +31,7 @@ namespace TrabajoFinal {
 			
 			vectBebes = new VectorBebes();
 			bebeImg = gcnew Bitmap("Recursos/Imagenes\\Bebes.png");
+			bigBabyImg = gcnew Bitmap("Recursos/Imagenes\\BigBabies.png");
 
 			vectCoins = new VectorCoins();
 			coinImg = gcnew Bitmap("Recursos/Imagenes\\Monedas.png");
@@ -67,6 +68,7 @@ namespace TrabajoFinal {
 		//Datos Bebes
 		Bitmap^ bebeImg;
 		VectorBebes* vectBebes;
+		Bitmap^ bigBabyImg;
 
 		//Datos Monedas
 		Coin* coin;
@@ -159,7 +161,14 @@ namespace TrabajoFinal {
 		//Graficos
 		jugador->mostrar(bg->Graphics, jugadorImg,8,9, 1.5, 1.5);
 		jugador->atShop(bg->Graphics,player);
-		vectBebes->mostrarBebes(bg->Graphics, bebeImg);
+
+		for (int i = 0; i < vectBebes->getN(); i++)
+		{
+			if (vectBebes->getMesVida(i) <= 30) vectBebes->mostrarBebes(bg->Graphics, bebeImg, i);
+			else if(vectBebes->getMesVida(i) > 30) vectBebes->mostrarBebes(bg->Graphics, bigBabyImg, i);
+		}
+		
+		
 
 
 		Rectangle a = Rectangle(jugador->getx(), jugador->gety(),jugador->getAncho(), jugador->getAlto());
