@@ -177,6 +177,7 @@ namespace TrabajoFinal {
 		vectBebes->moverBebes(bg->Graphics);
 		vectCoins->moverCoins(bg->Graphics, coinImg);
 		vectVacunas->moverVacunas();
+		enemigo->mover();
 
 		//Graficos
 		enemigo->mostrar(bg->Graphics, mamaAntiVacunaImg, 4, 4, 1, 1);
