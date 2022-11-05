@@ -45,6 +45,7 @@ namespace TrabajoFinal {
 		/// </summary>
 		System::ComponentModel::Container ^components;
 	private: System::Windows::Forms::Button^ button2;
+
 		   Graphics^ gr;
 
 #pragma region Windows Form Designer generated code
@@ -60,10 +61,16 @@ namespace TrabajoFinal {
 			// 
 			// button1
 			// 
-			this->button1->BackColor = System::Drawing::Color::DarkRed;
-			this->button1->Location = System::Drawing::Point(362, 217);
+			this->button1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(192)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button1->Font = (gcnew System::Drawing::Font(L"Maiandra GD", 26.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->ForeColor = System::Drawing::SystemColors::Control;
+			this->button1->Location = System::Drawing::Point(363, 230);
+			this->button1->Margin = System::Windows::Forms::Padding(0);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(222, 93);
+			this->button1->Size = System::Drawing::Size(185, 105);
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"Play";
 			this->button1->UseVisualStyleBackColor = false;
@@ -71,10 +78,17 @@ namespace TrabajoFinal {
 			// 
 			// button2
 			// 
-			this->button2->BackColor = System::Drawing::Color::Chocolate;
-			this->button2->Location = System::Drawing::Point(362, 325);
+			this->button2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(192)),
+				static_cast<System::Int32>(static_cast<System::Byte>(192)));
+			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button2->Font = (gcnew System::Drawing::Font(L"Maiandra GD", 26.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button2->ForeColor = System::Drawing::SystemColors::Control;
+			this->button2->ImageAlign = System::Drawing::ContentAlignment::TopLeft;
+			this->button2->Location = System::Drawing::Point(363, 358);
+			this->button2->Margin = System::Windows::Forms::Padding(0);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(222, 93);
+			this->button2->Size = System::Drawing::Size(185, 105);
 			this->button2->TabIndex = 1;
 			this->button2->Text = L"Exit";
 			this->button2->UseVisualStyleBackColor = false;
