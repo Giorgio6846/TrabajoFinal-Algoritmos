@@ -245,16 +245,16 @@ namespace TrabajoFinal {
 			switch (jugador->getOpcionCaracterWidth() - jugador->getOpcionCaracterHeight())
 			{
 			case 0:
-				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), jugador->getDx(), jugador->getDy(), jugador->getIndexWidth());
+				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), jugador->getDx(),100, jugador->getIndexWidth());
 				break;
 			case 1:
-				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), jugador->getDx(), jugador->getDy(), jugador->getIndexWidth());
+				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), jugador->getDx(), 100, jugador->getIndexWidth());
 				break;
 			case 2:
-				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), jugador->getDx(), jugador->getDy(), jugador->getIndexWidth());
+				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), jugador->getDx(), 100, jugador->getIndexWidth());
 				break;
 			case 3:
-				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), jugador->getDx(), jugador->getDy(), jugador->getIndexWidth());
+				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), jugador->getDx(), 100, jugador->getIndexWidth());
 				break;
 
 			default:

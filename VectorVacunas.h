@@ -71,7 +71,7 @@ void VectorVacunas::moverVacunas()
 
 
 
-void VectorVacunas::agregarVacunas(int municion, int xJugador, int yJugador, int dxJugador, int dyJugador, int direccion)
+void VectorVacunas::agregarVacunas(int municion, int xJugador, int yJugador, int dxVacuna, int dyVacuna, int direccion)
 {
-	arrVacunas->push_back(new Vacuna(xJugador, yJugador, dxJugador, dyJugador, direccion));
+	arrVacunas->push_back(new Vacuna(xJugador, yJugador, dxVacuna, dyVacuna, direccion));
 }
