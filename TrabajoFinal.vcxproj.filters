@@ -21,6 +21,9 @@
     <ClCompile Include="MenuJuego.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Creditos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Juego.h">
@@ -61,6 +64,12 @@
     </ClInclude>
     <ClInclude Include="Aliado.h">
       <Filter>Personajes</Filter>
+    </ClInclude>
+    <ClInclude Include="Instrucciones.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Creditos.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

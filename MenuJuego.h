@@ -1,6 +1,7 @@
 #pragma once
 #include "Juego.h"
-
+#include "Instrucciones.h"
+#include "Creditos.h"
 namespace TrabajoFinal {
 
 	using namespace System;
@@ -132,6 +133,7 @@ namespace TrabajoFinal {
 			this->button5->TabIndex = 4;
 			this->button5->Text = L"CRÉDITOS";
 			this->button5->UseVisualStyleBackColor = false;
+			this->button5->Click += gcnew System::EventHandler(this, &MenuJuego::button5_Click);
 			// 
 			// button1
 			// 
@@ -194,9 +196,12 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	juego->Show();
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-	Juego^ juego = gcnew Juego();
-	juego->setDificultad('D');
-	juego->Show();
+	Intrucciones^ intrucciones = gcnew Intrucciones();
+	intrucciones->Show();
+}
+private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+	Creditos^ creditos = gcnew Creditos();
+	creditos->Show();
 }
 };
 }
