@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Vacuna.h"
+#include <vector>
 
 using namespace std;
 
@@ -10,9 +11,9 @@ public:
 	VectorVacunas();
 	~VectorVacunas();
 
-	void agregarVacunas(int municion, int xJugador, int yJugador, int dxJugador, int dyJugador);
+	void agregarVacunas(int municion, int xJugador, int yJugador, int dxJugador, int dyJugador,int direccion);
 	void moverVacunas();
-	void mostrarVacunas();
+	void mostrarVacunas(Graphics^ gr, Bitmap^ imagen);
 	void eliminarVacunas();
 
 private:
@@ -27,18 +28,22 @@ VectorVacunas::VectorVacunas()
 VectorVacunas::~VectorVacunas()
 {
 }
-void VectorVacunas::mostrarVacunas()
+
+void VectorVacunas::mostrarVacunas(Graphics ^ gr, Bitmap ^ imagen)
 {
 	for (int i = 0; i < arrVacunas->size(); i++)
 	{
-
+		arrVacunas->at(i)->mostrar(gr, imagen, 1,1, 0.03,0.03);
 	}
 }
 void VectorVacunas::eliminarVacunas()
 {
 	for (int i = 0; i < arrVacunas->size(); i++)
 	{
-
+		if (arrVacunas->at(i)->getContador() >= 5)
+		{
+			arrVacunas->erase(arrVacunas->begin() + i);
+		}
 	}
 }
 
@@ -46,14 +51,12 @@ void VectorVacunas::moverVacunas()
 {
 	for (int i = 0; i < arrVacunas->size(); i++)
 	{
-
+		arrVacunas->at(i)->mover();
+		arrVacunas->at(i)->setContador();
 	}
 }
 
-void VectorVacunas::agregarVacunas(int municion, int xJugador, int yJugador, int dxJugador, int dyJugador, Direccion direccion)
+void VectorVacunas::agregarVacunas(int municion, int xJugador, int yJugador, int dxJugador, int dyJugador, int direccion)
 {
-	if (arrVacunas->size() <= municion)
-	{
-		arrVacunas->push_back(new Vacuna(xJugador, yJugador, dxJugador, dyJugador, Direccion));
-	}
+	arrVacunas->push_back(new Vacuna(xJugador, yJugador, dxJugador, dyJugador, direccion));
 }

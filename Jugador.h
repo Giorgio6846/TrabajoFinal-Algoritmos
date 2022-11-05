@@ -27,20 +27,22 @@ class Jugador : public Caracter
 public:
 	Jugador() {
 
-		x = rand() % JugadorAreaDerInfX;
-		y = rand() % JugadorAreaDerInfY;
+		x = 10;
+		y = 50;
 
 		//Arreglar Opcion Bebe
-		//OpcionCaracterHeight = 3 * (rand() % 3);
-		//OpcionCaracterWidth = 4 * (rand() % 2);
+		//opcionCaracterHeight = 3 * (rand() % 3);
+		//opcionCaracterWidth = 4 * (rand() % 2);
 
-		OpcionCaracterHeight = 3 * rand() % 3;
-		OpcionCaracterWidth = 4 * rand() % 2;
+		opcionCaracterHeight = 3 * rand() % 3;
+		opcionCaracterWidth = 4 * rand() % 2;
 	};
 	~Jugador(){}
 
 	int getjugadorAtStore() { return this->jugadorAtStore; }
 	void setjugadorAtStore(int jugadorAtStore) { this->jugadorAtStore = jugadorAtStore; }
+
+	int getIndexWidth() { return this->indexWidth - opcionCaracterWidth; }
 
 	void atShop(Graphics^ gr, SoundPlayer ^ player) {
 		
@@ -66,12 +68,12 @@ public:
 		switch (direccion)
 		{
 		case Arriba:
-			indexWidth = 3 + OpcionCaracterWidth;
+			indexWidth = 3 + opcionCaracterWidth;
 			indexHeight++;
 				y = y - dy;
 			break;
 		case Abajo:
-			indexWidth = 0 + OpcionCaracterWidth;
+			indexWidth = 0 + opcionCaracterWidth;
 			indexHeight++;
 			if (y + dy< JugadorAreaDerInfY)
 			{
@@ -79,12 +81,12 @@ public:
 			}
 			break;
 		case Izquierda:
-			indexWidth = 1 + OpcionCaracterWidth;
+			indexWidth = 1 + opcionCaracterWidth;
 			indexHeight++;
 			x = x - dx;
 			break;
 		case Derecha:
-			indexWidth = 2 + OpcionCaracterWidth;
+			indexWidth = 2 + opcionCaracterWidth;
 			indexHeight++;
 			if (x + dx < JugadorAreaDerInfX)
 			{
@@ -94,7 +96,7 @@ public:
 		default: break;
 		}
 
-		if (indexHeight == 3 + OpcionCaracterWidth) indexHeight = OpcionCaracterWidth;
+		if (indexHeight == 3 + opcionCaracterWidth) indexHeight = opcionCaracterWidth;
 
 	}
 

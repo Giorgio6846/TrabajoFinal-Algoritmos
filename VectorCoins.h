@@ -41,7 +41,7 @@ public:
 	{
 		for (int i = 0; i < arrCoin->size(); i++)
 		{
-			if (arrCoin->at(i) -> gety() > MonedaAreaDerInfY)
+			if (arrCoin->at(i) -> getY() > MonedaAreaDerInfY)
 			{
 				arrCoin->erase(arrCoin->begin() + i);
 			}
@@ -50,8 +50,8 @@ public:
 
 	int getN() { return arrCoin->size(); }
 
-	int getX(int pos) {return arrCoin->at(pos)->getx();}
-	int getY(int pos) { return arrCoin->at(pos)->gety(); }
+	int getX(int pos) {return arrCoin->at(pos)->getX();}
+	int getY(int pos) { return arrCoin->at(pos)->getY(); }
 
 	int getAncho(int pos) { return arrCoin->at(pos)->getAncho(); }
 	int getAlto(int pos) { return arrCoin->at(pos)->getAlto(); }

@@ -18,7 +18,7 @@ public:
 
 	int getN() { return arrBebes->size(); }
 
-	int getMesVida(int pos) { return arrBebes->at(pos)->getmesVida(); }
+	int getMesVida(int pos) { return arrBebes->at(pos)->getMesVida(); }
 
 	void mostrarBebes(Graphics^ gr, Bitmap^ imagen, int pos)
 	{
@@ -74,11 +74,11 @@ void VectorBebes::moverBebes(Graphics ^ gr)
 		//Movimiento por X y Y
 		if (arrBebes->at(i)->getWalking())
 		{
-			if (abs(arrBebes->at(i)->gety() - arrBebes->at(i)->getdestY()) <= arrBebes->at(i)->getdy())
+			if (abs(arrBebes->at(i)->getY() - arrBebes->at(i)->getDestY()) <= arrBebes->at(i)->getDy())
 			{
-				arrBebes->at(i)->setdy(rand() % 4 + 2);
+				arrBebes->at(i)->setDy(rand() % 4 + 2);
 			}
-			if (arrBebes->at(i)->gety() < arrBebes->at(i)->getdestY())
+			if (arrBebes->at(i)->getY() < arrBebes->at(i)->getDestY())
 			{
 				arrBebes->at(i)->mover(Abajo);
 			}
@@ -89,11 +89,11 @@ void VectorBebes::moverBebes(Graphics ^ gr)
 		}
 		else
 		{
-			if (abs(arrBebes->at(i)->getx() - arrBebes->at(i)->getdestX()) < arrBebes->at(i)->getdx())
+			if (abs(arrBebes->at(i)->getX() - arrBebes->at(i)->getDestX()) < arrBebes->at(i)->getDx())
 			{
-				arrBebes->at(i)->setdx(rand() % 4 + 2);
+				arrBebes->at(i)->setDx(rand() % 4 + 2);
 			}
-			if (arrBebes->at(i)->getx() > arrBebes->at(i)->getdestX())
+			if (arrBebes->at(i)->getX() > arrBebes->at(i)->getDestX())
 			{
 				arrBebes->at(i)->mover(Izquierda);
 			}
@@ -107,7 +107,7 @@ void VectorBebes::moverBebes(Graphics ^ gr)
 
 		//Define si el bebe finaliza su ruta por la posicion X 
 
-		if (abs(arrBebes->at(i)->getx() - arrBebes->at(i)->getdestX()) <= 10) 
+		if (abs(arrBebes->at(i)->getX() - arrBebes->at(i)->getDestX()) <= 10) 
 		{
 			arrBebes->at(i)->setFinishedWalkingX(1);
 			if (arrBebes->at(i)->getWalking() == 0)
@@ -118,7 +118,7 @@ void VectorBebes::moverBebes(Graphics ^ gr)
 
 		//Define si el bebe finaliza su ruta por la posicion Y
 
-		if (abs(arrBebes->at(i)->gety() - arrBebes->at(i)->getdestY()) <= 10)
+		if (abs(arrBebes->at(i)->getY() - arrBebes->at(i)->getDestY()) <= 10)
 		{
 			arrBebes->at(i)->setFinishedWalkingY(1);
 			if (arrBebes->at(i)->getWalking() == 1)
@@ -136,11 +136,11 @@ void VectorBebes::moverBebes(Graphics ^ gr)
 
 			arrBebes->at(i)->setWalking(rand()%2);
 
-			arrBebes->at(i)->setdx(rand() % 4 + 2);
-			arrBebes->at(i)->setdy(rand() % 4 + 2);
+			arrBebes->at(i)->setDx(rand() % 4 + 2);
+			arrBebes->at(i)->setDy(rand() % 4 + 2);
 
-			arrBebes->at(i)->setdestX(rand() % BebeAreaDerInfX);
-			arrBebes->at(i)->setdestY(BebeAreaIzqSupY + rand() % (BebeAreaDerInfY - BebeAreaIzqSupY));
+			arrBebes->at(i)->setDestX(rand() % BebeAreaDerInfX);
+			arrBebes->at(i)->setDestY(BebeAreaIzqSupY + rand() % (BebeAreaDerInfY - BebeAreaIzqSupY));
 		}
 	}
 }
@@ -150,11 +150,11 @@ void VectorBebes::eliminarBebes()
 {
 	for (int i = 0; i < arrBebes->size(); i++)
 	{
-		if (arrBebes->at(i)->getesVacunado())
+		if (arrBebes->at(i)->getEsVacunado())
 		{
 			arrBebes->erase(arrBebes->begin() + i);
 		}
-		if (arrBebes->at(i)->getmesVida() == 60)
+		if (arrBebes->at(i)->getMesVida() == 60)
 		{
 			arrBebes->erase(arrBebes->begin() + i);
 		}

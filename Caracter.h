@@ -30,35 +30,35 @@ protected:
 	int indexHeight;
 	int indexWidth;
 
-	int OpcionCaracterHeight;
-	int OpcionCaracterWidth;
+	int opcionCaracterHeight;
+	int opcionCaracterWidth;
 
 	int Height;
 	int Width;
 
 public:
 	Caracter();
-	Caracter(int x, int y);
 	~Caracter();
+
 	void mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWidth, float dimensionAncho, float dimensionAlto);
 
-	int getx() { return this->x; }
-	int gety() { return this->y; }
+	int getX() { return this->x; }
+	int getY() { return this->y; }
 
-	int getdx() { return this->dx; }
-	int getdy() { return this->dy; }
+	int getDx() { return this->dx; }
+	int getDy() { return this->dy; }
 
 	int getAncho() { return this -> Width; }
 	int getAlto() { return this -> Height; }
 
-	void setx(int x) { this->x = x; }
-	void sety(int y) { this->y = y; }
+	void setX(int x) { this->x = x; }
+	void setY(int y) { this->y = y; }
 
-	void setdx(int dx) { this->dx = dx; }
-	void setdy(int dy) { this->dy = dy; }
+	void setDx(int dx) { this->dx = dx; }
+	void setDy(int dy) { this->dy = dy; }
 
-	int getOpcionCaracterHeight() { return this->OpcionCaracterHeight; }
-	int getOpcionCaracterWidth() { return this->OpcionCaracterWidth; }
+	int getOpcionCaracterHeight() { return this->opcionCaracterHeight; }
+	int getOpcionCaracterWidth() { return this->opcionCaracterWidth; }
 
 	virtual void mover(Direccion direccion) {}
 		
@@ -72,8 +72,8 @@ Caracter :: Caracter() {
 	this->dy = 5;
 	this->indexHeight = 0;
 	this->indexWidth = 0;
-	this->OpcionCaracterHeight = 0;
-	this->OpcionCaracterWidth = 0;
+	this->opcionCaracterHeight = 0;
+	this->opcionCaracterWidth = 0;
 };
 
 Caracter :: ~Caracter() 
@@ -85,7 +85,7 @@ void Caracter::mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWid
 	this->Width = imagen->Width / cantWidth;
 	this->Height = imagen->Height / cantHeight;
 
-	Rectangle Porcion = Rectangle((indexHeight + OpcionCaracterHeight) * Width, (indexWidth + OpcionCaracterWidth) * Height, Width, Height);
+	Rectangle Porcion = Rectangle((indexHeight + opcionCaracterHeight) * Width, (indexWidth + opcionCaracterWidth) * Height, Width, Height);
 
 	//Rectangle porcion = Rectangle((indexHeight + OpcionCaracterHeight) * Height, (indexWidth + OpcionCaracterWidth) * Width, Width, Height);
 	Rectangle areaSprite = Rectangle(x, y, Width * dimensionAncho, Height * dimensionAlto);
