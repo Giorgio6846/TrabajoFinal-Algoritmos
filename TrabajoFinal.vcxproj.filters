@@ -38,9 +38,6 @@
     <ClInclude Include="Jugador.h">
       <Filter>Personajes</Filter>
     </ClInclude>
-    <ClInclude Include="VectorBebes.h">
-      <Filter>Personajes</Filter>
-    </ClInclude>
     <ClInclude Include="Caracter.h">
       <Filter>Personajes</Filter>
     </ClInclude>
@@ -53,14 +50,17 @@
     <ClInclude Include="MenuJuego.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Aliado.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Oshawott.h">
       <Filter>Personajes</Filter>
     </ClInclude>
     <ClInclude Include="VectorOshawott.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorBebes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Aliado.h">
+      <Filter>Personajes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -20,6 +20,13 @@ public:
 				arrOshawott->push_back(new Oshawott);
 			}
 		}
+		else if (dificultad == 1)
+		{
+			for (int i = 0; i < 8; i++)
+			{
+				arrOshawott->push_back(new Oshawott);
+			}
+		}
 	};
 
 
