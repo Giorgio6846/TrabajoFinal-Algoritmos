@@ -53,14 +53,9 @@ public:
 			gr->DrawString("Pulse X para comprar munición", myFont, Brushes::Black, 600, 60);
 			
 
-			if (y >= 50 && x >= 830)
-			{
-				y = 55;
-			}
-			else if (x >= 820 && y <= 56)
-			{
-				x = 819;
-			}
+			if (y >= 50 && x >= 830) y = 55;
+			else if (x >= 820 && y <= 56) x = 819;
+	
 		
 			if (jugadorAtStore == 0)
 			{
@@ -69,8 +64,6 @@ public:
 				player->PlaySync();
 			}
 			else jugadorAtStore == 0;
-			
-
 	}
 
 	void mover(Direccion direccion) {
@@ -79,7 +72,10 @@ public:
 		case Arriba:
 			indexWidth = 3 + opcionCaracterWidth;
 			indexHeight++;
+			if (y - dy > JugadorAreaIzqSupY)
+			{
 				y = y - dy;
+			}
 			break;
 		case Abajo:
 			indexWidth = 0 + opcionCaracterWidth;
