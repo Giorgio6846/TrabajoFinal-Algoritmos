@@ -29,11 +29,13 @@ public:
 	int getAncho(int pos) { return arrBebes->at(pos)->getAncho(); }
 	int getAlto(int pos) { return arrBebes->at(pos)->getAlto(); }
 
+	void Vacunado(int pos) { arrBebes->at(pos)->setEsVacunado(true); }
 
 
 
 private:
-	vector<Bebes*>* arrBebes;};
+	vector<Bebes*>* arrBebes;
+};
 
 VectorBebes::VectorBebes()
 {

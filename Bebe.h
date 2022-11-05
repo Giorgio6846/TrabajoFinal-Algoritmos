@@ -48,11 +48,13 @@ public:
 	void setWalking(bool Walking) { this->walking = Walking; }
 
 	bool getEsVacunado() { return this->esVacunado; }
+
 	void setEsVacunado(bool esVacunado) { this->esVacunado = esVacunado; }
+
 
 	void mover(Direccion direccion);
 
-private:
+protected:
 	int mesVida;
 	bool esVacunado;
 

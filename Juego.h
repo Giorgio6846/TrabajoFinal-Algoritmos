@@ -88,6 +88,7 @@ namespace TrabajoFinal {
 
 	private: System::Windows::Forms::Timer^ TiempoSegundos;
 	private: System::Windows::Forms::Timer^ ContadorBebes;
+
 	private: System::Windows::Forms::Timer^ ContadorMonedas;
 
 #pragma region Windows Form Designer generated code
@@ -214,10 +215,9 @@ namespace TrabajoFinal {
 				if (vacunaR.IntersectsWith(bebeR))
 				{
 					vectVacunas->vacunaUsada(i);
+					vectBebes->Vacunado(j);
 				}
 			}
-			
-			
 		}
 
 
@@ -245,16 +245,16 @@ namespace TrabajoFinal {
 			switch (jugador->getOpcionCaracterWidth() - jugador->getOpcionCaracterHeight())
 			{
 			case 0:
-				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), jugador->getDx(),100, jugador->getIndexWidth());
-				break;
-			case 1:
-				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), jugador->getDx(), 100, jugador->getIndexWidth());
-				break;
-			case 2:
-				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), jugador->getDx(), 100, jugador->getIndexWidth());
-				break;
-			case 3:
-				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), jugador->getDx(), 100, jugador->getIndexWidth());
+				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), 20, 30, jugador->getIndexWidth());
+				break;																									
+			case 1:																										
+				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), 20, 30, jugador->getIndexWidth());
+				break;																									
+			case 2:																										
+				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), 20, 30, jugador->getIndexWidth());
+				break;																									
+			case 3:																										
+				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), 20, 30, jugador->getIndexWidth());
 				break;
 
 			default:
@@ -284,5 +284,6 @@ private: System::Void ContadorMonedas_Tick(System::Object^ sender, System::Event
 }
 private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 }
+
 };
 }
