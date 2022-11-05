@@ -119,7 +119,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Creditos.cpp" />
     <ClCompile Include="MenuJuego.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +127,9 @@
     <ClInclude Include="Caracter.h" />
     <ClInclude Include="Coin.h" />
     <ClInclude Include="Creditos.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Dificultad.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Instrucciones.h">
@@ -160,6 +162,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Creditos.resx">
       <DependentUpon>Creditos.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dificultad.resx">
+      <DependentUpon>Dificultad.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Instrucciones.resx">
       <DependentUpon>Instrucciones.h</DependentUpon>
