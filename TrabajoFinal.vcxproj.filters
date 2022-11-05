@@ -53,6 +53,9 @@
     <ClInclude Include="MenuJuego.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Aliado.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Recursos\Campo_de_concentracion.png">
