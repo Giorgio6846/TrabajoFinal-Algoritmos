@@ -22,7 +22,7 @@ namespace TrabajoFinal {
 	public ref class Juego : public System::Windows::Forms::Form
 	{
 	public:
-		Juego(void)
+		Juego()
 		{
 			InitializeComponent();
 			
@@ -41,7 +41,55 @@ namespace TrabajoFinal {
 
 			player = gcnew SoundPlayer("Recursos/Musica\\TiendaEntrada.wav");
 
-			Background = gcnew Bitmap("Recursos/Imagenes\\Campo_de_concentracion.png");
+			BackgroundFacil = gcnew Bitmap("Recursos/Imagenes\\BackgroundFacil.png");
+			BackgroundMedio = gcnew Bitmap("Recursos/Imagenes\\BackgroundMedio.jpg");
+			BackgroundDificil = gcnew Bitmap("Recursos/Imagenes\\BackgroundDificil.jpg");
+
+			this->Dificultad = Dificultad;
+		}
+
+		void setDificultad(char Dificultad)
+		{
+			this->Dificultad = Dificultad;
+			
+			switch (Dificultad)
+			{
+			case 'F':
+				delete BackgroundMedio, BackgroundDificil;
+				
+				//Modifica el tiempo del juego dependiendo de la dificultad;
+				this->TiempoRespuesta->Interval = 100;
+				this->TiempoSegundos->Interval = 2000;
+				this->ContadorBebes->Interval = 1500;
+				this->ContadorMonedas->Interval = 1600;
+
+				break;
+			case 'M':
+				delete BackgroundFacil, BackgroundDificil;
+
+				//Modifica el tiempo del juego dependiendo de la dificultad;
+				this->TiempoRespuesta->Interval = 100;
+				this->TiempoSegundos->Interval = 2000;
+				this->ContadorBebes->Interval = 1500;
+				this->ContadorMonedas->Interval = 1600;
+
+				break;
+			case 'D':
+				delete BackgroundFacil, BackgroundMedio;
+				
+				//Modifica el tiempo del juego dependiendo de la dificultad;
+				this->TiempoRespuesta->Interval = 100;
+				this->TiempoSegundos->Interval = 2000;
+				this->ContadorBebes->Interval = 1500;
+				this->ContadorMonedas->Interval = 1600;
+
+				break;
+
+			default:
+				break;
+			}
+
+
 		}
 
 	protected:
@@ -62,6 +110,9 @@ namespace TrabajoFinal {
 	private: System::ComponentModel::IContainer^ components;
 
 	private:
+		//Dificultad Juego
+		char Dificultad;
+
 		//Datos Jugador
 		Jugador* jugador;
 		Bitmap^ jugadorImg;
@@ -80,7 +131,9 @@ namespace TrabajoFinal {
 		SoundPlayer^ player;
 		
 		//Imagen Background
-		Bitmap^ Background;
+		Bitmap^ BackgroundFacil;
+		Bitmap^ BackgroundMedio;
+		Bitmap^ BackgroundDificil;
 
 		//Datos Vacunas
 		VectorVacunas* vectVacunas;
@@ -152,8 +205,38 @@ namespace TrabajoFinal {
 		bg->Graphics->Clear(Color::White);
 
 		//Background Juego
-		Form::ClientSize = Background->Size;
-		bg->Graphics->DrawImage(Background, 0, 0, Background->Size.Width, Background->Size.Height);
+
+		switch (Dificultad)
+		{
+		case 'F':
+			Form::ClientSize = BackgroundFacil->Size;
+			bg->Graphics->DrawImage(BackgroundFacil, 0, 0, BackgroundFacil->Size.Width, BackgroundFacil->Size.Height);
+
+			//Mecanicas Juego
+			
+			vectCoins->monedasObtenidasText(bg->Graphics);
+			break;
+		case 'M':
+			Form::ClientSize = BackgroundMedio->Size;
+			bg->Graphics->DrawImage(BackgroundMedio, 0, 0, BackgroundMedio->Size.Width, BackgroundMedio->Size.Height);
+
+			//Mecanicas Juego
+			
+			vectCoins->monedasObtenidasText(bg->Graphics);
+			break;
+		case 'D':
+			Form::ClientSize = BackgroundDificil->Size;
+			bg->Graphics->DrawImage(BackgroundDificil, 0, 0, BackgroundDificil->Size.Width, BackgroundDificil->Size.Height);
+
+			//Mecanicas Juego
+
+			vectCoins->monedasObtenidasText(bg->Graphics);
+			break;
+		default:
+			break;
+		}
+
+
 
 		//Mecanicas Juego
 			
@@ -240,28 +323,10 @@ namespace TrabajoFinal {
 		case Keys::Right:
 			jugador->mover(Derecha);
 			break;
-		
 		case Keys::Space:
-			switch (jugador->getOpcionCaracterWidth() - jugador->getOpcionCaracterHeight())
-			{
-			case 0:
-				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), 20, 30, jugador->getIndexWidth());
-				break;																									
-			case 1:																										
-				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), 20, 30, jugador->getIndexWidth());
-				break;																									
-			case 2:																										
-				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), 20, 30, jugador->getIndexWidth());
-				break;																									
-			case 3:																										
-				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), 20, 30, jugador->getIndexWidth());
-				break;
-
-			default:
-				break;
-			}
-			
+			vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), 20, 30, jugador->getIndexWidth());
 			break;
+
 		default:
 			break;
 		}
