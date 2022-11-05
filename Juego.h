@@ -5,6 +5,7 @@
 #include "Coin.h"
 #include "VectorCoins.h"
 #include "VectorVacunas.h"
+#include "Oshawott.h"
 
 namespace TrabajoFinal {
 
@@ -44,6 +45,9 @@ namespace TrabajoFinal {
 			BackgroundFacil = gcnew Bitmap("Recursos/Imagenes\\BackgroundFacil.png");
 			BackgroundMedio = gcnew Bitmap("Recursos/Imagenes\\BackgroundMedio.jpg");
 			BackgroundDificil = gcnew Bitmap("Recursos/Imagenes\\BackgroundDificil.jpg");
+
+			enemigo = new Oshawott();
+			mamaAntiVacunaImg = gcnew Bitmap("Recursos/Imagenes\\Oshawott.png");
 
 			this->Dificultad = Dificultad;
 		}
@@ -138,6 +142,11 @@ namespace TrabajoFinal {
 		//Datos Vacunas
 		VectorVacunas* vectVacunas;
 		Bitmap^ vacunasImg;
+
+		//Imagen MamaAntivacuna
+		Oshawott* enemigo;
+		Bitmap^ mamaAntiVacunaImg;
+		
 
 	private: System::Windows::Forms::Timer^ TiempoSegundos;
 	private: System::Windows::Forms::Timer^ ContadorBebes;
@@ -251,8 +260,10 @@ namespace TrabajoFinal {
 		vectBebes->moverBebes(bg->Graphics);
 		vectCoins->moverCoins(bg->Graphics, coinImg);
 		vectVacunas->moverVacunas();
+		enemigo->mover();
 
 		//Graficos
+		enemigo->mostrar(bg->Graphics, mamaAntiVacunaImg, 4, 4, 1, 1);
 		jugador->mostrar(bg->Graphics, jugadorImg,8,9, 1.5, 1.5);
 		vectVacunas->mostrarVacunas(bg->Graphics, vacunasImg);
 		jugador->atShop(bg->Graphics,player);
@@ -275,19 +286,6 @@ namespace TrabajoFinal {
 		}
 
 
-		//for (int i = 0; i < vectVacunas->getN(); i++)
-		//{
-		//	Rectangle vacunaR = Rectangle(vectVacunas->getX(i), vectVacunas->getY(i), vectVacunas->getAncho(i), vectVacunas->getAlto(i));
-		//	for (int j = 0; j < vectBebes->getN(); j++)
-		//	{
-		//		Rectangle bebeR = Rectangle(vectBebes->getX(j), vectBebes->getY(j), vectBebes->getAncho(j), vectBebes->getAlto(j));
-		//		if (bebeR.IntersectsWith(vacunaR))
-		//		{
-		//			vectVacunas->vacunaUsada(i);
-		//		}
-		//	}
-		//}
-
 		for (int j = 0; j < vectBebes->getN(); j++)
 		{
 			Rectangle bebeR = Rectangle(vectBebes->getX(j), vectBebes->getY(j), vectBebes->getAncho(j), vectBebes->getAlto(j));
@@ -298,7 +296,7 @@ namespace TrabajoFinal {
 				if (vacunaR.IntersectsWith(bebeR))
 				{
 					vectVacunas->vacunaUsada(i);
-					vectBebes->Vacunado(j);
+					//TODO: vectBebes->Vacunado(j);
 				}
 			}
 		}

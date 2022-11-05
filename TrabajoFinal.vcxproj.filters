@@ -56,6 +56,9 @@
     <ClInclude Include="Aliado.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Oshawott.h">
+      <Filter>Personajes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Recursos\Bebes.png">

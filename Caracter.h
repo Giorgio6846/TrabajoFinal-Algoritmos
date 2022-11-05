@@ -82,10 +82,14 @@ Caracter :: ~Caracter()
 
 void Caracter::mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWidth, float dimensionAncho, float dimensionAlto) {
 
+	
+
 	this->Width = imagen->Width / cantWidth;
 	this->Height = imagen->Height / cantHeight;
 
 	Rectangle Porcion = Rectangle((indexHeight + opcionCaracterHeight) * Width, (indexWidth + opcionCaracterWidth) * Height, Width, Height);
+
+	
 
 	//Rectangle porcion = Rectangle((indexHeight + OpcionCaracterHeight) * Height, (indexWidth + OpcionCaracterWidth) * Width, Width, Height);
 	Rectangle areaSprite = Rectangle(x, y, Width * dimensionAncho, Height * dimensionAlto);
