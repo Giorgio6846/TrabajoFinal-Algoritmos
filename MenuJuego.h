@@ -175,6 +175,7 @@ namespace TrabajoFinal {
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		Juego^ juego = gcnew Juego();
+		juego->setDificultad('F');
 		juego->Show();
 	}
 	private: System::Void MenuJuego_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
