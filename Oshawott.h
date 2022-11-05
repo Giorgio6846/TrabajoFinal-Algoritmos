@@ -9,7 +9,7 @@ public:
 		indexHeight = 0;
 		y = 235;
 		x = rand()%ScreenWidth;
-		dx = 10;
+		dx = (rand()%15) + 10;
 	};
 
 	void mover() {
@@ -22,6 +22,8 @@ public:
 
 		if (indexHeight == 4) indexHeight = 0;
 	}
+
+	
 	
 	~Oshawott(){};
 

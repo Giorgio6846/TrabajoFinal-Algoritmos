@@ -137,6 +137,7 @@
     <ClInclude Include="Vacuna.h" />
     <ClInclude Include="VectorBebes.h" />
     <ClInclude Include="VectorCoins.h" />
+    <ClInclude Include="VectorOshawott.h" />
     <ClInclude Include="VectorVacunas.h" />
   </ItemGroup>
   <ItemGroup>

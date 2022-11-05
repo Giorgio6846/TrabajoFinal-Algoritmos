@@ -5,7 +5,7 @@
 #include "Coin.h"
 #include "VectorCoins.h"
 #include "VectorVacunas.h"
-#include "Oshawott.h"
+#include "VectorOshawott.h"
 
 namespace TrabajoFinal {
 
@@ -44,8 +44,8 @@ namespace TrabajoFinal {
 
 			Background = gcnew Bitmap("Recursos/Imagenes\\Campo_de_concentracion.png");
 
-			enemigo = new Oshawott();
-			mamaAntiVacunaImg = gcnew Bitmap("Recursos/Imagenes\\Oshawott.png");
+			vectEnemigos = new VectorOshawott(0);
+			OshawottImg = gcnew Bitmap("Recursos/Imagenes\\Oshawott.png");
 		}
 
 	protected:
@@ -91,8 +91,8 @@ namespace TrabajoFinal {
 		Bitmap^ vacunasImg;
 
 		//Imagen MamaAntivacuna
-		Oshawott* enemigo;
-		Bitmap^ mamaAntiVacunaImg;
+		VectorOshawott* vectEnemigos;
+		Bitmap^ OshawottImg;
 		
 
 	private: System::Windows::Forms::Timer^ TiempoSegundos;
@@ -177,10 +177,9 @@ namespace TrabajoFinal {
 		vectBebes->moverBebes(bg->Graphics);
 		vectCoins->moverCoins(bg->Graphics, coinImg);
 		vectVacunas->moverVacunas();
-		enemigo->mover();
 
 		//Graficos
-		enemigo->mostrar(bg->Graphics, mamaAntiVacunaImg, 4, 4, 1, 1);
+		vectEnemigos->mostrar(bg->Graphics, OshawottImg);
 		jugador->mostrar(bg->Graphics, jugadorImg,8,9, 1.5, 1.5);
 		vectVacunas->mostrarVacunas(bg->Graphics, vacunasImg);
 		jugador->atShop(bg->Graphics,player);
