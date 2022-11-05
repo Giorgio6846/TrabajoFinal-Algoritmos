@@ -22,6 +22,7 @@ namespace TrabajoFinal {
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			gr = this->CreateGraphics();
 		}
 
 	protected:
@@ -43,6 +44,7 @@ namespace TrabajoFinal {
 		/// Variable del diseñador necesaria.
 		/// </summary>
 		System::ComponentModel::Container ^components;
+		Graphics^ gr;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -56,11 +58,11 @@ namespace TrabajoFinal {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(93, 120);
+			this->button1->Location = System::Drawing::Point(341, 509);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->Size = System::Drawing::Size(222, 93);
 			this->button1->TabIndex = 0;
-			this->button1->Text = L"button1";
+			this->button1->Text = L"Play";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MenuJuego::button1_Click);
 			// 
@@ -68,11 +70,16 @@ namespace TrabajoFinal {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 261);
+			this->ClientSize = System::Drawing::Size(900, 600);
 			this->Controls->Add(this->button1);
+			this->MaximizeBox = false;
+			this->MinimizeBox = false;
 			this->Name = L"MenuJuego";
+			this->ShowIcon = false;
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MenuJuego";
 			this->Load += gcnew System::EventHandler(this, &MenuJuego::MenuJuego_Load);
+			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MenuJuego::MenuJuego_Paint);
 			this->ResumeLayout(false);
 
 		}
@@ -82,6 +89,11 @@ namespace TrabajoFinal {
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		Juego^ juego = gcnew Juego();
 		juego->Show();
+	}
+	private: System::Void MenuJuego_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+
+		Image^ Fondo = Image::FromFile("Recursos/Imagenes\\FondoMenu.png");
+		gr->DrawImage(Fondo, 0, 0, 900, 600);
 	}
 	};
 }
