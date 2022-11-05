@@ -212,7 +212,7 @@ namespace TrabajoFinal {
 				if (vacunaR.IntersectsWith(bebeR))
 				{
 					vectVacunas->vacunaUsada(i);
-					vectBebes->Vacunado(j);
+					//TODO: vectBebes->Vacunado(j);
 				}
 			}
 		}
