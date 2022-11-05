@@ -58,12 +58,13 @@ namespace TrabajoFinal {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(341, 509);
+			this->button1->BackColor = System::Drawing::Color::DarkRed;
+			this->button1->Location = System::Drawing::Point(362, 217);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(222, 93);
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"Play";
-			this->button1->UseVisualStyleBackColor = true;
+			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &MenuJuego::button1_Click);
 			// 
 			// MenuJuego
