@@ -7,25 +7,34 @@ using namespace std;
 class VectorOshawott
 {
 public:
-	VectorOshawott(int dificultad){
+	VectorOshawott(char dificultad){
 
 		arrOshawott = new vector< Oshawott*>();
 
 		//dificultad 0 es modo normal
 
-		if (dificultad == 0)
+		switch (dificultad)
 		{
+		case 'F':
 			for (int i = 0; i < 4; i++)
 			{
 				arrOshawott->push_back(new Oshawott);
 			}
-		}
-		else if (dificultad == 1)
-		{
+			break;
+		case 'M':
 			for (int i = 0; i < 8; i++)
 			{
 				arrOshawott->push_back(new Oshawott);
 			}
+			break;
+		case 'D':
+			for (int i = 0; i < 12; i++)
+			{
+				arrOshawott->push_back(new Oshawott);
+			}
+			break;
+		default:
+			break;
 		}
 	};
 

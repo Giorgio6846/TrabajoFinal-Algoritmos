@@ -48,7 +48,7 @@ namespace TrabajoFinal {
 			BackgroundMedio = gcnew Bitmap("Recursos/Imagenes\\BackgroundMedio.jpg");
 			BackgroundDificil = gcnew Bitmap("Recursos/Imagenes\\BackgroundDificil.jpg");
 
-			vectEnemigos = new VectorOshawott(0);
+
 			OshawottImg = gcnew Bitmap("Recursos/Imagenes\\Oshawott.png");
 		
 			aliadas = new Aliadas();
@@ -68,9 +68,10 @@ namespace TrabajoFinal {
 				delete BackgroundMedio, BackgroundDificil;
 				
 				//Modifica el tiempo del juego dependiendo de la dificultad;
+				vectEnemigos = new VectorOshawott('F');
 				this->TiempoRespuesta->Interval = 100;
 				this->TiempoSegundos->Interval = 2000;
-				this->ContadorBebes->Interval = 1500;
+				this->ContadorBebes->Interval = 1800;
 				this->ContadorMonedas->Interval = 1600;
 
 				break;
@@ -78,6 +79,7 @@ namespace TrabajoFinal {
 				delete BackgroundFacil, BackgroundDificil;
 
 				//Modifica el tiempo del juego dependiendo de la dificultad;
+				vectEnemigos = new VectorOshawott('M');
 				this->TiempoRespuesta->Interval = 100;
 				this->TiempoSegundos->Interval = 2000;
 				this->ContadorBebes->Interval = 1500;
@@ -88,6 +90,7 @@ namespace TrabajoFinal {
 				delete BackgroundFacil, BackgroundMedio;
 				
 				//Modifica el tiempo del juego dependiendo de la dificultad;
+				vectEnemigos = new VectorOshawott('D');
 				this->TiempoRespuesta->Interval = 100;
 				this->TiempoSegundos->Interval = 2000;
 				this->ContadorBebes->Interval = 1500;
