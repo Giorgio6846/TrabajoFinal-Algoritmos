@@ -17,15 +17,6 @@ public:
 	void mover();
 	void mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWidth, float dimensionAncho, float dimensionAlto);
 
-	int getX() { return this->x; }
-	int getY() { return this->y; }
-
-	int getAncho() { return this->Width; }
-	int getAlto() { return this->Height; }
-
-
-
-	
 private:
 	int direccion;
 	int contador;

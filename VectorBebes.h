@@ -20,8 +20,7 @@ public:
 
 	int getMesVida(int pos) { return arrBebes->at(pos)->getMesVida(); }
 
-	void mostrarBebes(Graphics^ gr, Bitmap^ imagen, int pos) { arrBebes->at(pos)->mostrar(gr, imagen, 8, 12, 1.5, 1.5); }
-
+	void mostrarBebes(Graphics^ gr, Bitmap^ imagenMenor30, Bitmap^ imagenMayor30);
 
 	int getX(int pos) { return arrBebes->at(pos)->getX(); }
 	int getY(int pos) { return arrBebes->at(pos)->getY(); }
@@ -34,6 +33,12 @@ public:
 
 
 private:
+
+	int EntidadAreaIzqSupX = 0;
+	int EntidadAreaIzqSupY = 260;
+	int EntidadAreaDerInfX = 959;
+	int EntidadAreaDerInfY = 727;
+
 	vector<Bebes*>* arrBebes;
 };
 
@@ -48,6 +53,25 @@ VectorBebes::~VectorBebes()
 }
 
 
+void VectorBebes::mostrarBebes(Graphics^ gr, Bitmap^ imagenMenor30, Bitmap^ imagenMayor30)
+{
+	for (int i = 0; i < arrBebes->size(); i++)
+	{
+		if (arrBebes->at(i)->getMesVida() >= 30)
+		{
+			arrBebes->at(i)->setEsMayor30Meses(1);
+		}
+		if (arrBebes->at(i)->getEsMayor30Meses())
+		{
+			arrBebes->at(i)->mostrar(gr, imagenMayor30, 8, 12, 1.5, 1.5);
+		}
+		else
+		{
+			arrBebes->at(i)->mostrar(gr, imagenMenor30, 8, 12, 1.5, 1.5);
+		}
+	}
+	//	arrBebes->at(pos)->mostrar(gr, imagen, 8, 12, 1.5, 1.5); 
+}
 
 
 void VectorBebes::moverBebes(Graphics ^ gr)
@@ -144,8 +168,8 @@ void VectorBebes::moverBebes(Graphics ^ gr)
 			arrBebes->at(i)->setDx(rand() % 4 + 2);
 			arrBebes->at(i)->setDy(rand() % 4 + 2);
 
-			arrBebes->at(i)->setDestX(rand() % BebeAreaDerInfX);
-			arrBebes->at(i)->setDestY(BebeAreaIzqSupY + rand() % (BebeAreaDerInfY - BebeAreaIzqSupY));
+			arrBebes->at(i)->setDestX(rand() % EntidadAreaDerInfX);
+			arrBebes->at(i)->setDestY(EntidadAreaIzqSupY + rand() % (EntidadAreaDerInfY - EntidadAreaIzqSupY));
 		}
 	}
 }

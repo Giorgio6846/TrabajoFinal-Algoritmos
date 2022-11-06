@@ -5,9 +5,6 @@ using namespace System :: Media;
 
 #include <iostream>
 
-#define ScreenWidth 960
-#define ScreenHeight 800
-
 enum Direccion{Arriba, Abajo, Izquierda,Derecha};
 
 /*
@@ -36,32 +33,35 @@ protected:
 	int Height;
 	int Width;
 
+	int EntidadAreaIzqSupX;
+	int EntidadAreaIzqSupY;
+	int EntidadAreaDerInfX;
+	int EntidadAreaDerInfY;
+
 public:
 	Caracter();
 	~Caracter();
 
-	void mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWidth, float dimensionAncho, float dimensionAlto);
+	virtual void mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWidth, float dimensionAncho, float dimensionAlto);
+	virtual void mover(Direccion direccion);
 
 	int getX() { return this->x; }
-	int getY() { return this->y; }
+	void setX(int x) { this->x = x; }
 
 	int getDx() { return this->dx; }
+	void setDx(int dx) { this->dx = dx; }
+
+	int getY() { return this->y; }
+	void setY(int y) { this->y = y; }
+
 	int getDy() { return this->dy; }
+	void setDy(int dy) { this->dy = dy; }
 
 	int getAncho() { return this -> Width; }
 	int getAlto() { return this -> Height; }
 
-	void setX(int x) { this->x = x; }
-	void setY(int y) { this->y = y; }
-
-	void setDx(int dx) { this->dx = dx; }
-	void setDy(int dy) { this->dy = dy; }
-
 	int getOpcionCaracterHeight() { return this->opcionCaracterHeight; }
 	int getOpcionCaracterWidth() { return this->opcionCaracterWidth; }
-
-	virtual void mover(Direccion direccion) {}
-		
 };
 
 Caracter :: Caracter() {
@@ -81,17 +81,41 @@ Caracter :: ~Caracter()
 }
 
 void Caracter::mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWidth, float dimensionAncho, float dimensionAlto) {
-
-	
-
 	this->Width = imagen->Width / cantWidth;
 	this->Height = imagen->Height / cantHeight;
 
-	Rectangle Porcion = Rectangle((indexHeight + opcionCaracterHeight) * Width, (indexWidth + opcionCaracterWidth) * Height, Width, Height);
-
-	
-
-	//Rectangle porcion = Rectangle((indexHeight + OpcionCaracterHeight) * Height, (indexWidth + OpcionCaracterWidth) * Width, Width, Height);
+	Rectangle Porcion = Rectangle(indexHeight * Width, indexWidth * Height, Width, Height);
 	Rectangle areaSprite = Rectangle(x, y, Width * dimensionAncho, Height * dimensionAlto);
+	
 	gr->DrawImage(imagen, areaSprite, Porcion, GraphicsUnit::Pixel);
+}
+
+void Caracter :: mover(Direccion direccion) {
+	switch (direccion)
+	{
+	case Arriba:
+		indexWidth = 3 + opcionCaracterWidth;
+		indexHeight++;
+		if (y - dy > EntidadAreaIzqSupY) y = y - dy;
+		break;
+	case Abajo:
+		indexWidth = 0 + opcionCaracterWidth;
+		indexHeight++;
+		if (y + dy < EntidadAreaDerInfY) y += dy;
+		break;
+	case Izquierda:
+		indexWidth = 1 + opcionCaracterWidth;
+		indexHeight++;
+		if (x - dx > EntidadAreaIzqSupX) x -= dx;
+		break;
+	case Derecha:
+		indexWidth = 2 + opcionCaracterWidth;
+		indexHeight++;
+		if (x + dx < EntidadAreaDerInfX) x += dx;
+		break;
+	default: break;
+	}
+
+	if (indexHeight == 3 + opcionCaracterHeight) indexHeight = opcionCaracterHeight;
+
 }

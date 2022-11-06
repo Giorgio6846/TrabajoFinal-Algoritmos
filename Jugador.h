@@ -3,23 +3,10 @@
 #include "Jugador.h"
 
 /*
-JugadorAreaIzqSupX
-JugadorAreaIzqSupY
-JugadorAreaDerInfX
-JugadorAreaDerInfY
-
-Rectangulo en donde el jugador solo se puede mover
-No se ha usado el tamaño de la ventana porque este se va a agrandar para poner la interfaz del juego
-
 jugadorAtStore = Si el jugador entra a la tienda; no entra a la tienda y; recien va a entrar;
 0 = No esta en la tienda
 1 = Esta en la tienda
 */
-
-#define JugadorAreaIzqSupX 0
-#define JugadorAreaIzqSupY 0
-#define JugadorAreaDerInfX 930
-#define JugadorAreaDerInfY 135
 
 
 class Jugador : public Caracter
@@ -34,8 +21,13 @@ public:
 		//opcionCaracterHeight = 3 * (rand() % 3);
 		//opcionCaracterWidth = 4 * (rand() % 2);
 
-		opcionCaracterHeight = 3 * rand() % 3;
-		opcionCaracterWidth = 4 * rand() % 2;
+		opcionCaracterHeight = 3 * (rand() % 3);
+		opcionCaracterWidth = 4 * (rand() % 2);
+
+		EntidadAreaIzqSupX = 0;
+		EntidadAreaIzqSupY = 0;
+		EntidadAreaDerInfX = 930;
+		EntidadAreaDerInfY = 135;
 	};
 	~Jugador(){}
 
@@ -65,14 +57,14 @@ public:
 			}
 			else jugadorAtStore == 0;
 	}
-
+/*
 	void mover(Direccion direccion) {
 		switch (direccion)
 		{
 		case Arriba:
 			indexWidth = 3 + opcionCaracterWidth;
 			indexHeight++;
-			if (y - dy > JugadorAreaIzqSupY)
+			if (y - dy > EntidadAreaIzqSupY)
 			{
 				y = y - dy;
 			}
@@ -80,7 +72,7 @@ public:
 		case Abajo:
 			indexWidth = 0 + opcionCaracterWidth;
 			indexHeight++;
-			if (y + dy< JugadorAreaDerInfY)
+			if (y + dy< EntidadAreaDerInfY)
 			{
 				y = y + dy;
 			}
@@ -88,12 +80,15 @@ public:
 		case Izquierda:
 			indexWidth = 1 + opcionCaracterWidth;
 			indexHeight++;
-			x = x - dx;
+			if (x - dx > EntidadAreaDerInfX)
+			{
+				x = x - dx;
+			}
 			break;
 		case Derecha:
 			indexWidth = 2 + opcionCaracterWidth;
 			indexHeight++;
-			if (x + dx < JugadorAreaDerInfX)
+			if (x + dx < EntidadAreaDerInfX)
 			{
 				x = x + dx;
 			}
@@ -101,10 +96,10 @@ public:
 		default: break;
 		}
 
-		if (indexHeight == 3 + opcionCaracterWidth) indexHeight = opcionCaracterWidth;
+		if (indexHeight == 3 + opcionCaracterHeight) indexHeight = opcionCaracterHeight;
 
 	}
-
+*/
 	int getMunicion() { return this->municion; }
 	void setMunicion(int municion) { this->municion = municion; }
 

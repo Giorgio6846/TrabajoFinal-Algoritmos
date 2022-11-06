@@ -2,18 +2,7 @@
 
 #include "Caracter.h"
 
-#define BebeAreaIzqSupX 0
-#define BebeAreaIzqSupY 260
-#define BebeAreaDerInfX 959
-#define BebeAreaDerInfY 727
-
 /*
-BebeAreaIzqSupX
-BebeAreaIzqSupY
-BebeAreaDerInfX
-BebeAreaDerInfY
-Rectangulo en donde el bebe solo se puede mover
-No se ha usado el tamaño de la ventana porque este se va a agrandar para poner la interfaz del juego
 mesVida = La cantidad de meses que el bebe tiene. Este dura 2 segundos, cantidad maxima de meses es 60 meses
 esVacunado = El bebe es vacunado o no
 destX, destY = Para darles algo de vida a los bebes estos van a cualquier destino del mapa
@@ -48,11 +37,12 @@ public:
 	void setWalking(bool Walking) { this->walking = Walking; }
 
 	bool getEsVacunado() { return this->esVacunado; }
-
 	void setEsVacunado(bool esVacunado) { this->esVacunado = esVacunado; }
 
+	bool getEsMayor30Meses() { return this->esMayor30Meses; }
+	void setEsMayor30Meses(bool esMayor30Meses) { this->esMayor30Meses = esMayor30Meses; }
 
-	void mover(Direccion direccion);
+	//void mover(Direccion direccion);
 
 protected:
 	int mesVida;
@@ -62,6 +52,7 @@ protected:
 	int destY;
 
 	bool walking;
+	bool esMayor30Meses;
 
 	bool finishedWalkingX;
 	bool finishedWalkingY;
@@ -72,52 +63,61 @@ protected:
 
 Bebes::Bebes() {
 
-	x = rand() % BebeAreaDerInfX;
-	y = BebeAreaIzqSupY + rand() % (BebeAreaDerInfY - BebeAreaIzqSupY);
+	EntidadAreaIzqSupX = 0;
+	EntidadAreaIzqSupY = 260;
+	EntidadAreaDerInfX = 959;
+	EntidadAreaDerInfY = 727;
+
+	x = rand() % EntidadAreaDerInfX;
+	y = EntidadAreaIzqSupY + rand() % (EntidadAreaDerInfY - EntidadAreaIzqSupY);
 
 	dx = rand() % 4 + 2;
 	dy = rand() % 4 + 2;
 
 	esVacunado = false;
 
-	caracterHeight = 3 * rand() % 4;
-	caracterWidth = 4 * rand() % 2;
+	opcionCaracterHeight = 3 * (rand() % 4);
+	opcionCaracterWidth = 4 * (rand() % 2);
 
-	indexHeight = 0 + caracterHeight;
+	indexHeight = 0 + opcionCaracterHeight;
 
-	mesVida = 0;
+	esMayor30Meses = 0;
+
+	mesVida = rand() % 12;
 
 	walking = rand() % 2;
 
-	destX = rand() % BebeAreaDerInfX;
-	destY = BebeAreaIzqSupY + rand() % (BebeAreaDerInfY - BebeAreaIzqSupY);
+	destX = rand() % EntidadAreaDerInfX;
+	destY = EntidadAreaIzqSupY + rand() % (EntidadAreaDerInfY - EntidadAreaIzqSupY);
+
 };
 Bebes:: ~Bebes()
 {
 }
 
+/*
 void Bebes :: mover(Direccion direccion) {
 
 
 	switch (direccion)
 	{
 	case Arriba:
-		indexWidth = 3 + caracterWidth;
+		indexWidth = 3 + opcionCaracterWidth;
 		indexHeight++;
 		y = y - dy;
 		break;
 	case Abajo:
-		indexWidth = 0 + caracterWidth;
+		indexWidth = 0 + opcionCaracterWidth;
 		indexHeight++;
 		y = y + dy;
 		break;
 	case Izquierda:
-		indexWidth = 1 + caracterWidth;
+		indexWidth = 1 + opcionCaracterWidth;
 		indexHeight++;
 		x = x - dx;
 		break;
 	case Derecha:
-		indexWidth = 2 + caracterWidth;
+		indexWidth = 2 + opcionCaracterWidth;
 		indexHeight++;
 		x = x + dx;
 		break;
@@ -125,9 +125,8 @@ void Bebes :: mover(Direccion direccion) {
 		break;
 	}
 
+	if (indexHeight == 3 + opcionCaracterHeight) indexHeight = opcionCaracterHeight;
 
-	if (indexHeight == 12) indexHeight = 9;
-	if (indexHeight == 9) indexHeight = 6;
-	if (indexHeight == 6) indexHeight = 3;
-	if (indexHeight == 3) indexHeight = 0;
 }
+
+*/

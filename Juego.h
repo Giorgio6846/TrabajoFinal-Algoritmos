@@ -31,8 +31,8 @@ namespace TrabajoFinal {
 			jugadorImg = gcnew Bitmap("Recursos/Imagenes\\Doctor.png");
 			
 			vectBebes = new VectorBebes();
-			bebeImg = gcnew Bitmap("Recursos/Imagenes\\Bebes.png");
-			bigBabyImg = gcnew Bitmap("Recursos/Imagenes\\BigBabies.png");
+			less30MBabyImg = gcnew Bitmap("Recursos/Imagenes\\Bebes.png");
+			more30MBabyImg = gcnew Bitmap("Recursos/Imagenes\\BigBabies.png");
 
 			vectCoins = new VectorCoins();
 			coinImg = gcnew Bitmap("Recursos/Imagenes\\Monedas.png");
@@ -120,9 +120,9 @@ namespace TrabajoFinal {
 		Bitmap^ jugadorImg;
 
 		//Datos Bebes
-		Bitmap^ bebeImg;
+		Bitmap^ less30MBabyImg;
+		Bitmap^ more30MBabyImg;
 		VectorBebes* vectBebes;
-		Bitmap^ bigBabyImg;
 
 		//Datos Monedas
 		Coin* coin;
@@ -219,32 +219,21 @@ namespace TrabajoFinal {
 		case 'F':
 			Form::ClientSize = BackgroundFacil->Size;
 			bg->Graphics->DrawImage(BackgroundFacil, 0, 0, BackgroundFacil->Size.Width, BackgroundFacil->Size.Height);
-
-			//Mecanicas Juego
 			
-			vectCoins->monedasObtenidasText(bg->Graphics);
 			break;
 		case 'M':
 			Form::ClientSize = BackgroundMedio->Size;
 			bg->Graphics->DrawImage(BackgroundMedio, 0, 0, BackgroundMedio->Size.Width, BackgroundMedio->Size.Height);
-
-			//Mecanicas Juego
 			
-			vectCoins->monedasObtenidasText(bg->Graphics);
 			break;
 		case 'D':
 			Form::ClientSize = BackgroundDificil->Size;
 			bg->Graphics->DrawImage(BackgroundDificil, 0, 0, BackgroundDificil->Size.Width, BackgroundDificil->Size.Height);
 
-			//Mecanicas Juego
-
-			vectCoins->monedasObtenidasText(bg->Graphics);
 			break;
 		default:
 			break;
 		}
-
-
 
 		//Mecanicas Juego
 			
@@ -255,14 +244,14 @@ namespace TrabajoFinal {
 		vectCoins->moverCoins(bg->Graphics, coinImg);
 		vectVacunas->moverVacunas();
 
-
-
+		/*
 		for (int i = 0; i < vectBebes->getN(); i++)
 		{
 			if (vectBebes->getMesVida(i) <= 30) vectBebes->mostrarBebes(bg->Graphics, bebeImg, i);
 			else if(vectBebes->getMesVida(i) > 30) vectBebes->mostrarBebes(bg->Graphics, bigBabyImg, i);
 		}
-		
+		*/
+
 		//Colisiones
 
 		Rectangle jugadorR = Rectangle(jugador->getX(), jugador->getY(),jugador->getAncho(), jugador->getAlto());
@@ -273,7 +262,6 @@ namespace TrabajoFinal {
 
 			if (jugadorR.IntersectsWith(monedaR)) vectCoins->coinAtrapada(i);
 		}
-
 
 		for (int j = 0; j < vectBebes->getN(); j++)
 		{
@@ -309,12 +297,14 @@ namespace TrabajoFinal {
 		vectBebes->eliminarBebes();
 
 		//Graficos
+		vectBebes->mostrarBebes(bg->Graphics, less30MBabyImg, more30MBabyImg);
 		vectEnemigos->mostrar(bg->Graphics, OshawottImg);
 		jugador->mostrar(bg->Graphics, jugadorImg, 8, 9, 1.5, 1.5);
 		vectVacunas->mostrarVacunas(bg->Graphics, vacunasImg);
+		
 		jugador->atShop(bg->Graphics, player);
-		Rectangle tiendaR = Rectangle(860, 5, 100, 50);
 
+		Rectangle tiendaR = Rectangle(860, 5, 100, 50);
 		if (jugadorR.IntersectsWith(tiendaR) && jugador->getX() >= 830)
 		{
 			jugador->atShop(bg->Graphics, player);
