@@ -52,8 +52,8 @@ namespace TrabajoFinal {
 			OshawottImg = gcnew Bitmap("Recursos/Imagenes\\Oshawott.png");
 		
 			aliadas = new Aliadas();
-			AliadaRam = gcnew Bitmap("Recursos/Imagenes\\Aliada_Ram");
-			AliadaRem = gcnew Bitmap("Recursos/Imagenes\\Aliada_Rem");
+			AliadaRam = gcnew Bitmap("Recursos/Imagenes\\Aliada_Ram.png");
+			AliadaRem = gcnew Bitmap("Recursos/Imagenes\\Aliada_Rem.png");
 
 			shop = new Shop();
 		}
