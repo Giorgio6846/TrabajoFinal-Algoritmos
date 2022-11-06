@@ -6,7 +6,7 @@
 class Aliadas : public Caracter
 {
 public:
-	Aliadas(bool tipo);
+	Aliadas();
 	~Aliadas();
 
 
