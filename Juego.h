@@ -249,8 +249,7 @@ namespace TrabajoFinal {
 		}
 
 		//Mecanicas Juego
-		vectCoins->monedasObtenidasText(bg->Graphics);
-
+		
 		//Movimiento Objetos
 		vectBebes->moverBebes(bg->Graphics);
 		vectCoins->moverCoins(bg->Graphics, coinImg);
@@ -301,6 +300,11 @@ namespace TrabajoFinal {
 		vectBebes->eliminarBebes();
 
 		//Graficos
+		//HUD
+		vectCoins->mostrarCantidadMonedasObtenidasText(bg->Graphics);
+		vectBebes->mostrarPorcentajeBebesVacunadosYNoVacunados(bg->Graphics);
+
+		//Trazado
 		vectBebes->mostrarBebes(bg->Graphics, less30MBabyImg, more30MBabyImg);
 		vectEnemigos->mostrar(bg->Graphics, OshawottImg);
 		jugador->mostrar(bg->Graphics, jugadorImg, 8, 9, 1.5, 1.5);

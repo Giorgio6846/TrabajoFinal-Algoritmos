@@ -37,12 +37,12 @@ public:
 		arrCoin->erase(arrCoin->begin() + pos); *contadorMonedas = *contadorMonedas+1; 
 	}
 
-	void monedasObtenidasText(Graphics^ gr) 
+	void mostrarCantidadMonedasObtenidasText(Graphics^ gr) 
 	{
 		Font^ myFont = gcnew Font("Times new Roman", 15);
 
-		if (*contadorMonedas == 1 ) gr->DrawString("Tienes: " + *contadorMonedas + " moneda", myFont, Brushes::Black, 100, 5);
-		else gr->DrawString("Tienes: " + *contadorMonedas + " monedas", myFont, Brushes::Black, 100, 5);
+		if (*contadorMonedas == 1 ) gr->DrawString("Tienes: " + *contadorMonedas + " moneda", myFont, Brushes::Black, 960, 5);
+		else gr->DrawString("Tienes: " + *contadorMonedas + " monedas", myFont, Brushes::Black, 960, 5);
 	}
 
 	void eliminarCoins()

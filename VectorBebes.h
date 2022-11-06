@@ -30,7 +30,7 @@ public:
 
 	void Vacunado(int pos) { arrBebes->at(pos)->setEsVacunado(true); }
 
-
+	void mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr);
 
 private:
 
@@ -40,11 +40,17 @@ private:
 	int EntidadAreaDerInfY = 727;
 
 	vector<Bebes*>* arrBebes;
+
+	int bebesVacunados;
+	int bebesNoVacunados;
 };
 
 VectorBebes::VectorBebes()
 {
 	arrBebes = new vector <Bebes*>();
+
+	bebesVacunados = 0;
+	bebesNoVacunados = 0;
 }
 
 VectorBebes::~VectorBebes()
@@ -52,6 +58,20 @@ VectorBebes::~VectorBebes()
 	delete[]arrBebes; 
 }
 
+void VectorBebes::mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr)
+{
+	Font^ myFont = gcnew Font("Times new Roman", 15);
+	int porcentanje = 0;
+	if ((arrBebes->size() + bebesNoVacunados + bebesNoVacunados) != 0)
+	{
+		porcentanje = (bebesVacunados) * 100 / (arrBebes->size() + bebesNoVacunados + bebesVacunados);
+	}
+	gr->DrawString("Vacunados " + porcentanje + "%", myFont, Brushes::Black, 960, 40);
+	porcentanje = 100 - porcentanje;
+	gr->DrawString("No vacunados " + porcentanje + "%", myFont, Brushes::Black, 960, 80);
+
+
+}
 
 void VectorBebes::mostrarBebes(Graphics^ gr, Bitmap^ imagenMenor30, Bitmap^ imagenMayor30)
 {
@@ -181,7 +201,15 @@ void VectorBebes::eliminarBebes()
 	{
 		if (arrBebes->at(i)->getEsVacunado() || arrBebes->at(i)->getMesVida() == 60)
 		{
-  			arrBebes->erase(arrBebes->begin() + i);
+			if (arrBebes->at(i)->getEsVacunado())
+			{
+				bebesVacunados++;
+			}
+			if (arrBebes->at(i)->getMesVida() == 60)
+			{
+				bebesNoVacunados++;
+			}
+			arrBebes->erase(arrBebes->begin() + i);
 		}
 	}
 }
