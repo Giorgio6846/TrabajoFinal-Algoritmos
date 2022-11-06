@@ -214,7 +214,9 @@ namespace TrabajoFinal {
 		//Buffer
 		Graphics^ gr = this->CreateGraphics();
 		BufferedGraphicsContext^ bc = BufferedGraphicsManager::Current;
+		
 		BufferedGraphics^ bg = bc->Allocate(gr, this->ClientRectangle);
+
 		bg->Graphics->Clear(Color::White);
 
 		//Background Juego
@@ -222,17 +224,23 @@ namespace TrabajoFinal {
 		switch (Dificultad)
 		{
 		case 'F':
-			Form::ClientSize = BackgroundFacil->Size;
+			Form::ClientSize.Width = BackgroundFacil->Size.Width + 200;
+			Form::ClientSize.Height = BackgroundFacil->Size.Height + 200;
+
 			bg->Graphics->DrawImage(BackgroundFacil, 0, 0, BackgroundFacil->Size.Width, BackgroundFacil->Size.Height);
 
 			break;
 		case 'M':
-			Form::ClientSize = BackgroundMedio->Size;
+			Form::ClientSize.Width = BackgroundMedio->Size.Width + 200;
+			Form::ClientSize.Height = BackgroundMedio->Size.Height + 200;
+			
 			bg->Graphics->DrawImage(BackgroundMedio, 0, 0, BackgroundMedio->Size.Width, BackgroundMedio->Size.Height);
 
 			break;
 		case 'D':
-			Form::ClientSize = BackgroundDificil->Size;
+			Form::ClientSize.Width = BackgroundDificil->Size.Width + 200;
+			Form::ClientSize.Height = BackgroundDificil->Size.Height + 200;
+			
 			bg->Graphics->DrawImage(BackgroundDificil, 0, 0, BackgroundDificil->Size.Width, BackgroundDificil->Size.Height);
 
 			break;
@@ -241,21 +249,12 @@ namespace TrabajoFinal {
 		}
 
 		//Mecanicas Juego
-
 		vectCoins->monedasObtenidasText(bg->Graphics);
 
 		//Movimiento Objetos
 		vectBebes->moverBebes(bg->Graphics);
 		vectCoins->moverCoins(bg->Graphics, coinImg);
 		vectVacunas->moverVacunas();
-
-		/*
-		for (int i = 0; i < vectBebes->getN(); i++)
-		{
-			if (vectBebes->getMesVida(i) <= 30) vectBebes->mostrarBebes(bg->Graphics, bebeImg, i);
-			else if(vectBebes->getMesVida(i) > 30) vectBebes->mostrarBebes(bg->Graphics, bigBabyImg, i);
-		}
-		*/
 
 		//Colisiones
 
@@ -319,6 +318,7 @@ namespace TrabajoFinal {
 
 		delete bc, bg, gr;
 	}
+
 	private: System::Void Juego_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
 		switch (e->KeyCode)
 		{
@@ -349,9 +349,7 @@ namespace TrabajoFinal {
 	}
 	
 	private: System::Void ContadorBebes_Tick(System::Object^ sender, System::EventArgs^ e) {
-		
 			vectBebes->agregarBebes();
-
 	}
 	
 private: System::Void ContadorMonedas_Tick(System::Object^ sender, System::EventArgs^ e) {
