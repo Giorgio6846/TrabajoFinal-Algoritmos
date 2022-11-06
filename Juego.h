@@ -7,6 +7,7 @@
 #include "VectorVacunas.h"
 #include "VectorOshawott.h"
 #include "Shop.h"
+#include "Aliado.h"
 
 namespace TrabajoFinal {
 
@@ -50,6 +51,10 @@ namespace TrabajoFinal {
 			vectEnemigos = new VectorOshawott(0);
 			OshawottImg = gcnew Bitmap("Recursos/Imagenes\\Oshawott.png");
 		
+			aliadas = new Aliadas();
+			AliadaRam = gcnew Bitmap("Recursos/Imagenes\\Aliada_Ram");
+			AliadaRem = gcnew Bitmap("Recursos/Imagenes\\Aliada_Rem");
+
 			shop = new Shop();
 		}
 
@@ -148,6 +153,12 @@ namespace TrabajoFinal {
 		VectorOshawott* vectEnemigos;
 		Bitmap^ OshawottImg;
 		
+		//Datos Aliadas
+
+		Bitmap^ AliadaRem;
+		Bitmap^ AliadaRam;
+		Aliadas* aliadas;
+
 		//Datos Tienda
 		Shop* shop;
 
