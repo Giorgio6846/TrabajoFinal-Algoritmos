@@ -85,7 +85,7 @@ Bebes::Bebes() {
 
 	indexHeight = 0 + caracterHeight;
 
-	mesVida = rand() % 30;
+	mesVida = 0;
 
 	walking = rand() % 2;
 

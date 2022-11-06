@@ -7,16 +7,17 @@ public:
 	Oshawott(){
 		y = 235;
 		x = rand()%ScreenWidth;
-		dx = (rand()%15) + 10;
+		dx = (rand()%12) + 10;
 	};
 
-	void mover() {
+	bool mover() {
 
-		if ((rand()%50) > 10)
+		if ((rand()%50) > 16)
 		{
 			indexWidth = 3;
 			indexHeight += 2;
 			if (indexHeight >= 4) indexHeight = 0;
+			return true;
 		}
 		else
 		{
@@ -30,8 +31,10 @@ public:
 
 			x += dx;
 		}
-		
+		return false;
 	}
+
+
 
 	
 	

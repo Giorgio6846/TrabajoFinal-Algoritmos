@@ -194,6 +194,7 @@ namespace TrabajoFinal {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1160, 800);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"Juego";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
@@ -281,10 +282,24 @@ namespace TrabajoFinal {
 			for (int i = 0; i < vectVacunas->getN(); i++)
 			{
 				Rectangle vacunaR = Rectangle(vectVacunas->getX(i), vectVacunas->getY(i), 1,1);
-				if (vacunaR.IntersectsWith(bebeR))
+				if (bebeR.IntersectsWith(vacunaR))
 				{
 					vectVacunas->vacunaUsada(i);
 					vectBebes->Vacunado(j);
+				}
+			}
+		}
+
+		for (int j = 0; j < vectEnemigos->getN(); j++)
+		{
+			Rectangle enemigoR = Rectangle(vectEnemigos->getX(j), vectEnemigos->getY(j), vectEnemigos->getAncho(j)-30, vectEnemigos->getAlto(j));
+
+			for (int i = 0; i < vectVacunas->getN(); i++)
+			{
+				Rectangle vacunaR = Rectangle(vectVacunas->getX(i), vectVacunas->getY(i), 1, 1);
+				if (vacunaR.IntersectsWith(enemigoR) && vectEnemigos->pararVacuna(j))
+				{
+					vectVacunas->vacunaUsada(i);
 				}
 			}
 		}
@@ -298,6 +313,14 @@ namespace TrabajoFinal {
 		jugador->mostrar(bg->Graphics, jugadorImg, 8, 9, 1.5, 1.5);
 		vectVacunas->mostrarVacunas(bg->Graphics, vacunasImg);
 		jugador->atShop(bg->Graphics, player);
+		Rectangle tiendaR = Rectangle(860, 5, 100, 50);
+
+		if (jugadorR.IntersectsWith(tiendaR) && jugador->getX() >= 830)
+		{
+			jugador->atShop(bg->Graphics, player);
+		}
+
+
 
 		bg->Render(gr);
 

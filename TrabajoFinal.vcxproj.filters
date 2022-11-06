@@ -62,6 +62,15 @@
     <ClInclude Include="Aliado.h">
       <Filter>Personajes</Filter>
     </ClInclude>
+    <ClInclude Include="Instrucciones.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Creditos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dificultad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Recursos\Bebes.png">
