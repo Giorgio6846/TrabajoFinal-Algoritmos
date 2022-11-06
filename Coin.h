@@ -1,38 +1,27 @@
 #pragma once
 #include "Caracter.h"
 
-#define MonedaAreaIzqSupX 0
-#define MonedaAreaIzqSupY 0
-#define MonedaAreaDerInfX 959
-#define MonedaAreaDerInfY 195
-
-/*
-BebeAreaIzqSupX
-BebeAreaIzqSupY
-BebeAreaDerInfX
-BebeAreaDerInfY
-
-Rectangulo en donde la moneda solo se puede mover
-No se ha usado el tamaño de la ventana porque este se va a agrandar para poner la interfaz del juego
-*/
-
 class Coin: public Caracter
 {
 public:
 	Coin()
 	{
-		x = 15 + (rand() % MonedaAreaDerInfX - 80);
+		EntidadAreaIzqSupX = 15;
+		EntidadAreaIzqSupY = 0;
+		EntidadAreaDerInfX = 959;
+		EntidadAreaDerInfY = 195;
+
+		x = EntidadAreaIzqSupX + (rand() % EntidadAreaDerInfX - 80);
 		dy = 3;
 	};
 
 	~Coin(){};
 	
-	void mover() {
-
+	void mover() 
+	{
 		y += dy;
 		indexHeight++;
 		if (indexHeight == 4) indexHeight = 1;
-
 	}
 
 };

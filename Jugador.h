@@ -17,10 +17,6 @@ public:
 		x = 10;
 		y = 50;
 
-		//Arreglar Opcion Bebe
-		//opcionCaracterHeight = 3 * (rand() % 3);
-		//opcionCaracterWidth = 4 * (rand() % 2);
-
 		opcionCaracterHeight = 3 * (rand() % 3);
 		opcionCaracterWidth = 4 * (rand() % 2);
 

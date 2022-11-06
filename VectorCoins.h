@@ -8,18 +8,23 @@ using namespace std;
 class VectorCoins
 {
 public:
-	VectorCoins() {
+	VectorCoins();
+	~VectorCoins();
 
-		arrCoin = new vector <Coin*>();
-		contadorMonedas = new int;
-		*contadorMonedas = 0;
-	};
-	~VectorCoins(){delete[]arrCoin;};
+	int getN() { return arrCoin->size(); }
 
-	void agregarCoin(){arrCoin->push_back(new Coin);}
+	int getX(int pos) { return arrCoin->at(pos)->getX(); }
+	int getY(int pos) { return arrCoin->at(pos)->getY(); }
 
-	void moverCoins(Graphics^ gr, Bitmap^ imagen) {
+	int getAncho(int pos) { return arrCoin->at(pos)->getAncho(); }
+	int getAlto(int pos) { return arrCoin->at(pos)->getAlto(); }
 
+	int getMonedas() { return *contadorMonedas; }
+
+	void agregarCoin(){ arrCoin->push_back(new Coin); }
+
+	void moverCoins(Graphics^ gr, Bitmap^ imagen) 
+	{
 		for (int i = 0; i < arrCoin->size(); i++)
 		{
 			arrCoin->at(i)->mostrar(gr, imagen, 1, 6, 0.2, 0.2);
@@ -27,42 +32,53 @@ public:
 		}
 	}
 
-	void coinAtrapada(int pos) { arrCoin->erase(arrCoin->begin() + pos); *contadorMonedas = *contadorMonedas+1; }
+	void coinAtrapada(int pos) 
+	{ 
+		arrCoin->erase(arrCoin->begin() + pos); *contadorMonedas = *contadorMonedas+1; 
+	}
 
-	void monedasObtenidasText(Graphics^ gr) {
+	void monedasObtenidasText(Graphics^ gr) 
+	{
 		Font^ myFont = gcnew Font("Times new Roman", 15);
 
 		if (*contadorMonedas == 1 ) gr->DrawString("Tienes: " + *contadorMonedas + " moneda", myFont, Brushes::Black, 100, 5);
 		else gr->DrawString("Tienes: " + *contadorMonedas + " monedas", myFont, Brushes::Black, 100, 5);
-		
 	}
 
 	void eliminarCoins()
 	{
 		for (int i = 0; i < arrCoin->size(); i++)
 		{
-			if (arrCoin->at(i) -> getY() > MonedaAreaDerInfY)
+			if (arrCoin->at(i) -> getY() > EntidadAreaDerInfY)
 			{
 				arrCoin->erase(arrCoin->begin() + i);
 			}
 		}
 	}
 
-	int getN() { return arrCoin->size(); }
-
-	int getX(int pos) {return arrCoin->at(pos)->getX();}
-	int getY(int pos) { return arrCoin->at(pos)->getY(); }
-
-	int getAncho(int pos) { return arrCoin->at(pos)->getAncho(); }
-	int getAlto(int pos) { return arrCoin->at(pos)->getAlto(); }
-
-	int getMonedas() { return *contadorMonedas; }
-	
-
-
 private:
-
 	vector<Coin*>* arrCoin;
 	int * contadorMonedas;
 
+	int EntidadAreaIzqSupX;
+	int EntidadAreaIzqSupY;
+	int EntidadAreaDerInfX;
+	int EntidadAreaDerInfY;
+};
+
+VectorCoins::VectorCoins() 
+{
+	arrCoin = new vector <Coin*>();
+	contadorMonedas = new int;
+	*contadorMonedas = 0;
+
+	EntidadAreaIzqSupX = 15;
+	EntidadAreaIzqSupY = 0;
+	EntidadAreaDerInfX = 959;
+	EntidadAreaDerInfY = 195;
+}
+
+VectorCoins::~VectorCoins() 
+{ 
+	delete[]arrCoin; 
 };
