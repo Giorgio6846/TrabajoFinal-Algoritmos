@@ -290,7 +290,7 @@ namespace TrabajoFinal {
 			for (int i = 0; i < vectVacunas->getN(); i++)
 			{
 				Rectangle vacunaR = Rectangle(vectVacunas->getX(i), vectVacunas->getY(i), 1,1);
-				if (vacunaR.IntersectsWith(bebeR))
+				if (bebeR.IntersectsWith(vacunaR))
 				{
 					vectVacunas->vacunaUsada(i);
 					vectBebes->Vacunado(j);
