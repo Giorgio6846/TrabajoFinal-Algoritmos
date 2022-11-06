@@ -82,9 +82,6 @@
     <Image Include="Recursos\Bebes.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\..\TrabajoFinal\Recursos\Doctor.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Recursos\Imagenes\BigBabies.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -101,6 +98,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Recursos\Imagenes\Vacuna.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Recursos\Imagenes\Doctor.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

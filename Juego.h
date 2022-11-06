@@ -73,7 +73,7 @@ namespace TrabajoFinal {
 				this->TiempoSegundos->Interval = 2000;
 				this->ContadorBebes->Interval = 1800;
 				this->ContadorMonedas->Interval = 1600;
-
+				this->jugador->setMunicion(20);
 				break;
 			case 'M':
 				delete BackgroundFacil, BackgroundDificil;
@@ -84,7 +84,7 @@ namespace TrabajoFinal {
 				this->TiempoSegundos->Interval = 2000;
 				this->ContadorBebes->Interval = 1500;
 				this->ContadorMonedas->Interval = 1600;
-
+				this->jugador->setMunicion(20);
 				break;
 			case 'D':
 				delete BackgroundFacil, BackgroundMedio;
@@ -95,7 +95,7 @@ namespace TrabajoFinal {
 				this->TiempoSegundos->Interval = 2000;
 				this->ContadorBebes->Interval = 1500;
 				this->ContadorMonedas->Interval = 1600;
-
+				this->jugador->setMunicion(20);
 				break;
 
 			default:
@@ -317,6 +317,7 @@ namespace TrabajoFinal {
 		//HUD
 		vectCoins->mostrarCantidadMonedasObtenidasText(bg->Graphics);
 		vectBebes->mostrarPorcentajeBebesVacunadosYNoVacunados(bg->Graphics);
+		//jugador->mostrarMunicion(bg->Graphics);
 
 		//Trazado
 		vectBebes->mostrarBebes(bg->Graphics, less30MBabyImg, more30MBabyImg);
@@ -328,6 +329,7 @@ namespace TrabajoFinal {
 		if (jugadorR.IntersectsWith(tiendaR) /* && jugador->getX() >= 830 */)
 		{
 			shop -> mostrar(bg->Graphics, player);
+			
 		}
 
 
