@@ -74,6 +74,9 @@
     <ClInclude Include="Coin.h">
       <Filter>Objetos Juego</Filter>
     </ClInclude>
+    <ClInclude Include="Shop.h">
+      <Filter>Objetos Juego</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Recursos\Bebes.png">

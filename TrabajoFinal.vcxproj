@@ -143,6 +143,7 @@
     <ClInclude Include="MenuJuego.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Shop.h" />
     <ClInclude Include="Vacuna.h" />
     <ClInclude Include="VectorBebes.h" />
     <ClInclude Include="VectorCoins.h" />

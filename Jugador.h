@@ -1,6 +1,5 @@
 #pragma once
 #include "Caracter.h"
-#include "Jugador.h"
 
 /*
 jugadorAtStore = Si el jugador entra a la tienda; no entra a la tienda y; recien va a entrar;
@@ -27,11 +26,9 @@ public:
 	};
 	~Jugador(){}
 
-	int getjugadorAtStore() { return this->jugadorAtStore; }
-	void setjugadorAtStore(int jugadorAtStore) { this->jugadorAtStore = jugadorAtStore; }
-
 	int getIndexWidth() { return this->indexWidth - opcionCaracterWidth; }
 
+	/*
 	void atShop(Graphics^ gr, SoundPlayer ^ player) {
 		
 		Font^ myFont = gcnew Font("Times new Roman", 15);
@@ -53,6 +50,7 @@ public:
 			}
 			else jugadorAtStore == 0;
 	}
+	*/
 /*
 	void mover(Direccion direccion) {
 		switch (direccion)
@@ -101,5 +99,5 @@ public:
 
 private: 
 	int municion;
-	int jugadorAtStore;
+
 };

@@ -172,6 +172,7 @@ namespace TrabajoFinal {
 			this->Text = L"MenuJuego";
 			this->Load += gcnew System::EventHandler(this, &MenuJuego::MenuJuego_Load);
 			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MenuJuego::MenuJuego_Paint);
+			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MenuJuego::MenuJuego_KeyDown);
 			this->ResumeLayout(false);
 
 		}
@@ -202,6 +203,14 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 	Creditos^ creditos = gcnew Creditos();
 	creditos->Show();
+}
+private: System::Void MenuJuego_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
+	if (e->KeyCode == Keys::Space)
+	{
+		Juego^ juego = gcnew Juego();
+		juego->setDificultad('F');
+		juego->Show();
+	}
 }
 };
 }

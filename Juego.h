@@ -6,6 +6,7 @@
 #include "VectorCoins.h"
 #include "VectorVacunas.h"
 #include "VectorOshawott.h"
+#include "Shop.h"
 
 namespace TrabajoFinal {
 
@@ -48,6 +49,8 @@ namespace TrabajoFinal {
 
 			vectEnemigos = new VectorOshawott(0);
 			OshawottImg = gcnew Bitmap("Recursos/Imagenes\\Oshawott.png");
+		
+			shop = new Shop();
 		}
 
 		void setDificultad(char Dificultad)
@@ -145,6 +148,8 @@ namespace TrabajoFinal {
 		VectorOshawott* vectEnemigos;
 		Bitmap^ OshawottImg;
 		
+		//Datos Tienda
+		Shop* shop;
 
 	private: System::Windows::Forms::Timer^ TiempoSegundos;
 	private: System::Windows::Forms::Timer^ ContadorBebes;
@@ -219,12 +224,12 @@ namespace TrabajoFinal {
 		case 'F':
 			Form::ClientSize = BackgroundFacil->Size;
 			bg->Graphics->DrawImage(BackgroundFacil, 0, 0, BackgroundFacil->Size.Width, BackgroundFacil->Size.Height);
-			
+
 			break;
 		case 'M':
 			Form::ClientSize = BackgroundMedio->Size;
 			bg->Graphics->DrawImage(BackgroundMedio, 0, 0, BackgroundMedio->Size.Width, BackgroundMedio->Size.Height);
-			
+
 			break;
 		case 'D':
 			Form::ClientSize = BackgroundDificil->Size;
@@ -236,10 +241,10 @@ namespace TrabajoFinal {
 		}
 
 		//Mecanicas Juego
-			
+
 		vectCoins->monedasObtenidasText(bg->Graphics);
 
-			//Movimiento Objetos
+		//Movimiento Objetos
 		vectBebes->moverBebes(bg->Graphics);
 		vectCoins->moverCoins(bg->Graphics, coinImg);
 		vectVacunas->moverVacunas();
@@ -254,11 +259,11 @@ namespace TrabajoFinal {
 
 		//Colisiones
 
-		Rectangle jugadorR = Rectangle(jugador->getX(), jugador->getY(),jugador->getAncho(), jugador->getAlto());
+		Rectangle jugadorR = Rectangle(jugador->getX(), jugador->getY(), jugador->getAncho(), jugador->getAlto());
 
 		for (int i = 0; i < vectCoins->getN(); i++)
 		{
-			Rectangle monedaR = Rectangle(vectCoins->getX(i), vectCoins->getY(i), vectCoins->getAncho(i)/4, vectCoins->getAlto(i)/4);
+			Rectangle monedaR = Rectangle(vectCoins->getX(i), vectCoins->getY(i), vectCoins->getAncho(i) / 4, vectCoins->getAlto(i) / 4);
 
 			if (jugadorR.IntersectsWith(monedaR)) vectCoins->coinAtrapada(i);
 		}
@@ -269,7 +274,7 @@ namespace TrabajoFinal {
 
 			for (int i = 0; i < vectVacunas->getN(); i++)
 			{
-				Rectangle vacunaR = Rectangle(vectVacunas->getX(i), vectVacunas->getY(i), 0.1,0.1);
+				Rectangle vacunaR = Rectangle(vectVacunas->getX(i), vectVacunas->getY(i), 0.1, 0.1);
 				if (bebeR.IntersectsWith(vacunaR))
 				{
 					vectVacunas->vacunaUsada(i);
@@ -280,7 +285,7 @@ namespace TrabajoFinal {
 
 		for (int j = 0; j < vectEnemigos->getN(); j++)
 		{
-			Rectangle enemigoR = Rectangle(vectEnemigos->getX(j), vectEnemigos->getY(j), vectEnemigos->getAncho(j)-30, vectEnemigos->getAlto(j));
+			Rectangle enemigoR = Rectangle(vectEnemigos->getX(j), vectEnemigos->getY(j), vectEnemigos->getAncho(j) - 30, vectEnemigos->getAlto(j));
 
 			for (int i = 0; i < vectVacunas->getN(); i++)
 			{
@@ -301,13 +306,11 @@ namespace TrabajoFinal {
 		vectEnemigos->mostrar(bg->Graphics, OshawottImg);
 		jugador->mostrar(bg->Graphics, jugadorImg, 8, 9, 1.5, 1.5);
 		vectVacunas->mostrarVacunas(bg->Graphics, vacunasImg);
-		
-		jugador->atShop(bg->Graphics, player);
 
 		Rectangle tiendaR = Rectangle(860, 5, 100, 50);
-		if (jugadorR.IntersectsWith(tiendaR) && jugador->getX() >= 830)
+		if (jugadorR.IntersectsWith(tiendaR) /* && jugador->getX() >= 830 */)
 		{
-			jugador->atShop(bg->Graphics, player);
+			shop -> mostrar(bg->Graphics, player);
 		}
 
 
