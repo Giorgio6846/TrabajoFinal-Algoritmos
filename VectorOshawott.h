@@ -13,33 +13,33 @@ public:
 
 		//dificultad 0 es modo normal
 
+		int cantidad;
+
 		switch (dificultad)
 		{
 		case 'F':
-			for (int i = 0; i < 4; i++)
-			{
-				arrOshawott->push_back(new Oshawott);
-			}
+			cantidad = 4;
 			break;
 		case 'M':
-			for (int i = 0; i < 8; i++)
-			{
-				arrOshawott->push_back(new Oshawott);
-			}
+			cantidad = 8;
 			break;
 		case 'D':
-			for (int i = 0; i < 12; i++)
-			{
-				arrOshawott->push_back(new Oshawott);
-			}
+			cantidad = 12;
 			break;
 		default:
 			break;
+		}
+
+		for (int i = 0; i < cantidad; i++)
+		{
+			arrOshawott->push_back(new Oshawott());
 		}
 	};
 
 	int getX(int pos) { return arrOshawott->at(pos)->getX(); }
 	int getY(int pos) { return arrOshawott->at(pos)->getY(); }
+
+	Rectangle getRectangleCertainEnemigo(int i) { return arrOshawott->at(i)->getRectangle(); }
 
 	int getAncho(int pos) { return arrOshawott->at(pos)->getAncho(); }
 	int getAlto(int pos) { return arrOshawott->at(pos)->getAlto(); }

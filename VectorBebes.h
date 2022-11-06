@@ -22,6 +22,8 @@ public:
 
 	void mostrarBebes(Graphics^ gr, Bitmap^ imagenMenor30, Bitmap^ imagenMayor30);
 
+	Rectangle getRectangleCertainBebe(int i) { return arrBebes->at(i)->getRectangle(); }
+
 	int getX(int pos) { return arrBebes->at(pos)->getX(); }
 	int getY(int pos) { return arrBebes->at(pos)->getY(); }
 

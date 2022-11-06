@@ -23,6 +23,4 @@ public:
 		indexHeight++;
 		if (indexHeight == 4) indexHeight = 1;
 	}
-
 };
-

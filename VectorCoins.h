@@ -19,6 +19,8 @@ public:
 	int getAncho(int pos) { return arrCoin->at(pos)->getAncho(); }
 	int getAlto(int pos) { return arrCoin->at(pos)->getAlto(); }
 
+	Rectangle getRectangleCertainCoin(int i) { return arrCoin->at(i)->getRectangle(); }
+
 	int getMonedas() { return *contadorMonedas; }
 
 	void agregarCoin(){ arrCoin->push_back(new Coin); }

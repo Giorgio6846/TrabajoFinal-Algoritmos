@@ -38,12 +38,16 @@ protected:
 	int EntidadAreaDerInfX;
 	int EntidadAreaDerInfY;
 
+	int DimensionWidth;
+	int DimensionHeight;
+
 public:
 	Caracter();
 	~Caracter();
 
 	virtual void mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWidth, float dimensionAncho, float dimensionAlto);
 	virtual void mover(Direccion direccion);
+	virtual Rectangle getRectangle() { return Rectangle(x, y, DimensionWidth, DimensionHeight); }
 
 	int getX() { return this->x; }
 	void setX(int x) { this->x = x; }
@@ -84,9 +88,16 @@ void Caracter::mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWid
 	this->Width = imagen->Width / cantWidth;
 	this->Height = imagen->Height / cantHeight;
 
+	this->DimensionHeight = Height * dimensionAlto;
+	this->DimensionWidth = Width * dimensionAncho;
+
 	Rectangle Porcion = Rectangle(indexHeight * Width, indexWidth * Height, Width, Height);
 	Rectangle areaSprite = Rectangle(x, y, Width * dimensionAncho, Height * dimensionAlto);
 	
+	Pen^ pen = gcnew Pen(Color::Red, 2);
+	gr->DrawRectangle(pen, getRectangle());
+
+
 	gr->DrawImage(imagen, areaSprite, Porcion, GraphicsUnit::Pixel);
 }
 

@@ -65,7 +65,7 @@ Bebes::Bebes() {
 
 	EntidadAreaIzqSupX = 0;
 	EntidadAreaIzqSupY = 260;
-	EntidadAreaDerInfX = 929;
+	EntidadAreaDerInfX = 920;
 	EntidadAreaDerInfY = 727;
 
 	x = rand() % EntidadAreaDerInfX;
