@@ -157,7 +157,7 @@ void VectorBebes::eliminarBebes()
 	{
 		if (arrBebes->at(i)->getEsVacunado())
 		{
-			arrBebes->erase(arrBebes->begin() + i);
+  			arrBebes->erase(arrBebes->begin() + i);
 		}
 		if (arrBebes->at(i)->getMesVida() == 60)
 		{

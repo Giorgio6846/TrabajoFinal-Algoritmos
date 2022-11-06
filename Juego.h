@@ -249,21 +249,12 @@ namespace TrabajoFinal {
 			
 		vectCoins->monedasObtenidasText(bg->Graphics);
 
-		
-		//Eliminacion Objetos
-		vectCoins->eliminarCoins();
-		vectBebes->eliminarBebes();
-
 			//Movimiento Objetos
 		vectBebes->moverBebes(bg->Graphics);
 		vectCoins->moverCoins(bg->Graphics, coinImg);
 		vectVacunas->moverVacunas();
 
-		//Graficos
-		vectEnemigos->mostrar(bg->Graphics, OshawottImg);
-		jugador->mostrar(bg->Graphics, jugadorImg,8,9, 1.5, 1.5);
-		vectVacunas->mostrarVacunas(bg->Graphics, vacunasImg);
-		jugador->atShop(bg->Graphics,player);
+
 
 		for (int i = 0; i < vectBebes->getN(); i++)
 		{
@@ -298,6 +289,15 @@ namespace TrabajoFinal {
 			}
 		}
 
+		//Eliminacion Objetos
+		vectCoins->eliminarCoins();
+		vectBebes->eliminarBebes();
+
+		//Graficos
+		vectEnemigos->mostrar(bg->Graphics, OshawottImg);
+		jugador->mostrar(bg->Graphics, jugadorImg, 8, 9, 1.5, 1.5);
+		vectVacunas->mostrarVacunas(bg->Graphics, vacunasImg);
+		jugador->atShop(bg->Graphics, player);
 
 		bg->Render(gr);
 
