@@ -15,6 +15,8 @@ public:
 		dx = ( rand() % 12 ) + 10;
 	};
 
+	int getIndexWidth() { return this -> indexWidth; }
+
 	bool mover() 
 	{
 		if ( ( rand() % 50 ) > 16)
@@ -24,6 +26,7 @@ public:
 			if (indexHeight >= 4) indexHeight = 0;
 			return true;
 		}
+		
 		else
 		{
 			if (x + dx + Width >= EntidadAreaDerInfX) { dx *= -1; }
@@ -42,6 +45,7 @@ public:
 			if (indexHeight == 4) indexHeight = 0;
 			x += dx;
 		}
+		
 		return false;
 	}
 

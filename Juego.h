@@ -278,7 +278,6 @@ namespace TrabajoFinal {
 
 		//Colisiones
 
-		//Opcion 1
 		for (int i = 0; i < vectCoins->getN(); i++)
 		{
 			if (jugador->getRectangle().IntersectsWith(vectCoins->getRectangleCertainCoin(i))) vectCoins->coinAtrapada(i);
@@ -291,10 +290,21 @@ namespace TrabajoFinal {
 			{
 				for (int j = 0; j < vectEnemigos->getN(); j++)
 				{
-					if (vectEnemigos->getRectangleCertainEnemigo(j).IntersectsWith(vectVacunas->getRectangleCertainVacuna(i)))
+					if (vectEnemigos->mirandoJugador(j) && Dificultad == 'F')
 					{
-						vectVacunas->vacunaUsada(i);
+						if (vectEnemigos->getRectangleCertainEnemigo(j).IntersectsWith(vectVacunas->getRectangleCertainVacuna(i)))
+						{
+							vectVacunas->vacunaUsada(i);
+						}
 					}
+					else
+					{
+						if (vectEnemigos->getRectangleCertainEnemigo(j).IntersectsWith(vectVacunas->getRectangleCertainVacuna(i)))
+						{
+							vectVacunas->vacunaUsada(i);
+						}
+					}
+					
 				}
 				for (int j = 0; j < vectBebes->getN(); j++)
 				{
@@ -424,6 +434,13 @@ namespace TrabajoFinal {
 
 		//Graficos
 		//HUD
+		/*
+		if (jugador->getRectangle().IntersectsWith(shop->get))
+		{
+
+		}
+		*/
+
 		vectCoins->mostrarCantidadMonedasObtenidasText(bg->Graphics);
 		vectBebes->mostrarPorcentajeBebesVacunadosYNoVacunados(bg->Graphics);
 		vectVacunas->eliminarVacunas();

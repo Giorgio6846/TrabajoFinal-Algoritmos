@@ -45,6 +45,7 @@ public:
 	int getAlto(int pos) { return arrOshawott->at(pos)->getAlto(); }
 	int getN() { return arrOshawott->size(); }
 
+	bool mirandoJugador(int pos) { return arrOshawott->at(pos)->getIndexWidth() == 3; }
 
 	void mostrar(Graphics^ gr, Bitmap^ imagen) {
 		for (int i = 0; i < arrOshawott->size(); i++)

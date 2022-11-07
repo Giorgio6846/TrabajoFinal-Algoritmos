@@ -107,22 +107,22 @@ void Caracter :: mover(Direccion direccion) {
 	case Arriba:
 		indexWidth = 3 + opcionCaracterWidth;
 		indexHeight++;
-		if (y - dy > EntidadAreaIzqSupY) y = y - dy;
+		if (y - dy >= EntidadAreaIzqSupY) y = y - dy;
 		break;
 	case Abajo:
 		indexWidth = 0 + opcionCaracterWidth;
 		indexHeight++;
-		if (y + dy < EntidadAreaDerInfY) y += dy;
+		if (y + dy <= EntidadAreaDerInfY) y += dy;
 		break;
 	case Izquierda:
 		indexWidth = 1 + opcionCaracterWidth;
 		indexHeight++;
-		if (x - dx > EntidadAreaIzqSupX) x -= dx;
+		if (x - dx >= EntidadAreaIzqSupX) x -= dx;
 		break;
 	case Derecha:
 		indexWidth = 2 + opcionCaracterWidth;
 		indexHeight++;
-		if (x + dx < EntidadAreaDerInfX) x += dx;
+		if (x + dx <= EntidadAreaDerInfX) x += dx;
 		break;
 	default: break;
 	}
