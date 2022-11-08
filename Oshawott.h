@@ -17,6 +17,8 @@ public:
 
 	int getIndexWidth() { return this -> indexWidth; }
 
+	Rectangle getRectangle() { return Rectangle(x + 18, y + 28, DimensionWidth - 35, DimensionHeight - 30);}
+
 	bool mover() 
 	{
 		if ( ( rand() % 50 ) > 16)
