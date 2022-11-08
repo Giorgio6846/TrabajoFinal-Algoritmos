@@ -494,7 +494,10 @@ namespace TrabajoFinal {
 	}
 	
 	private: System::Void ContadorBebes_Tick(System::Object^ sender, System::EventArgs^ e) {
+		if (rand() % 101 > 50)
+		{
 			vectBebes->agregarBebes();
+		}
 	}
 	
 private: System::Void ContadorMonedas_Tick(System::Object^ sender, System::EventArgs^ e) {
