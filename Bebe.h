@@ -42,12 +42,12 @@ public:
 	bool getEsMayor30Meses() { return this->esMayor30Meses; }
 	void setEsMayor30Meses(bool esMayor30Meses) { this->esMayor30Meses = esMayor30Meses; }
 
-	Rectangle getRectangle() {
+	Rectangle getRectangle(int x, int y) {
 		if (esMayor30Meses == 0)
 		{
-			return Rectangle(x + 8, y + 10, DimensionWidth - 16, DimensionHeight - 8);
+			return Rectangle(x + 8, y + 8, DimensionWidth - 14, DimensionHeight - 6);
 		}
-		return Rectangle(x, y, DimensionWidth, DimensionHeight); 
+		return Rectangle(x + 8, y + 8, DimensionWidth - 12, DimensionHeight - 7);
 	}
 
 	//void mover(Direccion direccion);

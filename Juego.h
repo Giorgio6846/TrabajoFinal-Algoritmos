@@ -280,7 +280,7 @@ namespace TrabajoFinal {
 
 		for (int i = 0; i < vectCoins->getN(); i++)
 		{
-			if (jugador->getRectangle().IntersectsWith(vectCoins->getRectangleCertainCoin(i))) vectCoins->coinAtrapada(i);
+			if (jugador->getRectangle().IntersectsWith(vectCoins->getRectangleCertainPosicion(i))) vectCoins->coinAtrapada(i);
 		}
 		
 		
@@ -292,14 +292,14 @@ namespace TrabajoFinal {
 				{
 					if (vectEnemigos->mirandoJugador(j) && Dificultad == 'F')
 					{
-						if (vectEnemigos->getRectangleCertainEnemigo(j).IntersectsWith(vectVacunas->getRectangleCertainVacuna(i)))
+						if (vectEnemigos->getRectangleCertainPosicion(j).IntersectsWith(vectVacunas->getRectangleCertainPosicion(i)))
 						{
 							vectVacunas->vacunaUsada(i);
 						}
 					}
 					else if(Dificultad == 'M' && Dificultad == 'D')
 					{
-						if (vectEnemigos->getRectangleCertainEnemigo(j).IntersectsWith(vectVacunas->getRectangleCertainVacuna(i)))
+						if (vectEnemigos->getRectangleCertainPosicion(j).IntersectsWith(vectVacunas->getRectangleCertainPosicion(i)))
 						{
 							vectVacunas->vacunaUsada(i);
 						}
@@ -308,7 +308,7 @@ namespace TrabajoFinal {
 				}
 				for (int j = 0; j < vectBebes->getN(); j++)
 				{
-					if (vectBebes->getRectangleCertainBebe(j).IntersectsWith(vectVacunas->getRectangleCertainVacuna(i)))
+					if (vectBebes->getRectangleCertainPosicion(j).IntersectsWith(vectVacunas->getRectangleCertainPosicion(i)))
 					{
 						vectVacunas->vacunaUsada(i);
 						vectBebes->Vacunado(j);
@@ -322,14 +322,14 @@ namespace TrabajoFinal {
 		Opcion 2
 		for (int i = 0; i < vectCoins->getN(); i++)
 		{
-			if (jugador->getRectangle().IntersectsWith(vectCoins->getRectangleCertainCoin(i))) vectCoins->coinAtrapada(i);
+			if (jugador->getRectangle().IntersectsWith(vectCoins->getRectangleCertainPosicion(i))) vectCoins->coinAtrapada(i);
 		}
 
 		for (int i = 0; i < vectBebes->getN(); i++)
 		{
 			for (int i = 0; i < vectVacunas->getN(); i++)
 			{
-				if (vectBebes->getRectangleCertainBebe(i).IntersectsWith(vectVacunas->getRectangleCertainVacuna(j)))
+				if (vectBebes->getRectangleCertainBebe(i).IntersectsWith(vectVacunas->getRectangleCertainPosicion(j)))
 				{
 					vectVacunas->vacunaUsada(i);
 					vectBebes->Vacunado(j);
@@ -341,7 +341,7 @@ namespace TrabajoFinal {
 		{
 			for (int i = 0; i < vectVacunas->getN(); i++)
 			{
-				if(vectEnemigos->getRectangleCertainEnemigo(j).IntersectsWith(vectVacunas->getRectangleCertainVacuna(i)))
+				if(vectEnemigos->getRectangleCertainPosicion(j).IntersectsWith(vectVacunas->getRectangleCertainPosicion(i)))
 				{
 					vectVacunas->vacunaUsada(i);
 				}

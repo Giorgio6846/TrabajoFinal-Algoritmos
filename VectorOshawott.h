@@ -11,8 +11,6 @@ public:
 
 		arrOshawott = new vector< Oshawott*>();
 
-		//dificultad 0 es modo normal
-
 		int cantidad;
 
 		switch (dificultad)
@@ -30,7 +28,7 @@ public:
 			break;
 		}
 
-		for (int i = 0; i < cantidad; i++)
+		for (int i = 0; i <= cantidad; i++)
 		{
 			arrOshawott->push_back(new Oshawott());
 		}
@@ -39,7 +37,7 @@ public:
 	int getX(int pos) { return arrOshawott->at(pos)->getX(); }
 	int getY(int pos) { return arrOshawott->at(pos)->getY(); }
 
-	Rectangle getRectangleCertainEnemigo(int i) { return arrOshawott->at(i)->getRectangle(); }
+	Rectangle getRectangleCertainPosicion(int i) { return arrOshawott->at(i)->getRectangle(arrOshawott->at(i)->getX(), arrOshawott->at(i)->getY()); }
 
 	int getAncho(int pos) { return arrOshawott->at(pos)->getAncho(); }
 	int getAlto(int pos) { return arrOshawott->at(pos)->getAlto(); }
@@ -54,12 +52,6 @@ public:
 			arrOshawott->at(i)->mostrar(gr, imagen, 4, 4, 1, 1);
 		}
 	}
-
-	bool pararVacuna(int pos) {
-		if (arrOshawott->at(pos)->mover() == 1)	return true;
-		else return false;
-	}
-
 
 	~VectorOshawott() {};
 

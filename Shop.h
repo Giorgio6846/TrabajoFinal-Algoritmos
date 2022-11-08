@@ -41,5 +41,5 @@ void Shop::mostrar(Graphics^ gr, SoundPlayer^ player)
 		player->Load();
 		player->PlaySync();
 	}
-	else jugadorAtStore == 0;
+	else jugadorAtStore = 0;
 }

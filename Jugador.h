@@ -1,13 +1,6 @@
 #pragma once
 #include "Caracter.h"
 
-/*
-jugadorAtStore = Si el jugador entra a la tienda; no entra a la tienda y; recien va a entrar;
-0 = No esta en la tienda
-1 = Esta en la tienda
-*/
-
-
 class Jugador : public Caracter
 {
 public:
@@ -26,7 +19,12 @@ public:
 	};
 	~Jugador(){}
 
+	virtual Rectangle getRectangle() { return Rectangle(x + 6, y, DimensionWidth - 12, DimensionHeight); }
+
 	int getIndexWidth() { return this->indexWidth - opcionCaracterWidth; }
+
+	int getMunicion() { return this->municion; }
+	void setMunicion(int municion) { this->municion = municion; }
 
 	/*
 	void atShop(Graphics^ gr, SoundPlayer ^ player) {
@@ -94,9 +92,7 @@ public:
 
 	}
 */
-	int getMunicion() { return this->municion; }
-	void setMunicion(int municion) { this->municion = municion; }
-
+	
 private: 
 	int municion;
 

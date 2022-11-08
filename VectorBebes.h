@@ -22,13 +22,13 @@ public:
 
 	void mostrarBebes(Graphics^ gr, Bitmap^ imagenMenor30, Bitmap^ imagenMayor30);
 
-	Rectangle getRectangleCertainBebe(int i) { return arrBebes->at(i)->getRectangle(); }
+	Rectangle getRectangleCertainPosicion(int i) { return arrBebes->at(i)->getRectangle(arrBebes->at(i)->getX(), arrBebes->at(i)->getY()); }
 
-	int getX(int pos) { return arrBebes->at(pos)->getX(); }
-	int getY(int pos) { return arrBebes->at(pos)->getY(); }
+	//int getX(int pos) { return arrBebes->at(pos)->getX(); }
+	//int getY(int pos) { return arrBebes->at(pos)->getY(); }
 
-	int getAncho(int pos) { return arrBebes->at(pos)->getAncho(); }
-	int getAlto(int pos) { return arrBebes->at(pos)->getAlto(); }
+	//int getAncho(int pos) { return arrBebes->at(pos)->getAncho(); }
+	//int getAlto(int pos) { return arrBebes->at(pos)->getAlto(); }
 
 	void Vacunado(int pos) { arrBebes->at(pos)->setEsVacunado(true); }
 

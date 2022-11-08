@@ -47,7 +47,7 @@ public:
 
 	virtual void mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWidth, float dimensionAncho, float dimensionAlto);
 	virtual void mover(Direccion direccion);
-	virtual Rectangle getRectangle() { return Rectangle(x, y, DimensionWidth, DimensionHeight); }
+	virtual Rectangle getRectangle(int x, int y) { return Rectangle(x, y, DimensionWidth, DimensionHeight); }
 	virtual Rectangle getRectangleAreaUsable() 
 	{ return Rectangle(EntidadAreaIzqSupX, EntidadAreaIzqSupY, EntidadAreaDerInfX - EntidadAreaIzqSupX, EntidadAreaDerInfY - EntidadAreaIzqSupY); }
 
@@ -96,8 +96,9 @@ void Caracter::mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWid
 	Rectangle Porcion = Rectangle(indexHeight * Width, indexWidth * Height, Width, Height);
 	Rectangle areaSprite = Rectangle(x, y, Width * dimensionAncho, Height * dimensionAlto);
 
-	Pen^ pen = gcnew Pen(Color::Red, 2);
-	gr->DrawRectangle(pen, getRectangle());
+	Pen^ pen = gcnew Pen(Color::Red, 1);
+
+	gr->DrawRectangle(pen, getRectangle(x,y));
 	gr->DrawRectangle(pen, getRectangleAreaUsable());
 
 	gr->DrawImage(imagen, areaSprite, Porcion, GraphicsUnit::Pixel);
@@ -109,22 +110,22 @@ void Caracter :: mover(Direccion direccion) {
 	case Arriba:
 		indexWidth = 3 + opcionCaracterWidth;
 		indexHeight++;
-		if (y - dy >= EntidadAreaIzqSupY) y = y - dy;
+		if (getRectangle(x,y-dy).IntersectsWith(getRectangleAreaUsable())) y -= dy;
 		break;
 	case Abajo:
 		indexWidth = 0 + opcionCaracterWidth;
 		indexHeight++;
-		if (y + dy <= EntidadAreaDerInfY) y += dy;
+		if (getRectangle(x, y + dy).IntersectsWith(getRectangleAreaUsable())) y += dy;
 		break;
 	case Izquierda:
 		indexWidth = 1 + opcionCaracterWidth;
 		indexHeight++;
-		if (x - dx >= EntidadAreaIzqSupX) x -= dx;
+		if (getRectangle(x - dx, y).IntersectsWith(getRectangleAreaUsable())) x -= dy;
 		break;
 	case Derecha:
 		indexWidth = 2 + opcionCaracterWidth;
 		indexHeight++;
-		if (x + dx <= EntidadAreaDerInfX) x += dx;
+		if (getRectangle(x + dx, y).IntersectsWith(getRectangleAreaUsable())) x += dx;
 		break;
 	default: break;
 	}

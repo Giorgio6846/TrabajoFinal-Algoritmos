@@ -9,8 +9,6 @@ public:
 	Aliadas();
 	~Aliadas();
 
-
-
 private:
 	bool tipo;
 };
