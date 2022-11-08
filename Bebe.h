@@ -42,6 +42,14 @@ public:
 	bool getEsMayor30Meses() { return this->esMayor30Meses; }
 	void setEsMayor30Meses(bool esMayor30Meses) { this->esMayor30Meses = esMayor30Meses; }
 
+	Rectangle getRectangle() {
+		if (esMayor30Meses == 0)
+		{
+			return Rectangle(x + 8, y + 10, DimensionWidth - 10, DimensionHeight - 5);
+		}
+		return Rectangle(x, y, DimensionWidth, DimensionHeight); 
+	}
+
 	//void mover(Direccion direccion);
 
 protected:
