@@ -49,49 +49,6 @@ public:
 			else jugadorAtStore == 0;
 	}
 	*/
-/*
-	void mover(Direccion direccion) {
-		switch (direccion)
-		{
-		case Arriba:
-			indexWidth = 3 + opcionCaracterWidth;
-			indexHeight++;
-			if (y - dy > EntidadAreaIzqSupY)
-			{
-				y = y - dy;
-			}
-			break;
-		case Abajo:
-			indexWidth = 0 + opcionCaracterWidth;
-			indexHeight++;
-			if (y + dy< EntidadAreaDerInfY)
-			{
-				y = y + dy;
-			}
-			break;
-		case Izquierda:
-			indexWidth = 1 + opcionCaracterWidth;
-			indexHeight++;
-			if (x - dx > EntidadAreaDerInfX)
-			{
-				x = x - dx;
-			}
-			break;
-		case Derecha:
-			indexWidth = 2 + opcionCaracterWidth;
-			indexHeight++;
-			if (x + dx < EntidadAreaDerInfX)
-			{
-				x = x + dx;
-			}
-			break;
-		default: break;
-		}
-
-		if (indexHeight == 3 + opcionCaracterHeight) indexHeight = opcionCaracterHeight;
-
-	}
-*/
 	
 private: 
 	int municion;

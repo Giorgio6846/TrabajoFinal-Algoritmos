@@ -316,145 +316,27 @@ namespace TrabajoFinal {
 				}
 			}
 		}
-		
-		
-		/*
-		Opcion 2
-		for (int i = 0; i < vectCoins->getN(); i++)
-		{
-			if (jugador->getRectangle().IntersectsWith(vectCoins->getRectangleCertainPosicion(i))) vectCoins->coinAtrapada(i);
-		}
-
-		for (int i = 0; i < vectBebes->getN(); i++)
-		{
-			for (int i = 0; i < vectVacunas->getN(); i++)
-			{
-				if (vectBebes->getRectangleCertainBebe(i).IntersectsWith(vectVacunas->getRectangleCertainPosicion(j)))
-				{
-					vectVacunas->vacunaUsada(i);
-					vectBebes->Vacunado(j);
-				}
-			}
-		}
-
-		for (int j = 0; j < vectEnemigos->getN(); j++)
-		{
-			for (int i = 0; i < vectVacunas->getN(); i++)
-			{
-				if(vectEnemigos->getRectangleCertainPosicion(j).IntersectsWith(vectVacunas->getRectangleCertainPosicion(i)))
-				{
-					vectVacunas->vacunaUsada(i);
-				}
-			}
-		}
-		*/
-		/*
-		Rectangle jugadorR = Rectangle(jugador->getX(), jugador->getY(), jugador->getAncho(), jugador->getAlto());
-
-		for (int i = 0; i < vectCoins->getN(); i++)
-		{
-			Rectangle monedaR = Rectangle(vectCoins->getX(i), vectCoins->getY(i), vectCoins->getAncho(i) / 4, vectCoins->getAlto(i) / 4);
-
-			if (jugadorR.IntersectsWith(monedaR)) vectCoins->coinAtrapada(i);
-		}
-
-		for (int j = 0; j < vectBebes->getN(); j++)
-		{
-			Rectangle bebeR = Rectangle(vectBebes->getX(j), vectBebes->getY(j), vectBebes->getAncho(j), vectBebes->getAlto(j));
-
-			for (int i = 0; i < vectVacunas->getN(); i++)
-			{
-				Rectangle vacunaR = Rectangle(vectVacunas->getX(i), vectVacunas->getY(i), 0.1, 0.1);
-				if (bebeR.IntersectsWith(vacunaR))
-				{
-					vectVacunas->vacunaUsada(i);
-					vectBebes->Vacunado(j);
-				}
-			}
-		}
-
-		for (int j = 0; j < vectEnemigos->getN(); j++)
-		{
-			Rectangle enemigoR = Rectangle(vectEnemigos->getX(j), vectEnemigos->getY(j), vectEnemigos->getAncho(j) - 30, vectEnemigos->getAlto(j));
-
-			for (int i = 0; i < vectVacunas->getN(); i++)
-			{
-				Rectangle vacunaR = Rectangle(vectVacunas->getX(i), vectVacunas->getY(i), 1, 1);
-				if (vacunaR.IntersectsWith(enemigoR) && vectEnemigos->pararVacuna(j))
-				{
-					vectVacunas->vacunaUsada(i);
-				}
-			}
-		}
-		*/
-		/*
-
-		Rectangle jugadorR = Rectangle(jugador->getX(), jugador->getY(), jugador->getAncho(), jugador->getAlto());
-
-		for (int i = 0; i < vectCoins->getN(); i++)
-		{
-			Rectangle monedaR = Rectangle(vectCoins->getX(i), vectCoins->getY(i), vectCoins->getAncho(i) / 4, vectCoins->getAlto(i) / 4);
-
-			if (jugadorR.IntersectsWith(monedaR)) vectCoins->coinAtrapada(i);
-		}
-
-		for (int j = 0; j < vectBebes->getN(); j++)
-		{
-			Rectangle bebeR = Rectangle(vectBebes->getX(j), vectBebes->getY(j), vectBebes->getAncho(j), vectBebes->getAlto(j));
-
-			for (int i = 0; i < vectVacunas->getN(); i++)
-			{
-				Rectangle vacunaR = Rectangle(vectVacunas->getX(i), vectVacunas->getY(i), 0.1, 0.1);
-				if (bebeR.IntersectsWith(vacunaR))
-				{
-					vectVacunas->vacunaUsada(i);
-					vectBebes->Vacunado(j);
-				}
-			}
-		}
-
-		for (int j = 0; j < vectEnemigos->getN(); j++)
-		{
-			Rectangle enemigoR = Rectangle(vectEnemigos->getX(j), vectEnemigos->getY(j), vectEnemigos->getAncho(j) - 30, vectEnemigos->getAlto(j));
-
-			for (int i = 0; i < vectVacunas->getN(); i++)
-			{
-				Rectangle vacunaR = Rectangle(vectVacunas->getX(i), vectVacunas->getY(i), 1, 1);
-				if (vacunaR.IntersectsWith(enemigoR) && vectEnemigos->pararVacuna(j))
-				{
-					vectVacunas->vacunaUsada(i);
-				}
-			}
-		}
-		*/
 
 		//Eliminacion Objetos
 		vectCoins->eliminarCoins();
 		vectBebes->eliminarBebes();
+		vectVacunas->eliminarVacunas();
+
 
 		//Graficos
 		//HUD
-		/*
-		if (jugador->getRectangle().IntersectsWith(shop->get))
+
+		if (shop->getJugadorAtStore())
 		{
 
 		}
-		*/
+		else
+		{
+			vectCoins->mostrarCantidadMonedasObtenidasText(bg->Graphics);
+			vectBebes->mostrarPorcentajeBebesVacunadosYNoVacunados(bg->Graphics);
+		}
 
-		vectCoins->mostrarCantidadMonedasObtenidasText(bg->Graphics);
-		vectBebes->mostrarPorcentajeBebesVacunadosYNoVacunados(bg->Graphics);
-		vectVacunas->eliminarVacunas();
 		//jugador->mostrarMunicion(bg->Graphics);
-
-		/*
-		Rectangle tiendaR = Rectangle(860, 5, 100, 50);
-		if (jugadorR.IntersectsWith(tiendaR) /* && jugador->getX() >= 830 /)
-		{
-			shop -> mostrar(bg->Graphics, player);
-			
-		}
-		*/
-
 
 		bg->Render(gr);
 

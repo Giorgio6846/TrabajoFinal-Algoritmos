@@ -16,14 +16,8 @@ public:
 	void mostrarVacunas(Graphics^ gr, Bitmap^ imagen);
 	void eliminarVacunas();
 
-	//int getX(int pos) { return arrVacunas->at(pos)->getX(); }
-	//int getY(int pos) { return arrVacunas->at(pos)->getY(); }
-
 	Rectangle getRectangleCertainPosicion(int i) { return arrVacunas->at(i)->getRectangle(arrVacunas->at(i)->getX(), arrVacunas->at(i)->getY()); }
 	Rectangle getRectangleAreaUsableCertainPosicion(int i) { return arrVacunas->at(i)->getRectangleAreaUsable(); }
-
-	//int getAncho(int pos) { return arrVacunas->at(pos)->getAncho(); }
-	//int getAlto(int pos) { return arrVacunas->at(pos)->getAlto(); }
 
 	int getN() { return arrVacunas->size(); }
 

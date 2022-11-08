@@ -12,11 +12,11 @@ public:
 
 	void mostrar(Graphics^ gr, SoundPlayer^ player);
 
-	int getJugadorAtStore() { return this->jugadorAtStore; }
+	bool getJugadorAtStore() { return this->jugadorAtStore; }
 	void setJugadorAtStore(int jugadorAtStore) { this->jugadorAtStore = jugadorAtStore; }
 
 private:
-	int jugadorAtStore;
+	bool jugadorAtStore;
 
 };
 

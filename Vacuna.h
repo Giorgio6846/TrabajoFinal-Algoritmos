@@ -24,7 +24,6 @@ public:
 
 
 	void mover();
-	//void mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWidth, float dimensionAncho, float dimensionAlto);
 
 	bool getEstaGastada() { return this->estaGastada; }
 	void setEstaGastada() { this->estaGastada = 1; }
@@ -56,25 +55,6 @@ Vacuna::Vacuna(int x, int y, int dx, int dy, int direccion) : Caracter()
 	this->direccion = direccion;
 }
 
-/*
-void Vacuna::mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWidth, float dimensionAncho, float dimensionAlto) 
-{
-	this->Width = imagen->Width / cantWidth;
-	this->Height = imagen->Height / cantHeight;
-
-
-
-	Rectangle Porcion = Rectangle((indexHeight) * Width, (indexWidth) * Height, Width, Height);
-
-	Pen^ pen = gcnew Pen(Color::Red, 2);
-
-
-	Rectangle areaSprite = Rectangle(x - 5, y - 5, Width * dimensionAncho, Height * dimensionAlto);
-	gr->DrawRectangle(pen, getRectangle());
-
-	gr->DrawImage(imagen, areaSprite, Porcion, GraphicsUnit::Pixel);	
-}
-*/
 void Vacuna :: mover()
 {
 	switch (direccion)

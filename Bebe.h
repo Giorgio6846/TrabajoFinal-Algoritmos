@@ -103,38 +103,3 @@ Bebes:: ~Bebes()
 {
 }
 
-/*
-void Bebes :: mover(Direccion direccion) {
-
-
-	switch (direccion)
-	{
-	case Arriba:
-		indexWidth = 3 + opcionCaracterWidth;
-		indexHeight++;
-		y = y - dy;
-		break;
-	case Abajo:
-		indexWidth = 0 + opcionCaracterWidth;
-		indexHeight++;
-		y = y + dy;
-		break;
-	case Izquierda:
-		indexWidth = 1 + opcionCaracterWidth;
-		indexHeight++;
-		x = x - dx;
-		break;
-	case Derecha:
-		indexWidth = 2 + opcionCaracterWidth;
-		indexHeight++;
-		x = x + dx;
-		break;
-	default:
-		break;
-	}
-
-	if (indexHeight == 3 + opcionCaracterHeight) indexHeight = opcionCaracterHeight;
-
-}
-
-*/

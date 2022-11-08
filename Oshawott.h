@@ -27,7 +27,7 @@ public:
 	{
 		if ((rand() % 101) > 32)
 		{
-			indexWidth = 1;
+			indexWidth = 3;
 			indexHeight += 1;
 			
 			if (indexHeight == 4) { indexHeight = 0; }

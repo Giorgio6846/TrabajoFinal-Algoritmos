@@ -13,12 +13,6 @@ public:
 
 	int getN() { return arrCoin->size(); }
 
-	//int getX(int pos) { return arrCoin->at(pos)->getX(); }
-	//int getY(int pos) { return arrCoin->at(pos)->getY(); }
-
-	//int getAncho(int pos) { return arrCoin->at(pos)->getAncho(); }
-	//int getAlto(int pos) { return arrCoin->at(pos)->getAlto(); }
-
 	Rectangle getRectangleCertainPosicion(int i) { return arrCoin->at(i)->getRectangle(arrCoin->at(i)->getX(), arrCoin->at(i)->getY()); }
 
 	int getDineroObtenido() { return *contadorMonedas; }

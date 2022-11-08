@@ -24,12 +24,6 @@ public:
 
 	Rectangle getRectangleCertainPosicion(int i) { return arrBebes->at(i)->getRectangle(arrBebes->at(i)->getX(), arrBebes->at(i)->getY()); }
 
-	//int getX(int pos) { return arrBebes->at(pos)->getX(); }
-	//int getY(int pos) { return arrBebes->at(pos)->getY(); }
-
-	//int getAncho(int pos) { return arrBebes->at(pos)->getAncho(); }
-	//int getAlto(int pos) { return arrBebes->at(pos)->getAlto(); }
-
 	void Vacunado(int pos) { arrBebes->at(pos)->setEsVacunado(true); }
 
 	void mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr);
@@ -92,33 +86,12 @@ void VectorBebes::mostrarBebes(Graphics^ gr, Bitmap^ imagenMenor30, Bitmap^ imag
 			arrBebes->at(i)->mostrar(gr, imagenMenor30, 8, 12, 1.5, 1.5);
 		}
 	}
-	//	arrBebes->at(pos)->mostrar(gr, imagen, 8, 12, 1.5, 1.5); 
 }
 
 
 void VectorBebes::moverBebes(Graphics ^ gr)
 {
-	/*
-	for (int i = 0; i < arrBebes->size(); i++)
-	{
-		if (rand() % 2)
-		{
-			if (arrBebes->at(i)->getx() - arrBebes->at(i)->getdx() < 0)
-			{
-				arrBebes->at(i)->mover(Derecha);
-			}
-			arrBebes->at(i)->mover(Izquierda);
-		}
-		else
-		{
-			if (arrBebes->at(i)->getx() + arrBebes->at(i)->getdx() > gr->VisibleClipBounds.Width)
-			{
-				arrBebes->at(i)->mover(Izquierda);
-			}
-				arrBebes->at(i)->mover(Derecha);
-		}
-	}
-	*/
+
 
 	for (int i = 0; i < arrBebes->size(); i++)
 	{
