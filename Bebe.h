@@ -45,7 +45,7 @@ public:
 	Rectangle getRectangle() {
 		if (esMayor30Meses == 0)
 		{
-			return Rectangle(x + 8, y + 10, DimensionWidth - 10, DimensionHeight - 5);
+			return Rectangle(x + 8, y + 10, DimensionWidth - 16, DimensionHeight - 8);
 		}
 		return Rectangle(x, y, DimensionWidth, DimensionHeight); 
 	}
