@@ -14,6 +14,15 @@ public:
 	int getContador() { return this->contador; }
 	void setContador() { this->contador = contador + 1; }
 
+	Rectangle getRectangle() { 
+		if (indexWidth == 3 || indexWidth == 0)
+		{
+			return Rectangle(x + 15, y, DimensionWidth - 30, DimensionHeight);
+		}
+		return Rectangle(x, y + 15, DimensionWidth, DimensionHeight - 30);
+	}
+
+
 	void mover();
 	//void mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWidth, float dimensionAncho, float dimensionAlto);
 
