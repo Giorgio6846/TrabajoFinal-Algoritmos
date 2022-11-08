@@ -479,7 +479,7 @@ namespace TrabajoFinal {
 		case Keys::Space:
 			if (vectVacunas ->getN() < jugador->getMunicion())
 			{
-				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), 20, 30, jugador->getIndexWidth());
+  				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), 20, 30, jugador->getIndexWidth());
 			}
 			break;
 

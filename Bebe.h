@@ -72,8 +72,8 @@ protected:
 Bebes::Bebes() {
 
 	EntidadAreaIzqSupX = 0;
-	EntidadAreaIzqSupY = 260;
-	EntidadAreaDerInfX = 920;
+	EntidadAreaIzqSupY = 280;
+	EntidadAreaDerInfX = 930;
 	EntidadAreaDerInfY = 727;
 
 	x = rand() % EntidadAreaDerInfX;

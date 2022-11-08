@@ -15,7 +15,7 @@ public:
 	void setContador() { this->contador = contador + 1; }
 
 	Rectangle getRectangle(int x, int y) {
-		if (indexWidth == 3 || indexWidth == 0)
+		if (indexWidth == 1 || indexWidth == 0)
 		{
 			return Rectangle(x + 15, y, DimensionWidth - 30, DimensionHeight);
 		}

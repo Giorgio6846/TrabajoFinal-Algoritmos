@@ -7,7 +7,7 @@ public:
 	Oshawott(){
 		EntidadAreaIzqSupX = 0;
 		EntidadAreaIzqSupY = 235;
-		EntidadAreaDerInfX = 960;
+		EntidadAreaDerInfX = 930;
 		EntidadAreaDerInfY = 0;
 
 		opcionCaracterHeight = 0;

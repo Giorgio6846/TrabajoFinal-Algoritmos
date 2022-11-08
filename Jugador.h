@@ -12,14 +12,14 @@ public:
 		opcionCaracterHeight = 3 * (rand() % 3);
 		opcionCaracterWidth = 4 * (rand() % 2);
 
-		EntidadAreaIzqSupX = 0;
-		EntidadAreaIzqSupY = 0;
-		EntidadAreaDerInfX = 930;
+		EntidadAreaIzqSupX = 40;
+		EntidadAreaIzqSupY = 30;
+		EntidadAreaDerInfX = 915;
 		EntidadAreaDerInfY = 135;
 	};
 	~Jugador(){}
 
-	virtual Rectangle getRectangle() { return Rectangle(x + 6, y, DimensionWidth - 12, DimensionHeight); }
+   	virtual Rectangle getRectangle() { return Rectangle(x + 6, y, DimensionWidth - 12, DimensionHeight); }
 
 	int getIndexWidth() { return this->indexWidth - opcionCaracterWidth; }
 
