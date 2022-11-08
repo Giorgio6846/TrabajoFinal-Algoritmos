@@ -14,7 +14,7 @@ public:
 		opcionCaracterWidth = 0;
 
 		y = EntidadAreaIzqSupY;
-		x = rand() % EntidadAreaDerInfX;
+		x = rand() % 900;
 		dx = ( rand() % 12 ) + 10;
 	};
 
