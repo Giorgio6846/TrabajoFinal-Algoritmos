@@ -20,6 +20,7 @@ public:
 	int getY(int pos) { return arrVacunas->at(pos)->getY(); }
 
 	Rectangle getRectangleCertainVacuna(int i) { return arrVacunas->at(i)->getRectangle(); }
+	Rectangle getRectangleCertainVacunaArea(int i) { return arrVacunas->at(i)->getRectangleAreaUsable(); }
 
 	int getAncho(int pos) { return arrVacunas->at(pos)->getAncho(); }
 	int getAlto(int pos) { return arrVacunas->at(pos)->getAlto(); }
@@ -52,7 +53,7 @@ void VectorVacunas::eliminarVacunas()
 {
 	for (int i = 0; i < arrVacunas->size(); i++)
 	{
-		if (arrVacunas->at(i)->getContador() >= 5 || arrVacunas->at(i)->getEstaGastada())
+		if ((arrVacunas->at(i)->getContador() >= 5 || arrVacunas->at(i)->getEstaGastada()) || arrVacunas->at(i)->getRectangle().IntersectsWith(arrVacunas->at(i)->getRectangleAreaUsable()) == 0)
 		{
 			arrVacunas->erase(arrVacunas->begin() + i);
 		}

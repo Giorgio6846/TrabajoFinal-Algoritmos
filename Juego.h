@@ -73,7 +73,7 @@ namespace TrabajoFinal {
 				this->TiempoSegundos->Interval = 2000;
 				this->ContadorBebes->Interval = 1800;
 				this->ContadorMonedas->Interval = 1600;
-				this->jugador->setMunicion(20);
+				this->jugador->setMunicion(10);
 				break;
 			case 'M':
 				delete BackgroundFacil, BackgroundDificil;
@@ -84,7 +84,7 @@ namespace TrabajoFinal {
 				this->TiempoSegundos->Interval = 2000;
 				this->ContadorBebes->Interval = 1500;
 				this->ContadorMonedas->Interval = 1600;
-				this->jugador->setMunicion(20);
+				this->jugador->setMunicion(5);
 				break;
 			case 'D':
 				delete BackgroundFacil, BackgroundMedio;
@@ -95,7 +95,7 @@ namespace TrabajoFinal {
 				this->TiempoSegundos->Interval = 2000;
 				this->ContadorBebes->Interval = 1500;
 				this->ContadorMonedas->Interval = 1600;
-				this->jugador->setMunicion(20);
+				this->jugador->setMunicion(1);
 				break;
 
 			default:
@@ -297,7 +297,7 @@ namespace TrabajoFinal {
 							vectVacunas->vacunaUsada(i);
 						}
 					}
-					else
+					else if(Dificultad == 'M' && Dificultad == 'D')
 					{
 						if (vectEnemigos->getRectangleCertainEnemigo(j).IntersectsWith(vectVacunas->getRectangleCertainVacuna(i)))
 						{
@@ -477,7 +477,10 @@ namespace TrabajoFinal {
 			jugador->mover(Derecha);
 			break;
 		case Keys::Space:
-			vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), 20, 30, jugador->getIndexWidth());
+			if (vectVacunas ->getN() < jugador->getMunicion())
+			{
+				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), 20, 30, jugador->getIndexWidth());
+			}
 			break;
 
 		default:

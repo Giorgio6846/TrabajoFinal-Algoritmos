@@ -21,7 +21,7 @@ public:
 	{
 		if ( ( rand() % 50 ) > 16)
 		{
-			indexWidth = 3;
+			indexWidth = 1;
 			indexHeight += 2;
 			if (indexHeight >= 4) indexHeight = 0;
 			return true;
@@ -46,6 +46,7 @@ public:
 			x += dx;
 		}
 		
+
 		return false;
 	}
 

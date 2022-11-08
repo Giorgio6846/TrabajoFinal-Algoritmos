@@ -28,6 +28,11 @@ private:
 
 Vacuna::Vacuna(int x, int y, int dx, int dy, int direccion) : Caracter()
 {
+	EntidadAreaIzqSupX = 0;
+	EntidadAreaIzqSupY = 0;
+	EntidadAreaDerInfX = 930;
+	EntidadAreaDerInfY = 727;
+
 	this->estaGastada = 0;
 
 	this->DimensionHeight = 0.1;
