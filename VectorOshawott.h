@@ -7,40 +7,42 @@ using namespace std;
 class VectorOshawott
 {
 public:
-	VectorOshawott(char dificultad){
-
+	VectorOshawott()
+	{
 		arrOshawott = new vector< Oshawott*>();
+	};
 
-		cantidad = new int;
-
+	void iniciar(char dificultad)
+	{
 		switch (dificultad)
 		{
 		case 'F':
-			*cantidad = 4;
+			cantidad = 4;
 			break;
 		case 'M':
-			*cantidad = 8;
+			cantidad = 8;
 			break;
 		case 'D':
-			*cantidad = 12;
+			cantidad = 12;
 			break;
 		default:
 			break;
 		}
 
-		for (int i = 0; i <= *cantidad; i++)
+		for (int i = 0; i <= cantidad; i++)
 		{
 			arrOshawott->push_back(new Oshawott());
 		}
-	};
+	}
 
-	int getX(int pos) { return arrOshawott->at(pos)->getX(); }
-	int getY(int pos) { return arrOshawott->at(pos)->getY(); }
+	void reiniciar()
+	{
+		cantidad = 0;
+		//arrOshawott->clear();
+	}
 
 	Rectangle getRectangleCertainPosicion(int i) { return arrOshawott->at(i)->getRectangle(arrOshawott->at(i)->getX(), arrOshawott->at(i)->getY()); }
 
-	int getAncho(int pos) { return arrOshawott->at(pos)->getAncho(); }
-	int getAlto(int pos) { return arrOshawott->at(pos)->getAlto(); }
 	int getN() { return arrOshawott->size(); }
 
 	bool mirandoJugador(int pos) { return arrOshawott->at(pos)->getIndexWidth() == 3; }
@@ -56,12 +58,9 @@ public:
 	~VectorOshawott() 
 	{
 		arrOshawott->clear();
-		
-		*cantidad = 0;
-		delete cantidad;
 	};
 
 private:
-	int* cantidad;
+	int cantidad;
 	vector<Oshawott*>* arrOshawott;
 };

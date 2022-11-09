@@ -152,8 +152,10 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Recursos\Bebes.png" />
+    <Image Include="Recursos\Imagenes\BackgroundDificil.jpg" />
+    <Image Include="Recursos\Imagenes\BackgroundFacil.png" />
+    <Image Include="Recursos\Imagenes\BackgroundMedio.jpg" />
     <Image Include="Recursos\Imagenes\BigBabies.png" />
-    <Image Include="Recursos\Imagenes\Campo_de_concentracion.png" />
     <Image Include="Recursos\Imagenes\Doctor.png" />
     <Image Include="Recursos\Imagenes\FondoMenu.png" />
     <Image Include="Recursos\Imagenes\Monedas.png" />

@@ -29,77 +29,86 @@ namespace TrabajoFinal {
 		{
 			InitializeComponent();
 			
+			//ObjetosJuego
 			jugador = new Jugador();
-			jugadorImg = gcnew Bitmap("Recursos/Imagenes\\Doctor.png");
-			
+
 			vectBebes = new VectorBebes();
+
+			vectCoins = new VectorCoins();
+
+			vectVacunas = new VectorVacunas();
+
+			vectEnemigos= new VectorOshawott();
+
+			aliadas = new Aliadas();
+
+			shop = new Shop();
+
+			//ImagenesJuego
+			jugadorImg = gcnew Bitmap("Recursos/Imagenes\\Doctor.png");
+
 			less30MBabyImg = gcnew Bitmap("Recursos/Imagenes\\Bebes.png");
 			more30MBabyImg = gcnew Bitmap("Recursos/Imagenes\\BigBabies.png");
 
-			vectCoins = new VectorCoins();
 			coinImg = gcnew Bitmap("Recursos/Imagenes\\Monedas.png");
-
-			vectVacunas = new VectorVacunas();
+			
 			vacunasImg = gcnew Bitmap("Recursos/Imagenes\\Vacuna.png");
-
-			player = gcnew SoundPlayer("Recursos/Musica\\TiendaEntrada.wav");
 
 			BackgroundFacil = gcnew Bitmap("Recursos/Imagenes\\BackgroundFacil.png");
 			BackgroundMedio = gcnew Bitmap("Recursos/Imagenes\\BackgroundMedio.jpg");
 			BackgroundDificil = gcnew Bitmap("Recursos/Imagenes\\BackgroundDificil.jpg");
 
-
 			OshawottImg = gcnew Bitmap("Recursos/Imagenes\\Oshawott.png");
-		
-			aliadas = new Aliadas();
+
 			AliadaRam = gcnew Bitmap("Recursos/Imagenes\\Aliada_Ram.png");
 			AliadaRem = gcnew Bitmap("Recursos/Imagenes\\Aliada_Rem.png");
 
-			shop = new Shop();
+			//SonidosJuego
 
-			juegoTerminado = 0;
+			player = gcnew SoundPlayer("Recursos/Musica\\TiendaEntrada.wav");
 		}
 
 		bool getJuegoTerminado() { return this->juegoTerminado; }
 
-		void setDificultad(char Dificultad)
+		void reiniciarJuego()
 		{
-			this->Dificultad = Dificultad;
+			juegoTerminado = 0;
+			dificultad = 'F';
+
+			vectBebes->reiniciar();
+			vectEnemigos->reiniciar();
+			vectCoins->reiniciar();
+			vectVacunas->reiniciar();
+		}
+
+		void setDificultad(char dificultad)
+		{
+			this->dificultad = dificultad;
 			
-			switch (Dificultad)
+			this->vectEnemigos->iniciar(dificultad);
+
+			switch (dificultad)
 			{
-			case 'F':
-				delete BackgroundMedio, BackgroundDificil;
-				
+			case 'F':				
 				//Modifica el tiempo del juego dependiendo de la dificultad;
-				vectEnemigos = new VectorOshawott('F');
-				this->TiempoRespuesta->Interval = 100;
 				this->TiempoSegundos->Interval = 2000;
 				this->ContadorBebes->Interval = 1800;
 				this->ContadorMonedas->Interval = 1600;
-				this->jugador->setMunicion(10);
+				this->jugador->setMunicion(15);
 				break;
 			case 'M':
-				delete BackgroundFacil, BackgroundDificil;
-
 				//Modifica el tiempo del juego dependiendo de la dificultad;
-				vectEnemigos = new VectorOshawott('M');
-				this->TiempoRespuesta->Interval = 100;
 				this->TiempoSegundos->Interval = 2000;
-				this->ContadorBebes->Interval = 1500;
-				this->ContadorMonedas->Interval = 1600;
-				this->jugador->setMunicion(5);
+				this->ContadorBebes->Interval = 1300;
+				this->ContadorMonedas->Interval = 1800;
+				this->jugador->setMunicion(10);
 				break;
 			case 'D':
-				delete BackgroundFacil, BackgroundMedio;
-				
 				//Modifica el tiempo del juego dependiendo de la dificultad;
-				vectEnemigos = new VectorOshawott('D');
-				this->TiempoRespuesta->Interval = 100;
 				this->TiempoSegundos->Interval = 2000;
-				this->ContadorBebes->Interval = 1500;
-				this->ContadorMonedas->Interval = 1600;
-				this->jugador->setMunicion(1);
+				this->ContadorBebes->Interval = 1300;
+				this->ContadorMonedas->Interval = 1800;
+				this->jugador->setMunicion(5);
 				break;
 
 			default:
@@ -165,8 +174,9 @@ namespace TrabajoFinal {
 	private: System::ComponentModel::IContainer^ components;
 
 	private:
-		//Dificultad Juego
-		char Dificultad;
+		//Opciones Juego
+		bool juegoTerminado;
+		char dificultad;
 
 		//Datos Jugador
 		Jugador* jugador;
@@ -206,8 +216,6 @@ namespace TrabajoFinal {
 
 		//Datos Tienda
 		Shop* shop;
-
-		bool juegoTerminado;
 
 	private: System::Windows::Forms::Timer^ TiempoSegundos;
 	private: System::Windows::Forms::Timer^ ContadorBebes;
@@ -272,105 +280,94 @@ namespace TrabajoFinal {
 		//Buffer
 		Graphics^ gr = this->CreateGraphics();
 		BufferedGraphicsContext^ bc = BufferedGraphicsManager::Current;
-		
 		BufferedGraphics^ bg = bc->Allocate(gr, this->ClientRectangle);
 
 		bg->Graphics->Clear(Color::White);
 
 		//Background Juego
 
-		switch (Dificultad)
+		switch (dificultad)
 		{
 		case 'F':
 			Form::ClientSize.Width = BackgroundFacil->Size.Width + 200;
 			Form::ClientSize.Height = BackgroundFacil->Size.Height + 200;
-
 			bg->Graphics->DrawImage(BackgroundFacil, 0, 0, BackgroundFacil->Size.Width, BackgroundFacil->Size.Height);
-
 			break;
 		case 'M':
 			Form::ClientSize.Width = BackgroundMedio->Size.Width + 200;
-			Form::ClientSize.Height = BackgroundMedio->Size.Height + 200;
-			
+			Form::ClientSize.Height = BackgroundMedio->Size.Height + 200;			
 			bg->Graphics->DrawImage(BackgroundMedio, 0, 0, BackgroundMedio->Size.Width, BackgroundMedio->Size.Height);
-
 			break;
 		case 'D':
 			Form::ClientSize.Width = BackgroundDificil->Size.Width + 200;
-			Form::ClientSize.Height = BackgroundDificil->Size.Height + 200;
-			
+			Form::ClientSize.Height = BackgroundDificil->Size.Height + 200;			
 			bg->Graphics->DrawImage(BackgroundDificil, 0, 0, BackgroundDificil->Size.Width, BackgroundDificil->Size.Height);
-
 			break;
 		default:
 			break;
 		}
 
 		//Trazado
-		vectBebes->mostrarBebes(bg->Graphics, less30MBabyImg, more30MBabyImg);
+		vectBebes->mostrar(bg->Graphics, less30MBabyImg, more30MBabyImg);
 		vectEnemigos->mostrar(bg->Graphics, OshawottImg);
 		jugador->mostrar(bg->Graphics, jugadorImg, 8, 9, 1.5, 1.5);
-		vectVacunas->mostrarVacunas(bg->Graphics, vacunasImg);
-
+		vectVacunas->mostrar(bg->Graphics, vacunasImg);
 
 		//Mecanicas Juego
 		
-		//Movimiento Objetos
-		vectBebes->moverBebes(bg->Graphics);
-		vectCoins->moverCoins(bg->Graphics, coinImg);
-		vectVacunas->moverVacunas();
+			//Movimiento Objetos
+			vectBebes->mover();
+			vectCoins->mover(bg->Graphics, coinImg);
+			vectVacunas->mover();
 
-		//Colisiones
+			//Colisiones
 
-		for (int i = 0; i < vectCoins->getN(); i++)
-		{
-			if (jugador->getRectangle().IntersectsWith(vectCoins->getRectangleCertainPosicion(i))) vectCoins->coinAtrapada(i);
-		}
-		
-		
-		if (vectVacunas-> getN() != 0)
-		{
-			for (int i = 0; i < vectVacunas->getN(); i++)
+			for (int i = 0; i < vectCoins->getN(); i++)
 			{
-				for (int j = 0; j < vectEnemigos->getN(); j++)
-				{
-					if (vectEnemigos->mirandoJugador(j) && Dificultad == 'F')
-					{
-						if (vectEnemigos->getRectangleCertainPosicion(j).IntersectsWith(vectVacunas->getRectangleCertainPosicion(i)))
-						{
-							vectVacunas->vacunaUsada(i);
-						}
-					}
-					else if(Dificultad == 'M' && Dificultad == 'D')
-					{
-						if (vectEnemigos->getRectangleCertainPosicion(j).IntersectsWith(vectVacunas->getRectangleCertainPosicion(i)))
-						{
-							vectVacunas->vacunaUsada(i);
-						}
-					}
+				if (jugador->getRectangle().IntersectsWith(vectCoins->getRectangleCertainPosicion(i))) vectCoins->coinAtrapada(i);
+			}
 					
-				}
-				for (int j = 0; j < vectBebes->getN(); j++)
+			if (vectVacunas-> getN() != 0)
+			{
+				for (int i = 0; i < vectVacunas->getN(); i++)
 				{
-					if (vectBebes->getRectangleCertainPosicion(j).IntersectsWith(vectVacunas->getRectangleCertainPosicion(i)))
+					for (int j = 0; j < vectEnemigos->getN(); j++)
 					{
-						vectVacunas->vacunaUsada(i);
-						vectBebes->Vacunado(j);
+						if (vectEnemigos->mirandoJugador(j) && dificultad == 'F')
+						{
+							if (vectEnemigos->getRectangleCertainPosicion(j).IntersectsWith(vectVacunas->getRectangleCertainPosicion(i)))
+							{
+								vectVacunas->vacunaUsada(i);
+							}
+						}
+						else if(dificultad == 'M' && dificultad == 'D')
+						{
+							if (vectEnemigos->getRectangleCertainPosicion(j).IntersectsWith(vectVacunas->getRectangleCertainPosicion(i)))
+							{
+								vectVacunas->vacunaUsada(i);
+							}
+						}
+						
+					}
+					for (int j = 0; j < vectBebes->getN(); j++)
+					{
+						if (vectBebes->getRectangleCertainPosicion(j).IntersectsWith(vectVacunas->getRectangleCertainPosicion(i)))
+						{
+							vectVacunas->vacunaUsada(i);
+							vectBebes->Vacunado(j);
+						}
 					}
 				}
 			}
-		}
 
 		//Eliminacion Objetos
-		vectCoins->eliminarCoins();
-		vectBebes->eliminarBebes();
-		vectVacunas->eliminarVacunas();
+		vectCoins->eliminar();
+		vectBebes->eliminar();
+		vectVacunas->eliminar();
 
-
-		//Graficos
 		//HUD
 
-		if (shop->getJugadorAtStore())
+		if (jugador->getRectangle().IntersectsWith(shop->getRectangleShop()))
 		{
 
 		}
@@ -378,9 +375,8 @@ namespace TrabajoFinal {
 		{
 			vectCoins->mostrarCantidadMonedasObtenidasText(bg->Graphics);
 			vectBebes->mostrarPorcentajeBebesVacunadosYNoVacunados(bg->Graphics);
+			jugador->mostrarMunicion(bg->Graphics);
 		}
-
-		//jugador->mostrarMunicion(bg->Graphics);
 
 		bg->Render(gr);
 
@@ -403,16 +399,15 @@ namespace TrabajoFinal {
 			jugador->mover(Derecha);
 			break;
 		case Keys::Space:
-			if (vectVacunas ->getN() < jugador->getMunicion())
+			if(jugador->getMunicion() > 0)
 			{
-  				vectVacunas->agregarVacunas(jugador->getMunicion(), jugador->getX(), jugador->getY(), 20, 30, jugador->getIndexWidth());
+				jugador->setMunicion(jugador->getMunicion() - 1);
+  				vectVacunas->agregar(jugador->getMunicion(), jugador->getX(), jugador->getY(), 20, 30, jugador->getIndexWidth());
 			}
 			break;
-
 		default:
 			break;
 		}
-
 	}
 
 	private: System::Void TiempoSegundos_Tick(System::Object^ sender, System::EventArgs^ e) {
@@ -420,15 +415,12 @@ namespace TrabajoFinal {
 	}
 	
 	private: System::Void ContadorBebes_Tick(System::Object^ sender, System::EventArgs^ e) {
-		if (rand() % 101 > 50)
-		{
-			vectBebes->agregarBebes();
-		}
+		if (rand() % 101 > 50)	vectBebes->agregar();
 	}
 	
 private: System::Void ContadorMonedas_Tick(System::Object^ sender, System::EventArgs^ e) {
 	//Agrega dos monedas por segundo
-	vectCoins->agregarCoin();
+	vectCoins->agregar();
 }
 private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 }

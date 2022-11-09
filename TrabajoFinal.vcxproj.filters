@@ -85,9 +85,6 @@
     <Image Include="Recursos\Imagenes\BigBabies.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Recursos\Imagenes\Campo_de_concentracion.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Recursos\Imagenes\FondoMenu.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -101,6 +98,15 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Recursos\Imagenes\Doctor.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Recursos\Imagenes\BackgroundDificil.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Recursos\Imagenes\BackgroundFacil.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Recursos\Imagenes\BackgroundMedio.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

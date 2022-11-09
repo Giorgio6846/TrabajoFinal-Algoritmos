@@ -17,9 +17,9 @@ public:
 
 	int getDineroObtenido() { return *contadorMonedas; }
 	
-	void agregarCoin(){ arrCoin->push_back(new Coin); }
+	void agregar(){ arrCoin->push_back(new Coin); }
 
-	void moverCoins(Graphics^ gr, Bitmap^ imagen) 
+	void mover(Graphics^ gr, Bitmap^ imagen) 
 	{
 		for (int i = 0; i < arrCoin->size(); i++)
 		{
@@ -41,7 +41,7 @@ public:
 		else gr->DrawString("Tienes: " + *contadorMonedas + " monedas", myFont, Brushes::Black, 960, 5);
 	}
 
-	void eliminarCoins()
+	void eliminar()
 	{
 		for (int i = 0; i < arrCoin->size(); i++)
 		{
@@ -50,6 +50,12 @@ public:
 				arrCoin->erase(arrCoin->begin() + i);
 			}
 		}
+	}
+
+	void reiniciar()
+	{
+		//arrCoin->clear();
+		//*contadorMonedas = 0;
 	}
 
 private:

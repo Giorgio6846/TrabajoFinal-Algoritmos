@@ -30,8 +30,8 @@ public:
 
 private:
 	int direccion;
-	int contador;
 	bool estaGastada;
+	int contador;
 };
 
 Vacuna::Vacuna(int x, int y, int dx, int dy, int direccion) : Caracter()

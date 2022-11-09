@@ -26,6 +26,12 @@ public:
 	int getMunicion() { return this->municion; }
 	void setMunicion(int municion) { this->municion = municion; }
 
+	void mostrarMunicion(Graphics ^ gr)
+	{
+		Font^ myFont = gcnew Font("Times new Roman", 15);
+		gr->DrawString("Vacunas Restantes " + municion, myFont, Brushes::Black, 960,100);
+	}
+
 	/*
 	void atShop(Graphics^ gr, SoundPlayer ^ player) {
 		

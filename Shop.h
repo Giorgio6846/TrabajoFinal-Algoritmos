@@ -12,6 +12,8 @@ public:
 
 	void mostrar(Graphics^ gr, SoundPlayer^ player);
 
+	Rectangle getRectangleShop(){ return Rectangle(860, 0, 100, 90); }
+
 	bool getJugadorAtStore() { return this->jugadorAtStore; }
 	void setJugadorAtStore(int jugadorAtStore) { this->jugadorAtStore = jugadorAtStore; }
 

@@ -11,16 +11,18 @@ public:
 	VectorBebes();
 	~VectorBebes();
 
-	void agregarBebes();
-	void eliminarBebes();
-	void moverBebes(Graphics^ gr);
+	void reiniciar();
+
+	void agregar();
+	void eliminar();
+	void mover();
+	void mostrar(Graphics^ gr, Bitmap^ imagenMenor30, Bitmap^ imagenMayor30);
+
 	void agregarMesVida();
 
 	int getN() { return arrBebes->size(); }
 
 	int getMesVida(int pos) { return arrBebes->at(pos)->getMesVida(); }
-
-	void mostrarBebes(Graphics^ gr, Bitmap^ imagenMenor30, Bitmap^ imagenMayor30);
 
 	Rectangle getRectangleCertainPosicion(int i) { return arrBebes->at(i)->getRectangle(arrBebes->at(i)->getX(), arrBebes->at(i)->getY()); }
 
@@ -64,12 +66,12 @@ void VectorBebes::mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr)
 	}
 	gr->DrawString("Vacunados " + porcentanje + "%", myFont, Brushes::Black, 960, 40);
 	porcentanje = 100 - porcentanje;
-	gr->DrawString("No vacunados " + porcentanje + "%", myFont, Brushes::Black, 960, 80);
+	gr->DrawString("No vacunados " + porcentanje + "%", myFont, Brushes::Black, 960, 60);
 
 
 }
 
-void VectorBebes::mostrarBebes(Graphics^ gr, Bitmap^ imagenMenor30, Bitmap^ imagenMayor30)
+void VectorBebes::mostrar(Graphics^ gr, Bitmap^ imagenMenor30, Bitmap^ imagenMayor30)
 {
 	for (int i = 0; i < arrBebes->size(); i++)
 	{
@@ -89,7 +91,7 @@ void VectorBebes::mostrarBebes(Graphics^ gr, Bitmap^ imagenMenor30, Bitmap^ imag
 }
 
 
-void VectorBebes::moverBebes(Graphics ^ gr)
+void VectorBebes::mover()
 {
 
 
@@ -126,8 +128,6 @@ void VectorBebes::moverBebes(Graphics ^ gr)
 				arrBebes->at(i)->mover(Derecha);
 			}
 		}
-
-
 
 		//Define si el bebe finaliza su ruta por la posicion X 
 
@@ -170,7 +170,7 @@ void VectorBebes::moverBebes(Graphics ^ gr)
 }
 
 
-void VectorBebes::eliminarBebes()
+void VectorBebes::eliminar()
 {
 	for (int i = 0; i < arrBebes->size(); i++)
 	{
@@ -190,7 +190,7 @@ void VectorBebes::eliminarBebes()
 }
 
 
-void VectorBebes::agregarBebes()
+void VectorBebes::agregar()
 {
 		arrBebes->push_back(new Bebes);
 }
@@ -201,4 +201,11 @@ void VectorBebes::agregarMesVida()
 	{
 		arrBebes->at(i)->add1MesVida();
 	}
+}
+	
+void VectorBebes::reiniciar()
+{
+	//arrBebes->clear();
+	bebesNoVacunados = 0;
+	bebesVacunados = 0;
 }

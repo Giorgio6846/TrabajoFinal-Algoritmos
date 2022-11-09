@@ -11,15 +11,17 @@ public:
 	VectorVacunas();
 	~VectorVacunas();
 
-	void agregarVacunas(int municion, int xJugador, int yJugador, int dxJugador, int dyJugador,int direccion);
-	void moverVacunas();
-	void mostrarVacunas(Graphics^ gr, Bitmap^ imagen);
-	void eliminarVacunas();
+	void agregar(int municion, int xJugador, int yJugador, int dxJugador, int dyJugador,int direccion);
+	void mover();
+	void mostrar(Graphics^ gr, Bitmap^ imagen);
+	void eliminar();
 
 	Rectangle getRectangleCertainPosicion(int i) { return arrVacunas->at(i)->getRectangle(arrVacunas->at(i)->getX(), arrVacunas->at(i)->getY()); }
 	Rectangle getRectangleAreaUsableCertainPosicion(int i) { return arrVacunas->at(i)->getRectangleAreaUsable(); }
 
 	int getN() { return arrVacunas->size(); }
+
+	void reiniciar(){ /*arrVacunas->clear();*/ }
 
 	void vacunaUsada(int pos) { arrVacunas->at(pos)->setEstaGastada(); }
 private:
@@ -35,7 +37,7 @@ VectorVacunas::~VectorVacunas()
 {
 }
 
-void VectorVacunas::mostrarVacunas(Graphics ^ gr, Bitmap ^ imagen)
+void VectorVacunas::mostrar(Graphics ^ gr, Bitmap ^ imagen)
 {
 	for (int i = 0; i < arrVacunas->size(); i++)
 	{
@@ -43,7 +45,7 @@ void VectorVacunas::mostrarVacunas(Graphics ^ gr, Bitmap ^ imagen)
 	}
 }
 
-void VectorVacunas::eliminarVacunas()
+void VectorVacunas::eliminar()
 {
 	for (int i = 0; i < arrVacunas->size(); i++)
 	{
@@ -54,7 +56,7 @@ void VectorVacunas::eliminarVacunas()
 	}
 }
 
-void VectorVacunas::moverVacunas()
+void VectorVacunas::mover()
 {
 	for (int i = 0; i < arrVacunas->size(); i++)
 	{
@@ -65,7 +67,8 @@ void VectorVacunas::moverVacunas()
 
 
 
-void VectorVacunas::agregarVacunas(int municion, int xJugador, int yJugador, int dxVacuna, int dyVacuna, int direccion)
+void VectorVacunas::agregar(int municion, int xJugador, int yJugador, int dxVacuna, int dyVacuna, int direccion)
 {
+
 	arrVacunas->push_back(new Vacuna(xJugador, yJugador, dxVacuna, dyVacuna, direccion));
 }
