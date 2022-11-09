@@ -76,5 +76,5 @@ VectorCoins::VectorCoins()
 
 VectorCoins::~VectorCoins() 
 { 
-	delete[]arrCoin; 
+	arrCoin->clear();
 };

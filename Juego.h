@@ -56,7 +56,11 @@ namespace TrabajoFinal {
 			AliadaRem = gcnew Bitmap("Recursos/Imagenes\\Aliada_Rem.png");
 
 			shop = new Shop();
+
+			juegoTerminado = 0;
 		}
+
+		bool getJuegoTerminado() { return this->juegoTerminado; }
 
 		void setDificultad(char Dificultad)
 		{
@@ -111,6 +115,44 @@ namespace TrabajoFinal {
 		/// </summary>
 		~Juego()
 		{
+			delete jugador;
+			delete jugadorImg;
+
+			//Datos Bebes
+			delete less30MBabyImg;
+			delete more30MBabyImg;
+			delete vectBebes;
+
+			//Datos Monedas
+			delete coin;
+			delete vectCoins;
+			delete coinImg;
+
+			//Datos Tienda
+			delete player;
+
+			//Imagen Background
+			delete BackgroundFacil;
+			delete BackgroundMedio;
+			delete BackgroundDificil;
+
+			//Datos Vacunas
+			delete vectVacunas;
+			delete vacunasImg;
+
+			//Imagen MamaAntivacuna
+			delete vectEnemigos;
+			delete OshawottImg;
+
+			//Datos Aliadas
+
+			delete AliadaRem;
+			delete AliadaRam;
+			delete aliadas;
+
+			//Datos Tienda
+			delete shop;
+
 			if (components)
 			{
 				delete components;
@@ -164,6 +206,8 @@ namespace TrabajoFinal {
 
 		//Datos Tienda
 		Shop* shop;
+
+		bool juegoTerminado;
 
 	private: System::Windows::Forms::Timer^ TiempoSegundos;
 	private: System::Windows::Forms::Timer^ ContadorBebes;

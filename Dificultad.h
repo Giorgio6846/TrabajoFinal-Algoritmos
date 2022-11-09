@@ -24,6 +24,8 @@ namespace TrabajoFinal {
 			//
 		}
 
+		char getDificultad() { return this->dificultad; }
+
 	protected:
 		/// <summary>
 		/// Limpiar los recursos que se estén usando.
@@ -44,6 +46,7 @@ namespace TrabajoFinal {
 		/// Variable del diseñador necesaria.
 		/// </summary>
 		System::ComponentModel::Container ^components;
+		char dificultad;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -106,14 +109,10 @@ namespace TrabajoFinal {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		Juego^ juego = gcnew Juego();
-		juego->setDificultad('D');
-		juego->Show();
+		dificultad = 'F';
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		Juego^ juego = gcnew Juego();
-		juego->setDificultad('F');
-		juego->Show();
+		dificultad = 'D';
 	}
 	};
 }

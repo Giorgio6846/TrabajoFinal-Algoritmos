@@ -51,7 +51,7 @@ VectorBebes::VectorBebes()
 
 VectorBebes::~VectorBebes()
 {
-	delete[]arrBebes; 
+	arrBebes->clear();
 }
 
 void VectorBebes::mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr)

@@ -11,24 +11,24 @@ public:
 
 		arrOshawott = new vector< Oshawott*>();
 
-		int cantidad;
+		cantidad = new int;
 
 		switch (dificultad)
 		{
 		case 'F':
-			cantidad = 4;
+			*cantidad = 4;
 			break;
 		case 'M':
-			cantidad = 8;
+			*cantidad = 8;
 			break;
 		case 'D':
-			cantidad = 12;
+			*cantidad = 12;
 			break;
 		default:
 			break;
 		}
 
-		for (int i = 0; i <= cantidad; i++)
+		for (int i = 0; i <= *cantidad; i++)
 		{
 			arrOshawott->push_back(new Oshawott());
 		}
@@ -53,9 +53,15 @@ public:
 		}
 	}
 
-	~VectorOshawott() {};
+	~VectorOshawott() 
+	{
+		arrOshawott->clear();
+		
+		*cantidad = 0;
+		delete cantidad;
+	};
 
 private:
-
+	int* cantidad;
 	vector<Oshawott*>* arrOshawott;
 };

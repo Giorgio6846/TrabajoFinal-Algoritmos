@@ -25,6 +25,7 @@ namespace TrabajoFinal {
 			//TODO: agregar código de constructor aquí
 			//
 			gr = this->CreateGraphics();
+			dificultadJuego = 'F';
 		}
 
 	protected:
@@ -53,6 +54,7 @@ namespace TrabajoFinal {
 	private: System::Windows::Forms::Button^ button1;
 
 		   Graphics^ gr;
+		   Char dificultadJuego;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -179,10 +181,17 @@ namespace TrabajoFinal {
 #pragma endregion
 	private: System::Void MenuJuego_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
 		Juego^ juego = gcnew Juego();
-		juego->setDificultad('F');
+
+		juego->setDificultad(dificultadJuego);
 		juego->Show();
+
+		if (juego->getJuegoTerminado())
+		{
+			delete juego;
+		}
 	}
 	private: System::Void MenuJuego_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 
@@ -195,6 +204,7 @@ namespace TrabajoFinal {
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	Dificultad^ dificultad = gcnew Dificultad();
 	dificultad->Show();
+	dificultadJuego = dificultad->getDificultad();
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 	Intrucciones^ intrucciones = gcnew Intrucciones();
@@ -208,8 +218,14 @@ private: System::Void MenuJuego_KeyDown(System::Object^ sender, System::Windows:
 	if (e->KeyCode == Keys::Space)
 	{
 		Juego^ juego = gcnew Juego();
-		juego->setDificultad('F');
+
+		juego->setDificultad(dificultadJuego);
 		juego->Show();
+
+		if (juego->getJuegoTerminado())
+		{
+			delete juego;
+		}
 	}
 }
 };
