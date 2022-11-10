@@ -134,10 +134,13 @@ void VectorBebes::mover()
 		if (abs(arrBebes->at(i)->getX() - arrBebes->at(i)->getDestX()) <= 10) 
 		{
 			arrBebes->at(i)->setFinishedWalkingX(1);
+			arrBebes->at(i)->setWalking(arrBebes->at(i)->getWalking() == 0);
+			/*
 			if (arrBebes->at(i)->getWalking() == 0)
 			{
 				arrBebes->at(i)->setWalking(1);
 			}
+			*/
 		}
 
 		//Define si el bebe finaliza su ruta por la posicion Y
@@ -145,10 +148,13 @@ void VectorBebes::mover()
 		if (abs(arrBebes->at(i)->getY() - arrBebes->at(i)->getDestY()) <= 10)
 		{
 			arrBebes->at(i)->setFinishedWalkingY(1);
+			arrBebes->at(i)->setWalking(arrBebes->at(i)->getWalking() != 1);
+			/*
 			if (arrBebes->at(i)->getWalking() == 1)
 			{
 				arrBebes->at(i)->setWalking(0);
 			}
+			*/
 		}
 
 		//Si el bebe finaliza llega a su destino este se reinicia

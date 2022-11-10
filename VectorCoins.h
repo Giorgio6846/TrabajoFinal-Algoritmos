@@ -16,7 +16,8 @@ public:
 	Rectangle getRectangleCertainPosicion(int i) { return arrCoin->at(i)->getRectangle(arrCoin->at(i)->getX(), arrCoin->at(i)->getY()); }
 
 	int getDineroObtenido() { return *contadorMonedas; }
-	
+	void setDineroObtenido(int coins) { *contadorMonedas = coins; }
+
 	void agregar(){ arrCoin->push_back(new Coin); }
 
 	void mover(Graphics^ gr, Bitmap^ imagen) 

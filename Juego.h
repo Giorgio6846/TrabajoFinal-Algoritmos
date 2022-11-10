@@ -9,6 +9,7 @@
 #include "Shop.h"
 #include "Aliado.h"
 
+
 namespace TrabajoFinal {
 
 	using namespace System;
@@ -40,7 +41,9 @@ namespace TrabajoFinal {
 
 			vectEnemigos= new VectorOshawott();
 
-			aliadas = new Aliadas();
+			aliada1 = new Aliadas();
+			aliada2 = new Aliadas();
+			aliada3 = new Aliadas();
 
 			shop = new Shop();
 
@@ -94,6 +97,7 @@ namespace TrabajoFinal {
 				this->TiempoSegundos->Interval = 2000;
 				this->ContadorBebes->Interval = 1800;
 				this->ContadorMonedas->Interval = 1600;
+				this->TiempoHabilidades->Interval = 1000;
 				this->jugador->setMunicion(15);
 				break;
 			case 'M':
@@ -101,6 +105,7 @@ namespace TrabajoFinal {
 				this->TiempoSegundos->Interval = 2000;
 				this->ContadorBebes->Interval = 1300;
 				this->ContadorMonedas->Interval = 1800;
+				this->TiempoHabilidades->Interval = 1000;
 				this->jugador->setMunicion(10);
 				break;
 			case 'D':
@@ -108,6 +113,7 @@ namespace TrabajoFinal {
 				this->TiempoSegundos->Interval = 2000;
 				this->ContadorBebes->Interval = 1300;
 				this->ContadorMonedas->Interval = 1800;
+				this->TiempoHabilidades->Interval = 1000;
 				this->jugador->setMunicion(5);
 				break;
 
@@ -154,10 +160,9 @@ namespace TrabajoFinal {
 			delete OshawottImg;
 
 			//Datos Aliadas
-
-			delete AliadaRem;
-			delete AliadaRam;
-			delete aliadas;
+			delete aliada1;
+			delete aliada2;
+			delete aliada3;
 
 			//Datos Tienda
 			delete shop;
@@ -212,13 +217,17 @@ namespace TrabajoFinal {
 
 		Bitmap^ AliadaRem;
 		Bitmap^ AliadaRam;
-		Aliadas* aliadas;
+
+		Aliadas* aliada1;
+		Aliadas* aliada2;
+		Aliadas* aliada3;
 
 		//Datos Tienda
 		Shop* shop;
 
 	private: System::Windows::Forms::Timer^ TiempoSegundos;
 	private: System::Windows::Forms::Timer^ ContadorBebes;
+private: System::Windows::Forms::Timer^ TiempoHabilidades;
 
 	private: System::Windows::Forms::Timer^ ContadorMonedas;
 
@@ -235,6 +244,7 @@ namespace TrabajoFinal {
 			this->TiempoSegundos = (gcnew System::Windows::Forms::Timer(this->components));
 			this->ContadorBebes = (gcnew System::Windows::Forms::Timer(this->components));
 			this->ContadorMonedas = (gcnew System::Windows::Forms::Timer(this->components));
+			this->TiempoHabilidades = (gcnew System::Windows::Forms::Timer(this->components));
 			this->SuspendLayout();
 			// 
 			// TiempoRespuesta
@@ -259,6 +269,12 @@ namespace TrabajoFinal {
 			this->ContadorMonedas->Enabled = true;
 			this->ContadorMonedas->Interval = 1600;
 			this->ContadorMonedas->Tick += gcnew System::EventHandler(this, &Juego::ContadorMonedas_Tick);
+			// 
+			// TiempoHabilidades
+			// 
+			this->TiempoHabilidades->Enabled = true;
+			this->TiempoHabilidades->Interval = 1000;
+			this->TiempoHabilidades->Tick += gcnew System::EventHandler(this, &Juego::TiempoHabilidades_Tick);
 			// 
 			// Juego
 			// 
@@ -312,6 +328,10 @@ namespace TrabajoFinal {
 		vectEnemigos->mostrar(bg->Graphics, OshawottImg);
 		jugador->mostrar(bg->Graphics, jugadorImg, 8, 9, 1.5, 1.5);
 		vectVacunas->mostrar(bg->Graphics, vacunasImg);
+		
+		if (aliada1->getEstaDisponible()) aliada1->mostrar(bg->Graphics, AliadaRam, 4, 3, 1.5, 1.5);
+		if (aliada2->getEstaDisponible()) aliada2->mostrar(bg->Graphics, AliadaRem, 4, 3, 1.5, 1.5);
+		if (aliada3->getEstaDisponible()) aliada3->mostrar(bg->Graphics, AliadaRem, 4, 3, 1.5, 1.5);
 
 		//Mecanicas Juego
 		
@@ -320,13 +340,44 @@ namespace TrabajoFinal {
 			vectCoins->mover(bg->Graphics, coinImg);
 			vectVacunas->mover();
 
+			if (aliada1->getEstaDisponible()) aliada1->movimientoPosicionJugador(jugador->getX(), jugador->getY());
+			if (aliada2->getEstaDisponible()) aliada2->movimientoPosicionJugador(jugador->getX(), jugador->getY());
+			if (aliada3->getEstaDisponible()) aliada3->movimientoPosicionJugador(jugador->getX(), jugador->getY());
+
 			//Colisiones
 
 			for (int i = 0; i < vectCoins->getN(); i++)
 			{
 				if (jugador->getRectangle().IntersectsWith(vectCoins->getRectangleCertainPosicion(i))) vectCoins->coinAtrapada(i);
 			}
-					
+			
+			//Aliados: Aliada 1 es Velocidad Movimiento y Aliada 2 es Velocidad Ataque
+			if (jugador->getRectangle().IntersectsWith(aliada1->getRectangle()) && aliada1->getEstaDisponible())
+			{
+				if (aliada1->getContador() <= 5)
+				{
+					jugador->setDx(aliada1->getValorAceleracionAnteriorDX() + 10);
+					jugador->setDy(aliada1->getValorAceleracionAnteriorDY() + 10);
+				}
+				else
+				{
+					jugador->setDx(aliada1->getValorAceleracionAnteriorDX());
+					jugador->setDy(aliada1->getValorAceleracionAnteriorDY());
+					aliada1->setEstaDisponible(0);
+				}
+			}
+			if (jugador->getRectangle().IntersectsWith(aliada2->getRectangle()) && aliada2->getEstaDisponible())
+			{
+				if (aliada2->getContador() <= 5)
+				{
+						
+				}
+				else
+				{
+					aliada2->setEstaDisponible(0);
+				}
+			}
+
 			if (vectVacunas-> getN() != 0)
 			{
 				for (int i = 0; i < vectVacunas->getN(); i++)
@@ -340,7 +391,7 @@ namespace TrabajoFinal {
 								vectVacunas->vacunaUsada(i);
 							}
 						}
-						else if(dificultad == 'M' && dificultad == 'D')
+						else if(dificultad == 'M' || dificultad == 'D')
 						{
 							if (vectEnemigos->getRectangleCertainPosicion(j).IntersectsWith(vectVacunas->getRectangleCertainPosicion(i)))
 							{
@@ -378,14 +429,22 @@ namespace TrabajoFinal {
 			jugador->mostrarMunicion(bg->Graphics);
 		}
 
+		//Juego Finalizado
+		
+
 		bg->Render(gr);
 
 		delete bc, bg, gr;
 	}
 
 	private: System::Void Juego_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
+		int costoVacunas = 5;
+
 		switch (e->KeyCode)
 		{
+
+		//Movimiento Jugador
+
 		case Keys::Up:
 			jugador->mover(Arriba);
 			break;
@@ -398,6 +457,41 @@ namespace TrabajoFinal {
 		case Keys::Right:
 			jugador->mover(Derecha);
 			break;
+
+		//Invocacion Aliados
+		case Keys::Z:
+			if (aliada1->getEstaDisponible() == 0)
+			{
+				aliada1->inicio();
+				aliada1->setValorAceleracionAnteriorDX(jugador->getDx());
+				aliada1->setValorAceleracionAnteriorDY(jugador->getDy());
+				aliada1->setContador(0);
+				aliada1->setEstaDisponible(1);
+			}
+			break;
+		case Keys::X:
+			if (aliada2->getEstaDisponible() == 0)
+			{
+				aliada2->inicio();
+				aliada2->setValorAceleracionAnteriorDX(jugador->getDx());
+				aliada2->setValorAceleracionAnteriorDY(jugador->getDy());
+				aliada2->setContador(0);
+				aliada2->setEstaDisponible(1);
+			}
+			break;
+
+		//Tienda Jugador
+		case Keys::C:
+			//Aqui se especifica el costo las vacunas
+			if ((jugador->getRectangle().IntersectsWith(shop->getRectangleShop())) && (vectCoins->getDineroObtenido() >= costoVacunas))
+			{
+				vectCoins->setDineroObtenido(vectCoins->getDineroObtenido() - costoVacunas);
+				jugador->setMunicion(jugador->getMunicion() + 5);
+			}
+			break;
+
+
+		//Disparo Vacunas
 		case Keys::Space:
 			if(jugador->getMunicion() > 0)
 			{
@@ -425,5 +519,10 @@ private: System::Void ContadorMonedas_Tick(System::Object^ sender, System::Event
 private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 
+private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::EventArgs^ e) 
+{
+	if (aliada1->getEstaDisponible()) aliada1->setContador(aliada1->getContador() + 1);
+	if (aliada2->getEstaDisponible()) aliada2->setContador(aliada2->getContador() + 1);
+}
 };
 }
