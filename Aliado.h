@@ -87,13 +87,13 @@ void Aliadas::movimientoPosicionJugador(int jugadorX, int jugadorY)
 
 	if (walking)
 	{
-		if (abs(y - jugadorY) <= dy) dy = rand() % 4 + 2;
+		if (abs(y - jugadorY) <= dy) dy = rand() % 10 + 2;
 		if (y < jugadorY) mover(Abajo);
 		else mover(Arriba);
 	}
 	else
 	{
-		if (abs(x - jugadorX) <= dx) dx = rand() % 4 + 2;
+		if (abs(x - jugadorX) <= dx) dx = rand() % 10 + 2;
 		if (x > jugadorX) mover(Izquierda);
 		else mover(Derecha);
 	}
