@@ -9,7 +9,7 @@ class VectorOshawott
 public:
 	VectorOshawott()
 	{
-		arrOshawott = new vector< Oshawott*>();
+		arrOshawott = new vector <Oshawott*>();
 	};
 
 	void iniciar(char dificultad)
@@ -29,9 +29,9 @@ public:
 			break;
 		}
 
-		for (int i = 0; i <= cantidad; i++)
+		for (int i = 0; i < cantidad; i++)
 		{
-			arrOshawott->push_back(new Oshawott());
+			arrOshawott->push_back(new Oshawott);
 		}
 	}
 

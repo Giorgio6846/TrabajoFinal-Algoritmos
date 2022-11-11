@@ -35,6 +35,7 @@ VectorVacunas::VectorVacunas()
 
 VectorVacunas::~VectorVacunas()
 {
+	arrVacunas->clear();
 }
 
 void VectorVacunas::mostrar(Graphics ^ gr, Bitmap ^ imagen)

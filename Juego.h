@@ -324,10 +324,10 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 		}
 
 		//Trazado
+		vectVacunas->mostrar(bg->Graphics, vacunasImg);
 		vectBebes->mostrar(bg->Graphics, less30MBabyImg, more30MBabyImg);
 		vectEnemigos->mostrar(bg->Graphics, OshawottImg);
 		jugador->mostrar(bg->Graphics, jugadorImg, 8, 9, 1.5, 1.5);
-		vectVacunas->mostrar(bg->Graphics, vacunasImg);
 		
 		if (aliada1->getEstaDisponible()) aliada1->mostrar(bg->Graphics, AliadaRam, 4, 3, 1.5, 1.5);
 		if (aliada2->getEstaDisponible()) aliada2->mostrar(bg->Graphics, AliadaRem, 4, 3, 1.5, 1.5);
