@@ -8,7 +8,7 @@ using namespace std;
 class VectorBebes
 {
 public:
-	VectorBebes();
+	VectorBebes(char dificultad);
 	~VectorBebes();
 
 	void reiniciar();
@@ -19,6 +19,8 @@ public:
 	void mostrar(Graphics^ gr, Bitmap^ imagenMenor30, Bitmap^ imagenMayor30);
 
 	void agregarMesVida();
+
+	int getTotalBebesGenerados() { return totalBebesGenerados; }
 
 	int getN() { return arrBebes->size(); }
 
@@ -39,14 +41,29 @@ private:
 
 	vector<Bebes*>* arrBebes;
 
-	int bebesVacunados;
+	int totalBebesGenerados;
+	int totalBebes;
+	float bebesVacunados;
 	int bebesNoVacunados;
 };
 
-VectorBebes::VectorBebes()
+VectorBebes::VectorBebes(char dificultad)
 {
-	arrBebes = new vector <Bebes*>();
 
+	switch (dificultad)
+	{
+	case 'F': totalBebes = 15;
+		break;
+	case 'M': totalBebes = 20;
+		break;
+	default:
+		break;
+	}
+
+	totalBebes = 15;
+
+	arrBebes = new vector <Bebes*>();
+	totalBebesGenerados = 0;
 	bebesVacunados = 0;
 	bebesNoVacunados = 0;
 }
@@ -59,14 +76,15 @@ VectorBebes::~VectorBebes()
 void VectorBebes::mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr)
 {
 	Font^ myFont = gcnew Font("Times new Roman", 15);
-	int porcentanje = 0;
-	if ((arrBebes->size() + bebesNoVacunados + bebesNoVacunados) != 0)
-	{
-		porcentanje = (bebesVacunados) * 100 / (arrBebes->size() + bebesNoVacunados + bebesVacunados);
-	}
-	gr->DrawString("Vacunados " + porcentanje + "%", myFont, Brushes::Black, 960, 40);
-	porcentanje = 100 - porcentanje;
-	gr->DrawString("No vacunados " + porcentanje + "%", myFont, Brushes::Black, 960, 60);
+	float porcentanje = 0;
+
+	porcentanje = bebesVacunados /totalBebes;
+	porcentanje *= 100.0;
+	int toIntPorcentaje = porcentanje;
+
+	gr->DrawString("Vacunados " + toIntPorcentaje + "%", myFont, Brushes::Black, 960, 40);
+	porcentanje = 100 - toIntPorcentaje;
+	gr->DrawString("No vacunados " + toIntPorcentaje + "%", myFont, Brushes::Black, 960, 60);
 
 
 }
@@ -198,6 +216,7 @@ void VectorBebes::eliminar()
 
 void VectorBebes::agregar()
 {
+		totalBebesGenerados++;
 		arrBebes->push_back(new Bebes);
 }
 
