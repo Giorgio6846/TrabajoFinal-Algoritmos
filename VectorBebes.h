@@ -34,7 +34,7 @@ private:
 
 	int EntidadAreaIzqSupX = 0;
 	int EntidadAreaIzqSupY = 260;
-	int EntidadAreaDerInfX = 959;
+	int EntidadAreaDerInfX = 930;
 	int EntidadAreaDerInfY = 727;
 
 	vector<Bebes*>* arrBebes;
@@ -135,12 +135,10 @@ void VectorBebes::mover()
 		{
 			arrBebes->at(i)->setFinishedWalkingX(1);
 			arrBebes->at(i)->setWalking(arrBebes->at(i)->getWalking() == 0);
-			/*
 			if (arrBebes->at(i)->getWalking() == 0)
 			{
 				arrBebes->at(i)->setWalking(1);
 			}
-			*/
 		}
 
 		//Define si el bebe finaliza su ruta por la posicion Y
@@ -149,12 +147,10 @@ void VectorBebes::mover()
 		{
 			arrBebes->at(i)->setFinishedWalkingY(1);
 			arrBebes->at(i)->setWalking(arrBebes->at(i)->getWalking() != 1);
-			/*
 			if (arrBebes->at(i)->getWalking() == 1)
 			{
 				arrBebes->at(i)->setWalking(0);
 			}
-			*/
 		}
 
 		//Si el bebe finaliza llega a su destino este se reinicia

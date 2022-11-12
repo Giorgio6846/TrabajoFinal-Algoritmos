@@ -354,10 +354,14 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 			//Aliados: Aliada 1 es Velocidad Movimiento y Aliada 2 es Velocidad Ataque
 			if (jugador->getRectangle().IntersectsWith(aliada1->getRectangle()) && aliada1->getEstaDisponible())
 			{
+				if (aliada1->getContador() < 0)
+				{
+					aliada1->setContador(0);
+				}
 				if (aliada1->getContador() <= 5)
 				{
-					jugador->setDx(aliada1->getValorAceleracionAnteriorDX() + 10);
-					jugador->setDy(aliada1->getValorAceleracionAnteriorDY() + 10);
+					jugador->setDx(aliada1->getValorAceleracionAnteriorDX() + 20);
+					jugador->setDy(aliada1->getValorAceleracionAnteriorDY() + 20);
 				}
 				else
 				{
@@ -368,12 +372,19 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 			}
 			if (jugador->getRectangle().IntersectsWith(aliada2->getRectangle()) && aliada2->getEstaDisponible())
 			{
+				if (aliada2->getContador() < 0)
+				{
+					aliada2->setContador(0);
+				}
 				if (aliada2->getContador() <= 5)
 				{
-						
+					jugador->setDx(aliada2->getValorAceleracionAnteriorDX() + 20);
+					jugador->setDy(aliada2->getValorAceleracionAnteriorDY() + 20);
 				}
 				else
 				{
+					jugador->setDx(aliada2->getValorAceleracionAnteriorDX());
+					jugador->setDy(aliada2->getValorAceleracionAnteriorDY());
 					aliada2->setEstaDisponible(0);
 				}
 			}
@@ -465,8 +476,8 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 				aliada1->inicio();
 				aliada1->setValorAceleracionAnteriorDX(jugador->getDx());
 				aliada1->setValorAceleracionAnteriorDY(jugador->getDy());
-				aliada1->setContador(0);
 				aliada1->setEstaDisponible(1);
+				aliada1->setContador(-10);
 			}
 			break;
 		case Keys::X:
@@ -475,8 +486,8 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 				aliada2->inicio();
 				aliada2->setValorAceleracionAnteriorDX(jugador->getDx());
 				aliada2->setValorAceleracionAnteriorDY(jugador->getDy());
-				aliada2->setContador(0);
 				aliada2->setEstaDisponible(1);
+				aliada1->setContador(-10);
 			}
 			break;
 
