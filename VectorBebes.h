@@ -78,12 +78,11 @@ void VectorBebes::mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr)
 	Font^ myFont = gcnew Font("Times new Roman", 15);
 	float porcentanje = 0;
 
-	porcentanje = bebesVacunados /totalBebes;
-	porcentanje *= 100.0;
+	porcentanje = (bebesVacunados /totalBebes) * 100.0;
 	int toIntPorcentaje = porcentanje;
 
 	gr->DrawString("Vacunados " + toIntPorcentaje + "%", myFont, Brushes::Black, 960, 40);
-	porcentanje = 100 - toIntPorcentaje;
+	toIntPorcentaje = 100 - toIntPorcentaje;
 	gr->DrawString("No vacunados " + toIntPorcentaje + "%", myFont, Brushes::Black, 960, 60);
 
 
