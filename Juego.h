@@ -33,7 +33,7 @@ namespace TrabajoFinal {
 			//ObjetosJuego
 			jugador = new Jugador();
 
-			vectBebes = new VectorBebes();
+			vectBebes = new VectorBebes(dificultad);
 
 			vectCoins = new VectorCoins();
 
@@ -442,6 +442,16 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 
 		//Juego Finalizado
 		
+		if (vectBebes->getPorcentaje() <= 5) { 
+
+			TiempoRespuesta->Enabled = false;	
+			TiempoSegundos->Enabled = false;
+			ContadorBebes ->Enabled = false;
+			ContadorMonedas->Enabled = false;
+			TiempoHabilidades->Enabled = false;
+
+			MessageBox::Show("Ganaste!");
+			}
 
 		bg->Render(gr);
 
@@ -520,7 +530,10 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 	}
 	
 	private: System::Void ContadorBebes_Tick(System::Object^ sender, System::EventArgs^ e) {
-		if (rand() % 101 > 50)	vectBebes->agregar();
+
+		if (vectBebes->getTotalBebesGenerados() < 15 && dificultad == 'F') vectBebes->agregar();
+		else if (vectBebes->getTotalBebesGenerados() < 20 && dificultad == 'M') vectBebes->agregar();
+
 	}
 	
 private: System::Void ContadorMonedas_Tick(System::Object^ sender, System::EventArgs^ e) {
