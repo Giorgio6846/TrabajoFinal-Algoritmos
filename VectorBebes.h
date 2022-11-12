@@ -32,6 +32,8 @@ public:
 
 	void mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr);
 
+	int getPorcentaje() { return toIntPorcentaje; }
+
 private:
 
 	int EntidadAreaIzqSupX = 0;
@@ -45,6 +47,7 @@ private:
 	int totalBebes;
 	float bebesVacunados;
 	int bebesNoVacunados;
+	int toIntPorcentaje;
 };
 
 VectorBebes::VectorBebes(char dificultad)
@@ -61,7 +64,7 @@ VectorBebes::VectorBebes(char dificultad)
 	}
 
 	totalBebes = 15;
-
+	toIntPorcentaje = 0;
 	arrBebes = new vector <Bebes*>();
 	totalBebesGenerados = 0;
 	bebesVacunados = 0;
@@ -79,7 +82,7 @@ void VectorBebes::mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr)
 	float porcentanje = 0;
 
 	porcentanje = (bebesVacunados /totalBebes) * 100.0;
-	int toIntPorcentaje = porcentanje;
+	toIntPorcentaje = porcentanje;
 
 	gr->DrawString("Vacunados " + toIntPorcentaje + "%", myFont, Brushes::Black, 960, 40);
 	toIntPorcentaje = 100 - toIntPorcentaje;

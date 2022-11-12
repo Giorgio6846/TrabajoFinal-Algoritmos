@@ -431,6 +431,16 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 
 		//Juego Finalizado
 		
+		if (vectBebes->getPorcentaje() <= 5) { 
+
+			TiempoRespuesta->Enabled = false;	
+			TiempoSegundos->Enabled = false;
+			ContadorBebes ->Enabled = false;
+			ContadorMonedas->Enabled = false;
+			TiempoHabilidades->Enabled = false;
+
+			MessageBox::Show("Ganaste!");
+			}
 
 		bg->Render(gr);
 
