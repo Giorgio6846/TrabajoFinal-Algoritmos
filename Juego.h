@@ -45,7 +45,7 @@ namespace TrabajoFinal {
 
 			vectVacunas = new VectorVacunas();
 
-			vectEnemigos= new VectorOshawott();
+			vectEnemigos= new VectorOshawott(dificultad);
 
 			aliada1 = new Aliadas();
 			aliada2 = new Aliadas();
@@ -78,19 +78,6 @@ namespace TrabajoFinal {
 		}
 
 		bool getJuegoTerminado() { return this->juegoTerminado; }
-
-		void reiniciarJuego()
-		{
-			juegoTerminado = 0;
-			dificultad = 'F';
-
-			vectBebes->reiniciar();
-			vectEnemigos->reiniciar();
-			vectCoins->reiniciar();
-			vectVacunas->reiniciar();
-		}
-
-		void setAppFinalizada(bool finalizada) { appFinalizada = finalizada; }
 
 	protected:
 		/// <summary>
@@ -523,8 +510,6 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		dificultad = textDificultad.get();
 		textDificultad.close();
 	}
-
-	this->vectEnemigos->iniciar(dificultad);
 
 	switch (dificultad)
 	{

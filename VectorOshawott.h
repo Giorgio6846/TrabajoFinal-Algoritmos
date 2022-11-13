@@ -7,13 +7,10 @@ using namespace std;
 class VectorOshawott
 {
 public:
-	VectorOshawott()
+	VectorOshawott(char dificultad)
 	{
 		arrOshawott = new vector <Oshawott*>();
-	};
 
-	void iniciar(char dificultad)
-	{
 		switch (dificultad)
 		{
 		case 'F':
@@ -33,13 +30,7 @@ public:
 		{
 			arrOshawott->push_back(new Oshawott);
 		}
-	}
-
-	void reiniciar()
-	{
-		cantidad = 0;
-		//arrOshawott->clear();
-	}
+	};
 
 	Rectangle getRectangleCertainPosicion(int i) { return arrOshawott->at(i)->getRectangle(arrOshawott->at(i)->getX(), arrOshawott->at(i)->getY()); }
 

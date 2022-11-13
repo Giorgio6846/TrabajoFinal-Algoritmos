@@ -21,8 +21,6 @@ public:
 
 	int getN() { return arrVacunas->size(); }
 
-	void reiniciar(){ /*arrVacunas->clear();*/ }
-
 	void vacunaUsada(int pos) { arrVacunas->at(pos)->setEstaGastada(); }
 private:
 	vector<Vacuna*>* arrVacunas;

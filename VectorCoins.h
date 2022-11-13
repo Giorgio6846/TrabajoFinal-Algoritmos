@@ -53,12 +53,6 @@ public:
 		}
 	}
 
-	void reiniciar()
-	{
-		//arrCoin->clear();
-		//*contadorMonedas = 0;
-	}
-
 private:
 	vector<Coin*>* arrCoin;
 	int * contadorMonedas;

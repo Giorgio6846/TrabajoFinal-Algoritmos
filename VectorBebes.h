@@ -55,9 +55,9 @@ VectorBebes::VectorBebes(char dificultad)
 
 	switch (dificultad)
 	{
-	case 'F': totalBebes = 15;
+	case 'F': totalBebes = 30;
 		break;
-	case 'M': totalBebes = 20;
+	case 'M': totalBebes = 50;
 		break;
 	default:
 		totalBebes = 15;
@@ -224,11 +224,4 @@ void VectorBebes::agregarMesVida()
 	{
 		arrBebes->at(i)->add1MesVida();
 	}
-}
-	
-void VectorBebes::reiniciar()
-{
-	//arrBebes->clear();
-	bebesNoVacunados = 0;
-	bebesVacunados = 0;
 }
