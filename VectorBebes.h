@@ -57,11 +57,9 @@ VectorBebes::VectorBebes(char dificultad)
 	{
 	case 'F': totalBebes = 30;
 		break;
-	case 'M': totalBebes = 50;
+	case 'D': totalBebes = 50;
 		break;
 	default:
-		totalBebes = 15;
-
 		break;
 	}
 

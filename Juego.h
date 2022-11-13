@@ -262,6 +262,7 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 
 		//Background Juego
 
+
 		switch (dificultad)
 		{
 		case 'F':
@@ -294,6 +295,9 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 		if (aliada3->getEstaDisponible()) aliada3->mostrar(bg->Graphics, AliadaRem, 4, 3, 1.5, 1.5);
 
 		//Mecanicas Juego
+
+		vectEnemigos->agregarOshawott(dificultad);
+
 		
 			//Movimiento Objetos
 			vectBebes->mover();
@@ -493,8 +497,8 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 	
 	private: System::Void ContadorBebes_Tick(System::Object^ sender, System::EventArgs^ e) {
 
-		if (vectBebes->getTotalBebesGenerados() < 15 && dificultad == 'F') vectBebes->agregar();
-		else if (vectBebes->getTotalBebesGenerados() < 20 && dificultad == 'M') vectBebes->agregar();
+		if (vectBebes->getTotalBebesGenerados() < 30 && dificultad == 'F') vectBebes->agregar();
+		else if (vectBebes->getTotalBebesGenerados() < 50 && dificultad == 'D') vectBebes->agregar();
 
 	}
 	

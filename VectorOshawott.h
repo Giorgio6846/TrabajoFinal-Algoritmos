@@ -11,25 +11,7 @@ public:
 	{
 		arrOshawott = new vector <Oshawott*>();
 
-		switch (dificultad)
-		{
-		case 'F':
-			cantidad = 4;
-			break;
-		case 'M':
-			cantidad = 8;
-			break;
-		case 'D':
-			cantidad = 12;
-			break;
-		default:
-			break;
-		}
 
-		for (int i = 0; i < cantidad; i++)
-		{
-			arrOshawott->push_back(new Oshawott);
-		}
 	};
 
 	Rectangle getRectangleCertainPosicion(int i) { return arrOshawott->at(i)->getRectangle(arrOshawott->at(i)->getX(), arrOshawott->at(i)->getY()); }
@@ -46,8 +28,36 @@ public:
 		}
 	}
 
+	void agregarOshawott(char dificultad) {
+
+		switch (dificultad)
+		{
+		case 'F':
+			cantidad = 4;
+			break;
+		case 'M':
+			cantidad = 6;
+			break;
+		case 'D':
+			cantidad = 8;
+			break;
+		default:
+			break;
+		}
+
+		if (arrOshawott->size() == 0)
+		{
+			for (int i = 0; i < cantidad; i++)
+			{
+				arrOshawott->push_back(new Oshawott);
+			}
+		}
+		
+	}
+
 	~VectorOshawott() 
 	{
+
 		arrOshawott->clear();
 	};
 
