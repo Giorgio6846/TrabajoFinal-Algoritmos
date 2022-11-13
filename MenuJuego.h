@@ -26,14 +26,16 @@ namespace TrabajoFinal {
 			//
 			gr = this->CreateGraphics();
 			dificultadJuego = 'F';
-
-			game = gcnew Juego();
 		}
 		
 		void iniciarJuego()
 		{
-			//game->reiniciarJuego();
+			Juego ^ game = gcnew Juego();
 			game->Show();
+			if (game->getJuegoTerminado())
+			{
+				delete game;
+			}
 		}
 
 	protected:
@@ -67,7 +69,6 @@ namespace TrabajoFinal {
 		   char dificultadJuego;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Timer^ timer1;
-		   Juego^ game;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -273,7 +274,6 @@ private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) 
 	}
 }
 private: System::Void MenuJuego_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
-	game->setAppFinalizada(1);
 }
 };
 }
