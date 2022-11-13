@@ -444,6 +444,7 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 			vectCoins->mostrarCantidadMonedasObtenidasText(bg->Graphics);
 			vectBebes->mostrarPorcentajeBebesVacunadosYNoVacunados(bg->Graphics);
 			jugador->mostrarMunicion(bg->Graphics);
+			jugador->mostrarMensajeHabilidad(bg->Graphics);
 		}
 
 		//Juego Finalizado
@@ -456,7 +457,7 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 			ContadorMonedas->Enabled = false;
 			TiempoHabilidades->Enabled = false;
 
-			MessageBox::Show("Ganaste!");
+			MessageBox::Show("You Win");
 		}
 		
 
@@ -553,17 +554,18 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::EventArgs^ e)
 {
 
+	//Este if sirve para que el tiempo no inicie desde el menú principal
 	if (vectBebes->getN() != 0) temporizador++;
 	
 	
-	if (temporizador == 3 && vectBebes->getPorcentaje() >= 5)
+	if (temporizador == 120 && vectBebes->getPorcentaje() >= 5)
 	{
 		TiempoRespuesta->Enabled = false;
 		TiempoSegundos->Enabled = false;
 		ContadorBebes->Enabled = false;
 		ContadorMonedas->Enabled = false;
 		TiempoHabilidades->Enabled = false;
-		MessageBox::Show("Se te acabó el tiempo. Perdiste!");
+		MessageBox::Show("Game over");
 	}
 
 	if (aliada1->getEstaDisponible()) aliada1->setContador(aliada1->getContador() + 1);

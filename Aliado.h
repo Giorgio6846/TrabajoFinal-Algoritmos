@@ -32,6 +32,8 @@ public:
 
 	void inicio();
 
+	
+
 
 private:
 

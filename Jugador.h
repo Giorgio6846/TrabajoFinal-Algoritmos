@@ -32,6 +32,14 @@ public:
 		gr->DrawString("Vacunas Restantes " + municion, myFont, Brushes::Black, 960,100);
 	}
 
+	void mostrarMensajeHabilidad(Graphics^ gr) {
+		Font^ myFont = gcnew Font("Times new Roman", 15);
+
+		gr->DrawString("Aliado 1: X", myFont, Brushes::Black, 960, 130);
+		gr->DrawString("Aliado 2: Z", myFont, Brushes::Black, 960, 150);
+	}
+
+
 	/*
 	void atShop(Graphics^ gr, SoundPlayer ^ player) {
 		
