@@ -65,7 +65,7 @@ namespace TrabajoFinal {
 
 			BackgroundFacil = gcnew Bitmap("Recursos/Imagenes\\BackgroundFacil.png");
 			BackgroundMedio = gcnew Bitmap("Recursos/Imagenes\\BackgroundMedio.jpg");
-			BackgroundDificil = gcnew Bitmap("Recursos/Imagenes\\BackgroundDificil.jpg");
+			BackgroundDificil = gcnew Bitmap("Recursos/Imagenes\\BackgroundDificil.png");
 
 			OshawottImg = gcnew Bitmap("Recursos/Imagenes\\Oshawott.png");
 
