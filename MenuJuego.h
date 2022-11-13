@@ -32,8 +32,7 @@ namespace TrabajoFinal {
 		
 		void iniciarJuego()
 		{
-			game->reiniciarJuego();
-			game->setDificultad(dificultadJuego);
+			//game->reiniciarJuego();
 			game->Show();
 		}
 
@@ -207,6 +206,7 @@ namespace TrabajoFinal {
 			this->ShowIcon = false;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MenuJuego";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &MenuJuego::MenuJuego_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &MenuJuego::MenuJuego_Load);
 			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MenuJuego::MenuJuego_Paint);
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MenuJuego::MenuJuego_KeyDown);
@@ -271,6 +271,9 @@ private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) 
 	default:
 		break;
 	}
+}
+private: System::Void MenuJuego_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+	game->setAppFinalizada(1);
 }
 };
 }

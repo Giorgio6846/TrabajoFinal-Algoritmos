@@ -68,8 +68,8 @@ Aliadas::~Aliadas()
 
 void Aliadas::inicio()
 {
-	x = EntidadAreaIzqSupX + rand() % EntidadAreaDerInfX;
-	y = EntidadAreaIzqSupY + rand() % EntidadAreaDerInfY;
+	x = EntidadAreaIzqSupX + rand() % (EntidadAreaDerInfX - EntidadAreaIzqSupX);
+	y = EntidadAreaIzqSupY + rand() % (EntidadAreaDerInfY - EntidadAreaIzqSupY);
 }
 
 void Aliadas::movimientoPosicionJugador(int jugadorX, int jugadorY)

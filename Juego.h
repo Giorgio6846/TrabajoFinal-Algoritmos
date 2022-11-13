@@ -9,6 +9,10 @@
 #include "Shop.h"
 #include "Aliado.h"
 
+#include <fstream>
+#include <conio.h>
+#include <iostream>
+#include <string>
 
 namespace TrabajoFinal {
 
@@ -86,45 +90,7 @@ namespace TrabajoFinal {
 			vectVacunas->reiniciar();
 		}
 
-		void setDificultad(char dificultad)
-		{
-			this->dificultad = dificultad;
-			
-			this->vectEnemigos->iniciar(dificultad);
-
-			switch (dificultad)
-			{
-			case 'F':				
-				//Modifica el tiempo del juego dependiendo de la dificultad;
-				this->TiempoSegundos->Interval = 2000;
-				this->ContadorBebes->Interval = 1800;
-				this->ContadorMonedas->Interval = 1600;
-				this->TiempoHabilidades->Interval = 1000;
-				this->jugador->setMunicion(15);
-				break;
-			case 'M':
-				//Modifica el tiempo del juego dependiendo de la dificultad;
-				this->TiempoSegundos->Interval = 2000;
-				this->ContadorBebes->Interval = 1300;
-				this->ContadorMonedas->Interval = 1800;
-				this->TiempoHabilidades->Interval = 1000;
-				this->jugador->setMunicion(10);
-				break;
-			case 'D':
-				//Modifica el tiempo del juego dependiendo de la dificultad;
-				this->TiempoSegundos->Interval = 2000;
-				this->ContadorBebes->Interval = 1300;
-				this->ContadorMonedas->Interval = 1800;
-				this->TiempoHabilidades->Interval = 1000;
-				this->jugador->setMunicion(5);
-				break;
-
-			default:
-				break;
-			}
-
-
-		}
+		void setAppFinalizada(bool finalizada) { appFinalizada = finalizada; }
 
 	protected:
 		/// <summary>
@@ -132,42 +98,45 @@ namespace TrabajoFinal {
 		/// </summary>
 		~Juego()
 		{
-			delete jugador;
-			delete jugadorImg;
+			if (appFinalizada)
+			{
+				delete jugador;
+				delete jugadorImg;
 
-			//Datos Bebes
-			delete less30MBabyImg;
-			delete more30MBabyImg;
-			delete vectBebes;
+				//Datos Bebes
+				delete less30MBabyImg;
+				delete more30MBabyImg;
+				delete vectBebes;
 
-			//Datos Monedas
-			delete coin;
-			delete vectCoins;
-			delete coinImg;
+				//Datos Monedas
+				delete coin;
+				delete vectCoins;
+				delete coinImg;
 
-			//Datos Tienda
-			delete player;
+				//Datos Tienda
+				delete player;
 
-			//Imagen Background
-			delete BackgroundFacil;
-			delete BackgroundMedio;
-			delete BackgroundDificil;
+				//Imagen Background
+				delete BackgroundFacil;
+				delete BackgroundMedio;
+				delete BackgroundDificil;
 
-			//Datos Vacunas
-			delete vectVacunas;
-			delete vacunasImg;
+				//Datos Vacunas
+				delete vectVacunas;
+				delete vacunasImg;
 
-			//Imagen MamaAntivacuna
-			delete vectEnemigos;
-			delete OshawottImg;
+				//Imagen MamaAntivacuna
+				delete vectEnemigos;
+				delete OshawottImg;
 
-			//Datos Aliadas
-			delete aliada1;
-			delete aliada2;
-			delete aliada3;
+				//Datos Aliadas
+				delete aliada1;
+				delete aliada2;
+				delete aliada3;
 
-			//Datos Tienda
-			delete shop;
+				//Datos Tienda
+				delete shop;
+			}
 
 			if (components)
 			{
@@ -185,6 +154,7 @@ namespace TrabajoFinal {
 		bool juegoTerminado;
 		char dificultad;
 		int temporizador;
+		bool appFinalizada;
 
 		//Datos Jugador
 		Jugador* jugador;
@@ -302,9 +272,6 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 		BufferedGraphics^ bg = bc->Allocate(gr, this->ClientRectangle);
 
 		bg->Graphics->Clear(Color::White);
-
-
-
 
 		//Background Juego
 
@@ -549,6 +516,47 @@ private: System::Void ContadorMonedas_Tick(System::Object^ sender, System::Event
 	vectCoins->agregar();
 }
 private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
+	ifstream textDificultad;
+	textDificultad.open("Recursos/Texto\\Difficultad.lvdf", ios::in);
+	if (textDificultad.is_open())
+	{
+		dificultad = textDificultad.get();
+		textDificultad.close();
+	}
+
+	this->vectEnemigos->iniciar(dificultad);
+
+	switch (dificultad)
+	{
+	case 'F':
+		//Modifica el tiempo del juego dependiendo de la dificultad;
+		this->TiempoSegundos->Interval = 2000;
+		this->ContadorBebes->Interval = 1800;
+		this->ContadorMonedas->Interval = 1600;
+		this->TiempoHabilidades->Interval = 1000;
+		this->jugador->setMunicion(15);
+		break;
+	case 'M':
+		//Modifica el tiempo del juego dependiendo de la dificultad;
+		this->TiempoSegundos->Interval = 2000;
+		this->ContadorBebes->Interval = 1300;
+		this->ContadorMonedas->Interval = 1800;
+		this->TiempoHabilidades->Interval = 1000;
+		this->jugador->setMunicion(10);
+		break;
+	case 'D':
+		//Modifica el tiempo del juego dependiendo de la dificultad;
+		this->TiempoSegundos->Interval = 2000;
+		this->ContadorBebes->Interval = 1300;
+		this->ContadorMonedas->Interval = 1800;
+		this->TiempoHabilidades->Interval = 1000;
+		this->jugador->setMunicion(5);
+		break;
+
+	default:
+		break;
+	}
+
 }
 
 private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::EventArgs^ e)
