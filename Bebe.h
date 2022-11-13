@@ -76,7 +76,7 @@ Bebes::Bebes() {
 	EntidadAreaDerInfX = 930;
 	EntidadAreaDerInfY = 727;
 
-	x = rand() % EntidadAreaDerInfX;
+	x = EntidadAreaIzqSupX + rand() % (EntidadAreaDerInfX - EntidadAreaIzqSupX);
 	y = EntidadAreaIzqSupY + rand() % (EntidadAreaDerInfY - EntidadAreaIzqSupY);
 
 	dx = rand() % 4 + 2;
@@ -95,7 +95,7 @@ Bebes::Bebes() {
 
 	walking = rand() % 2;
 
-	destX = rand() % EntidadAreaDerInfX;
+	destX = EntidadAreaIzqSupX + rand() % (EntidadAreaDerInfX - EntidadAreaIzqSupX);
 	destY = EntidadAreaIzqSupY + rand() % (EntidadAreaDerInfY - EntidadAreaIzqSupY);
 
 };

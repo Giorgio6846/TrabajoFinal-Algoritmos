@@ -11,7 +11,7 @@ public:
 		EntidadAreaDerInfX = 959;
 		EntidadAreaDerInfY = 195;
 
-		x = EntidadAreaIzqSupX + (rand() % EntidadAreaDerInfX - 80);
+		x = EntidadAreaIzqSupX + (rand() % EntidadAreaDerInfX - (EntidadAreaIzqSupX + 80));
 		dy = 3;
 	};
 

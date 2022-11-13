@@ -185,7 +185,7 @@ void VectorBebes::mover()
 			arrBebes->at(i)->setDx(rand() % 4 + 2);
 			arrBebes->at(i)->setDy(rand() % 4 + 2);
 
-			arrBebes->at(i)->setDestX(rand() % EntidadAreaDerInfX);
+			arrBebes->at(i)->setDestX(EntidadAreaIzqSupX + rand() % (EntidadAreaDerInfX - EntidadAreaIzqSupX));
 			arrBebes->at(i)->setDestY(EntidadAreaIzqSupY + rand() % (EntidadAreaDerInfY - EntidadAreaIzqSupY));
 		}
 	}
