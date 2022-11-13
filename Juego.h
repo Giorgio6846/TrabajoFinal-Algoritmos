@@ -348,18 +348,18 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 			{
 				if (aliada2->getContador() < 0)
 				{
+					aliada2->setHabilidadAliado(0);
 					aliada2->setContador(0);
 				}
 				if (aliada2->getContador() <= 5)
 				{
-					jugador->setDx(aliada2->getValorAceleracionAnteriorDX() + 20);
-					jugador->setDy(aliada2->getValorAceleracionAnteriorDY() + 20);
 				}
 				else
 				{
 					jugador->setDx(aliada2->getValorAceleracionAnteriorDX());
 					jugador->setDy(aliada2->getValorAceleracionAnteriorDY());
 					aliada2->setEstaDisponible(0);
+					aliada2->setContador(0);
 				}
 			}
 
@@ -473,7 +473,8 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 				aliada2->setValorAceleracionAnteriorDX(jugador->getDx());
 				aliada2->setValorAceleracionAnteriorDY(jugador->getDy());
 				aliada2->setEstaDisponible(1);
-				aliada1->setContador(-10);
+				aliada2->setHabilidadAliado(1);
+				aliada2->setContador(-10);
 			}
 			break;
 
@@ -493,7 +494,7 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 			if(jugador->getMunicion() > 0)
 			{
 				jugador->setMunicion(jugador->getMunicion() - 1);
-  				vectVacunas->agregar(jugador->getMunicion(), jugador->getX(), jugador->getY(), 20, 30, jugador->getIndexWidth());
+  				vectVacunas->agregar(jugador->getMunicion(), jugador->getX(), jugador->getY(), (20 + aliada2->getHabilidadAliado() * 40), (30 + aliada2->getHabilidadAliado() * 40), jugador->getIndexWidth());
 			}
 			break;
 		default:

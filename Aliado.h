@@ -26,14 +26,16 @@ public:
 	int getValorAceleracionAnteriorDY() { return this->valorAceleracionAnteriorDY; }
 	void setValorAceleracionAnteriorDY(int valorAceleracionAnteriorDY) { this->valorAceleracionAnteriorDY = valorAceleracionAnteriorDY; }
 
+
+
 	void movimientoPosicionJugador(int jugadorX, int jugadorY);
 	
 	Rectangle getRectangle() { return Rectangle(x, y, DimensionWidth, DimensionHeight); }
 
 	void inicio();
 
-	
-
+	void setHabilidadAliado(bool habilidadAliado) {	this->habilidadAliado = habilidadAliado; }
+	bool getHabilidadAliado() { return this->habilidadAliado; }
 
 private:
 
@@ -48,6 +50,7 @@ private:
 	int valorAceleracionAnteriorDX;
 	int valorAceleracionAnteriorDY;
 
+	bool habilidadAliado;
 
 	int contador;
 };
@@ -55,6 +58,7 @@ private:
 Aliadas::Aliadas()
 {
 	estaDisponible = 0;
+	habilidadAliado = 0;
 
 	EntidadAreaIzqSupX = 0;
 	EntidadAreaIzqSupY = 20;
