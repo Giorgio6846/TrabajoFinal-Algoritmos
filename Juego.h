@@ -69,6 +69,9 @@ namespace TrabajoFinal {
 
 			OshawottImg = gcnew Bitmap("Recursos/Imagenes\\Oshawott.png");
 
+			Tienda1Img = gcnew Bitmap("Recursos/Imagenes\\Tienda1.png");
+			Tienda2Img = gcnew Bitmap("Recursos/Imagenes\\Tienda2.png");
+
 			AliadaRam = gcnew Bitmap("Recursos/Imagenes\\Aliada_Ram.png");
 			AliadaRem = gcnew Bitmap("Recursos/Imagenes\\Aliada_Rem.png");
 
@@ -116,6 +119,10 @@ namespace TrabajoFinal {
 				delete vectEnemigos;
 				delete OshawottImg;
 
+				//Delete Tienda
+				delete Tienda1Img;
+				delete Tienda2Img;
+
 				//Datos Aliadas
 				delete aliada1;
 				delete aliada2;
@@ -139,7 +146,7 @@ namespace TrabajoFinal {
 	private:
 		//Opciones Juego
 		bool juegoTerminado;
-		char dificultad;
+		char dificultad; 
 		int temporizador;
 		bool appFinalizada;
 
@@ -177,6 +184,9 @@ namespace TrabajoFinal {
 
 		Bitmap^ AliadaRem;
 		Bitmap^ AliadaRam;
+
+		Bitmap^ Tienda1Img;
+		Bitmap^ Tienda2Img;
 
 		Aliadas* aliada1;
 		Aliadas* aliada2;
@@ -395,7 +405,7 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 
 		if (jugador->getRectangle().IntersectsWith(shop->getRectangleShop()))
 		{
-
+			shop->mostrar(bg->Graphics, player, Tienda1Img, Tienda2Img);
 		}
 		else
 		{

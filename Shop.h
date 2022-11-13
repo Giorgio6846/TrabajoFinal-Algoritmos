@@ -10,7 +10,7 @@ public:
 	Shop();
 	~Shop();
 
-	void mostrar(Graphics^ gr, SoundPlayer^ player);
+	void mostrar(Graphics^ gr, SoundPlayer^ player, Bitmap^ tienda1, Bitmap^ tienda2);
 
 	Rectangle getRectangleShop(){ return Rectangle(860, 0, 100, 90); }
 
@@ -30,8 +30,10 @@ Shop::~Shop()
 {
 }
 
-void Shop::mostrar(Graphics^ gr, SoundPlayer^ player)
+void Shop::mostrar(Graphics^ gr, SoundPlayer^ player, Bitmap ^ tienda1, Bitmap ^ tienda2)
 {
+	gr->DrawImage(tienda1, 960, 0, tienda1->Size.Width, tienda1->Size.Height);
+
 	Font^ myFont = gcnew Font("Times new Roman", 15);
 
 	gr->DrawString("Estás en la tienda:", myFont, Brushes::Black, 670, 35);
@@ -40,8 +42,8 @@ void Shop::mostrar(Graphics^ gr, SoundPlayer^ player)
 	if (jugadorAtStore == 0)
 	{
 		jugadorAtStore = 1;
-		player->Load();
-		player->PlaySync();
+		//player->Load();
+		//player->PlaySync();
 	}
 	else jugadorAtStore = 0;
 }
