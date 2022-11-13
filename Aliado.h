@@ -32,6 +32,7 @@ public:
 
 	void inicio();
 
+
 private:
 
 	bool estaDisponible;

@@ -29,7 +29,9 @@ namespace TrabajoFinal {
 		Juego()
 		{
 			InitializeComponent();
-			
+
+			temporizador = 0;
+
 			//ObjetosJuego
 			jugador = new Jugador();
 
@@ -182,6 +184,7 @@ namespace TrabajoFinal {
 		//Opciones Juego
 		bool juegoTerminado;
 		char dificultad;
+		int temporizador;
 
 		//Datos Jugador
 		Jugador* jugador;
@@ -299,6 +302,9 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 		BufferedGraphics^ bg = bc->Allocate(gr, this->ClientRectangle);
 
 		bg->Graphics->Clear(Color::White);
+
+
+
 
 		//Background Juego
 
@@ -441,17 +447,18 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 		}
 
 		//Juego Finalizado
-		
-		if (vectBebes->getPorcentaje() <= 5) { 
 
-			TiempoRespuesta->Enabled = false;	
+		if (vectBebes->getPorcentaje() <= 5) {
+
+			TiempoRespuesta->Enabled = false;
 			TiempoSegundos->Enabled = false;
-			ContadorBebes ->Enabled = false;
+			ContadorBebes->Enabled = false;
 			ContadorMonedas->Enabled = false;
 			TiempoHabilidades->Enabled = false;
 
 			MessageBox::Show("Ganaste!");
-			}
+		}
+		
 
 		bg->Render(gr);
 
@@ -543,8 +550,22 @@ private: System::Void ContadorMonedas_Tick(System::Object^ sender, System::Event
 private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 
-private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::EventArgs^ e) 
+private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::EventArgs^ e)
 {
+
+	if (vectBebes->getN() != 0) temporizador++;
+	
+	
+	if (temporizador == 3 && vectBebes->getPorcentaje() >= 5)
+	{
+		TiempoRespuesta->Enabled = false;
+		TiempoSegundos->Enabled = false;
+		ContadorBebes->Enabled = false;
+		ContadorMonedas->Enabled = false;
+		TiempoHabilidades->Enabled = false;
+		MessageBox::Show("Se te acabó el tiempo. Perdiste!");
+	}
+
 	if (aliada1->getEstaDisponible()) aliada1->setContador(aliada1->getContador() + 1);
 	if (aliada2->getEstaDisponible()) aliada2->setContador(aliada2->getContador() + 1);
 }

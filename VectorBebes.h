@@ -60,10 +60,12 @@ VectorBebes::VectorBebes(char dificultad)
 	case 'M': totalBebes = 20;
 		break;
 	default:
+		totalBebes = 15;
+
 		break;
 	}
 
-	totalBebes = 15;
+
 	toIntPorcentaje = 0;
 	arrBebes = new vector <Bebes*>();
 	totalBebesGenerados = 0;
@@ -87,8 +89,6 @@ void VectorBebes::mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr)
 	gr->DrawString("Vacunados " + toIntPorcentaje + "%", myFont, Brushes::Black, 960, 40);
 	toIntPorcentaje = 100 - toIntPorcentaje;
 	gr->DrawString("No vacunados " + toIntPorcentaje + "%", myFont, Brushes::Black, 960, 60);
-
-
 }
 
 void VectorBebes::mostrar(Graphics^ gr, Bitmap^ imagenMenor30, Bitmap^ imagenMayor30)
