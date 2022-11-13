@@ -1,6 +1,11 @@
 #pragma once
 #include "Juego.h"
 
+#include <fstream>
+#include <conio.h>
+#include <iostream>
+#include <string>
+
 namespace TrabajoFinal {
 
 	using namespace System;
@@ -24,6 +29,17 @@ namespace TrabajoFinal {
 			//
 		}
 
+		void writeDificultad(char dificultad)
+		{
+			ofstream textDificultad;
+			textDificultad.open("Recursos/Texto\\Difficultad.lvdf", ios::out);
+			if (textDificultad.is_open())
+			{
+				textDificultad << dificultad;
+				textDificultad.close();
+			}
+		}
+
 		char getDificultad() { return this->dificultad; }
 
 	protected:
@@ -37,8 +53,8 @@ namespace TrabajoFinal {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ buttonD;
+	private: System::Windows::Forms::Button^ buttonF;
 	protected:
 
 	private:
@@ -55,41 +71,41 @@ namespace TrabajoFinal {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->buttonD = (gcnew System::Windows::Forms::Button());
+			this->buttonF = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
-			// button1
+			// buttonD
 			// 
-			this->button1->BackColor = System::Drawing::SystemColors::Control;
-			this->button1->FlatAppearance->BorderSize = 0;
-			this->button1->Font = (gcnew System::Drawing::Font(L"Maiandra GD", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->buttonD->BackColor = System::Drawing::SystemColors::Control;
+			this->buttonD->FlatAppearance->BorderSize = 0;
+			this->buttonD->Font = (gcnew System::Drawing::Font(L"Maiandra GD", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->ForeColor = System::Drawing::SystemColors::Desktop;
-			this->button1->Location = System::Drawing::Point(117, 190);
-			this->button1->Margin = System::Windows::Forms::Padding(0);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(175, 70);
-			this->button1->TabIndex = 2;
-			this->button1->Text = L"DIFÍCIL";
-			this->button1->UseVisualStyleBackColor = false;
-			this->button1->Click += gcnew System::EventHandler(this, &Dificultad::button1_Click);
+			this->buttonD->ForeColor = System::Drawing::SystemColors::Desktop;
+			this->buttonD->Location = System::Drawing::Point(117, 190);
+			this->buttonD->Margin = System::Windows::Forms::Padding(0);
+			this->buttonD->Name = L"buttonD";
+			this->buttonD->Size = System::Drawing::Size(175, 70);
+			this->buttonD->TabIndex = 2;
+			this->buttonD->Text = L"DIFÍCIL";
+			this->buttonD->UseVisualStyleBackColor = false;
+			this->buttonD->Click += gcnew System::EventHandler(this, &Dificultad::buttonD_Click);
 			// 
-			// button2
+			// buttonF
 			// 
-			this->button2->BackColor = System::Drawing::SystemColors::Control;
-			this->button2->FlatAppearance->BorderSize = 0;
-			this->button2->Font = (gcnew System::Drawing::Font(L"Maiandra GD", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->buttonF->BackColor = System::Drawing::SystemColors::Control;
+			this->buttonF->FlatAppearance->BorderSize = 0;
+			this->buttonF->Font = (gcnew System::Drawing::Font(L"Maiandra GD", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button2->ForeColor = System::Drawing::SystemColors::Desktop;
-			this->button2->Location = System::Drawing::Point(117, 92);
-			this->button2->Margin = System::Windows::Forms::Padding(0);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(175, 70);
-			this->button2->TabIndex = 1;
-			this->button2->Text = L"FÁCIL";
-			this->button2->UseVisualStyleBackColor = false;
-			this->button2->Click += gcnew System::EventHandler(this, &Dificultad::button2_Click);
+			this->buttonF->ForeColor = System::Drawing::SystemColors::Desktop;
+			this->buttonF->Location = System::Drawing::Point(117, 92);
+			this->buttonF->Margin = System::Windows::Forms::Padding(0);
+			this->buttonF->Name = L"buttonF";
+			this->buttonF->Size = System::Drawing::Size(175, 70);
+			this->buttonF->TabIndex = 1;
+			this->buttonF->Text = L"FÁCIL";
+			this->buttonF->UseVisualStyleBackColor = false;
+			this->buttonF->Click += gcnew System::EventHandler(this, &Dificultad::buttonF_Click);
 			// 
 			// Dificultad
 			// 
@@ -97,22 +113,41 @@ namespace TrabajoFinal {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->ClientSize = System::Drawing::Size(410, 380);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->buttonF);
+			this->Controls->Add(this->buttonD);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Name = L"Dificultad";
 			this->ShowIcon = false;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Dificultad";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Dificultad::Dificultad_FormClosing);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		dificultad = 'F';
-	}
-	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void buttonD_Click(System::Object^ sender, System::EventArgs^ e) {
 		dificultad = 'D';
+		writeDificultad(dificultad);
 	}
-	};
+	private: System::Void buttonF_Click(System::Object^ sender, System::EventArgs^ e) {
+		dificultad = 'F';
+		writeDificultad(dificultad);
+	}
+	private: System::Void Dificultad_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+		ifstream textDificultad;
+		textDificultad.open("Recursos/Texto\\Difficultad.lvdf", ios::in);
+		if (textDificultad.is_open())
+		{
+			if (textDificultad.get() == dificultad)
+			{
+				textDificultad.close();
+				e->Cancel = false;
+			}
+			else
+			{
+				e->Cancel = true;
+			}
+		}
+	}
+};
 }

@@ -48,6 +48,8 @@ namespace TrabajoFinal {
 				delete components;
 			}
 		}
+	private: System::ComponentModel::IContainer^ components;
+	protected:
 
 	protected:
 
@@ -55,7 +57,7 @@ namespace TrabajoFinal {
 		/// <summary>
 		/// Variable del diseñador necesaria.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 	private: System::Windows::Forms::Button^ btn_SalirJuego;
 	private: System::Windows::Forms::Button^ btn_CambiarDificultad;
 	private: System::Windows::Forms::Button^ btn_MostrarInstrucciones;
@@ -64,6 +66,8 @@ namespace TrabajoFinal {
 
 		   Graphics^ gr;
 		   char dificultadJuego;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Timer^ timer1;
 		   Juego^ game;
 
 #pragma region Windows Form Designer generated code
@@ -73,12 +77,15 @@ namespace TrabajoFinal {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MenuJuego::typeid));
 			this->btn_SalirJuego = (gcnew System::Windows::Forms::Button());
 			this->btn_CambiarDificultad = (gcnew System::Windows::Forms::Button());
 			this->btn_MostrarInstrucciones = (gcnew System::Windows::Forms::Button());
 			this->btn_MostrarCreditos = (gcnew System::Windows::Forms::Button());
 			this->btn_InciarJuego = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->SuspendLayout();
 			// 
 			// btn_SalirJuego
@@ -101,8 +108,8 @@ namespace TrabajoFinal {
 			// 
 			// btn_CambiarDificultad
 			// 
-			this->btn_CambiarDificultad->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
-				static_cast<System::Int32>(static_cast<System::Byte>(0)));
+			this->btn_CambiarDificultad->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
+				static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(0)));
 			this->btn_CambiarDificultad->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btn_CambiarDificultad->Font = (gcnew System::Drawing::Font(L"Maiandra GD", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -165,11 +172,29 @@ namespace TrabajoFinal {
 			this->btn_InciarJuego->UseVisualStyleBackColor = false;
 			this->btn_InciarJuego->Click += gcnew System::EventHandler(this, &MenuJuego::btn_InciarJuego_Click);
 			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label1->Location = System::Drawing::Point(712, 9);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(176, 29);
+			this->label1->TabIndex = 6;
+			this->label1->Text = L"Dificultad: Facil";
+			this->label1->Click += gcnew System::EventHandler(this, &MenuJuego::label1_Click);
+			// 
+			// timer1
+			// 
+			this->timer1->Enabled = true;
+			this->timer1->Tick += gcnew System::EventHandler(this, &MenuJuego::timer1_Tick);
+			// 
 			// MenuJuego
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(900, 600);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->btn_MostrarCreditos);
 			this->Controls->Add(this->btn_MostrarInstrucciones);
 			this->Controls->Add(this->btn_CambiarDificultad);
@@ -186,6 +211,7 @@ namespace TrabajoFinal {
 			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MenuJuego::MenuJuego_Paint);
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MenuJuego::MenuJuego_KeyDown);
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -205,7 +231,6 @@ namespace TrabajoFinal {
 private: System::Void btn_CambiarDificultad_Click(System::Object^ sender, System::EventArgs^ e) {
 	Dificultad^ dificultad = gcnew Dificultad();
 	dificultad->Show();
-	dificultadJuego = dificultad->getDificultad();
 }
 private: System::Void btn_MostrarInstrucciones_Click(System::Object^ sender, System::EventArgs^ e) {
 	Intrucciones^ intrucciones = gcnew Intrucciones();
@@ -219,6 +244,32 @@ private: System::Void MenuJuego_KeyDown(System::Object^ sender, System::Windows:
 	if (e->KeyCode == Keys::Space)
 	{
 		iniciarJuego();
+	}
+}
+private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
+	ifstream textDificultad;
+	textDificultad.open("Recursos/Texto\\Difficultad.lvdf", ios::in);
+	if (textDificultad.is_open())
+	{
+		dificultadJuego = textDificultad.get();
+		textDificultad.close();
+	}
+
+	switch (dificultadJuego)
+	{
+	case 'F':
+		this->label1->Text = L"Dificultad: Facil";
+		break;
+	case 'M':
+		this->label1->Text = L"Dificultad: Medio";
+		break;
+	case 'D':
+		this->label1->Text = L"Dificultad: Dificil";
+		break;
+	default:
+		break;
 	}
 }
 };
