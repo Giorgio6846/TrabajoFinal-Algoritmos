@@ -528,9 +528,8 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 	}
 	
 	private: System::Void ContadorBebes_Tick(System::Object^ sender, System::EventArgs^ e) {
-		vectBebes->agregar();
-		//if (vectBebes->getTotalBebesGenerados() < 30 && dificultad == 'F') vectBebes->agregar();
-		//else if (vectBebes->getTotalBebesGenerados() < 50 && dificultad == 'D') vectBebes->agregar();
+		if (vectBebes->getTotalBebesGenerados() < 30 && dificultad == 'F') vectBebes->agregar();
+		else if (vectBebes->getTotalBebesGenerados() < 50 && dificultad == 'D') vectBebes->agregar();
 
 	}
 	
@@ -552,7 +551,7 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 	case 'F':
 		//Modifica el tiempo del juego dependiendo de la dificultad;
 		this->TiempoSegundos->Interval = 2000;
-		this->ContadorBebes->Interval = 100;
+		this->ContadorBebes->Interval = 1300;
 		this->ContadorMonedas->Interval = 1600;
 		this->TiempoHabilidades->Interval = 1000;
 		this->jugador->setMunicion(15);
