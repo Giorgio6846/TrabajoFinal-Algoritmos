@@ -73,11 +73,11 @@ Bebes::Bebes() {
 
 	EntidadAreaIzqSupX = 0;
 	EntidadAreaIzqSupY = 280;
-	EntidadAreaDerInfX = 930;
+	EntidadAreaDerInfX = 940;
 	EntidadAreaDerInfY = 727;
 
-	x = EntidadAreaIzqSupX + rand() % (EntidadAreaDerInfX - EntidadAreaIzqSupX);
-	y = EntidadAreaIzqSupY + rand() % (EntidadAreaDerInfY - EntidadAreaIzqSupY);
+	x = EntidadAreaIzqSupX + rand() % (EntidadAreaDerInfX - 10 - EntidadAreaIzqSupX);
+	y = EntidadAreaIzqSupY + rand() % (EntidadAreaDerInfY - 10 - EntidadAreaIzqSupY);
 
 	dx = rand() % 4 + 2;
 	dy = rand() % 4 + 2;
@@ -95,8 +95,8 @@ Bebes::Bebes() {
 
 	walking = rand() % 2;
 
-	destX = EntidadAreaIzqSupX + rand() % (EntidadAreaDerInfX - EntidadAreaIzqSupX);
-	destY = EntidadAreaIzqSupY + rand() % (EntidadAreaDerInfY - EntidadAreaIzqSupY);
+	destX = EntidadAreaIzqSupX + rand() % (EntidadAreaDerInfX - 10 - EntidadAreaIzqSupX);
+	destY = EntidadAreaIzqSupY + rand() % (EntidadAreaDerInfY - 10 - EntidadAreaIzqSupY);
 
 };
 Bebes:: ~Bebes()
