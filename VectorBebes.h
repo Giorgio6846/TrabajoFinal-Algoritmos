@@ -8,7 +8,7 @@ using namespace std;
 class VectorBebes
 {
 public:
-	VectorBebes(char dificultad);
+	VectorBebes();
 	~VectorBebes();
 
 	void reiniciar();
@@ -30,7 +30,7 @@ public:
 
 	void Vacunado(int pos) { arrBebes->at(pos)->setEsVacunado(true); }
 
-	void mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr);
+	void mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr, char dificultad);
 
 	int getPorcentaje() { return toIntPorcentaje; }
 
@@ -50,20 +50,8 @@ private:
 	int toIntPorcentaje;
 };
 
-VectorBebes::VectorBebes(char dificultad)
+VectorBebes::VectorBebes()
 {
-
-	switch (dificultad)
-	{
-	case 'F': totalBebes = 30;
-		break;
-	case 'D': totalBebes = 50;
-		break;
-	default:
-		break;
-	}
-
-
 	toIntPorcentaje = 0;
 	arrBebes = new vector <Bebes*>();
 	totalBebesGenerados = 0;
@@ -76,12 +64,23 @@ VectorBebes::~VectorBebes()
 	arrBebes->clear();
 }
 
-void VectorBebes::mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr)
+void VectorBebes::mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr, char dificultad)
 {
+
+	switch (dificultad)
+	{
+	case 'F': totalBebes = 30;
+		break;
+	case 'D': totalBebes = 50;
+		break;
+	default:
+		break;
+	}
+
 	Font^ myFont = gcnew Font("Times new Roman", 15);
 	float porcentanje = 0;
 
-	porcentanje = (bebesVacunados /totalBebes) * 100.0;
+	porcentanje = (bebesVacunados /totalBebes) * 100 ;
 	toIntPorcentaje = porcentanje;
 
 	gr->DrawString("Vacunados " + toIntPorcentaje + "%", myFont, Brushes::Black, 960, 40);

@@ -7,7 +7,7 @@ using namespace std;
 class VectorOshawott
 {
 public:
-	VectorOshawott(char dificultad)
+	VectorOshawott()
 	{
 		arrOshawott = new vector <Oshawott*>();
 

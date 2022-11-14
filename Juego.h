@@ -39,13 +39,13 @@ namespace TrabajoFinal {
 			//ObjetosJuego
 			jugador = new Jugador();
 
-			vectBebes = new VectorBebes(dificultad);
+			vectBebes = new VectorBebes();
 
 			vectCoins = new VectorCoins();
 
 			vectVacunas = new VectorVacunas();
 
-			vectEnemigos= new VectorOshawott(dificultad);
+			vectEnemigos= new VectorOshawott();
 
 			aliada1 = new Aliadas();
 			aliada2 = new Aliadas();
@@ -410,7 +410,7 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 		else
 		{
 			vectCoins->mostrarCantidadMonedasObtenidasText(bg->Graphics);
-			vectBebes->mostrarPorcentajeBebesVacunadosYNoVacunados(bg->Graphics);
+			vectBebes->mostrarPorcentajeBebesVacunadosYNoVacunados(bg->Graphics, dificultad);
 			jugador->mostrarMunicion(bg->Graphics);
 			jugador->mostrarMensajeHabilidad(bg->Graphics);
 		}
