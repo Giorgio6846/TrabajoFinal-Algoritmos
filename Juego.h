@@ -587,7 +587,7 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 	if (vectBebes->getN() != 0) temporizador++;
 	
 	
-	if (temporizador == 10 && vectBebes->getPorcentaje() >= 5)
+	if (temporizador == 120 && vectBebes->getPorcentaje() >= 5)
 	{
 		TiempoRespuesta->Enabled = false;
 		TiempoSegundos->Enabled = false;
