@@ -16,6 +16,8 @@ public:
 	void mostrar(Graphics^ gr, Bitmap^ imagen);
 	void eliminar();
 
+	int getVacunasUsadas() { return vacunasUsadas; }
+
 	Rectangle getRectangleCertainPosicion(int i) { return arrVacunas->at(i)->getRectangle(arrVacunas->at(i)->getX(), arrVacunas->at(i)->getY()); }
 	Rectangle getRectangleAreaUsableCertainPosicion(int i) { return arrVacunas->at(i)->getRectangleAreaUsable(); }
 
@@ -24,11 +26,13 @@ public:
 	void vacunaUsada(int pos) { arrVacunas->at(pos)->setEstaGastada(); }
 private:
 	vector<Vacuna*>* arrVacunas;
+	int vacunasUsadas;
 };
 
 VectorVacunas::VectorVacunas()
 {
 	arrVacunas = new vector <Vacuna*>();
+	vacunasUsadas = 0;
 }
 
 VectorVacunas::~VectorVacunas()
@@ -70,4 +74,5 @@ void VectorVacunas::agregar(int municion, int xJugador, int yJugador, int dxVacu
 {
 
 	arrVacunas->push_back(new Vacuna(xJugador, yJugador, dxVacuna, dyVacuna, direccion));
+	vacunasUsadas++;
 }

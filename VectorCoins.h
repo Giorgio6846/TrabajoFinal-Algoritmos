@@ -15,8 +15,10 @@ public:
 
 	Rectangle getRectangleCertainPosicion(int i) { return arrCoin->at(i)->getRectangle(arrCoin->at(i)->getX(), arrCoin->at(i)->getY()); }
 
-	int getDineroObtenido() { return *contadorMonedas; }
-	void setDineroObtenido(int coins) { *contadorMonedas = coins; }
+	int getDineroObtenido() { return contadorMonedas; }
+	void setDineroObtenido(int coins) { contadorMonedas = coins; }
+
+	int getTotalMonedasObtenidas() { return monedasObtenidasTotal; }
 
 	void agregar(){ arrCoin->push_back(new Coin); }
 
@@ -31,15 +33,16 @@ public:
 
 	void coinAtrapada(int pos) 
 	{ 
-		arrCoin->erase(arrCoin->begin() + pos); *contadorMonedas = *contadorMonedas+1; 
+		arrCoin->erase(arrCoin->begin() + pos); contadorMonedas = contadorMonedas+1; 
+		monedasObtenidasTotal++;
 	}
 
 	void mostrarCantidadMonedasObtenidasText(Graphics^ gr) 
 	{
 		Font^ myFont = gcnew Font("Times new Roman", 15);
 
-		if (*contadorMonedas == 1 ) gr->DrawString("Tienes: " + *contadorMonedas + " moneda", myFont, Brushes::Black, 960, 5);
-		else gr->DrawString("Tienes: " + *contadorMonedas + " monedas", myFont, Brushes::Black, 960, 5);
+		if (contadorMonedas == 1 ) gr->DrawString("Tienes: " + contadorMonedas + " moneda", myFont, Brushes::Black, 960, 5);
+		else gr->DrawString("Tienes: " + contadorMonedas + " monedas", myFont, Brushes::Black, 960, 5);
 	}
 
 	void eliminar()
@@ -55,7 +58,8 @@ public:
 
 private:
 	vector<Coin*>* arrCoin;
-	int * contadorMonedas;
+	int contadorMonedas;
+	int monedasObtenidasTotal;
 
 	int EntidadAreaIzqSupX;
 	int EntidadAreaIzqSupY;
@@ -66,8 +70,8 @@ private:
 VectorCoins::VectorCoins() 
 {
 	arrCoin = new vector <Coin*>();
-	contadorMonedas = new int;
-	*contadorMonedas = 0;
+	contadorMonedas = 0;
+	monedasObtenidasTotal = 0;
 
 	EntidadAreaIzqSupX = 15;
 	EntidadAreaIzqSupY = 0;

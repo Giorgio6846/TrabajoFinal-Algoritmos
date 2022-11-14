@@ -426,6 +426,27 @@ private: System::Windows::Forms::Timer^ TiempoHabilidades;
 			TiempoHabilidades->Enabled = false;
 
 			MessageBox::Show("You Win");
+			fstream scoreboard;
+			fstream finalScoreboard;
+			scoreboard.open("Recursos/Texto\\scoreboard.lvdf", ios::out);
+			if (scoreboard.is_open())
+			{
+				scoreboard << temporizador << endl;
+				scoreboard << vectCoins->getTotalMonedasObtenidas() << endl;
+				scoreboard << vectVacunas->getVacunasUsadas() << endl;
+				scoreboard << dificultad << endl;
+				scoreboard.close();
+			}
+
+			finalScoreboard.open("Recursos/Texto\\scoreboard.lvdf", ios::app);
+			if (finalScoreboard.is_open())
+			{
+				finalScoreboard << temporizador << endl;
+				finalScoreboard << vectCoins->getTotalMonedasObtenidas() << endl;
+				finalScoreboard << vectVacunas->getVacunasUsadas() << endl;
+				finalScoreboard << dificultad << endl;
+				finalScoreboard.close();
+			}
 		}
 		
 
@@ -566,7 +587,7 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 	if (vectBebes->getN() != 0) temporizador++;
 	
 	
-	if (temporizador == 120 && vectBebes->getPorcentaje() >= 5)
+	if (temporizador == 10 && vectBebes->getPorcentaje() >= 5)
 	{
 		TiempoRespuesta->Enabled = false;
 		TiempoSegundos->Enabled = false;
@@ -574,6 +595,28 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		ContadorMonedas->Enabled = false;
 		TiempoHabilidades->Enabled = false;
 		MessageBox::Show("Game over");
+		fstream scoreboard;
+		fstream finalScoreboard;
+
+		scoreboard.open("Recursos/Texto\\aux_scoreboard.lvdf", ios::out);
+		if (scoreboard.is_open())
+		{
+			scoreboard << temporizador << endl;
+			scoreboard << vectCoins->getTotalMonedasObtenidas() << endl;
+			scoreboard << vectVacunas->getVacunasUsadas() << endl;
+			scoreboard << dificultad << endl;
+			scoreboard.close();
+		}
+
+		finalScoreboard.open("Recursos/Texto\\scoreboard.lvdf", ios::app);
+		if (finalScoreboard.is_open())
+		{
+			finalScoreboard << temporizador << endl;
+			finalScoreboard << vectCoins->getTotalMonedasObtenidas() << endl;
+			finalScoreboard << vectVacunas->getVacunasUsadas() << endl;
+			finalScoreboard << dificultad << endl;
+			finalScoreboard.close();
+		}
 	}
 
 	if (aliada1->getEstaDisponible()) aliada1->setContador(aliada1->getContador() + 1);
