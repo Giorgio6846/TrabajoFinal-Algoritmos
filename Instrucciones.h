@@ -21,6 +21,7 @@ namespace TrabajoFinal {
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			gr = this->CreateGraphics();
 		}
 
 	protected:
@@ -40,6 +41,7 @@ namespace TrabajoFinal {
 		/// Variable del diseñador necesaria.
 		/// </summary>
 		System::ComponentModel::Container ^components;
+		Graphics^ gr;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -54,15 +56,20 @@ namespace TrabajoFinal {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(410, 380);
+			this->ClientSize = System::Drawing::Size(900, 600);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Name = L"Intrucciones";
 			this->ShowIcon = false;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Instrucciones";
+			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Intrucciones::Intrucciones_Paint);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
+	private: System::Void Intrucciones_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+		Image^ Fondo = Image::FromFile("Recursos/Imagenes\\fondo_int.png");
+		gr->DrawImage(Fondo, 0, 0, 900, 600);
+	}
 	};
 }
