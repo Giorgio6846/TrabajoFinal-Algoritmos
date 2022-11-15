@@ -412,13 +412,13 @@ namespace TrabajoFinal {
 			switch (dificultad)
 			{
 			case 'F':
-				shop->mostrar(bg->Graphics, Vendedor1Shop, coinImgHUD, vacunasHUD, player);
+				shop->mostrar(bg->Graphics, Vendedor1Shop, coinImgHUD, vacunasHUD, player, jugador->getDinero(),jugador->getMunicion());
 				break;
 			case 'M':
-				shop->mostrar(bg->Graphics, Vendedor2Shop, coinImgHUD, vacunasHUD, player);
+				shop->mostrar(bg->Graphics, Vendedor2Shop, coinImgHUD, vacunasHUD, player, jugador->getDinero(), jugador->getMunicion());
 				break;
 			case 'D':
-				shop->mostrar(bg->Graphics, Vendedor2Shop, coinImgHUD, vacunasHUD, player);
+				shop->mostrar(bg->Graphics, Vendedor2Shop, coinImgHUD, vacunasHUD, player, jugador->getDinero(), jugador->getMunicion());
 				break;
 
 

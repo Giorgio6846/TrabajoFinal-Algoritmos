@@ -10,7 +10,7 @@ public:
 	Shop();
 	~Shop();
 
-	void mostrar(Graphics^ gr, Bitmap^ Vendedor, Bitmap^ Moneda, Bitmap^ Vacuna, SoundPlayer^ player);
+	void mostrar(Graphics^ gr, Bitmap^ Vendedor, Bitmap^ Moneda, Bitmap^ Vacuna, SoundPlayer^ player, int jugadorDinero, int jugadorVacunas);
 
 	Rectangle getRectangleShop(){ return Rectangle(860, 0, 100, 90); }
 
@@ -60,7 +60,7 @@ void Shop::mostrar(Graphics^ gr, SoundPlayer^ player, Bitmap ^ tienda1, Bitmap ^
 }
 */
 
-void Shop :: mostrar(Graphics^ gr, Bitmap^ Vendedor, Bitmap ^ Moneda, Bitmap ^ Vacuna, SoundPlayer ^ player)
+void Shop :: mostrar(Graphics^ gr, Bitmap^ Vendedor, Bitmap ^ Moneda, Bitmap ^ Vacuna, SoundPlayer ^ player, int jugadorDinero, int jugadorVacunas)
 {
 	int* posXHUD = new int(960);
 	int* posYHUD = new int(500);
