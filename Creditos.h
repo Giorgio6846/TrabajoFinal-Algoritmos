@@ -62,6 +62,7 @@ namespace TrabajoFinal {
 
 
 
+
 #pragma region Windows Form Designer generated code
 		/// <summary>
 		/// Método necesario para admitir el Diseñador. No se puede modificar
@@ -112,6 +113,9 @@ namespace TrabajoFinal {
 #pragma endregion
 	
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
+		System::Drawing::Font^ tipoLetra = gcnew System::Drawing::Font("Arial Black", 22);
+		System::Drawing::Font^ tipoLetra2 = gcnew System::Drawing::Font("Arial", 20);
+		SolidBrush^ pincel = gcnew SolidBrush(Color::FromArgb(0, 10, 0));
 		BufferedGraphicsContext^ bfc = BufferedGraphicsManager::Current;
 		BufferedGraphics^ bf = bfc->Allocate(gr, this->ClientRectangle);
 
@@ -122,15 +126,15 @@ namespace TrabajoFinal {
 		indexAlto++;
 		if (indexAlto == 4) indexAlto = 0;
 
-
-
 		bf->Render(gr);
 
 		delete bf, bfc, gr;
+
+		gr->DrawString("Créditos:", tipoLetra, pincel, 80, 65);
+		gr->DrawString("Mathias Hualtibamba", tipoLetra2, pincel, 80, 110);
+		gr->DrawString("Giorgio Mancusi", tipoLetra2, pincel, 80, 150);
+		gr->DrawString("Fabio Osorio", tipoLetra2, pincel, 80, 190);
 		
-		System::Drawing::Font^ tipoLetra = gcnew System::Drawing::Font("Arial Black", 22);
-		SolidBrush^ pincel = gcnew SolidBrush(Color::FromArgb(0, 0, 0));
-		gr->DrawString("Créditos:", tipoLetra, pincel, 80, 70);
-	}
-	};
+	}	
+};
 }
