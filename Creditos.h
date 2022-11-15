@@ -58,6 +58,10 @@ namespace TrabajoFinal {
 		int ancho, alto, indexAlto, indexAncho;
 
 
+
+
+
+
 #pragma region Windows Form Designer generated code
 		/// <summary>
 		/// Método necesario para admitir el Diseñador. No se puede modificar
@@ -90,13 +94,17 @@ namespace TrabajoFinal {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(734, 461);
+			this->ClientSize = System::Drawing::Size(750, 500);
 			this->Controls->Add(this->label1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->MaximizeBox = false;
+			this->MinimizeBox = false;
 			this->Name = L"Creditos";
 			this->ShowIcon = false;
+			this->SizeGripStyle = System::Windows::Forms::SizeGripStyle::Show;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
-			this->Text = L"Creditos";
+			this->Text = L"Créditos";
+			this->TransparencyKey = System::Drawing::Color::White;
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -104,21 +112,25 @@ namespace TrabajoFinal {
 #pragma endregion
 	
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
-
 		BufferedGraphicsContext^ bfc = BufferedGraphicsManager::Current;
 		BufferedGraphics^ bf = bfc->Allocate(gr, this->ClientRectangle);
 
 		Rectangle Porcion = Rectangle(indexAlto * ancho, indexAncho * alto, ancho, alto);
 
-		bf->Graphics->DrawImage(backgroundImg, 0, 0 , Porcion, GraphicsUnit::Pixel);
+		bf->Graphics->DrawImage(backgroundImg, 0, 0, Porcion, GraphicsUnit::Pixel);
 
 		indexAlto++;
 		if (indexAlto == 4) indexAlto = 0;
-		
+
+
 
 		bf->Render(gr);
 
 		delete bf, bfc, gr;
+		
+		System::Drawing::Font^ tipoLetra = gcnew System::Drawing::Font("Arial Black", 22);
+		SolidBrush^ pincel = gcnew SolidBrush(Color::FromArgb(0, 0, 0));
+		gr->DrawString("Créditos:", tipoLetra, pincel, 80, 70);
 	}
 	};
 }

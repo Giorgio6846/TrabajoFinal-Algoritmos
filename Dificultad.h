@@ -116,6 +116,8 @@ namespace TrabajoFinal {
 			this->Controls->Add(this->buttonF);
 			this->Controls->Add(this->buttonD);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->MaximizeBox = false;
+			this->MinimizeBox = false;
 			this->Name = L"Dificultad";
 			this->ShowIcon = false;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
