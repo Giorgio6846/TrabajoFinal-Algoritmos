@@ -11,54 +11,46 @@ public:
 	Aliadas();
 	~Aliadas();
 
-	void setEstaDisponible(bool estaDisponible){ this -> estaDisponible = estaDisponible; }
-	bool getEstaDisponible(){return this->estaDisponible;}
-
-	int getContador() { return this->contador; }
-	void setContador(int contador) { this->contador = contador; }
-
-	int getValorAceleracion() { return this->valorAceleracion; }
-	void setValorAceleracion(int valorAceleracion) { this->valorAceleracion = valorAceleracion; }
-
-	int getValorAceleracionAnteriorDX() { return this->valorAceleracionAnteriorDX; }
-	void setValorAceleracionAnteriorDX(int valorAceleracionAnteriorDX) { this->valorAceleracionAnteriorDX = valorAceleracionAnteriorDX; }
-
-	int getValorAceleracionAnteriorDY() { return this->valorAceleracionAnteriorDY; }
-	void setValorAceleracionAnteriorDY(int valorAceleracionAnteriorDY) { this->valorAceleracionAnteriorDY = valorAceleracionAnteriorDY; }
-
-
-
+	bool getEstaDisponible() { return this->estaDisponible; }
+	void setEstaDisponible(bool estaDisponible) { this->estaDisponible = estaDisponible; }
+	 
 	void movimientoPosicionJugador(int jugadorX, int jugadorY);
 	
 	Rectangle getRectangle() { return Rectangle(x, y, DimensionWidth, DimensionHeight); }
 
 	void inicio();
 
-	void setHabilidadAliado(bool habilidadAliado) {	this->habilidadAliado = habilidadAliado; }
-	bool getHabilidadAliado() { return this->habilidadAliado; }
+	int getContador() { return this->contador; }
+	void setContador(int contador) { this->contador = contador; }
+
+	bool getHabilidadActivada() { return this->habilidadActivada; }
+	void setHabilidadActivada(bool habilidadActivada) { this->habilidadActivada = habilidadActivada; }
+
 
 private:
-
-	bool estaDisponible;
-
 	bool walking;
 	bool finishedWalkingX;
 	bool finishedWalkingY;
+
+	bool estaDisponible;
+	bool habilidadActivada;
+
+	int contador;
 
 	int valorAceleracion;
 
 	int valorAceleracionAnteriorDX;
 	int valorAceleracionAnteriorDY;
 
-	bool habilidadAliado;
-
-	int contador;
+	
 };
 
 Aliadas::Aliadas()
 {
+	contador = 5;
+
+	habilidadActivada = 0;
 	estaDisponible = 0;
-	habilidadAliado = 0;
 
 	EntidadAreaIzqSupX = 0;
 	EntidadAreaIzqSupY = 20;
