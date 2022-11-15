@@ -76,7 +76,7 @@ namespace TrabajoFinal {
 			//Tienda2Img = gcnew Bitmap("Recursos/Imagenes\\Tienda2.png");
 
 			Vendedor1Shop = gcnew Bitmap("Recursos/Imagenes\\Vendedor1Shop.png");
-			Vendedor2Shop = gcnew Bitmap("Recursos/Imagenes\\Vendedor1Shop.png");
+			Vendedor2Shop = gcnew Bitmap("Recursos/Imagenes\\Vendedor2Shop.png");
 
 			AliadaRamImg = gcnew Bitmap("Recursos/Imagenes\\Aliada_Ram.png");
 			AliadaRemImg = gcnew Bitmap("Recursos/Imagenes\\Aliada_Rem.png");
@@ -295,22 +295,17 @@ namespace TrabajoFinal {
 			Form::ClientSize.Width = BackgroundFacil->Size.Width + 200;
 			Form::ClientSize.Height = BackgroundFacil->Size.Height + 200;
 			bg->Graphics->DrawImage(BackgroundFacil, 0, 0, BackgroundFacil->Size.Width, BackgroundFacil->Size.Height);
-			shop->setCantidadVacunas(5);
-			shop->setCostoVacunas(10);
+			
 			break;
 		case 'M':
 			Form::ClientSize.Width = BackgroundMedio->Size.Width + 200;
 			Form::ClientSize.Height = BackgroundMedio->Size.Height + 200;			
 			bg->Graphics->DrawImage(BackgroundMedio, 0, 0, BackgroundMedio->Size.Width, BackgroundMedio->Size.Height);
-			shop->setCantidadVacunas(5);
-			shop->setCostoVacunas(8);
 			break;
 		case 'D':
 			Form::ClientSize.Width = BackgroundDificil->Size.Width + 200;
 			Form::ClientSize.Height = BackgroundDificil->Size.Height + 200;			
 			bg->Graphics->DrawImage(BackgroundDificil, 0, 0, BackgroundDificil->Size.Width, BackgroundDificil->Size.Height);
-			shop->setCantidadVacunas(5);
-			shop->setCostoVacunas(5);
 			break;
 		default:
 			break;
@@ -365,6 +360,10 @@ namespace TrabajoFinal {
 			//Aliada 2
 			if (jugador->getRectangle().IntersectsWith(aliadaAtaque->getRectangle()) && aliadaAtaque->getEstaDisponible())
 			{
+				if (aliadaAtaque->getHabilidadActivada() == 0)
+				{
+					aliadaAtaque->setContador(15);
+				}
 				aliadaAtaque->setContador(15);
 				aliadaAtaque->setHabilidadActivada(1);
 			}
@@ -414,13 +413,13 @@ namespace TrabajoFinal {
 			switch (dificultad)
 			{
 			case 'F':
-				shop->mostrar(bg->Graphics, Vendedor1Shop, coinImgHUD, vacunasHUD, player, jugador->getDinero(),jugador->getMunicion());
+				shop->mostrar(bg->Graphics, Vendedor2Shop, coinImgHUD, vacunasHUD, player, jugador->getDinero(),jugador->getMunicion());
 				break;
 			case 'M':
-				shop->mostrar(bg->Graphics, Vendedor2Shop, coinImgHUD, vacunasHUD, player, jugador->getDinero(), jugador->getMunicion());
+				shop->mostrar(bg->Graphics, Vendedor1Shop, coinImgHUD, vacunasHUD, player, jugador->getDinero(), jugador->getMunicion());
 				break;
 			case 'D':
-				shop->mostrar(bg->Graphics, Vendedor2Shop, coinImgHUD, vacunasHUD, player, jugador->getDinero(), jugador->getMunicion());
+				shop->mostrar(bg->Graphics, Vendedor1Shop, coinImgHUD, vacunasHUD, player, jugador->getDinero(), jugador->getMunicion());
 				break;
 
 
@@ -572,6 +571,8 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->ContadorMonedas->Interval = 1600;
 		this->TiempoHabilidades->Interval = 1000;
 		this->jugador->setMunicion(15);
+		shop->setCantidadVacunas(10);
+		shop->setCostoVacunas(5);
 		break;
 	case 'M':
 		//Modifica el tiempo del juego dependiendo de la dificultad;
@@ -580,6 +581,8 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->ContadorMonedas->Interval = 1800;
 		this->TiempoHabilidades->Interval = 1000;
 		this->jugador->setMunicion(10);
+		shop->setCantidadVacunas(5);
+		shop->setCostoVacunas(10);
 		break;
 	case 'D':
 		//Modifica el tiempo del juego dependiendo de la dificultad;
@@ -588,6 +591,8 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->ContadorMonedas->Interval = 1800;
 		this->TiempoHabilidades->Interval = 1000;
 		this->jugador->setMunicion(5);
+		shop->setCantidadVacunas(5);
+		shop->setCostoVacunas(10);
 		break;
 
 	default:
@@ -623,7 +628,7 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 	}
 
 	//Este if sirve para que el tiempo no inicie desde el menú principal
-	if (vectBebes->getN() != 0) temporizador++;
+	temporizador++;
 	
 	
 	switch (dificultad)
@@ -641,7 +646,7 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		}
 		break;
 	case 'D':
-		if (temporizador == 180 && (vectBebes->getBebesVacunados() * 100) / 50 >= 95)
+		if (temporizador == 120 && (vectBebes->getBebesVacunados() * 100) / 50 >= 95)
 		{
 			juegoTerminado = 1;
 		}
@@ -663,8 +668,7 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 	/*
 	if (temporizador == 120 && vectBebes->getPorcentaje() >= 5)
 	{
-
-		
+	
 		/*
 		fstream scoreboard;
 		fstream finalScoreboard;

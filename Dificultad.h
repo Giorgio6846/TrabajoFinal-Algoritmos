@@ -77,7 +77,7 @@ namespace TrabajoFinal {
 			// 
 			// buttonD
 			// 
-			this->buttonD->BackColor = System::Drawing::Color::Red;
+			this->buttonD->BackColor = System::Drawing::Color::Yellow;
 			this->buttonD->FlatAppearance->BorderColor = System::Drawing::Color::Red;
 			this->buttonD->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Red;
 			this->buttonD->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Red;
@@ -119,7 +119,7 @@ namespace TrabajoFinal {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::SystemColors::InactiveCaption;
+			this->BackColor = System::Drawing::Color::RoyalBlue;
 			this->ClientSize = System::Drawing::Size(410, 380);
 			this->Controls->Add(this->buttonF);
 			this->Controls->Add(this->buttonD);

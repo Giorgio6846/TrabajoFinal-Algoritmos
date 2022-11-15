@@ -126,15 +126,14 @@ namespace TrabajoFinal {
 		indexAlto++;
 		if (indexAlto == 4) indexAlto = 0;
 
+		bf->Graphics->DrawString("Créditos:", tipoLetra, pincel, 80, 65);
+		bf->Graphics->DrawString("Mathias Hualtibamba", tipoLetra2, pincel, 80, 110);
+		bf->Graphics->DrawString("Giorgio Mancusi", tipoLetra2, pincel, 80, 150);
+		bf->Graphics->DrawString("Fabio Osorio", tipoLetra2, pincel, 80, 190);
+
 		bf->Render(gr);
 
-		delete bf, bfc, gr;
-
-		gr->DrawString("Créditos:", tipoLetra, pincel, 80, 65);
-		gr->DrawString("Mathias Hualtibamba", tipoLetra2, pincel, 80, 110);
-		gr->DrawString("Giorgio Mancusi", tipoLetra2, pincel, 80, 150);
-		gr->DrawString("Fabio Osorio", tipoLetra2, pincel, 80, 190);
-		
+		delete bf, bfc, gr;		
 	}	
 };
 }

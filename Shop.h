@@ -76,10 +76,10 @@ void Shop :: mostrar(Graphics^ gr, Bitmap^ Vendedor, Bitmap ^ Moneda, Bitmap ^ V
 	gr->DrawImage(Vendedor, 960, 0, Vendedor->Size.Width, Vendedor->Size.Height);
 
 	gr->DrawImage(Vacuna, ImagenVacunaTransformada, ImagenVacuna, GraphicsUnit::Pixel);
-	gr->DrawString(Convert::ToString(cantidadVacunas), myFont, Brushes::White, *posXHUD + 50, *posYHUD);
+	gr->DrawString(Convert::ToString(cantidadVacunas), myFont, Brushes::White, *posXHUD + 25, *posYHUD);
 
 	gr->DrawImage(Moneda, ImagenMonedaTransformada, ImagenMoneda, GraphicsUnit::Pixel);
-	gr->DrawString(Convert::ToString(costoVacunas), myFont, Brushes::White, *posXHUD + 50, *posYHUD + 100);
+	gr->DrawString(Convert::ToString(costoVacunas) + "$", myFont, Brushes::White, *posXHUD, *posYHUD + 75);
 
 	delete posYHUD, posXHUD;
 }
