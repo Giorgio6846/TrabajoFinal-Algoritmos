@@ -77,15 +77,18 @@ namespace TrabajoFinal {
 			// 
 			// buttonD
 			// 
-			this->buttonD->BackColor = System::Drawing::SystemColors::Control;
-			this->buttonD->FlatAppearance->BorderSize = 0;
+			this->buttonD->BackColor = System::Drawing::Color::Red;
+			this->buttonD->FlatAppearance->BorderColor = System::Drawing::Color::Red;
+			this->buttonD->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Red;
+			this->buttonD->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Red;
+			this->buttonD->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->buttonD->Font = (gcnew System::Drawing::Font(L"Maiandra GD", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->buttonD->ForeColor = System::Drawing::SystemColors::Desktop;
-			this->buttonD->Location = System::Drawing::Point(117, 190);
+			this->buttonD->Location = System::Drawing::Point(120, 191);
 			this->buttonD->Margin = System::Windows::Forms::Padding(0);
 			this->buttonD->Name = L"buttonD";
-			this->buttonD->Size = System::Drawing::Size(175, 70);
+			this->buttonD->Size = System::Drawing::Size(175, 66);
 			this->buttonD->TabIndex = 2;
 			this->buttonD->Text = L"DIFÍCIL";
 			this->buttonD->UseVisualStyleBackColor = false;
@@ -93,15 +96,20 @@ namespace TrabajoFinal {
 			// 
 			// buttonF
 			// 
-			this->buttonF->BackColor = System::Drawing::SystemColors::Control;
-			this->buttonF->FlatAppearance->BorderSize = 0;
+			this->buttonF->BackColor = System::Drawing::Color::Lime;
+			this->buttonF->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->buttonF->FlatAppearance->BorderColor = System::Drawing::Color::White;
+			this->buttonF->FlatAppearance->BorderSize = 5;
+			this->buttonF->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Lime;
+			this->buttonF->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Lime;
+			this->buttonF->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->buttonF->Font = (gcnew System::Drawing::Font(L"Maiandra GD", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->buttonF->ForeColor = System::Drawing::SystemColors::Desktop;
-			this->buttonF->Location = System::Drawing::Point(117, 92);
+			this->buttonF->Location = System::Drawing::Point(120, 96);
 			this->buttonF->Margin = System::Windows::Forms::Padding(0);
 			this->buttonF->Name = L"buttonF";
-			this->buttonF->Size = System::Drawing::Size(175, 70);
+			this->buttonF->Size = System::Drawing::Size(175, 66);
 			this->buttonF->TabIndex = 1;
 			this->buttonF->Text = L"FÁCIL";
 			this->buttonF->UseVisualStyleBackColor = false;
@@ -111,7 +119,7 @@ namespace TrabajoFinal {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->BackColor = System::Drawing::SystemColors::InactiveCaption;
 			this->ClientSize = System::Drawing::Size(410, 380);
 			this->Controls->Add(this->buttonF);
 			this->Controls->Add(this->buttonD);
