@@ -59,9 +59,12 @@ namespace TrabajoFinal {
 			less30MBabyImg = gcnew Bitmap("Recursos/Imagenes\\Bebes.png");
 			more30MBabyImg = gcnew Bitmap("Recursos/Imagenes\\BigBabies.png");
 
-			coinImg = gcnew Bitmap("Recursos/Imagenes\\Monedas.png");
-			
+			coinImg = gcnew Bitmap("Recursos/Imagenes\\Moneda.png");
+			coinImgHUD = gcnew Bitmap("Recursos/Imagenes\\MonedaHUD.png");
+
 			vacunasImg = gcnew Bitmap("Recursos/Imagenes\\Vacuna.png");
+			vacunasHUD = gcnew Bitmap("Recursos/Imagenes\\VacunaHUD.png");
+			vacunadoHUD = gcnew Bitmap("Recursos/Imagenes\\VacunadoHUD.png");
 
 			BackgroundFacil = gcnew Bitmap("Recursos/Imagenes\\BackgroundFacil.png");
 			BackgroundMedio = gcnew Bitmap("Recursos/Imagenes\\BackgroundMedio.jpg");
@@ -69,8 +72,11 @@ namespace TrabajoFinal {
 
 			OshawottImg = gcnew Bitmap("Recursos/Imagenes\\Oshawott.png");
 
-			Tienda1Img = gcnew Bitmap("Recursos/Imagenes\\Tienda1.png");
-			Tienda2Img = gcnew Bitmap("Recursos/Imagenes\\Tienda2.png");
+			//Tienda1Img = gcnew Bitmap("Recursos/Imagenes\\Tienda1.png");
+			//Tienda2Img = gcnew Bitmap("Recursos/Imagenes\\Tienda2.png");
+
+			Vendedor1Shop = gcnew Bitmap("Recursos/Imagenes\\Vendedor1Shop.png");
+			Vendedor2Shop = gcnew Bitmap("Recursos/Imagenes\\Vendedor1Shop.png");
 
 			AliadaRamImg = gcnew Bitmap("Recursos/Imagenes\\Aliada_Ram.png");
 			AliadaRemImg = gcnew Bitmap("Recursos/Imagenes\\Aliada_Rem.png");
@@ -102,6 +108,7 @@ namespace TrabajoFinal {
 				delete coin;
 				delete vectCoins;
 				delete coinImg;
+				delete coinImgHUD;
 
 				//Datos Tienda
 				delete player;
@@ -114,14 +121,19 @@ namespace TrabajoFinal {
 				//Datos Vacunas
 				delete vectVacunas;
 				delete vacunasImg;
-
+				delete vacunasHUD;
+				delete vacunadoHUD;
+				
 				//Imagen MamaAntivacuna
 				delete vectEnemigos;
 				delete OshawottImg;
 
 				//Delete Tienda
-				delete Tienda1Img;
-				delete Tienda2Img;
+				delete Vendedor1Shop;
+				delete Vendedor2Shop;
+				//delete Tienda1Img;
+				//delete Tienda2Img;
+
 
 				//Datos Aliadas
 				delete aliadaVelocidad;
@@ -163,6 +175,7 @@ namespace TrabajoFinal {
 		Coin* coin;
 		VectorCoins* vectCoins;
 		Bitmap^ coinImg;
+		Bitmap^ coinImgHUD;
 
 		//Datos Tienda
 		SoundPlayer^ player;
@@ -175,26 +188,28 @@ namespace TrabajoFinal {
 		//Datos Vacunas
 		VectorVacunas* vectVacunas;
 		Bitmap^ vacunasImg;
+		Bitmap^ vacunasHUD;
+		Bitmap^ vacunadoHUD;
 
 		//Imagen MamaAntivacuna
 		VectorOshawott* vectEnemigos;
 		Bitmap^ OshawottImg;
 		
 		//Datos Aliadas
-
-		Bitmap^ AliadaRemImg;
-		Bitmap^ AliadaRamImg;
-
-		Bitmap^ Tienda1Img;
-		Bitmap^ Tienda2Img;
-
+		
 		Aliadas* aliadaVelocidad;
 		Aliadas* aliadaAtaque;
 		Aliadas* aliada3;
+		Bitmap^ AliadaRemImg;
+		Bitmap^ AliadaRamImg;
 
-		//Datos Tienda
+		//DatosTienda
+		//Bitmap^ Tienda1Img;
+		//Bitmap^ Tienda2Img;
 		Shop* shop;
-
+		Bitmap^ Vendedor1Shop;
+		Bitmap^ Vendedor2Shop;
+				
 	private: System::Windows::Forms::Timer^ TiempoSegundos;
 	private: System::Windows::Forms::Timer^ ContadorBebes;
 	private: System::Windows::Forms::Timer^ TiempoHabilidades;
@@ -267,7 +282,7 @@ namespace TrabajoFinal {
 		BufferedGraphicsContext^ bc = BufferedGraphicsManager::Current;
 		BufferedGraphics^ bg = bc->Allocate(gr, this->ClientRectangle);
 
-		bg->Graphics->Clear(Color::White);
+		bg->Graphics->Clear(Color::Black);
 
 		//Background Juego
 
@@ -278,16 +293,22 @@ namespace TrabajoFinal {
 			Form::ClientSize.Width = BackgroundFacil->Size.Width + 200;
 			Form::ClientSize.Height = BackgroundFacil->Size.Height + 200;
 			bg->Graphics->DrawImage(BackgroundFacil, 0, 0, BackgroundFacil->Size.Width, BackgroundFacil->Size.Height);
+			shop->setCantidadVacunas(5);
+			shop->setCostoVacunas(10);
 			break;
 		case 'M':
 			Form::ClientSize.Width = BackgroundMedio->Size.Width + 200;
 			Form::ClientSize.Height = BackgroundMedio->Size.Height + 200;			
 			bg->Graphics->DrawImage(BackgroundMedio, 0, 0, BackgroundMedio->Size.Width, BackgroundMedio->Size.Height);
+			shop->setCantidadVacunas(5);
+			shop->setCostoVacunas(8);
 			break;
 		case 'D':
 			Form::ClientSize.Width = BackgroundDificil->Size.Width + 200;
 			Form::ClientSize.Height = BackgroundDificil->Size.Height + 200;			
 			bg->Graphics->DrawImage(BackgroundDificil, 0, 0, BackgroundDificil->Size.Width, BackgroundDificil->Size.Height);
+			shop->setCantidadVacunas(5);
+			shop->setCostoVacunas(5);
 			break;
 		default:
 			break;
@@ -320,7 +341,11 @@ namespace TrabajoFinal {
 
 			for (int i = 0; i < vectCoins->getN(); i++)
 			{
-				if (jugador->getRectangle().IntersectsWith(vectCoins->getRectangleCertainPosicion(i))) vectCoins->coinAtrapada(i);
+				if (jugador->getRectangle().IntersectsWith(vectCoins->getRectangleCertainPosicion(i))) 
+				{
+					vectCoins->coinAtrapada(i);
+					jugador->setDinero(jugador->getDinero() + 1);
+				}
 			}
 			
 			//Aliada 1
@@ -384,18 +409,38 @@ namespace TrabajoFinal {
 
 		if (jugador->getRectangle().IntersectsWith(shop->getRectangleShop()))
 		{
-			shop->mostrar(bg->Graphics, player, Tienda1Img, Tienda2Img);
+			switch (dificultad)
+			{
+			case 'F':
+				shop->mostrar(bg->Graphics, Vendedor1Shop, coinImgHUD, vacunasHUD, player);
+				break;
+			case 'M':
+				shop->mostrar(bg->Graphics, Vendedor2Shop, coinImgHUD, vacunasHUD, player);
+				break;
+			case 'D':
+				shop->mostrar(bg->Graphics, Vendedor2Shop, coinImgHUD, vacunasHUD, player);
+				break;
+
+
+			default:
+				break;
+			}
+			//shop->mostrar(bg->Graphics, player, Tienda1Img, Tienda2Img);
 		}
 		else
 		{
-			vectCoins->mostrarCantidadMonedasObtenidasText(bg->Graphics);
-			vectBebes->mostrarPorcentajeBebesVacunadosYNoVacunados(bg->Graphics, dificultad);
-			jugador->mostrarMunicion(bg->Graphics);
-			jugador->mostrarMensajeHabilidad(bg->Graphics);
+			jugador->mostrarDinero(bg->Graphics, coinImgHUD);
+			jugador->mostrarVacunas(bg->Graphics, vacunasHUD);
+			vectBebes->mostrarVacunados(bg->Graphics, vacunadoHUD, dificultad);
+
+			//jugador->mostrarDinero(bg->Graphics);
+			//vectBebes->mostrarPorcentajeBebesVacunadosYNoVacunados(bg->Graphics, dificultad);
+			//jugador->mostrarMunicion(bg->Graphics);
+			//jugador->mostrarMensajeHabilidad(bg->Graphics);
 		}
 
 		//Juego Finalizado
-
+		/*
 		if (vectBebes->getPorcentaje() <= 5) {
 
 			TiempoRespuesta->Enabled = false;
@@ -411,7 +456,7 @@ namespace TrabajoFinal {
 			if (scoreboard.is_open())
 			{
 				scoreboard << temporizador << endl;
-				scoreboard << vectCoins->getTotalMonedasObtenidas() << endl;
+				scoreboard << jugador->getDinero() << endl;
 				scoreboard << vectVacunas->getVacunasUsadas() << endl;
 				scoreboard << dificultad << endl;
 				scoreboard.close();
@@ -427,13 +472,12 @@ namespace TrabajoFinal {
 				finalScoreboard.close();
 			}
 		}
-		
+		*/
 		bg->Render(gr);
 		delete bc, bg, gr;
 	}
 
 	private: System::Void Juego_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
-		int costoVacunas = 5;
 
 		switch (e->KeyCode)
 		{
@@ -474,10 +518,10 @@ namespace TrabajoFinal {
 		//Tienda Jugador
 		case Keys::C:
 			//Aqui se especifica el costo las vacunas
-			if ((jugador->getRectangle().IntersectsWith(shop->getRectangleShop())) && (vectCoins->getDineroObtenido() >= costoVacunas))
+			if ((jugador->getRectangle().IntersectsWith(shop->getRectangleShop())) && (jugador->getDinero() >= shop->getCostoVacunas()))
 			{
-				vectCoins->setDineroObtenido(vectCoins->getDineroObtenido() - costoVacunas);
-				jugador->setMunicion(jugador->getMunicion() + 5);
+				jugador->setDinero(jugador->getDinero() - shop->getCostoVacunas());
+				jugador->setMunicion(jugador->getMunicion() + shop->getCantidadVacunas());
 			}
 			break;
 
@@ -552,6 +596,8 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 
 private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::EventArgs^ e)
 {
+	bool juegoTerminado = 0; 
+
 	aliadaAtaque->setContador(aliadaAtaque->getContador() + 1);
 	aliadaVelocidad->setContador(aliadaVelocidad->getContador() + 1);
 
@@ -578,7 +624,31 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 	if (vectBebes->getN() != 0) temporizador++;
 	
 	
-	if (temporizador == 120 && vectBebes->getPorcentaje() >= 5)
+	switch (dificultad)
+	{
+	case 'F':
+		if (temporizador == 180 && (vectBebes->getBebesVacunados()* 100)/30  >= 95)
+		{
+			juegoTerminado = 1;
+		}
+		break;
+	case 'M':
+		if (temporizador == 180 && (vectBebes->getBebesVacunados() * 100) / 30 >= 95)
+		{
+			juegoTerminado = 1;
+		}
+		break;
+	case 'D':
+		if (temporizador == 180 && (vectBebes->getBebesVacunados() * 100) / 50 >= 95)
+		{
+			juegoTerminado = 1;
+		}
+		break;
+	default:
+		break;
+	}
+
+	if (juegoTerminado)
 	{
 		TiempoRespuesta->Enabled = false;
 		TiempoSegundos->Enabled = false;
@@ -586,6 +656,14 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		ContadorMonedas->Enabled = false;
 		TiempoHabilidades->Enabled = false;
 		MessageBox::Show("Game over");
+	}
+
+	/*
+	if (temporizador == 120 && vectBebes->getPorcentaje() >= 5)
+	{
+
+		
+		/*
 		fstream scoreboard;
 		fstream finalScoreboard;
 
@@ -609,6 +687,8 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 			finalScoreboard.close();
 		}
 	}
+	*/
 }
+
 };
 }

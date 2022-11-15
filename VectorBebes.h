@@ -22,6 +22,8 @@ public:
 
 	int getTotalBebesGenerados() { return totalBebesGenerados; }
 
+	int getBebesVacunados() { return this->bebesVacunados; }
+
 	int getN() { return arrBebes->size(); }
 
 	int getMesVida(int pos) { return arrBebes->at(pos)->getMesVida(); }
@@ -30,9 +32,11 @@ public:
 
 	void Vacunado(int pos) { arrBebes->at(pos)->setEsVacunado(true); }
 
-	void mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr, char dificultad);
+	//void mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr, char dificultad);
 
-	int getPorcentaje() { return toIntPorcentaje; }
+	// getPorcentaje() { return toIntPorcentaje; }
+
+	void mostrarVacunados(Graphics^ gr, Bitmap^ Vacunados, char dificultad);
 
 private:
 
@@ -45,14 +49,14 @@ private:
 
 	int totalBebesGenerados;
 	int totalBebes;
-	float bebesVacunados;
+	int bebesVacunados;
 	int bebesNoVacunados;
-	int toIntPorcentaje;
+	//int toIntPorcentaje;
 };
 
 VectorBebes::VectorBebes()
 {
-	toIntPorcentaje = 0;
+	//toIntPorcentaje = 0;
 	arrBebes = new vector <Bebes*>();
 	totalBebesGenerados = 0;
 	bebesVacunados = 0;
@@ -64,6 +68,7 @@ VectorBebes::~VectorBebes()
 	arrBebes->clear();
 }
 
+/*
 void VectorBebes::mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr, char dificultad)
 {
 
@@ -83,10 +88,12 @@ void VectorBebes::mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr, char
 	porcentanje = (bebesVacunados /totalBebes) * 100 ;
 	toIntPorcentaje = porcentanje;
 
-	gr->DrawString("Vacunados " + toIntPorcentaje + "%", myFont, Brushes::Black, 960, 40);
-	toIntPorcentaje = 100 - toIntPorcentaje;
+	gr->DrawString("Vacunados " + toInttoIntPorcentajePorcentaje + "%", myFont, Brushes::Black, 960, 40);
+	toIntPorcentaje = 100 - ;
 	gr->DrawString("No vacunados " + toIntPorcentaje + "%", myFont, Brushes::Black, 960, 60);
 }
+*/
+
 
 void VectorBebes::mostrar(Graphics^ gr, Bitmap^ imagenMenor30, Bitmap^ imagenMayor30)
 {
@@ -107,6 +114,36 @@ void VectorBebes::mostrar(Graphics^ gr, Bitmap^ imagenMenor30, Bitmap^ imagenMay
 	}
 }
 
+
+void VectorBebes:: mostrarVacunados(Graphics^ gr, Bitmap^ Vacunados, char dificultad)
+{
+	int* porcentaje = new int;
+	int* posXHUD = new int(960);
+	int* posYHUD = new int(400);
+	int* totalBebes = new int;
+
+	switch (dificultad)
+	{
+	case 'F': *totalBebes = 30;
+		break;
+	case 'D': *totalBebes = 50;
+		break;
+	default:
+		break;
+	}
+
+	*porcentaje = (bebesVacunados * 100) / *totalBebes;
+
+	Font^ myFont = gcnew Font("Times new Roman", 35);
+
+	Rectangle Imagen = Rectangle(0, 0, Vacunados->Size.Width, Vacunados->Size.Height);
+	Rectangle ImagenTransformada = Rectangle(*posXHUD, *posYHUD, Vacunados->Size.Width * 0.6, Vacunados->Size.Height * 0.6);
+
+	gr->DrawImage(Vacunados, ImagenTransformada, Imagen, GraphicsUnit::Pixel);
+	gr->DrawString(Convert::ToString(*porcentaje) + "%", myFont, Brushes::White, *posXHUD + 50, *posYHUD);
+
+	delete posYHUD, posXHUD;
+}
 
 void VectorBebes::mover()
 {

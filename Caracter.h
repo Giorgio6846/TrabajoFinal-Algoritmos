@@ -96,10 +96,10 @@ void Caracter::mostrar(Graphics^ gr, Bitmap^ imagen, int cantHeight, int cantWid
 	Rectangle Porcion = Rectangle(indexHeight * Width, indexWidth * Height, Width, Height);
 	Rectangle areaSprite = Rectangle(x, y, Width * dimensionAncho, Height * dimensionAlto);
 
-	Pen^ pen = gcnew Pen(Color::Red, 1);
+	//Pen^ pen = gcnew Pen(Color::Red, 1);
 
-	gr->DrawRectangle(pen, getRectangle(x,y));
-	gr->DrawRectangle(pen, getRectangleAreaUsable());
+	//gr->DrawRectangle(pen, getRectangle(x,y));
+	//gr->DrawRectangle(pen, getRectangleAreaUsable());
 
 	gr->DrawImage(imagen, areaSprite, Porcion, GraphicsUnit::Pixel);
 }

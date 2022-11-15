@@ -88,9 +88,6 @@
     <Image Include="Recursos\Imagenes\FondoMenu.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Recursos\Imagenes\Monedas.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Recursos\Imagenes\Oshawott.png">
       <Filter>Resource Files</Filter>
     </Image>

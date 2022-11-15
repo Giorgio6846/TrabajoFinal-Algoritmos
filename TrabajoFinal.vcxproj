@@ -158,7 +158,6 @@
     <Image Include="Recursos\Imagenes\BigBabies.png" />
     <Image Include="Recursos\Imagenes\Doctor.png" />
     <Image Include="Recursos\Imagenes\FondoMenu.png" />
-    <Image Include="Recursos\Imagenes\Monedas.png" />
     <Image Include="Recursos\Imagenes\Oshawott.png" />
     <Image Include="Recursos\Imagenes\Vacuna.png" />
   </ItemGroup>
