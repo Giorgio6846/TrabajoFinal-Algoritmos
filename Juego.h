@@ -466,7 +466,7 @@ namespace TrabajoFinal {
 			if (aliadaAtaque->getContador() >= 5 && aliadaVelocidad -> getEstaDisponible() == 0)
 			{
 				aliadaAtaque->setEstaDisponible(1);
-				aliadaAtaque->setContador(5);
+				aliadaAtaque->setContador(0);
 				aliadaAtaque->inicio();
 			}
 			break;
