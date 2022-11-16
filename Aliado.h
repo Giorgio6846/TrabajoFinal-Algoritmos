@@ -77,11 +77,15 @@ void Aliadas::mostrarTiempoCooldown(Graphics^ gr, int tiempoTotal, int tiempoRes
 
 	gr->DrawImage(Aliada, ImagenTransformada, Imagen, GraphicsUnit::Pixel);
 	gr->DrawString(Convert::ToString(tiempoRestante), myFont, Brushes::White, posXHUD + 10, posYHUD + 10);
-	gr->DrawArc(pen, ImagenTransformada, 0, *angFinal);
+	if (*angFinal <= 90) { gr->DrawArc(pen, ImagenTransformada, 270, *angFinal); }
+	if (*angFinal > 90) 
+	{ 
+		gr->DrawArc(pen, ImagenTransformada, 270, 90);
+		gr->DrawArc(pen, ImagenTransformada, 0, *angFinal - 90); 
+	}
 
 	delete angFinal;
 }
-
 
 void Aliadas::inicio()
 {
@@ -93,7 +97,6 @@ void Aliadas::movimientoPosicionJugador(int jugadorX, int jugadorY)
 {
 	finishedWalkingX = x == jugadorX;
 	finishedWalkingY = y == jugadorY;
-
 
 	if (finishedWalkingX == 0 && finishedWalkingY == 0)
 	{

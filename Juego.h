@@ -89,7 +89,7 @@ namespace TrabajoFinal {
 
 		bool getJuegoTerminado() { return this->juegoTerminado; }
 
-		void mostrarTiempoRestante(Graphics^ gr, int tiempoTotal, int TiempoRestante)
+		void mostrarTiempoRestante(Graphics^ gr, int tiempoTotal, int tiempoActual)
 		{
 			int* angFinal = new int;
 	
@@ -98,10 +98,14 @@ namespace TrabajoFinal {
 	
 			Rectangle ImagenTransformada = Rectangle(960, 50,50, 50);
 
-			*angFinal = (tiempoRestante * 360) / tiempoTotal;
+			*angFinal = (tiempoActual * 360) / tiempoTotal;
 
-			//gr->DrawString(Convert::ToString(tiempoRestante), myFont, Brushes::White, 960, 0);
-			gr->DrawArc(pen, ImagenTransformada, 360, *angFinal);
+			if (*angFinal <= 90) { gr->DrawArc(pen, ImagenTransformada, 270, *angFinal); }
+			if (*angFinal > 90)
+			{
+				gr->DrawArc(pen, ImagenTransformada, 270, 90);
+				gr->DrawArc(pen, ImagenTransformada, 0, *angFinal - 90);
+			}
 
 			delete angFinal;
 		}
@@ -687,14 +691,9 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 	//Este if sirve para que el tiempo no inicie desde el menú principal
 	tiempoJuego++;
 	
-	if (tiempoJuego == tiempoRestante && (vectBebes->getBebesVacunados() * 100) / 30 >= 95)
+	if (tiempoJuego == tiempoRestante || (vectBebes->getBebesVacunados() * 100) / 30 >= 95)
 	{
 		juegoTerminado = 1;
-	}
-	
-
-	if (juegoTerminado)
-	{
 		TiempoRespuesta->Enabled = false;
 		TiempoSegundos->Enabled = false;
 		ContadorBebes->Enabled = false;
@@ -702,7 +701,7 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		TiempoHabilidades->Enabled = false;
 		MessageBox::Show("Game over");
 	}
-
+	
 	/*
 	if (temporizador == 120 && vectBebes->getPorcentaje() >= 5)
 	{
