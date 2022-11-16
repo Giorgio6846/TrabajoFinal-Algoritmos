@@ -320,9 +320,9 @@ namespace TrabajoFinal {
 		vectEnemigos->mostrar(bg->Graphics, OshawottImg);
 		jugador->mostrar(bg->Graphics, jugadorImg, 8, 9, 1.5, 1.5);
 		
-		if (aliadaVelocidad->getCooldown() == 0) aliadaVelocidad->mostrar(bg->Graphics, AliadaRamImg, 4, 3, 1.5, 1.5);
-		if (aliadaAtaque->getCooldown() == 0) aliadaAtaque->mostrar(bg->Graphics, AliadaRemImg, 4, 3, 1.5, 1.5);
-		if (aliada3->getCooldown() == 0) aliada3->mostrar(bg->Graphics, AliadaRemImg, 4, 3, 1.5, 1.5);
+		if (aliadaVelocidad->getHabilidadActivada()) aliadaVelocidad->mostrar(bg->Graphics, AliadaRamImg, 4, 3, 1.5, 1.5);
+		if (aliadaAtaque->getHabilidadActivada()) aliadaAtaque->mostrar(bg->Graphics, AliadaRemImg, 4, 3, 1.5, 1.5);
+		if (aliada3->getHabilidadActivada()) aliada3->mostrar(bg->Graphics, AliadaRemImg, 4, 3, 1.5, 1.5);
 
 		//Mecanicas Juego
 
@@ -333,9 +333,9 @@ namespace TrabajoFinal {
 			vectCoins->mover(bg->Graphics, coinImg);
 			vectVacunas->mover();
 
-			if (aliadaVelocidad->getCooldown() == 0) aliadaVelocidad->movimientoPosicionJugador(jugador->getX(), jugador->getY());
-			if (aliadaAtaque->getCooldown() == 0) aliadaAtaque->movimientoPosicionJugador(jugador->getX(), jugador->getY());
-			if (aliada3->getCooldown() == 0) aliada3->movimientoPosicionJugador(jugador->getX(), jugador->getY());
+			if (aliadaVelocidad->getHabilidadActivada()) aliadaVelocidad->movimientoPosicionJugador(jugador->getX(), jugador->getY());
+			if (aliadaAtaque->getHabilidadActivada()) aliadaAtaque->movimientoPosicionJugador(jugador->getX(), jugador->getY());
+			if (aliada3->getHabilidadActivada()) aliada3->movimientoPosicionJugador(jugador->getX(), jugador->getY());
 
 			//Colisiones
 
@@ -357,6 +357,7 @@ namespace TrabajoFinal {
 					jugador->setDy(jugador->getDy() + 5);
 					aliadaVelocidad->setContador(15);
 				}
+				aliadaVelocidad->setCooldown(1);
 				aliadaVelocidad->setHabilidadActivada(1);
 			}
 			
@@ -367,9 +368,11 @@ namespace TrabajoFinal {
 				{
 					aliadaAtaque->setContador(15);
 				}
+				aliadaAtaque->setCooldown(1);
 				aliadaAtaque->setContador(15);
 				aliadaAtaque->setHabilidadActivada(1);
 			}
+			
 
 			if (vectVacunas-> getN() != 0)
 			{
@@ -500,18 +503,17 @@ namespace TrabajoFinal {
 
 		//Invocacion Aliados
 		case Keys::Z:
-			if (aliadaVelocidad->getContador() >= 5 && aliadaVelocidad->getCooldown() == 1)
+			if (aliadaVelocidad->getContador() >= 5 && aliadaVelocidad->getCooldown() == 0)
 			{
-				aliadaVelocidad->setCooldown(1);
-				aliadaVelocidad->setContador(0);
+				aliadaVelocidad->setContador(15);
 				aliadaVelocidad->inicio();
 			}
+			
 			break;
 		case Keys::X:
-			if (aliadaAtaque->getContador() >= 5 && aliadaVelocidad ->getCooldown() == 1)
+			if (aliadaAtaque->getContador() >= 5 && aliadaVelocidad ->getCooldown() == 0)
 			{
-				aliadaAtaque->setCooldown(1);
-				aliadaAtaque->setContador(0);
+				aliadaAtaque->setContador(15);
 				aliadaAtaque->inicio();
 			}
 			break;
