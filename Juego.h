@@ -91,7 +91,19 @@ namespace TrabajoFinal {
 
 		void mostrarTiempoRestante(Graphics^ gr, int tiempoTotal, int TiempoRestante)
 		{
+			int* angFinal = new int;
+	
+			//Font* myFont = new Font("Times new Roman", 35);
+			Pen^ pen = gcnew Pen(Color::White, 3);
+	
+			Rectangle ImagenTransformada = Rectangle(960, 50,50, 50);
 
+			*angFinal = (tiempoRestante * 360) / tiempoTotal;
+
+			//gr->DrawString(Convert::ToString(tiempoRestante), myFont, Brushes::White, 960, 0);
+			gr->DrawArc(pen, ImagenTransformada, 360, *angFinal);
+
+			delete angFinal;
 		}
 
 	protected:
@@ -320,9 +332,10 @@ namespace TrabajoFinal {
 		vectEnemigos->mostrar(bg->Graphics, OshawottImg);
 		jugador->mostrar(bg->Graphics, jugadorImg, 8, 9, 1.5, 1.5);
 		
-		if (aliadaVelocidad->getHabilidadActivada()) aliadaVelocidad->mostrar(bg->Graphics, AliadaRamImg, 4, 3, 1.5, 1.5);
-		if (aliadaAtaque->getHabilidadActivada()) aliadaAtaque->mostrar(bg->Graphics, AliadaRemImg, 4, 3, 1.5, 1.5);
-		if (aliada3->getHabilidadActivada()) aliada3->mostrar(bg->Graphics, AliadaRemImg, 4, 3, 1.5, 1.5);
+		if (aliadaVelocidad->getEtapas() == 'I' || aliadaVelocidad->getEtapas() == 'U') aliadaVelocidad->mostrar(bg->Graphics, AliadaRamImg, 4, 3, 1.5, 1.5);
+		if (aliadaAtaque->getEtapas() == 'I' || aliadaAtaque->getEtapas() == 'U')  aliadaAtaque->mostrar(bg->Graphics, AliadaRemImg, 4, 3, 1.5, 1.5);
+		if (aliada3->getEtapas() == 'I' || aliada3->getEtapas() == 'U')  aliada3->mostrar(bg->Graphics, AliadaRemImg, 4, 3, 1.5, 1.5);
+
 
 		//Mecanicas Juego
 
@@ -332,11 +345,11 @@ namespace TrabajoFinal {
 			vectBebes->mover();
 			vectCoins->mover(bg->Graphics, coinImg);
 			vectVacunas->mover();
-
-			if (aliadaVelocidad->getHabilidadActivada()) aliadaVelocidad->movimientoPosicionJugador(jugador->getX(), jugador->getY());
-			if (aliadaAtaque->getHabilidadActivada()) aliadaAtaque->movimientoPosicionJugador(jugador->getX(), jugador->getY());
-			if (aliada3->getHabilidadActivada()) aliada3->movimientoPosicionJugador(jugador->getX(), jugador->getY());
-
+			
+			if (aliadaVelocidad->getEtapas() == 'I' || aliadaVelocidad->getEtapas() == 'U') aliadaVelocidad->movimientoPosicionJugador(jugador->getX(), jugador->getY());
+			if (aliadaAtaque->getEtapas() == 'I' || aliadaAtaque->getEtapas() == 'U') aliadaAtaque->movimientoPosicionJugador(jugador->getX(), jugador->getY());
+			if (aliada3->getEtapas() == 'I' || aliada3->getEtapas() == 'U') aliada3->movimientoPosicionJugador(jugador->getX(), jugador->getY());
+			
 			//Colisiones
 
 			for (int i = 0; i < vectCoins->getN(); i++)
@@ -347,30 +360,28 @@ namespace TrabajoFinal {
 					jugador->setDinero(jugador->getDinero() + 1);
 				}
 			}
+
 			
 			//Aliada 1
-			if (jugador->getRectangle().IntersectsWith(aliadaVelocidad->getRectangle()) && aliadaVelocidad->getCooldown() == 0)
+			if (jugador->getRectangle().IntersectsWith(aliadaVelocidad->getRectangle()) && aliadaVelocidad->getEtapas() == 'I')
 			{
-				if (aliadaVelocidad->getHabilidadActivada() == 0)
+				if (aliadaVelocidad->getEtapas() == 'I')
 				{
 					jugador->setDx(jugador->getDx() + 5);
 					jugador->setDy(jugador->getDy() + 5);
-					aliadaVelocidad->setContador(15);
+					aliadaVelocidad->setContador(0);
 				}
-				aliadaVelocidad->setCooldown(1);
-				aliadaVelocidad->setHabilidadActivada(1);
+				aliadaVelocidad->setEtapas('U');
 			}
 			
 			//Aliada 2
-			if (jugador->getRectangle().IntersectsWith(aliadaAtaque->getRectangle()) && aliadaAtaque->getCooldown() == 0)
+			if (jugador->getRectangle().IntersectsWith(aliadaAtaque->getRectangle()) && aliadaAtaque->getEtapas() == 'I')
 			{
-				if (aliadaAtaque->getHabilidadActivada() == 0)
+				if (aliadaAtaque->getEtapas() == 'I')
 				{
-					aliadaAtaque->setContador(15);
+					aliadaAtaque->setContador(0);
 				}
-				aliadaAtaque->setCooldown(1);
-				aliadaAtaque->setContador(15);
-				aliadaAtaque->setHabilidadActivada(1);
+				aliadaAtaque->setEtapas('U');
 			}
 			
 
@@ -435,12 +446,12 @@ namespace TrabajoFinal {
 		}
 		else
 		{
-			
 			jugador->mostrarDinero(bg->Graphics, coinImgHUD);
 			jugador->mostrarVacunas(bg->Graphics, vacunasHUD);
 			vectBebes->mostrarVacunados(bg->Graphics, vacunadoHUD, dificultad);
-			if (aliadaAtaque->getCooldown()) { aliadaAtaque->mostrarTiempoRestante(bg->Graphics, 5, aliadaAtaque->getContador(), AliadaRemImg); }
-			if (aliadaVelocidad->getCooldown()) { aliadaVelocidad->mostrarTiempoRestante(bg->Graphics, 5, aliadaVelocidad->getContador(), AliadaRemImg); }
+			if (aliadaAtaque->getEtapas() == 'C') { aliadaAtaque->mostrarTiempoCooldown(bg->Graphics, 5, aliadaAtaque->getContador(), AliadaRamImg, 980, 700); }
+			if (aliadaVelocidad->getEtapas() == 'C') { aliadaVelocidad->mostrarTiempoCooldown(bg->Graphics, 5, aliadaVelocidad->getContador(), AliadaRemImg, 1060, 700); }
+			mostrarTiempoRestante(bg->Graphics, tiempoRestante, tiempoJuego);
 		}
 
 		//Juego Finalizado
@@ -502,19 +513,18 @@ namespace TrabajoFinal {
 			break;
 
 		//Invocacion Aliados
-		case Keys::Z:
-			if (aliadaVelocidad->getContador() >= 5 && aliadaVelocidad->getCooldown() == 0)
+		case Keys::Z:			
+			if (aliadaVelocidad->getEtapas() == 'L')
 			{
-				aliadaVelocidad->setContador(15);
-				aliadaVelocidad->inicio();
-			}
-			
+				aliadaVelocidad->setEtapas('I');
+				aliadaVelocidad->setContador(0);
+ 			}
 			break;
 		case Keys::X:
-			if (aliadaAtaque->getContador() >= 5 && aliadaVelocidad ->getCooldown() == 0)
+			if (aliadaAtaque->getEtapas() == 'L')
 			{
-				aliadaAtaque->setContador(15);
-				aliadaAtaque->inicio();
+				aliadaAtaque->setEtapas('I');
+				aliadaAtaque->setContador(0);
 			}
 			break;
 
@@ -533,7 +543,7 @@ namespace TrabajoFinal {
 			if(jugador->getMunicion() > 0)
 			{
 				jugador->setMunicion(jugador->getMunicion() - 1);
-  				vectVacunas->agregar(jugador->getMunicion(), jugador->getX(), jugador->getY(), (20 + aliadaAtaque->getHabilidadActivada() * 40), (30 + aliadaAtaque->getHabilidadActivada() * 40), jugador->getIndexWidth());
+  				vectVacunas->agregar(jugador->getMunicion(), jugador->getX(), jugador->getY(), (20 + (aliadaAtaque->getEtapas() == 'U') * 40), (30 + (aliadaAtaque->getEtapas() == 'U') * 40), jugador->getIndexWidth());
 			}
 			break;
 		default:
@@ -572,7 +582,7 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->ContadorBebes->Interval = 1300;
 		this->ContadorMonedas->Interval = 1600;
 		this->TiempoHabilidades->Interval = 1000;
-		this->tiempoRestante = 180;
+		this->tiempoRestante = 10;
 		this->jugador->setMunicion(15);
 		shop->setCantidadVacunas(10);
 		shop->setCostoVacunas(5);
@@ -613,23 +623,65 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 	aliadaAtaque->setContador(aliadaAtaque->getContador() + 1);
 	aliadaVelocidad->setContador(aliadaVelocidad->getContador() + 1);
 
-	if (aliadaVelocidad->getContador() == 20 && aliadaVelocidad->getCooldown() == 0)
+	switch (aliadaVelocidad->getEtapas())
 	{
-		if (aliadaVelocidad->getHabilidadActivada())
+	case 'I':
+		if ((aliadaVelocidad->getContador() == 20))
 		{
-			jugador->setDx(jugador->getDx() - 5);
-			jugador->setDy(jugador->getDy() - 5);
+			aliadaVelocidad->setEtapas('C');
+			aliadaVelocidad->setContador(0);
+		}		
+		break;
+
+	case 'U':
+		if ((aliadaVelocidad->getContador() == 5))
+		{
+			aliadaVelocidad->setEtapas('C');
+			aliadaVelocidad->setContador(0);
 		}
-		aliadaVelocidad->setHabilidadActivada(0);
-		aliadaVelocidad->setCooldown(1);
-		aliadaVelocidad->setContador(0);
+		break;
+
+	case 'C':
+		if ((aliadaVelocidad->getContador() == 5))
+		{
+			aliadaVelocidad->setEtapas('L');
+			aliadaVelocidad->setContador(0);
+		}
+		break;
+
+	default:
+		break;
 	}
 
-	if (aliadaAtaque->getContador() == 20 && aliadaAtaque->getCooldown() == 0)
+	switch (aliadaAtaque->getEtapas())
 	{
-		aliadaAtaque->setHabilidadActivada(0);
-		aliadaAtaque->setCooldown(1);
-		aliadaAtaque->setContador(0);
+	case 'I':
+		if ((aliadaAtaque->getContador() == 20)) 
+		{
+			aliadaAtaque->setEtapas('C');
+			aliadaAtaque->setContador(0);
+		}
+		break;
+
+	case 'U':
+		if ((aliadaAtaque->getContador() == 5)) 
+		{
+			aliadaAtaque->setEtapas('C');
+			aliadaAtaque->setContador(0);
+		}
+		break;
+
+	case 'C':
+		if ((aliadaAtaque->getContador() == 5)) 
+		{
+			aliadaAtaque->setEtapas('L');
+			aliadaAtaque->setContador(0);
+		}
+
+		break;
+
+	default:
+		break;
 	}
 
 	//Este if sirve para que el tiempo no inicie desde el menú principal
@@ -637,7 +689,7 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 	
 	if (tiempoJuego == tiempoRestante && (vectBebes->getBebesVacunados() * 100) / 30 >= 95)
 	{
-		juegoTerminado = tiempoRestante;
+		juegoTerminado = 1;
 	}
 	
 

@@ -1,7 +1,13 @@
 #pragma once
 #include "Caracter.h"
 
-//Tipo: 0 es curadora y 1 da balas 
+/*
+Etapas: 
+L el aliado esta libre es decir puede ser invocado en cualquier momento
+I el aliado a sido invocado mediante las teclas
+U el aliado despues de haber sido invocado ha tenido contacto con el jugador
+C el aliado despues de haber tenido contacto con el jugador o haber esperado 15 segundos tiene un cooldown de 5 segundos
+*/
 
 using namespace std;
 
@@ -11,9 +17,6 @@ public:
 	Aliadas();
 	~Aliadas();
 
-	bool getCooldown() { return this->cooldown; }
-	void setCooldown(bool cooldown) { this->cooldown = cooldown; }
-	 
 	void movimientoPosicionJugador(int jugadorX, int jugadorY);
 	
 	Rectangle getRectangle() { return Rectangle(x, y, DimensionWidth, DimensionHeight); }
@@ -23,18 +26,17 @@ public:
 	int getContador() { return this->contador; }
 	void setContador(int contador) { this->contador = contador; }
 
-	bool getHabilidadActivada() { return this->habilidadActivada; }
-	void setHabilidadActivada(bool habilidadActivada) { this->habilidadActivada = habilidadActivada; }
+	char getEtapas() { return this->etapas; }
+	void setEtapas(char etapas) { this->etapas = etapas; }
 
-	void mostrarTiempoRestante(Graphics^ gr, int tiempoTotal, int tiempoRestante, Bitmap ^ Imagen);
+	void mostrarTiempoCooldown(Graphics^ gr, int tiempoTotal, int tiempoRestante, Bitmap^ Aliada, int posXHUD, int posYHUD);
+
 private:
 	bool walking;
 	bool finishedWalkingX;
 	bool finishedWalkingY;
 
-	bool cooldown;
-	bool habilidadActivada;
-
+	char etapas;
 	int contador;
 
 	int valorAceleracion;
@@ -49,8 +51,7 @@ Aliadas::Aliadas()
 {
 	contador = 5;
 
-	habilidadActivada = 0;
-	cooldown = 0;
+	etapas = 'L';
 
 	EntidadAreaIzqSupX = 0;
 	EntidadAreaIzqSupY = 20;
@@ -62,27 +63,23 @@ Aliadas::~Aliadas()
 {
 }
 
-void Aliadas::mostrarTiempoRestante(Graphics^ gr, int tiempoTotal, int tiempoRestante, Bitmap^ Aliada)
+void Aliadas::mostrarTiempoCooldown(Graphics^ gr, int tiempoTotal, int tiempoRestante, Bitmap^ Aliada, int posXHUD, int posYHUD)
 {
-	int* posXHUD = new int(960);
-	int* posYHUD = new int(500);
-
 	int* angFinal = new int;
 
 	Font^ myFont = gcnew Font("Times new Roman", 35);
 	Pen^ pen = gcnew Pen(Color::White,3);
 
-	Rectangle Imagen = Rectangle((Aliada->Size.Width*0)/4, (Aliada->Size.Height*1)/3, Aliada->Size.Width, Aliada->Size.Height);
-	Rectangle ImagenTransformada = Rectangle(*posXHUD, *posYHUD, Aliada->Size.Width * 0.5, Aliada->Size.Height * 0.5);
+	Rectangle Imagen = Rectangle(((Aliada->Size.Width / 3) * 1), ((Aliada->Size.Height / 4) * 0), Aliada->Size.Width/3, Aliada->Size.Height/4);
+	Rectangle ImagenTransformada = Rectangle(posXHUD, posYHUD, Aliada->Size.Width * 0.6, Aliada->Size.Height * 0.6);
 
 	*angFinal = (tiempoRestante * 360) / tiempoTotal;
 
-	gr->DrawArc(pen,ImagenTransformada, 0, *angFinal);
 	gr->DrawImage(Aliada, ImagenTransformada, Imagen, GraphicsUnit::Pixel);
-	gr->DrawString(Convert::ToString(tiempoRestante), myFont, Brushes::White, *posXHUD + 50, *posYHUD);
-	
+	gr->DrawString(Convert::ToString(tiempoRestante), myFont, Brushes::White, posXHUD + 10, posYHUD + 10);
+	gr->DrawArc(pen, ImagenTransformada, 0, *angFinal);
 
-	delete posXHUD, posYHUD;
+	delete angFinal;
 }
 
 
