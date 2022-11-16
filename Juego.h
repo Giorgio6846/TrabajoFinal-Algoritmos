@@ -93,7 +93,7 @@ namespace TrabajoFinal {
 		{
 			int* angFinal = new int;
 	
-			//Font* myFont = new Font("Times new Roman", 35);
+			//Font^ myFont = gcnew Font("Times new Roman", 35);
 			Pen^ pen = gcnew Pen(Color::White, 3);
 	
 			Rectangle ImagenTransformada = Rectangle(960, 50,50, 50);
@@ -562,7 +562,6 @@ namespace TrabajoFinal {
 	private: System::Void ContadorBebes_Tick(System::Object^ sender, System::EventArgs^ e) {
 		if (vectBebes->getTotalBebesGenerados() < 30 && dificultad == 'F') vectBebes->agregar();
 		else if (vectBebes->getTotalBebesGenerados() < 50 && dificultad == 'D') vectBebes->agregar();
-
 	}
 	
 private: System::Void ContadorMonedas_Tick(System::Object^ sender, System::EventArgs^ e) {
@@ -586,7 +585,7 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->ContadorBebes->Interval = 1300;
 		this->ContadorMonedas->Interval = 1600;
 		this->TiempoHabilidades->Interval = 1000;
-		this->tiempoRestante = 10;
+		this->tiempoRestante = 180;
 		this->jugador->setMunicion(15);
 		shop->setCantidadVacunas(10);
 		shop->setCostoVacunas(5);
