@@ -11,8 +11,8 @@ public:
 	Aliadas();
 	~Aliadas();
 
-	bool getEstaDisponible() { return this->estaDisponible; }
-	void setEstaDisponible(bool estaDisponible) { this->estaDisponible = estaDisponible; }
+	bool getCooldown() { return this->cooldown; }
+	void setCooldown(bool cooldown) { this->cooldown = cooldown; }
 	 
 	void movimientoPosicionJugador(int jugadorX, int jugadorY);
 	
@@ -26,13 +26,13 @@ public:
 	bool getHabilidadActivada() { return this->habilidadActivada; }
 	void setHabilidadActivada(bool habilidadActivada) { this->habilidadActivada = habilidadActivada; }
 
-
+	void mostrarTiempoRestante(Graphics^ gr, int tiempoTotal, int tiempoRestante, Bitmap ^ Imagen);
 private:
 	bool walking;
 	bool finishedWalkingX;
 	bool finishedWalkingY;
 
-	bool estaDisponible;
+	bool cooldown;
 	bool habilidadActivada;
 
 	int contador;
@@ -50,7 +50,7 @@ Aliadas::Aliadas()
 	contador = 5;
 
 	habilidadActivada = 0;
-	estaDisponible = 0;
+	cooldown = 0;
 
 	EntidadAreaIzqSupX = 0;
 	EntidadAreaIzqSupY = 20;
@@ -61,6 +61,30 @@ Aliadas::Aliadas()
 Aliadas::~Aliadas()
 {
 }
+
+void Aliadas::mostrarTiempoRestante(Graphics^ gr, int tiempoTotal, int tiempoRestante, Bitmap^ Aliada)
+{
+	int* posXHUD = new int(960);
+	int* posYHUD = new int(500);
+
+	int* angFinal = new int;
+
+	Font^ myFont = gcnew Font("Times new Roman", 35);
+	Pen^ pen = gcnew Pen(Color::White,3);
+
+	Rectangle Imagen = Rectangle((Aliada->Size.Width*0)/4, (Aliada->Size.Height*1)/3, Aliada->Size.Width, Aliada->Size.Height);
+	Rectangle ImagenTransformada = Rectangle(*posXHUD, *posYHUD, Aliada->Size.Width * 0.5, Aliada->Size.Height * 0.5);
+
+	*angFinal = (tiempoRestante * 360) / tiempoTotal;
+
+	gr->DrawArc(pen,ImagenTransformada, 0, *angFinal);
+	gr->DrawImage(Aliada, ImagenTransformada, Imagen, GraphicsUnit::Pixel);
+	gr->DrawString(Convert::ToString(tiempoRestante), myFont, Brushes::White, *posXHUD + 50, *posYHUD);
+	
+
+	delete posXHUD, posYHUD;
+}
+
 
 void Aliadas::inicio()
 {

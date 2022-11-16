@@ -34,7 +34,8 @@ namespace TrabajoFinal {
 		{
 			InitializeComponent();
 
-			temporizador = 0;
+			tiempoJuego = 0;
+			tiempoRestante = 0;
 
 			//ObjetosJuego
 			jugador = new Jugador();
@@ -88,61 +89,63 @@ namespace TrabajoFinal {
 
 		bool getJuegoTerminado() { return this->juegoTerminado; }
 
+		void mostrarTiempoRestante(Graphics^ gr, int tiempoTotal, int TiempoRestante)
+		{
+
+		}
+
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		~Juego()
 		{
-			if (appFinalizada)
-			{
-				delete jugador;
-				delete jugadorImg;
+			delete jugador;
+			delete jugadorImg;
 
-				//Datos Bebes
-				delete less30MBabyImg;
-				delete more30MBabyImg;
-				delete vectBebes;
+			//Datos Bebes
+			delete less30MBabyImg;
+			delete more30MBabyImg;
+			delete vectBebes;
 
-				//Datos Monedas
-				delete coin;
-				delete vectCoins;
-				delete coinImg;
-				delete coinImgHUD;
+			//Datos Monedas
+			delete coin;
+			delete vectCoins;
+			delete coinImg;
+			delete coinImgHUD;
 
-				//Datos Tienda
-				delete player;
+			//Datos Tienda
+			delete player;
 
-				//Imagen Background
-				delete BackgroundFacil;
-				delete BackgroundMedio;
-				delete BackgroundDificil;
+			//Imagen Background
+			delete BackgroundFacil;
+			delete BackgroundMedio;
+			delete BackgroundDificil;
 
-				//Datos Vacunas
-				delete vectVacunas;
-				delete vacunasImg;
-				delete vacunasHUD;
-				delete vacunadoHUD;
+			//Datos Vacunas
+			delete vectVacunas;
+			delete vacunasImg;
+			delete vacunasHUD;
+			delete vacunadoHUD;
 				
-				//Imagen MamaAntivacuna
-				delete vectEnemigos;
-				delete OshawottImg;
+			//Imagen MamaAntivacuna
+			delete vectEnemigos;
+			delete OshawottImg;
 
-				//Delete Tienda
-				delete Vendedor1Shop;
-				delete Vendedor2Shop;
-				//delete Tienda1Img;
-				//delete Tienda2Img;
+			//Delete Tienda
+			delete Vendedor1Shop;
+			delete Vendedor2Shop;
+			//delete Tienda1Img;
+			//delete Tienda2Img;
 
 
-				//Datos Aliadas
-				delete aliadaVelocidad;
-				delete aliadaAtaque;
-				delete aliada3;
+			//Datos Aliadas
+			delete aliadaVelocidad;
+			delete aliadaAtaque;
+			delete aliada3;
 
-				//Datos Tienda
-				delete shop;
-			}
+			//Datos Tienda
+			delete shop;
 
 			if (components)
 			{
@@ -159,8 +162,8 @@ namespace TrabajoFinal {
 		//Opciones Juego
 		bool juegoTerminado;
 		char dificultad; 
-		int temporizador;
-		bool appFinalizada;
+		int tiempoRestante;
+		int tiempoJuego;
 
 		//Datos Jugador
 		Jugador* jugador;
@@ -209,7 +212,7 @@ namespace TrabajoFinal {
 		Shop* shop;
 		Bitmap^ Vendedor1Shop;
 		Bitmap^ Vendedor2Shop;
-				
+		
 	private: System::Windows::Forms::Timer^ TiempoSegundos;
 	private: System::Windows::Forms::Timer^ ContadorBebes;
 	private: System::Windows::Forms::Timer^ TiempoHabilidades;
@@ -317,9 +320,9 @@ namespace TrabajoFinal {
 		vectEnemigos->mostrar(bg->Graphics, OshawottImg);
 		jugador->mostrar(bg->Graphics, jugadorImg, 8, 9, 1.5, 1.5);
 		
-		if (aliadaVelocidad->getEstaDisponible()) aliadaVelocidad->mostrar(bg->Graphics, AliadaRamImg, 4, 3, 1.5, 1.5);
-		if (aliadaAtaque->getEstaDisponible()) aliadaAtaque->mostrar(bg->Graphics, AliadaRemImg, 4, 3, 1.5, 1.5);
-		if (aliada3->getEstaDisponible()) aliada3->mostrar(bg->Graphics, AliadaRemImg, 4, 3, 1.5, 1.5);
+		if (aliadaVelocidad->getCooldown() == 0) aliadaVelocidad->mostrar(bg->Graphics, AliadaRamImg, 4, 3, 1.5, 1.5);
+		if (aliadaAtaque->getCooldown() == 0) aliadaAtaque->mostrar(bg->Graphics, AliadaRemImg, 4, 3, 1.5, 1.5);
+		if (aliada3->getCooldown() == 0) aliada3->mostrar(bg->Graphics, AliadaRemImg, 4, 3, 1.5, 1.5);
 
 		//Mecanicas Juego
 
@@ -330,9 +333,9 @@ namespace TrabajoFinal {
 			vectCoins->mover(bg->Graphics, coinImg);
 			vectVacunas->mover();
 
-			if (aliadaVelocidad->getEstaDisponible()) aliadaVelocidad->movimientoPosicionJugador(jugador->getX(), jugador->getY());
-			if (aliadaAtaque->getEstaDisponible()) aliadaAtaque->movimientoPosicionJugador(jugador->getX(), jugador->getY());
-			if (aliada3->getEstaDisponible()) aliada3->movimientoPosicionJugador(jugador->getX(), jugador->getY());
+			if (aliadaVelocidad->getCooldown() == 0) aliadaVelocidad->movimientoPosicionJugador(jugador->getX(), jugador->getY());
+			if (aliadaAtaque->getCooldown() == 0) aliadaAtaque->movimientoPosicionJugador(jugador->getX(), jugador->getY());
+			if (aliada3->getCooldown() == 0) aliada3->movimientoPosicionJugador(jugador->getX(), jugador->getY());
 
 			//Colisiones
 
@@ -346,7 +349,7 @@ namespace TrabajoFinal {
 			}
 			
 			//Aliada 1
-			if (jugador->getRectangle().IntersectsWith(aliadaVelocidad->getRectangle()) && aliadaVelocidad->getEstaDisponible())
+			if (jugador->getRectangle().IntersectsWith(aliadaVelocidad->getRectangle()) && aliadaVelocidad->getCooldown() == 0)
 			{
 				if (aliadaVelocidad->getHabilidadActivada() == 0)
 				{
@@ -358,7 +361,7 @@ namespace TrabajoFinal {
 			}
 			
 			//Aliada 2
-			if (jugador->getRectangle().IntersectsWith(aliadaAtaque->getRectangle()) && aliadaAtaque->getEstaDisponible())
+			if (jugador->getRectangle().IntersectsWith(aliadaAtaque->getRectangle()) && aliadaAtaque->getCooldown() == 0)
 			{
 				if (aliadaAtaque->getHabilidadActivada() == 0)
 				{
@@ -426,18 +429,15 @@ namespace TrabajoFinal {
 			default:
 				break;
 			}
-			//shop->mostrar(bg->Graphics, player, Tienda1Img, Tienda2Img);
 		}
 		else
 		{
+			
 			jugador->mostrarDinero(bg->Graphics, coinImgHUD);
 			jugador->mostrarVacunas(bg->Graphics, vacunasHUD);
 			vectBebes->mostrarVacunados(bg->Graphics, vacunadoHUD, dificultad);
-
-			//jugador->mostrarDinero(bg->Graphics);
-			//vectBebes->mostrarPorcentajeBebesVacunadosYNoVacunados(bg->Graphics, dificultad);
-			//jugador->mostrarMunicion(bg->Graphics);
-			//jugador->mostrarMensajeHabilidad(bg->Graphics);
+			if (aliadaAtaque->getCooldown()) { aliadaAtaque->mostrarTiempoRestante(bg->Graphics, 5, aliadaAtaque->getContador(), AliadaRemImg); }
+			if (aliadaVelocidad->getCooldown()) { aliadaVelocidad->mostrarTiempoRestante(bg->Graphics, 5, aliadaVelocidad->getContador(), AliadaRemImg); }
 		}
 
 		//Juego Finalizado
@@ -500,17 +500,17 @@ namespace TrabajoFinal {
 
 		//Invocacion Aliados
 		case Keys::Z:
-			if (aliadaVelocidad->getContador() >= 5 && aliadaVelocidad->getEstaDisponible() == 0)
+			if (aliadaVelocidad->getContador() >= 5 && aliadaVelocidad->getCooldown() == 1)
 			{
-				aliadaVelocidad->setEstaDisponible(1);
+				aliadaVelocidad->setCooldown(1);
 				aliadaVelocidad->setContador(0);
 				aliadaVelocidad->inicio();
 			}
 			break;
 		case Keys::X:
-			if (aliadaAtaque->getContador() >= 5 && aliadaVelocidad -> getEstaDisponible() == 0)
+			if (aliadaAtaque->getContador() >= 5 && aliadaVelocidad ->getCooldown() == 1)
 			{
-				aliadaAtaque->setEstaDisponible(1);
+				aliadaAtaque->setCooldown(1);
 				aliadaAtaque->setContador(0);
 				aliadaAtaque->inicio();
 			}
@@ -570,6 +570,7 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->ContadorBebes->Interval = 1300;
 		this->ContadorMonedas->Interval = 1600;
 		this->TiempoHabilidades->Interval = 1000;
+		this->tiempoRestante = 180;
 		this->jugador->setMunicion(15);
 		shop->setCantidadVacunas(10);
 		shop->setCostoVacunas(5);
@@ -580,6 +581,7 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->ContadorBebes->Interval = 1300;
 		this->ContadorMonedas->Interval = 1800;
 		this->TiempoHabilidades->Interval = 1000;
+		this->tiempoRestante = 180;
 		this->jugador->setMunicion(10);
 		shop->setCantidadVacunas(5);
 		shop->setCostoVacunas(10);
@@ -590,6 +592,7 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->ContadorBebes->Interval = 1300;
 		this->ContadorMonedas->Interval = 1800;
 		this->TiempoHabilidades->Interval = 1000;
+		this->tiempoRestante = 180;
 		this->jugador->setMunicion(5);
 		shop->setCantidadVacunas(5);
 		shop->setCostoVacunas(10);
@@ -608,7 +611,7 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 	aliadaAtaque->setContador(aliadaAtaque->getContador() + 1);
 	aliadaVelocidad->setContador(aliadaVelocidad->getContador() + 1);
 
-	if (aliadaVelocidad->getContador() == 20 && aliadaVelocidad->getEstaDisponible())
+	if (aliadaVelocidad->getContador() == 20 && aliadaVelocidad->getCooldown() == 0)
 	{
 		if (aliadaVelocidad->getHabilidadActivada())
 		{
@@ -616,44 +619,25 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 			jugador->setDy(jugador->getDy() - 5);
 		}
 		aliadaVelocidad->setHabilidadActivada(0);
-		aliadaVelocidad->setEstaDisponible(0);
+		aliadaVelocidad->setCooldown(1);
 		aliadaVelocidad->setContador(0);
 	}
 
-	if (aliadaAtaque->getContador() == 20 && aliadaAtaque->getEstaDisponible())
+	if (aliadaAtaque->getContador() == 20 && aliadaAtaque->getCooldown() == 0)
 	{
 		aliadaAtaque->setHabilidadActivada(0);
-		aliadaAtaque->setEstaDisponible(0);
+		aliadaAtaque->setCooldown(1);
 		aliadaAtaque->setContador(0);
 	}
 
 	//Este if sirve para que el tiempo no inicie desde el menú principal
-	temporizador++;
+	tiempoJuego++;
 	
-	
-	switch (dificultad)
+	if (tiempoJuego == tiempoRestante && (vectBebes->getBebesVacunados() * 100) / 30 >= 95)
 	{
-	case 'F':
-		if (temporizador == 180 && (vectBebes->getBebesVacunados()* 100)/30  >= 95)
-		{
-			juegoTerminado = 1;
-		}
-		break;
-	case 'M':
-		if (temporizador == 180 && (vectBebes->getBebesVacunados() * 100) / 30 >= 95)
-		{
-			juegoTerminado = 1;
-		}
-		break;
-	case 'D':
-		if (temporizador == 120 && (vectBebes->getBebesVacunados() * 100) / 50 >= 95)
-		{
-			juegoTerminado = 1;
-		}
-		break;
-	default:
-		break;
+		juegoTerminado = tiempoRestante;
 	}
+	
 
 	if (juegoTerminado)
 	{
