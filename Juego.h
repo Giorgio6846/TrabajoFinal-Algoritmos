@@ -113,7 +113,7 @@ namespace TrabajoFinal {
 			SolidBrush^ pincel = gcnew SolidBrush(Color::White);
 
 
-			gr->DrawString("" + Convert::ToString(tiempoTotal - tiempoActual), tipoLetra, pincel, *posHUDX + 10, *posHUDX + 8);
+			gr->DrawString(Convert::ToString(tiempoTotal - tiempoActual), tipoLetra, pincel, 980, 37);
 
 
 			delete angFinal;
