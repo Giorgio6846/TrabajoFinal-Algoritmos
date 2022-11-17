@@ -113,7 +113,7 @@ namespace TrabajoFinal {
 			SolidBrush^ pincel = gcnew SolidBrush(Color::White);
 
 
-			gr->DrawString("" + Convert::ToString(tiempoTotal - tiempoActual), tipoLetra, pincel, 980, 37);
+			gr->DrawString("" + Convert::ToString(tiempoTotal - tiempoActual), tipoLetra, pincel, *posHUDX + 10, *posHUDX + 8);
 
 
 			delete angFinal;
@@ -619,6 +619,13 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		shop->setCantidadVacunas(10);
 		shop->setCostoVacunas(5);
 		vectBebes->setTotalBebes(30);
+		aliadaAtaque->setContadorEtapaI(20);
+		aliadaAtaque->setContadorEtapaU(5);
+		aliadaAtaque->setContadorEtapaC(5);
+		aliadaVelocidad->setContadorEtapaI(20);
+		aliadaVelocidad->setContadorEtapaU(5);
+		aliadaVelocidad->setContadorEtapaC(5);
+
 		break;
 	case 'M':
 		//Modifica el tiempo del juego dependiendo de la dificultad;
@@ -661,7 +668,7 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 	switch (aliadaVelocidad->getEtapas())
 	{
 	case 'I':
-		if ((aliadaVelocidad->getContador() == 20))
+		if ((aliadaVelocidad->getContador() == aliadaVelocidad->getContadorEtapaI()))
 		{
 			aliadaVelocidad->setEtapas('C');
 			aliadaVelocidad->setContador(0);
@@ -669,7 +676,7 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		break;
 
 	case 'U':
-		if ((aliadaVelocidad->getContador() == 5))
+		if ((aliadaVelocidad->getContador() == aliadaVelocidad->getContadorEtapaU()))
 		{
 			aliadaVelocidad->setEtapas('C');
 			aliadaVelocidad->setContador(0);
@@ -680,7 +687,7 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		break;
 
 	case 'C':
-		if ((aliadaVelocidad->getContador() == 5))
+		if ((aliadaVelocidad->getContador() == aliadaVelocidad->getContadorEtapaC()))
 		{
 			aliadaVelocidad->setEtapas('L');
 			aliadaVelocidad->setContador(0);
@@ -694,7 +701,7 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 	switch (aliadaAtaque->getEtapas())
 	{
 	case 'I':
-		if ((aliadaAtaque->getContador() == 20)) 
+		if ((aliadaAtaque->getContador() == aliadaVelocidad->getContadorEtapaI()))
 		{
 			aliadaAtaque->setEtapas('C');
 			aliadaAtaque->setContador(0);
@@ -702,7 +709,7 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		break;
 
 	case 'U':
-		if ((aliadaAtaque->getContador() == 5)) 
+		if ((aliadaAtaque->getContador() == aliadaVelocidad->getContadorEtapaU()))
 		{
 			aliadaAtaque->setEtapas('C');
 			aliadaAtaque->setContador(0);
@@ -710,7 +717,7 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		break;
 
 	case 'C':
-		if ((aliadaAtaque->getContador() == 5)) 
+		if ((aliadaAtaque->getContador() == aliadaVelocidad->getContadorEtapaC()))
 		{
 			aliadaAtaque->setEtapas('L');
 			aliadaAtaque->setContador(0);

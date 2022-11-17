@@ -31,6 +31,15 @@ public:
 
 	void mostrarTiempoCooldown(Graphics^ gr, int tiempoTotal, int tiempoRestante, Bitmap^ Aliada, int posXHUD, int posYHUD);
 
+	int getContadorEtapaI() { return this->contadorEtapaI; }
+	void setContadorEtapaI(int contadorEtapaI) { this->contadorEtapaI = contadorEtapaI; }
+
+	int getContadorEtapaU() { return this->contadorEtapaU; }
+	void setContadorEtapaU(int contadorEtapaU) { this->contadorEtapaU = contadorEtapaU; }
+
+	int getContadorEtapaC() { return this->contadorEtapaC; }
+	void setContadorEtapaC(int contadorEtapaC) { this->contadorEtapaC = contadorEtapaC; }
+
 private:
 	bool walking;
 	bool finishedWalkingX;
@@ -44,11 +53,18 @@ private:
 	int valorAceleracionAnteriorDX;
 	int valorAceleracionAnteriorDY;
 
-	
+	int contadorEtapaL;
+	int contadorEtapaI;
+	int contadorEtapaU;
+	int contadorEtapaC;
 };
 
 Aliadas::Aliadas()
 {
+	contadorEtapaI = 0;
+	contadorEtapaU = 0;
+	contadorEtapaC = 0;
+
 	contador = 5;
 
 	etapas = 'L';
@@ -77,12 +93,14 @@ void Aliadas::mostrarTiempoCooldown(Graphics^ gr, int tiempoTotal, int tiempoRes
 
 	gr->DrawImage(Aliada, ImagenTransformada, Imagen, GraphicsUnit::Pixel);
 	gr->DrawString(Convert::ToString(tiempoRestante), myFont, Brushes::White, posXHUD + 10, posYHUD + 10);
-	if (*angFinal <= 90) { gr->DrawArc(pen, ImagenTransformada, 270, *angFinal); }
-	if (*angFinal > 90) 
-	{ 
-		gr->DrawArc(pen, ImagenTransformada, 270, 90);
-		gr->DrawArc(pen, ImagenTransformada, 0, *angFinal - 90); 
-	}
+	
+	gr->DrawArc(pen, ImagenTransformada, 270, *angFinal);
+	//if (*angFinal <= 90) { gr->DrawArc(pen, ImagenTransformada, 270, *angFinal); }
+	//if (*angFinal > 90) 
+	//{ 
+		//gr->DrawArc(pen, ImagenTransformada, 270, 90);
+		//gr->DrawArc(pen, ImagenTransformada, 0, *angFinal - 90); 
+	//}
 
 	delete angFinal;
 }
