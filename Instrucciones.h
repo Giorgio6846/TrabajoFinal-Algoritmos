@@ -70,7 +70,7 @@ namespace TrabajoFinal {
 		}
 #pragma endregion
 	private: System::Void Intrucciones_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-		Image^ Fondo = Image::FromFile("Recursos/Imagenes\\fondo_int.png");
+		Image^ Fondo = Image::FromFile("Recursos/Imagenes\\intrucciones.png");
 		gr->DrawImage(Fondo, 0, 0, 900, 600);
 	}
 	};
