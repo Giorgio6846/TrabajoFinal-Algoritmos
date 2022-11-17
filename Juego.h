@@ -36,7 +36,7 @@ namespace TrabajoFinal {
 
 			tiempoJuego = 0;
 			tiempoRestante = 0;
-
+			juegoFuncional = 1;
 			juegoTerminado = 0;
 
 			//ObjetosJuego
@@ -87,7 +87,7 @@ namespace TrabajoFinal {
 		}
 
 		bool getJuegoTerminado() { return this->juegoTerminado; }
-
+		bool getJuegoFuncional() { return this->juegoFuncional; };
 
 
 		void mostrarTiempoRestante(Graphics^ gr, int tiempoTotal, int tiempoActual)
@@ -186,6 +186,7 @@ namespace TrabajoFinal {
 		char dificultad; 
 		int tiempoRestante;
 		int tiempoJuego;
+		bool juegoFuncional;
 
 		//Datos Jugador
 		Jugador* jugador;

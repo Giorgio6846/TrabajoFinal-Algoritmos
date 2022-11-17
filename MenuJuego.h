@@ -34,7 +34,6 @@ namespace TrabajoFinal {
 			game->Show();
 			if (game->getJuegoTerminado())
 			{
-				MenuJuego::Show();
 				delete game;
 			}
 		}
