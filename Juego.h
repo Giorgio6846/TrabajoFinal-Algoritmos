@@ -37,6 +37,9 @@ namespace TrabajoFinal {
 			tiempoJuego = 0;
 			tiempoRestante = 0;
 
+			juegoTerminado = 0;
+			juegoForzado = 0;
+
 			//ObjetosJuego
 			jugador = new Jugador();
 
@@ -88,15 +91,19 @@ namespace TrabajoFinal {
 		}
 
 		bool getJuegoTerminado() { return this->juegoTerminado; }
+		bool getJuegoForzado() { return this->juegoForzado; }
+
+
 
 		void mostrarTiempoRestante(Graphics^ gr, int tiempoTotal, int tiempoActual)
 		{
 			int* angFinal = new int;
-	
-			//Font^ myFont = gcnew Font("Times new Roman", 35);
+			int* posHUDX = new int(960);
+			int* posHUDY = new int(50);
+
 			Pen^ pen = gcnew Pen(Color::White, 3);
-	
-			Rectangle ImagenTransformada = Rectangle(960, 50,50, 50);
+			
+			Rectangle ImagenTransformada = Rectangle(*posHUDX, *posHUDY,50, 50);
 
 			*angFinal = (tiempoActual * 360) / tiempoTotal;
 
@@ -106,6 +113,9 @@ namespace TrabajoFinal {
 				gr->DrawArc(pen, ImagenTransformada, 270, 90);
 				gr->DrawArc(pen, ImagenTransformada, 0, *angFinal - 90);
 			}
+
+			this->label_Timer->Text = Convert::ToString(tiempoTotal-tiempoActual);
+			this->label_Timer->Location = System::Drawing::Point(*posHUDX, *posHUDY);
 
 			delete angFinal;
 		}
@@ -180,6 +190,7 @@ namespace TrabajoFinal {
 		char dificultad; 
 		int tiempoRestante;
 		int tiempoJuego;
+		bool juegoForzado;
 
 		//Datos Jugador
 		Jugador* jugador;
@@ -232,6 +243,7 @@ namespace TrabajoFinal {
 	private: System::Windows::Forms::Timer^ TiempoSegundos;
 	private: System::Windows::Forms::Timer^ ContadorBebes;
 	private: System::Windows::Forms::Timer^ TiempoHabilidades;
+private: System::Windows::Forms::Label^ label_Timer;
 	private: System::Windows::Forms::Timer^ ContadorMonedas;
 
 #pragma region Windows Form Designer generated code
@@ -248,6 +260,7 @@ namespace TrabajoFinal {
 			this->ContadorBebes = (gcnew System::Windows::Forms::Timer(this->components));
 			this->ContadorMonedas = (gcnew System::Windows::Forms::Timer(this->components));
 			this->TiempoHabilidades = (gcnew System::Windows::Forms::Timer(this->components));
+			this->label_Timer = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// TiempoRespuesta
@@ -279,11 +292,24 @@ namespace TrabajoFinal {
 			this->TiempoHabilidades->Interval = 1000;
 			this->TiempoHabilidades->Tick += gcnew System::EventHandler(this, &Juego::TiempoHabilidades_Tick);
 			// 
+			// label_Timer
+			// 
+			this->label_Timer->AutoSize = true;
+			this->label_Timer->Enabled = false;
+			this->label_Timer->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label_Timer->Location = System::Drawing::Point(698, 68);
+			this->label_Timer->Name = L"label_Timer";
+			this->label_Timer->Size = System::Drawing::Size(79, 19);
+			this->label_Timer->TabIndex = 0;
+			this->label_Timer->Text = L"label_Timer";
+			// 
 			// Juego
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1160, 800);
+			this->Controls->Add(this->label_Timer);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MaximizeBox = false;
@@ -291,9 +317,11 @@ namespace TrabajoFinal {
 			this->Name = L"Juego";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Juego";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Juego::Juego_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &Juego::Juego_Load);
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &Juego::Juego_KeyDown);
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -663,6 +691,9 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		{
 			aliadaAtaque->setEtapas('C');
 			aliadaAtaque->setContador(0);
+			
+			jugador->setDx(jugador->getDx() - 5);
+			jugador->setDy(jugador->getDy() - 5);
 		}
 		break;
 
@@ -732,5 +763,8 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 	*/
 }
 
+private: System::Void Juego_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+	juegoForzado = 1;
+}
 };
 }

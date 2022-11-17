@@ -33,7 +33,7 @@ namespace TrabajoFinal {
 			Juego ^ game = gcnew Juego();
 			game->Show();
 			MenuJuego::Hide();
-			if (game->getJuegoTerminado())
+			if (game->getJuegoTerminado() || game->getJuegoForzado())
 			{
 				MenuJuego::Show();
 				delete game;
@@ -251,6 +251,8 @@ private: System::Void MenuJuego_KeyDown(System::Object^ sender, System::Windows:
 private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
+	
+
 	ifstream textDificultad;
 	textDificultad.open("Recursos/Texto\\Difficultad.lvdf", ios::in);
 	if (textDificultad.is_open())
