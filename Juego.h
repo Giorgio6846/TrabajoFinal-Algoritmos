@@ -673,6 +673,9 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		{
 			aliadaVelocidad->setEtapas('C');
 			aliadaVelocidad->setContador(0);
+
+			jugador->setDx(jugador->getDx() - 5);
+			jugador->setDy(jugador->getDy() - 5);
 		}
 		break;
 
@@ -695,9 +698,6 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		{
 			aliadaAtaque->setEtapas('C');
 			aliadaAtaque->setContador(0);
-			
-			jugador->setDx(jugador->getDx() - 5);
-			jugador->setDy(jugador->getDy() - 5);
 		}
 		break;
 
