@@ -32,7 +32,6 @@ namespace TrabajoFinal {
 		{
 			Juego ^ game = gcnew Juego();
 			game->Show();
-			MenuJuego::Hide();
 			if (game->getJuegoTerminado() || game->getJuegoForzado())
 			{
 				MenuJuego::Show();
