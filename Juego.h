@@ -617,8 +617,8 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->tiempoRestante = 180;
 		this->jugador->setMunicion(15);
 		shop->setCantidadVacunas(10);
-		shop->setCostoVacunas(5);
-		vectBebes->setTotalBebes(30);
+		shop->setCostoVacunas(10);
+		vectBebes->setTotalBebes(45);
 		break;
 	case 'M':
 		//Modifica el tiempo del juego dependiendo de la dificultad;
@@ -639,10 +639,10 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->ContadorMonedas->Interval = 1800;
 		this->TiempoHabilidades->Interval = 1000;
 		this->tiempoRestante = 180;
-		this->jugador->setMunicion(5);
+		this->jugador->setMunicion(10);
 		shop->setCantidadVacunas(5);
-		shop->setCostoVacunas(10);
-		vectBebes->setTotalBebes(30);
+		shop->setCostoVacunas(15);
+		vectBebes->setTotalBebes(40);
 		break;
 
 	default:
