@@ -11,16 +11,17 @@ public:
 	VectorBebes();
 	~VectorBebes();
 
-	void reiniciar();
-
 	void agregar();
 	void eliminar();
 	void mover();
 	void mostrar(Graphics^ gr, Bitmap^ imagenMenor30, Bitmap^ imagenMayor30);
 
-	void agregarMesVida();
+	void agregarMesVida(){}
 
 	int getTotalBebesGenerados() { return totalBebesGenerados; }
+	
+	int getTotalBebes() { return totalBebes; }
+	void setTotalBebes(int totalBebes) { this -> totalBebes; }
 
 	int getBebesVacunados() { return this->bebesVacunados; }
 
@@ -31,8 +32,6 @@ public:
 	Rectangle getRectangleCertainPosicion(int i) { return arrBebes->at(i)->getRectangle(arrBebes->at(i)->getX(), arrBebes->at(i)->getY()); }
 
 	void Vacunado(int pos) { arrBebes->at(pos)->setEsVacunado(true); }
-
-	//void mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr, char dificultad);
 
 	// getPorcentaje() { return toIntPorcentaje; }
 
@@ -47,11 +46,10 @@ private:
 
 	vector<Bebes*>* arrBebes;
 
+	int bebesNoVacunados;
 	int totalBebesGenerados;
 	int totalBebes;
 	int bebesVacunados;
-	int bebesNoVacunados;
-	//int toIntPorcentaje;
 };
 
 VectorBebes::VectorBebes()
@@ -67,33 +65,6 @@ VectorBebes::~VectorBebes()
 {
 	arrBebes->clear();
 }
-
-/*
-void VectorBebes::mostrarPorcentajeBebesVacunadosYNoVacunados(Graphics^ gr, char dificultad)
-{
-
-	switch (dificultad)
-	{
-	case 'F': totalBebes = 30;
-		break;
-	case 'D': totalBebes = 50;
-		break;
-	default:
-		break;
-	}
-
-	Font^ myFont = gcnew Font("Times new Roman", 15);
-	float porcentanje = 0;
-
-	porcentanje = (bebesVacunados /totalBebes) * 100 ;
-	toIntPorcentaje = porcentanje;
-
-	gr->DrawString("Vacunados " + toInttoIntPorcentajePorcentaje + "%", myFont, Brushes::Black, 960, 40);
-	toIntPorcentaje = 100 - ;
-	gr->DrawString("No vacunados " + toIntPorcentaje + "%", myFont, Brushes::Black, 960, 60);
-}
-*/
-
 
 void VectorBebes::mostrar(Graphics^ gr, Bitmap^ imagenMenor30, Bitmap^ imagenMayor30)
 {

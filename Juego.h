@@ -588,8 +588,7 @@ private: System::Windows::Forms::Label^ label_Timer;
 	}
 	
 	private: System::Void ContadorBebes_Tick(System::Object^ sender, System::EventArgs^ e) {
-		if (vectBebes->getTotalBebesGenerados() < 30 && dificultad == 'F') vectBebes->agregar();
-		else if (vectBebes->getTotalBebesGenerados() < 50 && dificultad == 'D') vectBebes->agregar();
+		if (vectBebes->getTotalBebesGenerados() < vectBebes->getTotalBebes()) vectBebes->agregar();
 	}
 	
 private: System::Void ContadorMonedas_Tick(System::Object^ sender, System::EventArgs^ e) {
@@ -617,6 +616,7 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->jugador->setMunicion(15);
 		shop->setCantidadVacunas(10);
 		shop->setCostoVacunas(5);
+		vectBebes->setTotalBebes(30);
 		break;
 	case 'M':
 		//Modifica el tiempo del juego dependiendo de la dificultad;
@@ -628,6 +628,7 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->jugador->setMunicion(10);
 		shop->setCantidadVacunas(5);
 		shop->setCostoVacunas(10);
+		vectBebes->setTotalBebes(30);
 		break;
 	case 'D':
 		//Modifica el tiempo del juego dependiendo de la dificultad;
@@ -639,6 +640,7 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->jugador->setMunicion(5);
 		shop->setCantidadVacunas(5);
 		shop->setCostoVacunas(10);
+		vectBebes->setTotalBebes(30);
 		break;
 
 	default:
