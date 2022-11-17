@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 /*
 Modo:
 V = Es para ver el scoreboard del juego, este permite ver de las dos dificultades
@@ -30,7 +32,7 @@ namespace TrabajoFinal {
 		Scoreboard(void)
 		{
 			tiempo = 0;
-			dificultad = 'A';
+			dificultad = 'F';
 			modo = 'A';
 			modoEscritura = 0;
 			InitializeComponent();
@@ -46,7 +48,7 @@ namespace TrabajoFinal {
 			this->dificultad = dificultad;
 		}
 
-		void lecturaPuntajes(Graphics ^ gr)
+		void lecturaPuntajes(Graphics^ gr)
 		{
 			ifstream lecturaScoreboard;
 
@@ -59,57 +61,44 @@ namespace TrabajoFinal {
 
 			System::Drawing::Font^ Body = gcnew System::Drawing::Font("Arial Black", 13);
 			SolidBrush^ BodyColor = gcnew SolidBrush(Color::White);
-			
+
 			switch (dificultad)
 			{
 			case 'F':
-				lecturaScoreboard.open("ScoreboardF.lvdf", ios::in);
-
-			/*
-			case 'F':
-				lecturaScoreboard.open("ScoreboardF.lvdf", ios::in);
-				for (int i = 0; lecturaScoreboard.eof(); i++)
-				{
-					lecturaScoreboard >> posJugador >> " " >> nombreJugador >> " " >> tiempoJugador;
-					if (tiempo << tiempoJugador && (modo = 'W'))
-					{
-						gr->DrawString("Felicidades ha conseguido llegar a la lista de puntajes", MessageScreen, MessageScreenColor, 200, 200);
-						escritaPuntajeNuevo(i);
-					}
-					gr->DrawString(Convert::ToString(posJugador) + "  " + Convert::ToString(nombreJugador[1]) + Convert::ToString(nombreJugador[2]) + Convert::ToString(nombreJugador[3]) + "  " + Convert::ToString(tiempoJugador), Body, BodyColor, 200, 220);
-				}
+				lecturaScoreboard.open("Recursos/Texto\\ScoreboardF.lvdf", ios::in);
 				break;
-			/*
 			case 'M':
-				lecturaScoreboard.open("ScoreboardM.lvdf", ios::in);
-				for (int i = 0; lecturaScoreboard.eof(); i++)
-				{
-					lecturaScoreboard >> posJugador >> " " >> nombreJugador >> " " >> tiempoJugador;
-					if (tiempo << tiempoJugador && (modo = 'W'))
-					{
-						gr->DrawString("Felicidades ha conseguido llegar a la lista de puntajes", MessageScreen, MessageScreenColor, 200, 200);
-						escritaPuntajeNuevo(i);
-					}
-					gr->DrawString(Convert::ToString(posJugador) + "  " + nombreJugadorSTR + "  " + Convert::ToString(tiempoJugador), Body, BodyColor, 200, 220);
-				}
+				lecturaScoreboard.open("Recursos/Texto\\ScoreboardM.lvdf", ios::in);
 				break;
 			case 'D':
-				lecturaScoreboard.open("ScoreboardD.lvdf", ios::in);
-				for (int i = 0; lecturaScoreboard.eof(); i++)
-				{
-					lecturaScoreboard >> posJugador >> " " >> nombreJugador >> " " >> tiempoJugador;
-					if (tiempo << tiempoJugador && (modo = 'W'))
-					{
-						gr->DrawString("Felicidades ha conseguido llegar a la lista de puntajes", MessageScreen, MessageScreenColor, 200, 200);
-						escritaPuntajeNuevo(i);
-					}
-					gr->DrawString(Convert::ToString(posJugador) + "  " + nombreJugadorSTR + "  " + Convert::ToString(tiempoJugador), Body, BodyColor, 200, 220);
-				}
+				lecturaScoreboard.open("Recursos/Texto\\ScoreboardD.lvdf", ios::in);
 				break;
-			*/
 			default:
 				break;
 			}
+
+			if (lecturaScoreboard.is_open())
+			{
+				for (int i = 0; lecturaScoreboard.eof() == 0; i++)
+				{
+					lecturaScoreboard >> posJugador >> nombreJugador >> tiempoJugador;
+					if (tiempo << tiempoJugador && (modo == 'W'))
+					{
+						gr->DrawString("Felicidades ha conseguido llegar a la lista de puntajes", MessageScreen, MessageScreenColor, 200, 200);
+						escritaPuntajeNuevo(i);
+					}
+					if (posJugador <= 9)
+					{
+						gr->DrawString(Convert::ToString(posJugador) + "   " + Convert::ToString(Convert::ToChar(nombreJugador[0])) + Convert::ToString(Convert::ToChar(nombreJugador[0])) + Convert::ToString(Convert::ToChar(nombreJugador[0])) + "  " + Convert::ToString(tiempoJugador), Body, BodyColor, 200, 200 + i * 30);
+					}
+					if (posJugador >= 10)
+					{
+						gr->DrawString(Convert::ToString(posJugador) + "  " + Convert::ToString(Convert::ToChar(nombreJugador[0])) + Convert::ToString(Convert::ToChar(nombreJugador[0])) + Convert::ToString(Convert::ToChar(nombreJugador[0])) + "  " + Convert::ToString(tiempoJugador), Body, BodyColor, 200, 200 + i * 30);
+					}
+
+				}
+			}
+			lecturaScoreboard.close();
 		}
 
 		bool escritaPuntajeNuevo(int pos)
@@ -188,7 +177,7 @@ namespace TrabajoFinal {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 261);
+			this->ClientSize = System::Drawing::Size(800, 800);
 			this->Name = L"Scoreboard";
 			this->Text = L"Scoreboard";
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &Scoreboard::Scoreboard_KeyDown);
@@ -200,8 +189,7 @@ namespace TrabajoFinal {
 		Graphics^ gr = this->CreateGraphics();
 		BufferedGraphicsContext^ bc = BufferedGraphicsManager::Current;
 		BufferedGraphics^ bg = bc->Allocate(gr, this->ClientRectangle);
-		Form::ClientSize.Width = 800;
-		Form::ClientSize.Height = 800;
+		bg->Graphics->Clear(Color::Black);
 
 		System::Drawing::Font^ Title = gcnew System::Drawing::Font("Arial Black", 13);
 		SolidBrush^ TitleColor = gcnew SolidBrush(Color::White);
@@ -221,12 +209,13 @@ namespace TrabajoFinal {
 			bg->Graphics->DrawString("YOU LOSE", Title, TitleColor, 100, 100);
 
 			break;
-
-
 		default:
 			break;
 		}
+		lecturaPuntajes(bg->Graphics);
 
+		bg->Render(gr);
+		delete gr, bg, bc;
 	}
 
 	private: System::Void Scoreboard_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
@@ -242,6 +231,42 @@ namespace TrabajoFinal {
 			if (modoEscritura)
 			{
 
+			}
+			break;
+		case Keys::Left:
+			if (modo == 'V')
+			{
+				switch (dificultad)
+				{
+				case 'F':
+					dificultad = 'D';
+					break;
+				case 'M':
+					dificultad = 'F';
+					break;
+				case 'D':
+					dificultad = 'M';
+					break;
+				default:
+					break;
+				}
+			}
+			break;
+		case Keys::Right:
+			if (modo == 'V')
+			{
+				switch (dificultad)
+				{
+				case 'F':
+					dificultad = 'M';
+					break;
+				case 'M':
+					dificultad = 'D';
+					break;
+				case 'D':
+					dificultad = 'F';
+					break;
+				}
 			}
 			break;
 		case Keys::Enter:
