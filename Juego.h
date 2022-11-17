@@ -726,11 +726,6 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 	//Este if sirve para que el tiempo no inicie desde el menú principal
 	tiempoJuego++;
 
-
-
-
-
-	
 	if (tiempoJuego == tiempoRestante || (vectBebes->getBebesVacunados() * 100) / 30 >= 95)
 	{
 		juegoTerminado = 1;

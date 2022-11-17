@@ -123,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MenuJuego.cpp" />
+    <ClCompile Include="Scoreboard1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Aliado.h" />
@@ -144,6 +145,9 @@
     <ClInclude Include="Jugador.h" />
     <ClInclude Include="Oshawott.h" />
     <ClInclude Include="MenuJuego.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Scoreboard1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Shop.h" />
