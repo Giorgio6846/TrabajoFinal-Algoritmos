@@ -21,7 +21,7 @@ public:
 	int getTotalBebesGenerados() { return totalBebesGenerados; }
 	
 	int getTotalBebes() { return totalBebes; }
-	void setTotalBebes(int totalBebes) { this -> totalBebes; }
+	void setTotalBebes(int totalBebes) { this -> totalBebes = totalBebes; }
 
 	int getBebesVacunados() { return this->bebesVacunados; }
 
@@ -56,6 +56,7 @@ VectorBebes::VectorBebes()
 	//toIntPorcentaje = 0;
 	arrBebes = new vector <Bebes*>();
 	totalBebesGenerados = 0;
+	totalBebes = 0;
 	bebesVacunados = 0;
 }
 
