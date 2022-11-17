@@ -16,7 +16,7 @@ public:
 	void mover();
 	void mostrar(Graphics^ gr, Bitmap^ imagenMenor30, Bitmap^ imagenMayor30);
 
-	void agregarMesVida(){}
+	void agregarMesVida();
 
 	int getTotalBebesGenerados() { return totalBebesGenerados; }
 	
@@ -46,7 +46,6 @@ private:
 
 	vector<Bebes*>* arrBebes;
 
-	int bebesNoVacunados;
 	int totalBebesGenerados;
 	int totalBebes;
 	int bebesVacunados;
@@ -58,7 +57,6 @@ VectorBebes::VectorBebes()
 	arrBebes = new vector <Bebes*>();
 	totalBebesGenerados = 0;
 	bebesVacunados = 0;
-	bebesNoVacunados = 0;
 }
 
 VectorBebes::~VectorBebes()
@@ -206,10 +204,6 @@ void VectorBebes::eliminar()
 			if (arrBebes->at(i)->getEsVacunado())
 			{
 				bebesVacunados++;
-			}
-			if (arrBebes->at(i)->getMesVida() == 60)
-			{
-				bebesNoVacunados++;
 			}
 			arrBebes->erase(arrBebes->begin() + i);
 		}
