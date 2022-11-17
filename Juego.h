@@ -38,7 +38,6 @@ namespace TrabajoFinal {
 			tiempoRestante = 0;
 
 			juegoTerminado = 0;
-			juegoForzado = 0;
 
 			//ObjetosJuego
 			jugador = new Jugador();
@@ -76,9 +75,6 @@ namespace TrabajoFinal {
 
 			OshawottImg = gcnew Bitmap("Recursos/Imagenes\\Oshawott.png");
 
-			//Tienda1Img = gcnew Bitmap("Recursos/Imagenes\\Tienda1.png");
-			//Tienda2Img = gcnew Bitmap("Recursos/Imagenes\\Tienda2.png");
-
 			Vendedor1Shop = gcnew Bitmap("Recursos/Imagenes\\Vendedor1Shop.png");
 			Vendedor2Shop = gcnew Bitmap("Recursos/Imagenes\\Vendedor2Shop.png");
 
@@ -91,7 +87,6 @@ namespace TrabajoFinal {
 		}
 
 		bool getJuegoTerminado() { return this->juegoTerminado; }
-		bool getJuegoForzado() { return this->juegoForzado; }
 
 
 
@@ -165,9 +160,6 @@ namespace TrabajoFinal {
 			//Delete Tienda
 			delete Vendedor1Shop;
 			delete Vendedor2Shop;
-			//delete Tienda1Img;
-			//delete Tienda2Img;
-
 
 			//Datos Aliadas
 			delete aliadaVelocidad;
@@ -194,7 +186,6 @@ namespace TrabajoFinal {
 		char dificultad; 
 		int tiempoRestante;
 		int tiempoJuego;
-		bool juegoForzado;
 
 		//Datos Jugador
 		Jugador* jugador;
@@ -237,9 +228,6 @@ namespace TrabajoFinal {
 		Bitmap^ AliadaRemImg;
 		Bitmap^ AliadaRamImg;
 
-		//DatosTienda
-		//Bitmap^ Tienda1Img;
-		//Bitmap^ Tienda2Img;
 		Shop* shop;
 		Bitmap^ Vendedor1Shop;
 		Bitmap^ Vendedor2Shop;
@@ -605,6 +593,16 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 	{
 		dificultad = textDificultad.get();
 		textDificultad.close();
+		if (0 == ((dificultad == 'F' || dificultad == 'M') || dificultad == 'D'))
+		{
+			this->TiempoRespuesta->Enabled = false;
+			this->TiempoSegundos->Enabled = false;
+			this->ContadorBebes->Enabled = false;
+			this->ContadorMonedas->Enabled = false;
+			this->TiempoHabilidades->Enabled = false;
+
+			MessageBox::Show("ERROR ERROR ERROR ERROR ERROR ERROR CHANGE DIFICULTY ERROR ERROR ERROR ERROR ERROR ERROR CHANGE DIFICULTY");
+		}
 	}
 
 	switch (dificultad)
@@ -769,7 +767,6 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 }
 
 private: System::Void Juego_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
-	juegoForzado = 1;
 }
 };
 }
