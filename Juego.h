@@ -114,8 +114,12 @@ namespace TrabajoFinal {
 				gr->DrawArc(pen, ImagenTransformada, 0, *angFinal - 90);
 			}
 
-			this->label_Timer->Text = Convert::ToString(tiempoTotal-tiempoActual);
-			this->label_Timer->Location = System::Drawing::Point(*posHUDX, *posHUDY);
+			System::Drawing::Font^ tipoLetra = gcnew System::Drawing::Font("Arial Black", 13.6);
+			SolidBrush^ pincel = gcnew SolidBrush(Color::White);
+
+
+			gr->DrawString("" + Convert::ToString(tiempoTotal - tiempoActual), tipoLetra, pincel, *posHUDX, *posHUDY);
+
 
 			delete angFinal;
 		}
@@ -300,9 +304,8 @@ private: System::Windows::Forms::Label^ label_Timer;
 				static_cast<System::Byte>(0)));
 			this->label_Timer->Location = System::Drawing::Point(698, 68);
 			this->label_Timer->Name = L"label_Timer";
-			this->label_Timer->Size = System::Drawing::Size(79, 19);
+			this->label_Timer->Size = System::Drawing::Size(0, 19);
 			this->label_Timer->TabIndex = 0;
-			this->label_Timer->Text = L"label_Timer";
 			// 
 			// Juego
 			// 
@@ -722,6 +725,11 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 
 	//Este if sirve para que el tiempo no inicie desde el menú principal
 	tiempoJuego++;
+
+
+
+
+
 	
 	if (tiempoJuego == tiempoRestante || (vectBebes->getBebesVacunados() * 100) / 30 >= 95)
 	{
