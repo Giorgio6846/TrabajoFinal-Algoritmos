@@ -24,9 +24,6 @@
     <ClCompile Include="MenuJuego.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scoreboard1.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Juego.h">
