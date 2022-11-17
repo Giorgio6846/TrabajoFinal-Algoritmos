@@ -3,6 +3,9 @@
 #include "Instrucciones.h"
 #include "Creditos.h"
 #include "Dificultad.h"
+
+#include "Scoreboard.h"
+
 namespace TrabajoFinal {
 
 	using namespace System;
@@ -31,6 +34,7 @@ namespace TrabajoFinal {
 		void iniciarJuego()
 		{
 			Juego ^ game = gcnew Juego();
+			//MenuJuego::Hide();
 			game->Show();
 			if (game->getJuegoTerminado())
 			{
@@ -68,6 +72,9 @@ namespace TrabajoFinal {
 		   Graphics^ gr;
 		   char dificultadJuego;
 	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Button^ btn_Puntajes;
+
+
 	private: System::Windows::Forms::Timer^ timer1;
 
 #pragma region Windows Form Designer generated code
@@ -86,6 +93,7 @@ namespace TrabajoFinal {
 			this->btn_InciarJuego = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->btn_Puntajes = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// btn_SalirJuego
@@ -189,11 +197,22 @@ namespace TrabajoFinal {
 			this->timer1->Enabled = true;
 			this->timer1->Tick += gcnew System::EventHandler(this, &MenuJuego::timer1_Tick);
 			// 
+			// btn_Puntajes
+			// 
+			this->btn_Puntajes->Location = System::Drawing::Point(365, 453);
+			this->btn_Puntajes->Name = L"btn_Puntajes";
+			this->btn_Puntajes->Size = System::Drawing::Size(109, 56);
+			this->btn_Puntajes->TabIndex = 7;
+			this->btn_Puntajes->Text = L"Puntajes";
+			this->btn_Puntajes->UseVisualStyleBackColor = true;
+			this->btn_Puntajes->Click += gcnew System::EventHandler(this, &MenuJuego::btn_Puntajes_Click);
+			// 
 			// MenuJuego
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(900, 600);
+			this->Controls->Add(this->btn_Puntajes);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->btn_MostrarCreditos);
 			this->Controls->Add(this->btn_MostrarInstrucciones);
@@ -275,6 +294,11 @@ private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) 
 	}
 }
 private: System::Void MenuJuego_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+}
+private: System::Void btn_Puntajes_Click(System::Object^ sender, System::EventArgs^ e) {
+	Scoreboard^ puntajes = gcnew Scoreboard();
+	puntajes->setModo('V');
+	puntajes->Show();
 }
 };
 }

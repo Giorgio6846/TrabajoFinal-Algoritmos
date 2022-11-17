@@ -77,7 +77,7 @@
     <ClInclude Include="Shop.h">
       <Filter>Objetos Juego</Filter>
     </ClInclude>
-    <ClInclude Include="Scoreboard1.h">
+    <ClInclude Include="Scoreboard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

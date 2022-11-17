@@ -9,6 +9,8 @@
 #include "Shop.h"
 #include "Aliado.h"
 
+#include "Scoreboard.h"
+
 #include <fstream>
 #include <conio.h>
 #include <iostream>
@@ -614,7 +616,7 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->ContadorBebes->Interval = 1300;
 		this->ContadorMonedas->Interval = 1600;
 		this->TiempoHabilidades->Interval = 1000;
-		this->tiempoRestante = 180;
+		this->tiempoRestante = 10;
 		this->jugador->setMunicion(15);
 		shop->setCantidadVacunas(10);
 		shop->setCostoVacunas(5);
@@ -638,6 +640,12 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		shop->setCantidadVacunas(5);
 		shop->setCostoVacunas(10);
 		vectBebes->setTotalBebes(30);
+		aliadaAtaque->setContadorEtapaI(20);
+		aliadaAtaque->setContadorEtapaU(5);
+		aliadaAtaque->setContadorEtapaC(5);
+		aliadaVelocidad->setContadorEtapaI(20);
+		aliadaVelocidad->setContadorEtapaU(5);
+		aliadaVelocidad->setContadorEtapaC(5);
 		break;
 	case 'D':
 		//Modifica el tiempo del juego dependiendo de la dificultad;
@@ -650,6 +658,12 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		shop->setCantidadVacunas(5);
 		shop->setCostoVacunas(10);
 		vectBebes->setTotalBebes(30);
+		aliadaAtaque->setContadorEtapaI(20);
+		aliadaAtaque->setContadorEtapaU(5);
+		aliadaAtaque->setContadorEtapaC(5);
+		aliadaVelocidad->setContadorEtapaI(20);
+		aliadaVelocidad->setContadorEtapaU(5);
+		aliadaVelocidad->setContadorEtapaC(5);
 		break;
 
 	default:
@@ -729,10 +743,7 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		break;
 	}
 
-	//Este if sirve para que el tiempo no inicie desde el menú principal
-	tiempoJuego++;
-
-	if (tiempoJuego == tiempoRestante || (vectBebes->getBebesVacunados() * 100) / 30 >= 95)
+	if ((vectBebes->getBebesVacunados() * 100) / 30 >= 95)
 	{
 		juegoTerminado = 1;
 		TiempoRespuesta->Enabled = false;
@@ -740,9 +751,27 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		ContadorBebes->Enabled = false;
 		ContadorMonedas->Enabled = false;
 		TiempoHabilidades->Enabled = false;
-		MessageBox::Show("Game over");
+
+		Scoreboard^ scoreboard = gcnew Scoreboard();
+		scoreboard->Show();
+		scoreboard->setModo('W');
+		scoreboard->setPuntaje(tiempoJuego, dificultad);
 	}
-	
+	else if (tiempoJuego == tiempoRestante)
+	{
+		juegoTerminado = 1;
+		TiempoRespuesta->Enabled = false;
+		TiempoSegundos->Enabled = false;
+		ContadorBebes->Enabled = false;
+		ContadorMonedas->Enabled = false;
+		TiempoHabilidades->Enabled = false;
+
+		Scoreboard^ scoreboard = gcnew Scoreboard();
+		scoreboard->Show();
+		scoreboard->setModo('L');
+		scoreboard->setPuntaje(tiempoJuego, dificultad);
+	}
+
 	/*
 	if (temporizador == 120 && vectBebes->getPorcentaje() >= 5)
 	{
@@ -772,6 +801,9 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		}
 	}
 	*/
+
+	//Este if sirve para que el tiempo no inicie desde el menú principal
+	tiempoJuego++;
 }
 
 private: System::Void Juego_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
