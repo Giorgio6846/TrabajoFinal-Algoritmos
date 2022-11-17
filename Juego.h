@@ -473,8 +473,8 @@ private: System::Windows::Forms::Label^ label_Timer;
 			jugador->mostrarDinero(bg->Graphics, coinImgHUD);
 			jugador->mostrarVacunas(bg->Graphics, vacunasHUD);
 			vectBebes->mostrarVacunados(bg->Graphics, vacunadoHUD, dificultad);
-			if (aliadaAtaque->getEtapas() == 'C') { aliadaAtaque->mostrarTiempoCooldown(bg->Graphics, 5, aliadaAtaque->getContador(), AliadaRamImg, 980, 700); }
-			if (aliadaVelocidad->getEtapas() == 'C') { aliadaVelocidad->mostrarTiempoCooldown(bg->Graphics, 5, aliadaVelocidad->getContador(), AliadaRemImg, 1060, 700); }
+			if (aliadaAtaque->getEtapas() == 'C') { aliadaAtaque->mostrarTiempoCooldown(bg->Graphics, 5, aliadaAtaque->getContador(), AliadaRemImg, 980, 700); }
+			if (aliadaVelocidad->getEtapas() == 'C') { aliadaVelocidad->mostrarTiempoCooldown(bg->Graphics, 5, aliadaVelocidad->getContador(), AliadaRamImg, 1060, 700); }
 			mostrarTiempoRestante(bg->Graphics, tiempoRestante, tiempoJuego);
 		}
 
