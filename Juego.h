@@ -93,8 +93,8 @@ namespace TrabajoFinal {
 		void mostrarTiempoRestante(Graphics^ gr, int tiempoTotal, int tiempoActual)
 		{
 			int* angFinal = new int;
-			int* posHUDX = new int(960);
-			int* posHUDY = new int(50);
+			int* posHUDX = new int(970);
+			int* posHUDY = new int(25);
 
 			Pen^ pen = gcnew Pen(Color::White, 3);
 			
@@ -109,11 +109,11 @@ namespace TrabajoFinal {
 				gr->DrawArc(pen, ImagenTransformada, 0, *angFinal - 90);
 			}
 
-			System::Drawing::Font^ tipoLetra = gcnew System::Drawing::Font("Arial Black", 13.6);
+			System::Drawing::Font^ tipoLetra = gcnew System::Drawing::Font("Arial Black", 13);
 			SolidBrush^ pincel = gcnew SolidBrush(Color::White);
 
 
-			gr->DrawString("" + Convert::ToString(tiempoTotal - tiempoActual), tipoLetra, pincel, *posHUDX, *posHUDY);
+			gr->DrawString("" + Convert::ToString(tiempoTotal - tiempoActual), tipoLetra, pincel, 980, 37);
 
 
 			delete angFinal;
