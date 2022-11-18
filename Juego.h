@@ -9,7 +9,7 @@
 #include "Shop.h"
 #include "Aliado.h"
 
-//#include "Scoreboard.h"
+#include "Scoreboard.h"
 
 #include <fstream>
 #include <conio.h>
@@ -100,7 +100,6 @@ namespace TrabajoFinal {
 			ContadorMonedas->Enabled = false;
 			TiempoHabilidades->Enabled = false;
 
-			/*
 			Scoreboard^ puntajes = gcnew Scoreboard();
 
 			if (estado == 'W')
@@ -114,7 +113,6 @@ namespace TrabajoFinal {
 				puntajes->setModo('L');
 			}
 			puntajes->Show();
-			*/
 		}
 
 		void mostrarTiempoRestante(Graphics^ gr, int tiempoTotal, int tiempoActual)
@@ -748,7 +746,7 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		break;
 	}
 
-	if ((vectBebes->getBebesVacunados() * 100) / 30 >= 95)
+	if ((vectBebes->getBebesVacunados() * 100) / 30 >= 5)
 	{
 		finalizacionJuego('W');
 	}
