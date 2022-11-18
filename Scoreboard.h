@@ -367,15 +367,18 @@ namespace TrabajoFinal {
 		BufferedGraphics^ bg = bc->Allocate(gr, this->ClientRectangle);
 		bg->Graphics->Clear(Color::Black);
 
-		System::Drawing::Font^ Title = gcnew System::Drawing::Font("Small Fonts", 40);
-		SolidBrush^ TitleColor = gcnew SolidBrush(Color::White);
-
 		switch (modo)
 		{
 		case 'V':
+			System::Drawing::Font ^ Title = gcnew System::Drawing::Font("Small Fonts", 40);
+			SolidBrush^ TitleColor = gcnew SolidBrush(Color::White);
+
 			bg->Graphics->DrawString("Scoreboard", Title, TitleColor, 100, 100);
 			break;
 		case 'W':
+			System::Drawing::Font ^ Title = gcnew System::Drawing::Font("Small Fonts", 40);
+			SolidBrush^ TitleColor = gcnew SolidBrush(Color::White);
+
 			bg->Graphics->DrawString("YOU WIN", Title, TitleColor, 100, 100);
 			if (modoEscritura == 'S')
 			{
@@ -384,6 +387,9 @@ namespace TrabajoFinal {
 			}
 			break;
 		case 'L':
+			System::Drawing::Font ^ Title = gcnew System::Drawing::Font("Small Fonts", 40);
+			SolidBrush^ TitleColor = gcnew SolidBrush(Color::White);
+
 			bg->Graphics->DrawString("YOU LOSE", Title, TitleColor, 100, 100);
 			break;
 		default:
@@ -399,25 +405,70 @@ namespace TrabajoFinal {
 			lecturaDatos();
 		}
 
-
-		System::Drawing::Font^ MessageScreen = gcnew System::Drawing::Font("Small Fonts", 13);
-		SolidBrush^ MessageScreenColor = gcnew SolidBrush(Color::White);
-
-		System::Drawing::Font^ Body = gcnew System::Drawing::Font("Small Fonts", 13);
-		SolidBrush^ BodyColor = gcnew SolidBrush(Color::White);
-
-		for (int i = 0; i < arrDatos->size(); i++)
+		switch (modo)
 		{
-			if (i + 1 <= 9)
+		case 'V':
+			System::Drawing::Font ^ MessageScreen = gcnew System::Drawing::Font("Small Fonts", 13);
+			SolidBrush^ MessageScreenColor = gcnew SolidBrush(Color::White);
+
+			System::Drawing::Font^ Body = gcnew System::Drawing::Font("Small Fonts", 13);
+			SolidBrush^ BodyColor = gcnew SolidBrush(Color::White);
+
+			for (int i = 0; i < arrDatos->size(); i++)
 			{
-				bg->Graphics->DrawString(Convert::ToString(i + 1) + "   " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 200, 200 + i * 30);
+				if (i + 1 <= 9)
+				{
+					bg->Graphics->DrawString(Convert::ToString(i + 1) + "   " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 200, 200 + i * 30);
+				}
+				if (i + 1 >= 10)
+				{
+					bg->Graphics->DrawString(Convert::ToString(i + 1) + "  " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 200, 200 + i * 30);
+				}
 			}
-			if (i + 1 >= 10)
+			break;
+		case 'W':
+			System::Drawing::Font ^ MessageScreen = gcnew System::Drawing::Font("Small Fonts", 13);
+			SolidBrush^ MessageScreenColor = gcnew SolidBrush(Color::White);
+
+			System::Drawing::Font^ Body = gcnew System::Drawing::Font("Small Fonts", 13);
+			SolidBrush^ BodyColor = gcnew SolidBrush(Color::White);
+
+			for (int i = 0; i < arrDatos->size(); i++)
 			{
-				bg->Graphics->DrawString(Convert::ToString(i + 1) + "  " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 200, 200 + i * 30);
+				if (i + 1 <= 9)
+				{
+					bg->Graphics->DrawString(Convert::ToString(i + 1) + "   " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 200, 200 + i * 30);
+				}
+				if (i + 1 >= 10)
+				{
+					bg->Graphics->DrawString(Convert::ToString(i + 1) + "  " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 200, 200 + i * 30);
+				}
 			}
+			break;
+		case 'L':
+			System::Drawing::Font ^ MessageScreen = gcnew System::Drawing::Font("Small Fonts", 13);
+			SolidBrush^ MessageScreenColor = gcnew SolidBrush(Color::White);
+
+			System::Drawing::Font^ Body = gcnew System::Drawing::Font("Small Fonts", 13);
+			SolidBrush^ BodyColor = gcnew SolidBrush(Color::White);
+
+			for (int i = 0; i < arrDatos->size(); i++)
+			{
+				if (i + 1 <= 9)
+				{
+					bg->Graphics->DrawString(Convert::ToString(i + 1) + "   " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 200, 200 + i * 30);
+				}
+				if (i + 1 >= 10)
+				{
+					bg->Graphics->DrawString(Convert::ToString(i + 1) + "  " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 200, 200 + i * 30);
+				}
+			}
+			break;
+		default:
+			break;
 		}
 
+		
 		bg->Render(gr);
 		delete bc, bg, gr;
 	}
