@@ -329,11 +329,13 @@ private: System::Windows::Forms::Timer^ TiempoBebe;
 			// TiempoRespuesta
 			// 
 			this->TiempoRespuesta->Enabled = true;
-			this->TiempoRespuesta->Interval = 500;
+			this->TiempoRespuesta->Interval = 250;
 			this->TiempoRespuesta->Tick += gcnew System::EventHandler(this, &Scoreboard::TiempoRespuesta_Tick);
 			// 
 			// TiempoBebe
 			// 
+			this->TiempoBebe->Enabled = true;
+			this->TiempoBebe->Interval = 1500;
 			this->TiempoBebe->Tick += gcnew System::EventHandler(this, &Scoreboard::TiempoBebe_Tick);
 			// 
 			// Scoreboard
@@ -455,6 +457,9 @@ private: System::Windows::Forms::Timer^ TiempoBebe;
 			}
 			break;
 		case 'W':
+			vectBebes->mostrar(bg->Graphics, less30MBabyImg, more30MBabyImg);
+			vectBebes->mover();
+			vectBebes->eliminar();
 			for (int i = 0; i < arrDatos->size(); i++)
 			{
 				if (i + 1 <= 9)
@@ -466,9 +471,6 @@ private: System::Windows::Forms::Timer^ TiempoBebe;
 					bg->Graphics->DrawString(Convert::ToString(i + 1) + ".  " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 450, 200 + i * 40);
 				}
 			}
-			vectBebes->mostrar(bg->Graphics, less30MBabyImg, more30MBabyImg);
-			vectBebes->mover();
-			vectBebes->eliminar();
 			break;
 		case 'L':
 			for (int i = 0; i < arrDatos->size(); i++)
@@ -501,7 +503,10 @@ private: System::Windows::Forms::Timer^ TiempoBebe;
 		if (modo == 'W')
 		{
 			vectBebes->agregar();
-			vectBebes->agregarMesVida();
+			for (int i = 0; i < 10; i++)
+			{
+				vectBebes->agregarMesVida();
+			}
 		}
 	}
 };
