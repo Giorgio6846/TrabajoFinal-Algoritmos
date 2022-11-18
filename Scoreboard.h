@@ -208,15 +208,11 @@ namespace TrabajoFinal {
 						{
 							arrDatos->pop_back();
 						}
-						return 'S';
 						posJugador = i;
-						break;
-					}
-					else
-					{
-						return 'N';
+						return 'S';
 					}
 				}
+				return 'N';
 			}
 			return 'N';
 		}
