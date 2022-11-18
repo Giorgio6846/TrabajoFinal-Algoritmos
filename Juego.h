@@ -91,6 +91,29 @@ namespace TrabajoFinal {
 		bool getJuegoTerminado() { return this->juegoTerminado; }
 		bool getJuegoFuncional() { return this->juegoFuncional; };
 
+		void finalizacionJuego(char estado)
+		{
+			juegoTerminado = 1;
+			TiempoRespuesta->Enabled = false;
+			TiempoSegundos->Enabled = false;
+			ContadorBebes->Enabled = false;
+			ContadorMonedas->Enabled = false;
+			TiempoHabilidades->Enabled = false;
+
+			Scoreboard^ puntajes = gcnew Scoreboard();
+
+			if (estado == 'W')
+			{
+				puntajes->setModo('W');
+				puntajes->setPuntaje(tiempoJuego, dificultad);
+			}
+			
+			if (estado == 'L')
+			{
+				puntajes->setModo('L');
+			}
+			puntajes->Show();
+		}
 
 		void mostrarTiempoRestante(Graphics^ gr, int tiempoTotal, int tiempoActual)
 		{
@@ -485,40 +508,6 @@ private: System::Windows::Forms::Label^ label_Timer;
 			mostrarTiempoRestante(bg->Graphics, tiempoRestante, tiempoJuego);
 		}
 
-		//Juego Finalizado
-		/*
-		if (vectBebes->getPorcentaje() <= 5) {
-
-			TiempoRespuesta->Enabled = false;
-			TiempoSegundos->Enabled = false;
-			ContadorBebes->Enabled = false;
-			ContadorMonedas->Enabled = false;
-			TiempoHabilidades->Enabled = false;
-
-			MessageBox::Show("You Win");
-			fstream scoreboard;
-			fstream finalScoreboard;
-			scoreboard.open("Recursos/Texto\\scoreboard.lvdf", ios::out);
-			if (scoreboard.is_open())
-			{
-				scoreboard << temporizador << endl;
-				scoreboard << jugador->getDinero() << endl;
-				scoreboard << vectVacunas->getVacunasUsadas() << endl;
-				scoreboard << dificultad << endl;
-				scoreboard.close();
-			}
-
-			finalScoreboard.open("Recursos/Texto\\scoreboard.lvdf", ios::app);
-			if (finalScoreboard.is_open())
-			{
-				finalScoreboard << temporizador << endl;
-				finalScoreboard << vectCoins->getTotalMonedasObtenidas() << endl;
-				finalScoreboard << vectVacunas->getVacunasUsadas() << endl;
-				finalScoreboard << dificultad << endl;
-				finalScoreboard.close();
-			}
-		}
-		*/
 		bg->Render(gr);
 		delete bc, bg, gr;
 	}
@@ -748,66 +737,14 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		break;
 	}
 
-
-	if ((vectBebes->getBebesVacunados() * 100) / 30 >= 95)
+	if ((vectBebes->getBebesVacunados() * 100) / 30 > 5)
 	{
-		juegoTerminado = 1;
-		TiempoRespuesta->Enabled = false;
-		TiempoSegundos->Enabled = false;
-		ContadorBebes->Enabled = false;
-		ContadorMonedas->Enabled = false;
-		TiempoHabilidades->Enabled = false;
-
-		Scoreboard^ scoreboard = gcnew Scoreboard();
-		scoreboard->setModo('W');
-		scoreboard->setPuntaje(tiempoJuego, dificultad);
-		scoreboard->Show();
-
+		finalizacionJuego('W');
 	}
 	else if (tiempoJuego == tiempoRestante)
 	{
-		juegoTerminado = 1;
-		TiempoRespuesta->Enabled = false;
-		TiempoSegundos->Enabled = false;
-		ContadorBebes->Enabled = false;
-		ContadorMonedas->Enabled = false;
-		TiempoHabilidades->Enabled = false;
-
-		Scoreboard^ scoreboard = gcnew Scoreboard();
-		scoreboard->setModo('L');
-		scoreboard->Show();
+		finalizacionJuego('L');
 	}
-
-
-	/*
-	if (temporizador == 120 && vectBebes->getPorcentaje() >= 5)
-	{
-	
-		/*
-		fstream scoreboard;
-		fstream finalScoreboard;
-
-		scoreboard.open("Recursos/Texto\\aux_scoreboard.lvdf", ios::out);
-		if (scoreboard.is_open())
-		{
-			scoreboard << temporizador << endl;
-			scoreboard << vectCoins->getTotalMonedasObtenidas() << endl;
-			scoreboard << vectVacunas->getVacunasUsadas() << endl;
-			scoreboard << dificultad << endl;
-			scoreboard.close();
-		}
-
-		finalScoreboard.open("Recursos/Texto\\scoreboard.lvdf", ios::app);
-		if (finalScoreboard.is_open())
-		{
-			finalScoreboard << temporizador << endl;
-			finalScoreboard << vectCoins->getTotalMonedasObtenidas() << endl;
-			finalScoreboard << vectVacunas->getVacunasUsadas() << endl;
-			finalScoreboard << dificultad << endl;
-			finalScoreboard.close();
-		}
-	}
-	*/
 
 	//Este if sirve para que el tiempo no inicie desde el menú principal
 	tiempoJuego++;

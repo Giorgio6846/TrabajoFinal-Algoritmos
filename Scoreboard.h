@@ -19,6 +19,7 @@ modoEscritura:
 S = Este permite que el jugador escriba su nombre en la lista y ya se inserto su tiempo en la lista 
 N = Este no permite al jugador escribir su nombre en la lista
 F = El jugador ya escribio su nombre en la lista
+G = El archivo ya se guardo
 
 modoTecla:
 U = La tecla presionada ha sido la tecla direccional Arriba
@@ -30,7 +31,7 @@ E = La tecla presionada ha sido la tecla Enter
 struct datosPuestos {
 	char nombre[4];
 	int tiempoRealizado;
-}datosJugador, datos;
+}datosJugador, datosLectura,datosEscritura;
 
 namespace TrabajoFinal {
 
@@ -138,9 +139,9 @@ namespace TrabajoFinal {
 			{
 				for (int i = 0; i < 15; i++)
 				{
-					lecturaScoreboard.seekg(0 * sizeof(datos), ios::beg);
-					lecturaScoreboard.read((char*)&datos, sizeof(datosPuestos));
-					arrDatos->push_back(&datos);
+					lecturaScoreboard.seekg(0 * sizeof(datosLectura), ios::beg);
+					lecturaScoreboard.read((char*)&datosLectura, sizeof(datosPuestos));
+					arrDatos->push_back(&datosLectura);
 				}
 				lecturaScoreboard.close();
 			}
@@ -148,13 +149,14 @@ namespace TrabajoFinal {
 
 		void verificacionJugadorGanador()
 		{
-			for (int i = 2; i < arrDatos->size(); i++)
+			for (int i = 0; i < arrDatos->size(); i++)
 			{
 				if (datosJugador.tiempoRealizado < (arrDatos->at(i)->tiempoRealizado))
 				{
 					arrDatos->insert(arrDatos->begin() + i, &datosJugador);
 					modoEscritura = 'S';
 					posJugador = i;
+					break;
 				}
 				else
 				{
@@ -166,6 +168,9 @@ namespace TrabajoFinal {
 		void escrituraDatos()
 		{
 			ofstream escrituraScoreboard;
+
+			int tiempoTemporal;
+			char nombreTemporal[4];
 
 			switch (dificultad)
 			{
@@ -184,16 +189,37 @@ namespace TrabajoFinal {
 
 			for (int i = 0; i < 15; i++)
 			{
-				escrituraScoreboard.write((const char*)&arrDatos->at(i), sizeof(datosPuestos));
+				datosEscritura.tiempoRealizado = arrDatos->at(i)->tiempoRealizado;
+				datosEscritura.nombre[1] = arrDatos->at(i)->nombre[1];
+				datosEscritura.nombre[2] = arrDatos->at(i)->nombre[2];
+				datosEscritura.nombre[3] = arrDatos->at(i)->nombre[3];
+				datosEscritura.nombre[4] = arrDatos->at(i)->nombre[4];
+
+				escrituraScoreboard.write((const char*)&datosEscritura, sizeof(datosPuestos));
 			}
+			escrituraScoreboard.close();
 		}
 
 		void escrituraNombre()
 		{
-			if (modoTecla == 'E') posChar = posChar + 1;
-			else if (modoTecla == 'U') posLetra = char(int(posLetra) + 1);
-			else if (modoTecla == 'D') posLetra = char(int(posLetra) - 1);
-
+			switch (modoTecla)
+			{
+			case 'E':
+				posChar = posChar + 1;
+				modoTecla = 'A';
+				break;
+			case 'U':
+				posLetra = char(int(posLetra) + 1);
+				modoTecla = 'A';
+				break;
+			case 'D':
+				posLetra = char(int(posLetra) - 1);
+				modoTecla = 'A';
+				break;
+			default:
+				break;
+			}
+			
 			if (int(posLetra) == 64) posLetra = char(90);
 			if (int(posLetra) == 91) posLetra = char(65);
 
@@ -219,6 +245,8 @@ namespace TrabajoFinal {
 		/// </summary>
 		~Scoreboard()
 		{
+			arrDatos->clear();
+
 			if (components)
 			{
 				delete components;
@@ -256,6 +284,7 @@ namespace TrabajoFinal {
 			// TiempoRespuesta
 			// 
 			this->TiempoRespuesta->Enabled = true;
+			this->TiempoRespuesta->Interval = 500;
 			this->TiempoRespuesta->Tick += gcnew System::EventHandler(this, &Scoreboard::TiempoRespuesta_Tick);
 			// 
 			// Scoreboard
@@ -278,22 +307,26 @@ namespace TrabajoFinal {
 			if (modo == 'V')
 			{
 				alternarDificultad('L');
+				arrDatos->clear();
+				lecturaDatos();
 			}
 			break;
 		case Keys::Right:
 			if (modo == 'V')
 			{
 				alternarDificultad('R');
+				arrDatos->clear();
+				lecturaDatos();
 			}
 			break;
 		case Keys::Up:
-			if(modo == 'S') modoTecla = 'U';
+			if(modoEscritura == 'S') modoTecla = 'U';
 			break;
 		case Keys::Down:
-			if(modo == 'S') modoTecla = 'D';
+			if(modoEscritura == 'S') modoTecla = 'D';
 			break;
 		case Keys::Enter:
-			if(modo == 'S') modoTecla = 'E';
+			if(modoEscritura == 'S') modoTecla = 'E';
 			break;
 
 		default:
@@ -331,6 +364,13 @@ namespace TrabajoFinal {
 			break;
 		}
 		
+		if (modoEscritura == 'F')
+		{
+			escrituraDatos();
+			modoEscritura = 'G';
+		}
+
+
 		System::Drawing::Font^ MessageScreen = gcnew System::Drawing::Font("Small Fonts", 13);
 		SolidBrush^ MessageScreenColor = gcnew SolidBrush(Color::White);
 
