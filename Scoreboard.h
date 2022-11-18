@@ -96,7 +96,7 @@ namespace TrabajoFinal {
 					dificultad = 'F';
 					break;
 				case 'D':
-					dificultad = 'M';
+					dificultad = 'F';
 					break;
 				default:
 					break;
@@ -107,7 +107,7 @@ namespace TrabajoFinal {
 				switch (dificultad)
 				{
 				case 'F':
-					dificultad = 'M';
+					dificultad = 'D';
 					break;
 				case 'M':
 					dificultad = 'D';
@@ -367,100 +367,95 @@ namespace TrabajoFinal {
 		BufferedGraphics^ bg = bc->Allocate(gr, this->ClientRectangle);
 		bg->Graphics->Clear(Color::Black);
 
-		switch (modo)
+		System::Drawing::Font^ Title = gcnew System::Drawing::Font("Imprint MT Shadow", 40);
+		SolidBrush^ TitleColor = gcnew SolidBrush(Color::White);
+
+		System::Drawing::Font^ MessageScreen = gcnew System::Drawing::Font("Imprint MT Shadow", 13);
+		SolidBrush^ MessageScreenColor = gcnew SolidBrush(Color::White);
+
+		System::Drawing::Font^ Body = gcnew System::Drawing::Font("Imprint MT Shadow", 20);
+		SolidBrush^ BodyColor = gcnew SolidBrush(Color::White);
+
+		switch (dificultad)
 		{
-		case 'V':
-			System::Drawing::Font ^ Title = gcnew System::Drawing::Font("Small Fonts", 40);
-			SolidBrush^ TitleColor = gcnew SolidBrush(Color::White);
-
-			bg->Graphics->DrawString("Scoreboard", Title, TitleColor, 100, 100);
+		case 'F':
 			break;
-		case 'W':
-			System::Drawing::Font ^ Title = gcnew System::Drawing::Font("Small Fonts", 40);
-			SolidBrush^ TitleColor = gcnew SolidBrush(Color::White);
-
-			bg->Graphics->DrawString("YOU WIN", Title, TitleColor, 100, 100);
-			if (modoEscritura == 'S')
-			{
-				("Felicidades ha conseguido tiempo record. INSERTE SU NOMBRE", Title, TitleColor, 200, 200);
-				modoEscritura = escrituraNombre();
-			}
-			break;
-		case 'L':
-			System::Drawing::Font ^ Title = gcnew System::Drawing::Font("Small Fonts", 40);
-			SolidBrush^ TitleColor = gcnew SolidBrush(Color::White);
-
-			bg->Graphics->DrawString("YOU LOSE", Title, TitleColor, 100, 100);
+		case 'D':
 			break;
 		default:
 			break;
 		}
-		
-		if (modoEscritura == 'F')
-		{
-			escrituraDatos();
-			modoEscritura = 'G';
 
-			arrDatos->clear();
-			lecturaDatos();
-		}
 
 		switch (modo)
 		{
 		case 'V':
-			System::Drawing::Font ^ MessageScreen = gcnew System::Drawing::Font("Small Fonts", 13);
-			SolidBrush^ MessageScreenColor = gcnew SolidBrush(Color::White);
-
-			System::Drawing::Font^ Body = gcnew System::Drawing::Font("Small Fonts", 13);
-			SolidBrush^ BodyColor = gcnew SolidBrush(Color::White);
-
+			bg->Graphics->DrawString("Scoreboard", Title, TitleColor, 250, 50);
+			break;
+		case 'W':
+			bg->Graphics->DrawString("YOU WIN", Title, TitleColor, 400, 50);
+			if (modoEscritura == 'S')
+			{
+				bg->Graphics->DrawString("Felicidades ha conseguido tiempo record.\n" + "\tINSERTE SU NOMBRE\n" + "SU PARTIDA NO HA SIDO GUARDADA", MessageScreen, MessageScreenColor, 380, 120);
+				modoEscritura = escrituraNombre();
+			}
+			if (modoEscritura == 'F')
+			{
+				escrituraDatos();
+				modoEscritura = 'G';
+				arrDatos->clear();
+				lecturaDatos();
+			}
+			if (modoEscritura == 'G')
+			{
+				bg->Graphics->DrawString("Felicidades ha conseguido tiempo record." + "\n" + "SU PARTIDA YA HA SIDO GUARDADA", MessageScreen, MessageScreenColor, 380, 120);
+			}
+			break;
+		case 'L':
+			bg->Graphics->DrawString("YOU LOSE", Title, TitleColor, 400, 50);
+			break;
+		default:
+			break;
+		}
+	
+		switch (modo)
+		{
+		case 'V':
 			for (int i = 0; i < arrDatos->size(); i++)
 			{
 				if (i + 1 <= 9)
 				{
-					bg->Graphics->DrawString(Convert::ToString(i + 1) + "   " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 200, 200 + i * 30);
+					bg->Graphics->DrawString(Convert::ToString(i + 1) + ".    " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 300, 200 + i * 40);
 				}
 				if (i + 1 >= 10)
 				{
-					bg->Graphics->DrawString(Convert::ToString(i + 1) + "  " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 200, 200 + i * 30);
+					bg->Graphics->DrawString(Convert::ToString(i + 1) + ".  " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 300, 200 + i * 40);
 				}
 			}
 			break;
 		case 'W':
-			System::Drawing::Font ^ MessageScreen = gcnew System::Drawing::Font("Small Fonts", 13);
-			SolidBrush^ MessageScreenColor = gcnew SolidBrush(Color::White);
-
-			System::Drawing::Font^ Body = gcnew System::Drawing::Font("Small Fonts", 13);
-			SolidBrush^ BodyColor = gcnew SolidBrush(Color::White);
-
 			for (int i = 0; i < arrDatos->size(); i++)
 			{
 				if (i + 1 <= 9)
 				{
-					bg->Graphics->DrawString(Convert::ToString(i + 1) + "   " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 200, 200 + i * 30);
+					bg->Graphics->DrawString(Convert::ToString(i + 1) + ".    " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 450, 200 + i * 40);
 				}
 				if (i + 1 >= 10)
 				{
-					bg->Graphics->DrawString(Convert::ToString(i + 1) + "  " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 200, 200 + i * 30);
+					bg->Graphics->DrawString(Convert::ToString(i + 1) + ".  " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 450, 200 + i * 40);
 				}
 			}
 			break;
 		case 'L':
-			System::Drawing::Font ^ MessageScreen = gcnew System::Drawing::Font("Small Fonts", 13);
-			SolidBrush^ MessageScreenColor = gcnew SolidBrush(Color::White);
-
-			System::Drawing::Font^ Body = gcnew System::Drawing::Font("Small Fonts", 13);
-			SolidBrush^ BodyColor = gcnew SolidBrush(Color::White);
-
 			for (int i = 0; i < arrDatos->size(); i++)
 			{
 				if (i + 1 <= 9)
 				{
-					bg->Graphics->DrawString(Convert::ToString(i + 1) + "   " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 200, 200 + i * 30);
+					bg->Graphics->DrawString(Convert::ToString(i + 1) + ".    " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 450, 200 + i * 40);
 				}
 				if (i + 1 >= 10)
 				{
-					bg->Graphics->DrawString(Convert::ToString(i + 1) + "  " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 200, 200 + i * 30);
+					bg->Graphics->DrawString(Convert::ToString(i + 1) + ".  " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 450, 200 + i * 40);
 				}
 			}
 			break;

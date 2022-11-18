@@ -101,6 +101,7 @@ namespace TrabajoFinal {
 			TiempoHabilidades->Enabled = false;
 
 			Scoreboard^ puntajes = gcnew Scoreboard();
+			Juego::Hide();
 
 			if (estado == 'W')
 			{
@@ -575,6 +576,13 @@ private: System::Windows::Forms::Label^ label_Timer;
   				vectVacunas->agregar(jugador->getMunicion(), jugador->getX(), jugador->getY(), (20 + (aliadaAtaque->getEtapas() == 'U') * 40), (30 + (aliadaAtaque->getEtapas() == 'U') * 40), jugador->getIndexWidth());
 			}
 			break;
+		case Keys::G:
+			finalizacionJuego('W');
+			break;
+		case Keys::F:
+			finalizacionJuego('L');
+			break;
+
 		default:
 			break;
 		}
@@ -746,9 +754,9 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		break;
 	}
 
-	if ((vectBebes->getBebesVacunados() * 100) / 30 >= 5)
+	if ((vectBebes->getBebesVacunados() * 100) / 30 >= 95)
 	{
-		finalizacionJuego('L');
+		finalizacionJuego('W');
 	}
 	else if (tiempoJuego == tiempoRestante)
 	{
