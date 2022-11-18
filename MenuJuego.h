@@ -199,12 +199,18 @@ namespace TrabajoFinal {
 			// 
 			// btn_Puntajes
 			// 
-			this->btn_Puntajes->Location = System::Drawing::Point(365, 453);
+			this->btn_Puntajes->BackColor = System::Drawing::Color::DarkSlateBlue;
+			this->btn_Puntajes->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btn_Puntajes->Font = (gcnew System::Drawing::Font(L"Maiandra GD", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btn_Puntajes->ForeColor = System::Drawing::SystemColors::ControlLightLight;
+			this->btn_Puntajes->Location = System::Drawing::Point(9, 9);
+			this->btn_Puntajes->Margin = System::Windows::Forms::Padding(0);
 			this->btn_Puntajes->Name = L"btn_Puntajes";
 			this->btn_Puntajes->Size = System::Drawing::Size(109, 56);
-			this->btn_Puntajes->TabIndex = 7;
-			this->btn_Puntajes->Text = L"Puntajes";
-			this->btn_Puntajes->UseVisualStyleBackColor = true;
+			this->btn_Puntajes->TabIndex = 6;
+			this->btn_Puntajes->Text = L"PUNTAJES";
+			this->btn_Puntajes->UseVisualStyleBackColor = false;
 			this->btn_Puntajes->Click += gcnew System::EventHandler(this, &MenuJuego::btn_Puntajes_Click);
 			// 
 			// MenuJuego
