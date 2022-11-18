@@ -146,9 +146,6 @@
     <ClInclude Include="MenuJuego.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Scoreboard1.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="Scoreboard.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -188,9 +185,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Scoreboard.resx">
       <DependentUpon>Scoreboard.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Scoreboard1.resx">
-      <DependentUpon>Scoreboard1.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
