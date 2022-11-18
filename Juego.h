@@ -9,7 +9,7 @@
 #include "Shop.h"
 #include "Aliado.h"
 
-#include "Scoreboard.h"
+//#include "Scoreboard.h"
 
 #include <fstream>
 #include <conio.h>
@@ -100,6 +100,7 @@ namespace TrabajoFinal {
 			ContadorMonedas->Enabled = false;
 			TiempoHabilidades->Enabled = false;
 
+			/*
 			Scoreboard^ puntajes = gcnew Scoreboard();
 
 			if (estado == 'W')
@@ -113,6 +114,7 @@ namespace TrabajoFinal {
 				puntajes->setModo('L');
 			}
 			puntajes->Show();
+			*/
 		}
 
 		void mostrarTiempoRestante(Graphics^ gr, int tiempoTotal, int tiempoActual)
