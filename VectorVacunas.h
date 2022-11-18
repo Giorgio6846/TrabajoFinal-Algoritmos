@@ -23,16 +23,21 @@ public:
 
 	int getN() { return arrVacunas->size(); }
 
+	void setCombo(int combo) { this->combo = combo; }
+	int getCombo() { return this->combo; }
+
 	void vacunaUsada(int pos) { arrVacunas->at(pos)->setEstaGastada(); }
 private:
 	vector<Vacuna*>* arrVacunas;
 	int vacunasUsadas;
+	int combo;
 };
 
 VectorVacunas::VectorVacunas()
 {
 	arrVacunas = new vector <Vacuna*>();
 	vacunasUsadas = 0;
+	combo = 0;
 }
 
 VectorVacunas::~VectorVacunas()
@@ -54,6 +59,10 @@ void VectorVacunas::eliminar()
 	{
 		if ((arrVacunas->at(i)->getContador() >= 5 || arrVacunas->at(i)->getEstaGastada()) || arrVacunas->at(i)->getRectangle(arrVacunas->at(i)->getX(), arrVacunas->at(i)->getY()).IntersectsWith(arrVacunas->at(i)->getRectangleAreaUsable()) == 0)
 		{
+			if (arrVacunas->at(i)->getRectangle(arrVacunas->at(i)->getX(), arrVacunas->at(i)->getY()).IntersectsWith(arrVacunas->at(i)->getRectangleAreaUsable()) == 0)
+			{
+				combo = 0;
+			}
 			arrVacunas->erase(arrVacunas->begin() + i);
 		}
 	}
