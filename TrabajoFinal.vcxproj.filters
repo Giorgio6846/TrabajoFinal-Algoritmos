@@ -80,6 +80,9 @@
     <ClInclude Include="Scoreboard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="HUD.h">
+      <Filter>Objetos Juego</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Recursos\Bebes.png">

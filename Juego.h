@@ -8,6 +8,7 @@
 #include "VectorOshawott.h"
 #include "Shop.h"
 #include "Aliado.h"
+#include "HUD.h"
 
 #include "Scoreboard.h"
 
@@ -57,6 +58,8 @@ namespace TrabajoFinal {
 			aliada3 = new Aliadas();
 
 			shop = new Shop();
+
+			interfaz = new HUD();
 
 			//ImagenesJuego
 			jugadorImg = gcnew Bitmap("Recursos/Imagenes\\Doctor.png");
@@ -116,40 +119,6 @@ namespace TrabajoFinal {
 			puntajes->Show();
 		}
 
-		void mostrarTiempoRestante(Graphics^ gr, int tiempoTotal, int tiempoActual)
-		{
-			int* angFinal = new int;
-			int* posHUDX = new int(1098);
-			int* posHUDY = new int(15);
-
-			Pen^ pen = gcnew Pen(Color::White, 3);
-			
-			Rectangle ImagenTransformada = Rectangle(*posHUDX, *posHUDY,50, 50);
-
-			*angFinal = (tiempoActual * 360) / tiempoTotal;
-
-			if (*angFinal <= 90) { gr->DrawArc(pen, ImagenTransformada, 270, *angFinal); }
-			if (*angFinal > 90)
-			{
-				gr->DrawArc(pen, ImagenTransformada, 270, 90);
-				gr->DrawArc(pen, ImagenTransformada, 0, *angFinal - 90);
-			}
-
-			System::Drawing::Font^ tipoLetra = gcnew System::Drawing::Font("Arial Black", 12);
-			SolidBrush^ pincel = gcnew SolidBrush(Color::White);
-			if ((tiempoTotal - tiempoActual) <=180 && (tiempoTotal - tiempoActual) >= 100) {
-				gr->DrawString(Convert::ToString(tiempoTotal - tiempoActual), tipoLetra, pincel, *posHUDX + 5, *posHUDY + 13);
-			}
-			if ((tiempoTotal - tiempoActual) <= 99 && (tiempoTotal - tiempoActual) >= 10) {
-				gr->DrawString(Convert::ToString(tiempoTotal - tiempoActual), tipoLetra, pincel, *posHUDX + 11, *posHUDY + 13);
-			}
-			if ((tiempoTotal - tiempoActual) <= 9){
-			gr->DrawString(Convert::ToString(tiempoTotal - tiempoActual), tipoLetra, pincel, *posHUDX+16, *posHUDY+13);
-			}
-
-			delete angFinal;
-		}
-
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -169,6 +138,8 @@ namespace TrabajoFinal {
 			delete vectCoins;
 			delete coinImg;
 			delete coinImgHUD;
+
+			delete interfaz; 
 
 			//Datos Tienda
 			delete player;
@@ -227,6 +198,8 @@ namespace TrabajoFinal {
 		Bitmap^ less30MBabyImg;
 		Bitmap^ more30MBabyImg;
 		VectorBebes* vectBebes;
+
+		HUD * interfaz;
 
 		//Datos Monedas
 		Coin* coin;
@@ -503,19 +476,19 @@ private: System::Windows::Forms::Label^ label_Timer;
 				shop->mostrar(bg->Graphics, Vendedor1Shop, coinImgHUD, vacunasHUD, player, jugador->getDinero(), jugador->getMunicion());
 				break;
 
-
 			default:
 				break;
 			}
 		}
 		else
 		{
-			jugador->mostrarDinero(bg->Graphics, coinImgHUD);
-			jugador->mostrarVacunas(bg->Graphics, vacunasHUD);
-			vectBebes->mostrarVacunados(bg->Graphics, vacunadoHUD, dificultad);
+			interfaz->mostrarDinero(bg->Graphics, coinImgHUD, jugador->getDinero());
+			interfaz->mostrarVacunas(bg->Graphics, vacunasHUD, jugador->getMunicion());
+			interfaz->mostrarTiempoRestante(bg->Graphics, tiempoRestante, tiempoJuego);
+			interfaz->mostrarVacunados(bg->Graphics, vacunadoHUD, dificultad, vectBebes->getBebesVacunados());
+
 			if (aliadaAtaque->getEtapas() == 'C') { aliadaAtaque->mostrarTiempoCooldown(bg->Graphics, 5, aliadaAtaque->getContador(), AliadaRemImg, 980, 700); }
 			if (aliadaVelocidad->getEtapas() == 'C') { aliadaVelocidad->mostrarTiempoCooldown(bg->Graphics, 5, aliadaVelocidad->getContador(), AliadaRamImg, 1060, 700); }
-			mostrarTiempoRestante(bg->Graphics, tiempoRestante, tiempoJuego);
 		}
 
 		bg->Render(gr);

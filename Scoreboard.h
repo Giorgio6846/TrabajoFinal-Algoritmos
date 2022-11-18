@@ -7,6 +7,8 @@
 
 #include <vector>
 
+#include "VectorBebes.h"
+
 #define CantidadMaxima 10
 
 using namespace std;
@@ -52,6 +54,11 @@ namespace TrabajoFinal {
 	public:
 		Scoreboard(void)
 		{
+			vectBebes = new VectorBebes;
+
+			less30MBabyImg = gcnew Bitmap("Recursos/Imagenes\\Bebes.png");
+			more30MBabyImg = gcnew Bitmap("Recursos/Imagenes\\BigBabies.png");
+
 			arrDatos = new vector <datosPuestos*>;
 			modo = 'A';
 			modoEscritura = 'A';
@@ -275,6 +282,10 @@ namespace TrabajoFinal {
 		{
 			arrDatos->clear();
 
+			delete less30MBabyImg;
+			delete more30MBabyImg;
+			delete vectBebes;
+
 			if (components)
 			{
 				delete components;
@@ -285,6 +296,10 @@ namespace TrabajoFinal {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
+		Bitmap^ less30MBabyImg;
+		Bitmap^ more30MBabyImg;
+		VectorBebes* vectBebes;
+
 		char modo;
 		char modoEscritura;
 		char modoTecla;
@@ -295,6 +310,7 @@ namespace TrabajoFinal {
 		vector <datosPuestos*>* arrDatos;
 
 	private: System::Windows::Forms::Timer^ TiempoRespuesta;
+private: System::Windows::Forms::Timer^ TiempoBebe;
 	private: System::ComponentModel::IContainer^ components;
 
 
@@ -307,6 +323,7 @@ namespace TrabajoFinal {
 		{
 			this->components = (gcnew System::ComponentModel::Container());
 			this->TiempoRespuesta = (gcnew System::Windows::Forms::Timer(this->components));
+			this->TiempoBebe = (gcnew System::Windows::Forms::Timer(this->components));
 			this->SuspendLayout();
 			// 
 			// TiempoRespuesta
@@ -314,6 +331,10 @@ namespace TrabajoFinal {
 			this->TiempoRespuesta->Enabled = true;
 			this->TiempoRespuesta->Interval = 500;
 			this->TiempoRespuesta->Tick += gcnew System::EventHandler(this, &Scoreboard::TiempoRespuesta_Tick);
+			// 
+			// TiempoBebe
+			// 
+			this->TiempoBebe->Tick += gcnew System::EventHandler(this, &Scoreboard::TiempoBebe_Tick);
 			// 
 			// Scoreboard
 			// 
@@ -445,6 +466,9 @@ namespace TrabajoFinal {
 					bg->Graphics->DrawString(Convert::ToString(i + 1) + ".  " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 450, 200 + i * 40);
 				}
 			}
+			vectBebes->mostrar(bg->Graphics, less30MBabyImg, more30MBabyImg);
+			vectBebes->mover();
+			vectBebes->eliminar();
 			break;
 		case 'L':
 			for (int i = 0; i < arrDatos->size(); i++)
@@ -462,7 +486,6 @@ namespace TrabajoFinal {
 		default:
 			break;
 		}
-
 		
 		bg->Render(gr);
 		delete bc, bg, gr;
@@ -472,6 +495,13 @@ namespace TrabajoFinal {
 		{
 			escrituraDatos();
 			modoEscritura = 'G';
+		}
+	}
+	private: System::Void TiempoBebe_Tick(System::Object^ sender, System::EventArgs^ e) {
+		if (modo == 'W')
+		{
+			vectBebes->agregar();
+			vectBebes->agregarMesVida();
 		}
 	}
 };

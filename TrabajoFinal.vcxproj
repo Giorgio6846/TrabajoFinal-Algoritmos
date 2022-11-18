@@ -135,6 +135,7 @@
     <ClInclude Include="Dificultad.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="HUD.h" />
     <ClInclude Include="Instrucciones.h">
       <FileType>CppForm</FileType>
     </ClInclude>
