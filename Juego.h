@@ -743,6 +743,23 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		break;
 	}
 
+	if (1)
+	{
+		juegoTerminado = 1;
+		TiempoRespuesta->Enabled = false;
+		TiempoSegundos->Enabled = false;
+		ContadorBebes->Enabled = false;
+		ContadorMonedas->Enabled = false;
+		TiempoHabilidades->Enabled = false;
+
+		Scoreboard^ scoreboard = gcnew Scoreboard();
+		scoreboard->Show();
+		scoreboard->setModo('W');
+		scoreboard->setPuntaje(tiempoJuego, dificultad);
+	}
+
+	/*
+
 	if ((vectBebes->getBebesVacunados() * 100) / 30 >= 95)
 	{
 		juegoTerminado = 1;
@@ -771,6 +788,8 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		scoreboard->setModo('L');
 		scoreboard->setPuntaje(tiempoJuego, dificultad);
 	}
+
+	*/
 
 	/*
 	if (temporizador == 120 && vectBebes->getPorcentaje() >= 5)
