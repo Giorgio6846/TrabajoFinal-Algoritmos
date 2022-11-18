@@ -52,8 +52,8 @@ public:
 
 	void mostrarVacunas(Graphics^ gr, Bitmap^ Vacuna)
 	{
-		int* posXHUD = new int(960);
-		int* posYHUD = new int(300);
+		int* posXHUD = new int(975);
+		int* posYHUD = new int(110);
 
 		Font^ myFont = gcnew Font("Times new Roman", 35);
 
@@ -61,23 +61,23 @@ public:
 		Rectangle ImagenTransformada = Rectangle(*posXHUD, *posYHUD, Vacuna->Size.Width * 0.6, Vacuna->Size.Height * 0.6);
 
 		gr->DrawImage(Vacuna, ImagenTransformada, Imagen, GraphicsUnit::Pixel);
-		gr->DrawString(Convert::ToString(municion), myFont, Brushes::White, *posXHUD + 50, *posYHUD);
+		gr->DrawString(Convert::ToString(municion), myFont, Brushes::White, *posXHUD + 30, *posYHUD+5);
 
 		delete posYHUD, posXHUD;
 	}
 
 	void mostrarDinero(Graphics^ gr,Bitmap ^ Coin)
 	{
-		int *posXHUD = new int(960);
-		int *posYHUD = new int(100);
+		int *posXHUD = new int(975);
+		int *posYHUD = new int(20);
 
-		Font^ myFont = gcnew Font("Times new Roman", 35);
+		Font^ myFont = gcnew Font("Times new Roman", 30);
 		
 		Rectangle Imagen = Rectangle(0, 0, Coin->Size.Width, Coin->Size.Height);
-		Rectangle ImagenTransformada = Rectangle(*posXHUD, *posYHUD, Coin->Size.Width * 0.2, Coin->Size.Height * 0.2);
+		Rectangle ImagenTransformada = Rectangle(*posXHUD, *posYHUD, Coin->Size.Width * 0.18, Coin->Size.Height * 0.18);
 
 		gr->DrawImage(Coin, ImagenTransformada, Imagen, GraphicsUnit::Pixel);
-		gr->DrawString(Convert::ToString(dinero), myFont, Brushes::White, *posXHUD + 50, *posYHUD);
+		gr->DrawString(Convert::ToString(dinero), myFont, Brushes::White, *posXHUD + 45, *posYHUD-3);
 
 		delete posYHUD, posXHUD;
 	}

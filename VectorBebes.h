@@ -88,8 +88,8 @@ void VectorBebes::mostrar(Graphics^ gr, Bitmap^ imagenMenor30, Bitmap^ imagenMay
 void VectorBebes:: mostrarVacunados(Graphics^ gr, Bitmap^ Vacunados, char dificultad)
 {
 	int* porcentaje = new int;
-	int* posXHUD = new int(960);
-	int* posYHUD = new int(400);
+	int* posXHUD = new int(975);
+	int* posYHUD = new int(230);
 	int* totalBebes = new int;
 
 	switch (dificultad)
@@ -110,7 +110,7 @@ void VectorBebes:: mostrarVacunados(Graphics^ gr, Bitmap^ Vacunados, char dificu
 	Rectangle ImagenTransformada = Rectangle(*posXHUD, *posYHUD, Vacunados->Size.Width * 0.6, Vacunados->Size.Height * 0.6);
 
 	gr->DrawImage(Vacunados, ImagenTransformada, Imagen, GraphicsUnit::Pixel);
-	gr->DrawString(Convert::ToString(*porcentaje) + "%", myFont, Brushes::White, *posXHUD + 50, *posYHUD);
+	gr->DrawString(Convert::ToString(*porcentaje) + "%", myFont, Brushes::White, *posXHUD + 30, *posYHUD + 5);
 
 	delete posYHUD, posXHUD;
 }
