@@ -621,7 +621,7 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->ContadorBebes->Interval = 1300;
 		this->ContadorMonedas->Interval = 1600;
 		this->TiempoHabilidades->Interval = 1000;
-		this->tiempoRestante = 30;
+		this->tiempoRestante = 180;
 		this->jugador->setMunicion(15);
 		shop->setCantidadVacunas(10);
 		shop->setCostoVacunas(5);
@@ -748,22 +748,6 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		break;
 	}
 
-	if (1)
-	{
-		juegoTerminado = 1;
-		TiempoRespuesta->Enabled = false;
-		TiempoSegundos->Enabled = false;
-		ContadorBebes->Enabled = false;
-		ContadorMonedas->Enabled = false;
-		TiempoHabilidades->Enabled = false;
-
-		Scoreboard^ scoreboard = gcnew Scoreboard();
-		scoreboard->Show();
-		scoreboard->setModo('W');
-		scoreboard->setPuntaje(tiempoJuego, dificultad);
-	}
-
-	/*
 
 	if ((vectBebes->getBebesVacunados() * 100) / 30 >= 95)
 	{
@@ -775,9 +759,10 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		TiempoHabilidades->Enabled = false;
 
 		Scoreboard^ scoreboard = gcnew Scoreboard();
-		scoreboard->Show();
 		scoreboard->setModo('W');
 		scoreboard->setPuntaje(tiempoJuego, dificultad);
+		scoreboard->Show();
+
 	}
 	else if (tiempoJuego == tiempoRestante)
 	{
@@ -789,12 +774,10 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		TiempoHabilidades->Enabled = false;
 
 		Scoreboard^ scoreboard = gcnew Scoreboard();
-		scoreboard->Show();
 		scoreboard->setModo('L');
-		scoreboard->setPuntaje(tiempoJuego, dificultad);
+		scoreboard->Show();
 	}
 
-	*/
 
 	/*
 	if (temporizador == 120 && vectBebes->getPorcentaje() >= 5)

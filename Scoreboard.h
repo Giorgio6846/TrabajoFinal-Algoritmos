@@ -5,20 +5,32 @@
 #include <iostream>
 #include <string>
 
+#include <vector>
+
 using namespace std;
 
 /*
-Modo:
-V = Es para ver el scoreboard del juego, este permite ver de las dos dificultades
-W = Muestra el scoreboard de la dificultad selecionada y te permite poner tu nombre
-F = Ya ha ingresado el nombre del usuario
-L = Muestra el scoreboard de la dificultad selecionada
+Modos:
+V = Este modo funciona para visualizar los anteriores puntajes realizados
+W = Este modo funciona para cuando el jugador ha ganado la partida este permite que se pueda escribir su nombre en la tabla de ganadores
+L = Este modo funciona cuando el jugador ha perdido la partida
 
 modoEscritura:
-M = Mueve las posiciones para abajo
-I = Muestra el mensaje de felicidades
-F = Continua con el mensaje de escritura
+S = Este permite que el jugador escriba su nombre en la lista y ya se inserto su tiempo en la lista 
+N = Este no permite al jugador escribir su nombre en la lista
+F = El jugador ya escribio su nombre en la lista
+
+modoTecla:
+U = La tecla presionada ha sido la tecla direccional Arriba
+D = La tecla presionada ha sido la tecla direccional Abajo
+E = La tecla presionada ha sido la tecla Enter
+
 */
+
+struct datosPuestos {
+	char nombre[4];
+	int tiempoRealizado;
+}datosJugador, datos;
 
 namespace TrabajoFinal {
 
@@ -28,8 +40,6 @@ namespace TrabajoFinal {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	using namespace System::Drawing::Text;
-	using namespace System::Text;
 
 	/// <summary>
 	/// Summary for Scoreboard
@@ -39,52 +49,86 @@ namespace TrabajoFinal {
 	public:
 		Scoreboard(void)
 		{
-			tiempo = 0;
-			dificultad = 'F';
-
+			arrDatos = new vector <datosPuestos*>;
 			modo = 'A';
-
-			modoEscritura = 'I';
-
+			modoEscritura = 'A';
+			dificultad = 'F';
+			modoTecla = 'A';
+			posJugador = 0;
 			posChar = 0;
+			posLetra = 'A';
 
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
-			//
+			//;
+			lecturaDatos();
 		}
 
-		void setModo(char modo) { this->modo = modo; }
 		void setPuntaje(int tiempo, char dificultad)
 		{
-			this->tiempo = tiempo;
 			this->dificultad = dificultad;
+			datosJugador.tiempoRealizado = tiempo;
+			verificacionJugadorGanador();
 		}
 
-		void lecturaPuntajes(Graphics^ gr)
+		void setModo(char modo)
+		{
+			this->modo = modo;
+		}
+
+		void alternarDificultad(char direccion)
+		{
+			if (direccion == 'L')
+			{
+				switch (dificultad)
+				{
+				case 'F':
+					dificultad = 'D';
+					break;
+				case 'M':
+					dificultad = 'F';
+					break;
+				case 'D':
+					dificultad = 'M';
+					break;
+				default:
+					break;
+				}
+			}
+			if (direccion == 'R')
+			{
+				switch (dificultad)
+				{
+				case 'F':
+					dificultad = 'M';
+					break;
+				case 'M':
+					dificultad = 'D';
+					break;
+				case 'D':
+					dificultad = 'F';
+					break;
+				default:
+					break;
+				}
+			}
+		}
+
+		void lecturaDatos()
 		{
 			ifstream lecturaScoreboard;
-			ofstream escrituraScoreboard;
-
-			char nombreJugador[3];
-			int tiempoJugador;
-
-			System::Drawing::Font^ MessageScreen = gcnew System::Drawing::Font("Small Fonts", 13);
-			SolidBrush^ MessageScreenColor = gcnew SolidBrush(Color::White);
-
-			System::Drawing::Font^ Body = gcnew System::Drawing::Font("Small Fonts", 13);
-			SolidBrush^ BodyColor = gcnew SolidBrush(Color::White);
 
 			switch (dificultad)
 			{
 			case 'F':
-				lecturaScoreboard.open("Recursos/Texto\\ScoreboardF.lvdf", ios::in);
+				lecturaScoreboard.open("Recursos/Texto\\ScoreboardF.lvdf", ios::in | ios::binary);
 				break;
 			case 'M':
-				lecturaScoreboard.open("Recursos/Texto\\ScoreboardM.lvdf", ios::in);
+				lecturaScoreboard.open("Recursos/Texto\\ScoreboardM.lvdf", ios::in | ios::binary);
 				break;
 			case 'D':
-				lecturaScoreboard.open("Recursos/Texto\\ScoreboardD.lvdf", ios::in);
+				lecturaScoreboard.open("Recursos/Texto\\ScoreboardD.lvdf", ios::in | ios::binary);
 				break;
 			default:
 				break;
@@ -92,114 +136,83 @@ namespace TrabajoFinal {
 
 			if (lecturaScoreboard.is_open())
 			{
-				for (int i = 0; lecturaScoreboard.eof() == 0; i++)
+				for (int i = 0; i < 15; i++)
 				{
-					lecturaScoreboard >> nombreJugador >> tiempoJugador;
-					if (tiempo << tiempoJugador && (modo == 'W' && modoEscritura == 'M'))
-					{
-						gr->DrawString("Felicidades ha conseguido llegar a la lista de puntajes", MessageScreen, MessageScreenColor, 200, 200);
-						if (dificultad == 'F') { escrituraScoreboard.open("Recursos/Texto\\ScoreboardF.lvdf", ios::out); }
-						if (dificultad == 'M') { escrituraScoreboard.open("Recursos/Texto\\ScoreboardM.lvdf", ios::out); }
-						if (dificultad == 'D') { escrituraScoreboard.open("Recursos/Texto\\ScoreboardD.lvdf", ios::out); }
-
-						for (int j = 14;  j >= i ;  j--)
-						{
-
-						}
-					}
-					else if (modoEscritura == 'I')
-					{
-						escrituraPuntajeNuevo(gr, i);
-					}
-
-
-					if (i <= 9)
-					{
-						gr->DrawString(Convert::ToString(i + 1) + "   " + Convert::ToString(Convert::ToChar(nombreJugador[0])) + Convert::ToString(Convert::ToChar(nombreJugador[0])) + Convert::ToString(Convert::ToChar(nombreJugador[0])) + "  " + Convert::ToString(tiempoJugador), Body, BodyColor, 200, 200 + i * 30);
-					}
-					if (i >= 10)
-					{
-						gr->DrawString(Convert::ToString(i + 1) + "  " + Convert::ToString(Convert::ToChar(nombreJugador[0])) + Convert::ToString(Convert::ToChar(nombreJugador[0])) + Convert::ToString(Convert::ToChar(nombreJugador[0])) + "  " + Convert::ToString(tiempoJugador), Body, BodyColor, 200, 200 + i * 30);
-					}
-
+					lecturaScoreboard.seekg(0 * sizeof(datos), ios::beg);
+					lecturaScoreboard.read((char*)&datos, sizeof(datosPuestos));
+					arrDatos->push_back(&datos);
 				}
+				lecturaScoreboard.close();
 			}
-			lecturaScoreboard.close();
 		}
 
-		void escrituraPuntajeNuevo(Graphics^ gr, int pos)
+		void verificacionJugadorGanador()
+		{
+			for (int i = 2; i < arrDatos->size(); i++)
+			{
+				if (datosJugador.tiempoRealizado < (arrDatos->at(i)->tiempoRealizado))
+				{
+					arrDatos->insert(arrDatos->begin() + i, &datosJugador);
+					modoEscritura = 'S';
+					posJugador = i;
+				}
+				else
+				{
+					modoEscritura = 'N';
+				}
+			}
+		}
+
+		void escrituraDatos()
 		{
 			ofstream escrituraScoreboard;
-			char nombreJugador[3];
-			int posChar = 0;
-			char charLetra;
-
-			System::Drawing::Font^ MessageScreen = gcnew System::Drawing::Font("Small Fonts", 13);
-			SolidBrush^ MessageScreenColor = gcnew SolidBrush(Color::White);
-
-			System::Drawing::Font^ Body = gcnew System::Drawing::Font("Small Fonts", 13);
-			SolidBrush^ BodyColor = gcnew SolidBrush(Color::White);
 
 			switch (dificultad)
 			{
 			case 'F':
-				escrituraScoreboard.open("ScoreboardF.lvdf", ios::out);
+				escrituraScoreboard.open("Recursos/Texto\\ScoreboardF.lvdf", ios::out | ios::binary);
 				break;
 			case 'M':
-				escrituraScoreboard.open("ScoreboardM.lvdf", ios::out);
+				escrituraScoreboard.open("Recursos/Texto\\ScoreboardM.lvdf", ios::out | ios::binary);
 				break;
 			case 'D':
-				escrituraScoreboard.open("ScoreboardD.lvdf", ios::out);
+				escrituraScoreboard.open("Recursos/Texto\\ScoreboardD.lvdf", ios::out | ios::binary);
 				break;
 			default:
 				break;
 			}
-			
-			if (posChar <= 2 && tecla == 'U')
+
+			for (int i = 0; i < 15; i++)
 			{
-				charLetra = char(int(charLetra) + 1);
-				if (int(charLetra) > 90)
-				{
-					charLetra = char(65);
-				}
+				escrituraScoreboard.write((const char*)&arrDatos->at(i), sizeof(datosPuestos));
 			}
-			else if (posChar <= 2 && tecla == 'D')
-			{
-				charLetra = char(int(charLetra) - 1);
-				if (int(charLetra) < 65)
-				{
-					charLetra = char(90);
-				}
-			}
+		}
+
+		void escrituraNombre()
+		{
+			if (modoTecla == 'E') posChar = posChar + 1;
+			else if (modoTecla == 'U') posLetra = char(int(posLetra) + 1);
+			else if (modoTecla == 'D') posLetra = char(int(posLetra) - 1);
+
+			if (int(posLetra) == 64) posLetra = char(90);
+			if (int(posLetra) == 91) posLetra = char(65);
 
 			switch (posChar)
 			{
 			case 0:
-				nombreJugador[0] = charLetra;
+				arrDatos->at(posJugador)->nombre[0] = posLetra;
 				break;
 			case 1:
-				nombreJugador[1] = charLetra;
+				arrDatos->at(posJugador)->nombre[1] = posLetra;
 				break;
 			case 2:
-				nombreJugador[2] = charLetra;
+				arrDatos->at(posJugador)->nombre[2] = posLetra;
 				break;
+
 			default:
 				break;
 			}
-
-			if (pos <= 9)
-			{
-				gr->DrawString(Convert::ToString(pos) + "   " + Convert::ToString(Convert::ToChar(nombreJugador[0])) + Convert::ToString(Convert::ToChar(nombreJugador[0])) + Convert::ToString(Convert::ToChar(nombreJugador[0])) + "  " + Convert::ToString(tiempo), Body, BodyColor, 200, 200 + pos * 30);
-			}
-			if (pos >= 10)
-			{
-				gr->DrawString(Convert::ToString(pos) + "  " + Convert::ToString(Convert::ToChar(nombreJugador[0])) + Convert::ToString(Convert::ToChar(nombreJugador[0])) + Convert::ToString(Convert::ToChar(nombreJugador[0])) + "  " + Convert::ToString(tiempo), Body, BodyColor, 200, 200 + pos * 30);
-			}
-
-			escrituraScoreboard.close();
 		}
-
-
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -217,17 +230,15 @@ namespace TrabajoFinal {
 		/// Required designer variable.
 		/// </summary>
 		char modo;
-		int tiempo;
-		char dificultad;
-		bool puntajeEscrito;
 		char modoEscritura;
-
+		char modoTecla;
+		char dificultad;
+		int posJugador;
 		int posChar;
-
-		char tecla;
+		char posLetra;
+		vector <datosPuestos*>* arrDatos;
 
 	private: System::Windows::Forms::Timer^ TiempoRespuesta;
-
 	private: System::ComponentModel::IContainer^ components;
 
 
@@ -245,7 +256,6 @@ namespace TrabajoFinal {
 			// TiempoRespuesta
 			// 
 			this->TiempoRespuesta->Enabled = true;
-			this->TiempoRespuesta->Interval = 100;
 			this->TiempoRespuesta->Tick += gcnew System::EventHandler(this, &Scoreboard::TiempoRespuesta_Tick);
 			// 
 			// Scoreboard
@@ -261,6 +271,35 @@ namespace TrabajoFinal {
 
 		}
 #pragma endregion
+	private: System::Void Scoreboard_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
+		switch (e->KeyCode)
+		{
+		case Keys::Left:
+			if (modo == 'V')
+			{
+				alternarDificultad('L');
+			}
+			break;
+		case Keys::Right:
+			if (modo == 'V')
+			{
+				alternarDificultad('R');
+			}
+			break;
+		case Keys::Up:
+			if(modo == 'S') modoTecla = 'U';
+			break;
+		case Keys::Down:
+			if(modo == 'S') modoTecla = 'D';
+			break;
+		case Keys::Enter:
+			if(modo == 'S') modoTecla = 'E';
+			break;
+
+		default:
+			break;
+		}
+	}
 	private: System::Void TiempoRespuesta_Tick(System::Object^ sender, System::EventArgs^ e) {
 		Graphics^ gr = this->CreateGraphics();
 		BufferedGraphicsContext^ bc = BufferedGraphicsManager::Current;
@@ -277,7 +316,13 @@ namespace TrabajoFinal {
 			bg->Graphics->DrawString("Scoreboard", Title, TitleColor, 100, 100);
 			break;
 		case 'W':
-			gr->DrawString("YOU WIN", Title, TitleColor, 100, 100);
+			bg->Graphics->DrawString("YOU WIN", Title, TitleColor, 100, 100);
+			if (modoEscritura == 'S')
+			{
+				("Felicidades ha conseguido tiempo record. INSERTE SU NOMBRE", Title, TitleColor, 100, 150);
+				escrituraNombre();
+			}
+			if (posChar == 3) modoEscritura = 'F';
 			break;
 		case 'L':
 			bg->Graphics->DrawString("YOU LOSE", Title, TitleColor, 100, 100);
@@ -285,83 +330,30 @@ namespace TrabajoFinal {
 		default:
 			break;
 		}
-		lecturaPuntajes(gr);
+		
+		System::Drawing::Font^ MessageScreen = gcnew System::Drawing::Font("Small Fonts", 13);
+		SolidBrush^ MessageScreenColor = gcnew SolidBrush(Color::White);
+
+		System::Drawing::Font^ Body = gcnew System::Drawing::Font("Small Fonts", 13);
+		SolidBrush^ BodyColor = gcnew SolidBrush(Color::White);
+
+		for (int i = 0; i < 15; i++)
+		{
+			if (i + 1 <= 9)
+			{
+				bg->Graphics->DrawString(Convert::ToString(i + 1) + "   " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 200, 200 + i * 30);
+			}
+			if (i + 1 >= 10)
+			{
+				bg->Graphics->DrawString(Convert::ToString(i + 1) + "  " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 200, 200 + i * 30);
+			}
+		}
 
 		bg->Render(gr);
-		delete gr, bg, bc;
-	}
-
-	private: System::Void Scoreboard_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
-		switch (e->KeyCode)
-		{
-		case Keys::Up:
-			if (modoEscritura)
-			{
-				tecla = 'U';
-			}
-			break;
-		case Keys::Down:
-			if (modoEscritura)
-			{
-				tecla = 'D';
-			}
-			break;
-		case Keys::Left:
-			if (modo == 'V')
-			{
-				switch (dificultad)
-				{
-				case 'F':
-					dificultad = 'D';
-					break;
-				case 'M':
-					dificultad = 'F';
-					break;
-				case 'D':
-					dificultad = 'M';
-					break;
-				default:
-					break;
-				}
-			}
-			break;
-		case Keys::Right:
-			if (modo == 'V')
-			{
-				switch (dificultad)
-				{
-				case 'F':
-					dificultad = 'M';
-					break;
-				case 'M':
-					dificultad = 'D';
-					break;
-				case 'D':
-					dificultad = 'F';
-					break;
-				}
-			}
-			break;
-		case Keys::Enter:
-			if (modoEscritura)
-			{
-				if (tecla == 'E')
-				{
-					posChar = posChar + 1;
-				}
-				if (posChar == 3)
-				{
-					modo = 'F';
-				}
-			}
-			break;
-
-		default:
-			break;
-		}
+		delete bc, bg, gr;
 	}
 	private: System::Void Scoreboard_Load(System::Object^ sender, System::EventArgs^ e) {
-		
 	}
 };
 }
+
