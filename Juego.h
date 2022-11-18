@@ -748,7 +748,7 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 
 	if ((vectBebes->getBebesVacunados() * 100) / 30 >= 5)
 	{
-		finalizacionJuego('W');
+		finalizacionJuego('L');
 	}
 	else if (tiempoJuego == tiempoRestante)
 	{

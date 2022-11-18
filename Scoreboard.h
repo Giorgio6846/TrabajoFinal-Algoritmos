@@ -159,34 +159,6 @@ namespace TrabajoFinal {
 
 			}
 			lecturaScoreboard.close();
-
-			/*
-			switch (dificultad)
-			{
-			case 'F':
-				lecturaScoreboard.open("Recursos/Texto\\ScoreboardF.lvdf", ios::in | ios::binary);
-				break;
-			case 'M':
-				lecturaScoreboard.open("Recursos/Texto\\ScoreboardM.lvdf", ios::in | ios::binary);
-				break;
-			case 'D':
-				lecturaScoreboard.open("Recursos/Texto\\ScoreboardD.lvdf", ios::in | ios::binary);
-				break;
-			default:
-				break;
-			}
-			
-			if (lecturaScoreboard.is_open())
-			{
-				for (int i = 0; i < 15; i++)
-				{
-					lecturaScoreboard.seekg(0 * sizeof(datosLectura), ios::beg);
-					lecturaScoreboard.read((char*)&datosLectura, sizeof(datosPuestos));
-					arrDatos->push_back(&datosLectura);
-				}
-				lecturaScoreboard.close();
-			}
-			*/
 		}
 
 		char verificacionJugadorGanador()
@@ -251,40 +223,6 @@ namespace TrabajoFinal {
 
 			}
 			escrituraScoreboard.close();
-
-			/*
-			int tiempoTemporal;
-			char nombreTemporal[4];
-
-			switch (dificultad)
-			{
-			case 'F':
-				escrituraScoreboard.open("Recursos/Texto\\ScoreboardF.lvdf", ios::out | ios::binary);
-				break;
-			case 'M':
-				escrituraScoreboard.open("Recursos/Texto\\ScoreboardM.lvdf", ios::out | ios::binary);
-				break;
-			case 'D':
-				escrituraScoreboard.open("Recursos/Texto\\ScoreboardD.lvdf", ios::out | ios::binary);
-				break;
-			default:
-				break;
-			}
-			
-			for (int i = 0; i < 15; i++)
-			{
-				datosEscritura.tiempoRealizado = arrDatos->at(i)->tiempoRealizado;
-				datosEscritura.nombre[1] = arrDatos->at(i)->nombre[1];
-				datosEscritura.nombre[2] = arrDatos->at(i)->nombre[2];
-				datosEscritura.nombre[3] = arrDatos->at(i)->nombre[3];
-				datosEscritura.nombre[4] = arrDatos->at(i)->nombre[4];
-
-				escrituraScoreboard.write((const char*)&datosEscritura.nombre, sizeof(datosPuestos));
-				escrituraScoreboard.write((const char*)&datosEscritura.tiempoRealizado, sizeof(datosPuestos));
-				
-			}
-			escrituraScoreboard.close();
-			*/
 		}
 
 		char escrituraNombre()
