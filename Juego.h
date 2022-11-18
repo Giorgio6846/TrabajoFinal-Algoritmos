@@ -95,8 +95,8 @@ namespace TrabajoFinal {
 		void mostrarTiempoRestante(Graphics^ gr, int tiempoTotal, int tiempoActual)
 		{
 			int* angFinal = new int;
-			int* posHUDX = new int(970);
-			int* posHUDY = new int(25);
+			int* posHUDX = new int(1098);
+			int* posHUDY = new int(15);
 
 			Pen^ pen = gcnew Pen(Color::White, 3);
 			
@@ -111,12 +111,17 @@ namespace TrabajoFinal {
 				gr->DrawArc(pen, ImagenTransformada, 0, *angFinal - 90);
 			}
 
-			System::Drawing::Font^ tipoLetra = gcnew System::Drawing::Font("Arial Black", 13);
+			System::Drawing::Font^ tipoLetra = gcnew System::Drawing::Font("Arial Black", 12);
 			SolidBrush^ pincel = gcnew SolidBrush(Color::White);
-
-
-			gr->DrawString(Convert::ToString(tiempoTotal - tiempoActual), tipoLetra, pincel, 980, 37);
-
+			if ((tiempoTotal - tiempoActual) <=180 && (tiempoTotal - tiempoActual) >= 100) {
+				gr->DrawString(Convert::ToString(tiempoTotal - tiempoActual), tipoLetra, pincel, *posHUDX + 5, *posHUDY + 13);
+			}
+			if ((tiempoTotal - tiempoActual) <= 99 && (tiempoTotal - tiempoActual) >= 10) {
+				gr->DrawString(Convert::ToString(tiempoTotal - tiempoActual), tipoLetra, pincel, *posHUDX + 11, *posHUDY + 13);
+			}
+			if ((tiempoTotal - tiempoActual) <= 9){
+			gr->DrawString(Convert::ToString(tiempoTotal - tiempoActual), tipoLetra, pincel, *posHUDX+16, *posHUDY+13);
+			}
 
 			delete angFinal;
 		}
@@ -325,7 +330,7 @@ private: System::Windows::Forms::Label^ label_Timer;
 		BufferedGraphicsContext^ bc = BufferedGraphicsManager::Current;
 		BufferedGraphics^ bg = bc->Allocate(gr, this->ClientRectangle);
 
-		bg->Graphics->Clear(Color::Black);
+		bg->Graphics->Clear(Color::LightSeaGreen);
 
 		//Background Juego
 
@@ -616,7 +621,7 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->ContadorBebes->Interval = 1300;
 		this->ContadorMonedas->Interval = 1600;
 		this->TiempoHabilidades->Interval = 1000;
-		this->tiempoRestante = 10;
+		this->tiempoRestante = 30;
 		this->jugador->setMunicion(15);
 		shop->setCantidadVacunas(10);
 		shop->setCostoVacunas(5);
