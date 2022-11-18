@@ -89,7 +89,7 @@ void VectorBebes:: mostrarVacunados(Graphics^ gr, Bitmap^ Vacunados, char dificu
 {
 	int* porcentaje = new int;
 	int* posXHUD = new int(975);
-	int* posYHUD = new int(240);
+	int* posYHUD = new int(230);
 	int* totalBebes = new int;
 
 	switch (dificultad)

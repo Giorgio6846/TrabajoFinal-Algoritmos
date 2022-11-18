@@ -53,7 +53,7 @@ public:
 	void mostrarVacunas(Graphics^ gr, Bitmap^ Vacuna)
 	{
 		int* posXHUD = new int(975);
-		int* posYHUD = new int(120);
+		int* posYHUD = new int(110);
 
 		Font^ myFont = gcnew Font("Times new Roman", 35);
 
