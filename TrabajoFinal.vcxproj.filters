@@ -41,7 +41,7 @@
     <ClInclude Include="MenuJuego.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Oshawott.h">
+    <ClInclude Include="Enemigo.h">
       <Filter>Personajes</Filter>
     </ClInclude>
     <ClInclude Include="Aliado.h">
@@ -59,7 +59,7 @@
     <ClInclude Include="VectorBebes.h">
       <Filter>Personajes</Filter>
     </ClInclude>
-    <ClInclude Include="VectorOshawott.h">
+    <ClInclude Include="VectorEnemigo.h">
       <Filter>Personajes</Filter>
     </ClInclude>
     <ClInclude Include="VectorVacunas.h">

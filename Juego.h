@@ -5,7 +5,7 @@
 #include "Coin.h"
 #include "VectorCoins.h"
 #include "VectorVacunas.h"
-#include "VectorOshawott.h"
+#include "VectorEnemigo.h"
 #include "Shop.h"
 #include "Aliado.h"
 #include "HUD.h"
@@ -51,7 +51,7 @@ namespace TrabajoFinal {
 
 			vectVacunas = new VectorVacunas();
 
-			vectEnemigos= new VectorOshawott();
+			vectEnemigos= new VectorEnemigo();
 
 			aliadaVelocidad = new Aliadas();
 			aliadaAtaque = new Aliadas();
@@ -78,7 +78,7 @@ namespace TrabajoFinal {
 			BackgroundMedio = gcnew Bitmap("Recursos/Imagenes\\BackgroundMedio.jpg");
 			BackgroundDificil = gcnew Bitmap("Recursos/Imagenes\\BackgroundDificil.png");
 
-			OshawottImg = gcnew Bitmap("Recursos/Imagenes\\Oshawott.png");
+			EnemigoImg = gcnew Bitmap("Recursos/Imagenes\\Enemigo.png");
 
 			Vendedor1Shop = gcnew Bitmap("Recursos/Imagenes\\Vendedor1Shop.png");
 			Vendedor2Shop = gcnew Bitmap("Recursos/Imagenes\\Vendedor2Shop.png");
@@ -174,7 +174,7 @@ namespace TrabajoFinal {
 				
 			//Imagen MamaAntivacuna
 			delete vectEnemigos;
-			delete OshawottImg;
+			delete EnemigoImg;
 
 			//Delete Tienda
 			delete Vendedor1Shop;
@@ -241,8 +241,8 @@ namespace TrabajoFinal {
 		Bitmap^ vacunadoHUD;
 
 		//Imagen MamaAntivacuna
-		VectorOshawott* vectEnemigos;
-		Bitmap^ OshawottImg;
+		VectorEnemigo* vectEnemigos;
+		Bitmap^ EnemigoImg;
 		
 		//Datos Aliadas
 		
@@ -375,7 +375,7 @@ private: System::Windows::Forms::Label^ label_Timer;
 		//Trazado
 		vectVacunas->mostrar(bg->Graphics, vacunasImg);
 		vectBebes->mostrar(bg->Graphics, less30MBabyImg, more30MBabyImg);
-		vectEnemigos->mostrar(bg->Graphics, OshawottImg);
+		vectEnemigos->mostrar(bg->Graphics, EnemigoImg);
 		jugador->mostrar(bg->Graphics, jugadorImg, 8, 9, 1.5, 1.5);
 		
 		if (aliadaVelocidad->getEtapas() == 'I' || aliadaVelocidad->getEtapas() == 'U') aliadaVelocidad->mostrar(bg->Graphics, AliadaRamImg, 4, 3, 1.5, 1.5);
@@ -384,7 +384,7 @@ private: System::Windows::Forms::Label^ label_Timer;
 
 		//Mecanicas Juego
 
-		vectEnemigos->agregarOshawott(dificultad);
+		vectEnemigos->agregarEnemigo(dificultad);
 				
 			//Movimiento Objetos
 			vectBebes->mover();

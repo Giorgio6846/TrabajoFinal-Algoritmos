@@ -143,7 +143,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Jugador.h" />
-    <ClInclude Include="Oshawott.h" />
+    <ClInclude Include="Enemigo.h" />
     <ClInclude Include="MenuJuego.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -154,7 +154,7 @@
     <ClInclude Include="Vacuna.h" />
     <ClInclude Include="VectorBebes.h" />
     <ClInclude Include="VectorCoins.h" />
-    <ClInclude Include="VectorOshawott.h" />
+    <ClInclude Include="VectorEnemigo.h" />
     <ClInclude Include="VectorVacunas.h" />
   </ItemGroup>
   <ItemGroup>

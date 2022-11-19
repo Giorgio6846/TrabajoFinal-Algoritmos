@@ -1,10 +1,10 @@
 #pragma once
 #include "Caracter.h"
 
-class Oshawott : public Caracter
+class Enemigo : public Caracter
 {
 public:
-	Oshawott(){
+	Enemigo(){
 		EntidadAreaIzqSupX = 0;
 		EntidadAreaIzqSupY = 235;
 		EntidadAreaDerInfX = 930;
@@ -63,7 +63,7 @@ public:
 
 
 
-	~Oshawott(){};
+	~Enemigo(){};
 
 private:
 
