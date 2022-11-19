@@ -625,9 +625,11 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		shop->setCantidadVacunas(5);
 		shop->setCostoVacunas(10);
 		vectBebes->setTotalBebes(30);
+		
 		aliadaAtaque->setContadorEtapaI(20);
 		aliadaAtaque->setContadorEtapaU(5);
 		aliadaAtaque->setContadorEtapaC(5);
+		
 		aliadaVelocidad->setContadorEtapaI(20);
 		aliadaVelocidad->setContadorEtapaU(5);
 		aliadaVelocidad->setContadorEtapaC(5);
@@ -636,19 +638,21 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		//Modifica el tiempo del juego dependiendo de la dificultad;
 		this->TiempoSegundos->Interval = 2000;
 		this->ContadorBebes->Interval = 1300;
-		this->ContadorMonedas->Interval = 1800;
+		this->ContadorMonedas->Interval = 1600;
 		this->TiempoHabilidades->Interval = 1000;
 		this->tiempoRestante = 180;
-		this->jugador->setMunicion(5);
+		this->jugador->setMunicion(10);
 		shop->setCantidadVacunas(5);
-		shop->setCostoVacunas(10);
-		vectBebes->setTotalBebes(30);
+		shop->setCostoVacunas(8);
+		vectBebes->setTotalBebes(50);
+		
 		aliadaAtaque->setContadorEtapaI(20);
 		aliadaAtaque->setContadorEtapaU(5);
-		aliadaAtaque->setContadorEtapaC(5);
+		aliadaAtaque->setContadorEtapaC(10);
+		
 		aliadaVelocidad->setContadorEtapaI(20);
 		aliadaVelocidad->setContadorEtapaU(5);
-		aliadaVelocidad->setContadorEtapaC(5);
+		aliadaVelocidad->setContadorEtapaC(10);
 		break;
 
 	default:
