@@ -48,11 +48,6 @@ private:
 	char etapas;
 	int contador;
 
-	int valorAceleracion;
-
-	int valorAceleracionAnteriorDX;
-	int valorAceleracionAnteriorDY;
-
 	int contadorEtapaL;
 	int contadorEtapaI;
 	int contadorEtapaU;
@@ -106,8 +101,8 @@ void Aliadas::inicio()
 
 void Aliadas::movimientoPosicionJugador(int jugadorX, int jugadorY)
 {
-	finishedWalkingX = x == jugadorX;
-	finishedWalkingY = y == jugadorY;
+	finishedWalkingX = (x == jugadorX);
+	finishedWalkingY = (y == jugadorY);
 
 	if (finishedWalkingX == 0 && finishedWalkingY == 0)
 	{
