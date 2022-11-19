@@ -62,24 +62,29 @@ void Shop::mostrar(Graphics^ gr, SoundPlayer^ player, Bitmap ^ tienda1, Bitmap ^
 
 void Shop :: mostrar(Graphics^ gr, Bitmap^ Vendedor, Bitmap ^ Moneda, Bitmap ^ Vacuna, SoundPlayer ^ player, int jugadorDinero, int jugadorVacunas)
 {
-	int* posXHUD = new int(960);
-	int* posYHUD = new int(500);
+	int* posXHUD = new int(975);
+	int* posYHUD = new int(60);
 
-	Font^ myFont = gcnew Font("Times new Roman", 35);
-
-	Rectangle ImagenVacuna = Rectangle(0, 0, Vacuna->Size.Width, Vacuna->Size.Height);
-	Rectangle ImagenVacunaTransformada = Rectangle(*posXHUD, *posYHUD, Vacuna->Size.Width * 0.6, Vacuna->Size.Height * 0.6);
+	Font^ myFont = gcnew Font("Times new Roman", 30);
+	Font^ myFont2 = gcnew Font("Times new Roman", 16);
 
 	Rectangle ImagenMoneda = Rectangle(0, 0, Moneda->Size.Width, Moneda->Size.Height);
-	Rectangle ImagenMonedaTransformada = Rectangle(*posXHUD, *posYHUD + 100, Moneda->Size.Width * 0.1, Moneda->Size.Height * 0.1);
+	Rectangle ImagenMonedaTransformada = Rectangle(*posXHUD + 80, *posYHUD + 145, Moneda->Size.Width * 0.18, Moneda->Size.Height * 0.18);
 
-	gr->DrawImage(Vendedor, 960, 0, Vendedor->Size.Width, Vendedor->Size.Height);
+	Rectangle ImagenVacuna = Rectangle(0, 0, Vacuna->Size.Width, Vacuna->Size.Height);
+	Rectangle ImagenVacunaTransformada = Rectangle(*posXHUD+55, *posYHUD + 30, Vacuna->Size.Width * 0.6, Vacuna->Size.Height * 0.6);
+
+	gr->DrawString("TIENDA", myFont, Brushes::White, *posXHUD+5, *posYHUD -55);
+
+	gr->DrawString("Presiona la tecla ' C '", myFont2, Brushes::White, *posXHUD-6, *posYHUD+260);
+
+	gr->DrawImage(Vendedor, 960, 350, Vendedor->Size.Width, Vendedor->Size.Height);
 
 	gr->DrawImage(Vacuna, ImagenVacunaTransformada, ImagenVacuna, GraphicsUnit::Pixel);
-	gr->DrawString(Convert::ToString(cantidadVacunas), myFont, Brushes::White, *posXHUD + 25, *posYHUD);
+	gr->DrawString(Convert::ToString(cantidadVacunas), myFont, Brushes::White, *posXHUD + 75, *posYHUD + 40);
 
 	gr->DrawImage(Moneda, ImagenMonedaTransformada, ImagenMoneda, GraphicsUnit::Pixel);
-	gr->DrawString(Convert::ToString(costoVacunas) + "$", myFont, Brushes::White, *posXHUD, *posYHUD + 75);
+	gr->DrawString(Convert::ToString(costoVacunas), myFont, Brushes::White, *posXHUD + 42, *posYHUD + 142);
 
 	delete posYHUD, posXHUD;
 }
