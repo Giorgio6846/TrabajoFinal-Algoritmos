@@ -4,17 +4,23 @@ using namespace System;
 using namespace System::Drawing;
 using namespace System::Media;
 
+/*
+jugadorAtStore
+N = 'No esta en la tienda'
+I = 'Ha ingreso a la tienda'
+*/
+
 class Shop
 {
 public:
 	Shop();
 	~Shop();
 
-	void mostrar(Graphics^ gr, Bitmap^ Vendedor, Bitmap^ Moneda, Bitmap^ Vacuna, SoundPlayer^ player, int jugadorDinero, int jugadorVacunas);
+	void mostrar(Graphics^ gr, Bitmap^ Vendedor, Bitmap^ Moneda, Bitmap^ Vacuna, int jugadorDinero, int jugadorVacunas, SoundPlayer ^ sonido);
 
 	Rectangle getRectangleShop(){ return Rectangle(860, 0, 100, 90); }
 
-	bool getJugadorAtStore() { return this->jugadorAtStore; }
+	char getJugadorAtStore() { return this->jugadorAtStore; }
 	void setJugadorAtStore(int jugadorAtStore) { this->jugadorAtStore = jugadorAtStore; }
 
 	int getCostoVacunas() { return this->costoVacunas; }
@@ -23,10 +29,10 @@ public:
 	int getCantidadVacunas() { return this->cantidadVacunas; }
 	void setCantidadVacunas(int cantidadVacunas) { this->cantidadVacunas = cantidadVacunas; }
 
-
+	void sonidoTienda(SoundPlayer^ sonido);
 
 private:
-	bool jugadorAtStore;
+	char jugadorAtStore;
 	int costoVacunas;
 	int cantidadVacunas;
 };
@@ -40,27 +46,20 @@ Shop::Shop()
 Shop::~Shop()
 {
 }
-/*
-void Shop::mostrar(Graphics^ gr, SoundPlayer^ player, Bitmap ^ tienda1, Bitmap ^ tienda2)
+
+void Shop::sonidoTienda(SoundPlayer^ sonido)
 {
-	gr->DrawImage(tienda1, 960, 0, tienda1->Size.Width, tienda1->Size.Height);
-
-	Font^ myFont = gcnew Font("Times new Roman", 15);
-
-	gr->DrawString("Estás en la tienda:", myFont, Brushes::Black, 670, 35);
-	gr->DrawString("Pulse X para comprar munición", myFont, Brushes::Black, 600, 60);
-
-	if (jugadorAtStore == 0)
+	if (jugadorAtStore == 'N')
 	{
-		jugadorAtStore = 1;
-		//player->Load();
-		//player->PlaySync();
+		jugadorAtStore = 'I';
+		/*
+		sonido->Load();
+		sonido->Play();
+		*/
 	}
-	else jugadorAtStore = 0;
 }
-*/
 
-void Shop :: mostrar(Graphics^ gr, Bitmap^ Vendedor, Bitmap ^ Moneda, Bitmap ^ Vacuna, SoundPlayer ^ player, int jugadorDinero, int jugadorVacunas)
+void Shop :: mostrar(Graphics^ gr, Bitmap^ Vendedor, Bitmap ^ Moneda, Bitmap ^ Vacuna, int jugadorDinero, int jugadorVacunas, SoundPlayer ^ sonido)
 {
 	int* posXHUD = new int(975);
 	int* posYHUD = new int(60);
@@ -85,6 +84,8 @@ void Shop :: mostrar(Graphics^ gr, Bitmap^ Vendedor, Bitmap ^ Moneda, Bitmap ^ V
 
 	gr->DrawImage(Moneda, ImagenMonedaTransformada, ImagenMoneda, GraphicsUnit::Pixel);
 	gr->DrawString(Convert::ToString(costoVacunas), myFont, Brushes::White, *posXHUD + 42, *posYHUD + 142);
+
+	sonidoTienda(sonido);
 
 	delete posYHUD, posXHUD;
 }

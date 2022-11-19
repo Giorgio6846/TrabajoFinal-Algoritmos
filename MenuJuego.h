@@ -14,6 +14,7 @@ namespace TrabajoFinal {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Media;
 
 	/// <summary>
 	/// Resumen de MenuJuego
@@ -29,12 +30,17 @@ namespace TrabajoFinal {
 			//
 			gr = this->CreateGraphics();
 			dificultadJuego = 'F';
+			sonidoMenu = gcnew SoundPlayer("Recursos/Musica\\MenuJuego.wav");
+			sonidoMenu->Load();
+			sonidoMenu->Play();
 		}
 		
 		void iniciarJuego()
 		{
 			Juego ^ game = gcnew Juego();
 			//MenuJuego::Hide();
+			sonidoMenu->Stop();
+
 			game->Show();
 			if (game->getJuegoTerminado())
 			{
@@ -52,6 +58,7 @@ namespace TrabajoFinal {
 			{
 				delete components;
 			}
+			delete sonidoMenu;
 		}
 	private: System::ComponentModel::IContainer^ components;
 	protected:
@@ -71,6 +78,8 @@ namespace TrabajoFinal {
 
 		   Graphics^ gr;
 		   char dificultadJuego;
+		   SoundPlayer^ sonidoMenu;
+
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ btn_Puntajes;
 

@@ -88,7 +88,9 @@ namespace TrabajoFinal {
 
 			//SonidosJuego
 
-			player = gcnew SoundPlayer("Recursos/Musica\\TiendaEntrada.wav");
+			sonidoTienda = gcnew SoundPlayer("Recursos/Musica\\TiendaEntrada.wav");
+			MusicaJuegoF = gcnew SoundPlayer("Recursos/Musica\\MusicaJuegoF.wav");
+			MusicaJuegoD = gcnew SoundPlayer("Recursos/Musica\\MusicaJuegoD.wav");
 		}
 
 		bool getJuegoTerminado() { return this->juegoTerminado; }
@@ -96,6 +98,20 @@ namespace TrabajoFinal {
 
 		void finalizacionJuego(char estado)
 		{
+			switch (dificultad)
+			{
+			case 'F':
+				MusicaJuegoF->Stop();
+				break;
+			case 'M':
+				break;
+			case 'D':
+				MusicaJuegoD->Stop();
+				break;
+			default:
+				break;
+			}
+
 			juegoTerminado = 1;
 			TiempoRespuesta->Enabled = false;
 			TiempoSegundos->Enabled = false;
@@ -142,7 +158,8 @@ namespace TrabajoFinal {
 			delete interfaz; 
 
 			//Datos Tienda
-			delete player;
+			delete sonidoTienda;
+			delete shop;
 
 			//Imagen Background
 			delete BackgroundFacil;
@@ -163,13 +180,13 @@ namespace TrabajoFinal {
 			delete Vendedor1Shop;
 			delete Vendedor2Shop;
 
+			delete MusicaJuegoF;
+			delete MusicaJuegoD;
+
 			//Datos Aliadas
 			delete aliadaVelocidad;
 			delete aliadaAtaque;
 			delete aliada3;
-
-			//Datos Tienda
-			delete shop;
 
 			if (components)
 			{
@@ -208,8 +225,10 @@ namespace TrabajoFinal {
 		Bitmap^ coinImgHUD;
 
 		//Datos Tienda
-		SoundPlayer^ player;
-		
+		SoundPlayer^ sonidoTienda;
+		SoundPlayer^ MusicaJuegoF;
+		SoundPlayer^ MusicaJuegoD;
+
 		//Imagen Background
 		Bitmap^ BackgroundFacil;
 		Bitmap^ BackgroundMedio;
@@ -331,7 +350,6 @@ private: System::Windows::Forms::Label^ label_Timer;
 
 		//Background Juego
 
-
 		switch (dificultad)
 		{
 		case 'F':
@@ -363,7 +381,6 @@ private: System::Windows::Forms::Label^ label_Timer;
 		if (aliadaVelocidad->getEtapas() == 'I' || aliadaVelocidad->getEtapas() == 'U') aliadaVelocidad->mostrar(bg->Graphics, AliadaRamImg, 4, 3, 1.5, 1.5);
 		if (aliadaAtaque->getEtapas() == 'I' || aliadaAtaque->getEtapas() == 'U')  aliadaAtaque->mostrar(bg->Graphics, AliadaRemImg, 4, 3, 1.5, 1.5);
 		if (aliada3->getEtapas() == 'I' || aliada3->getEtapas() == 'U')  aliada3->mostrar(bg->Graphics, AliadaRemImg, 4, 3, 1.5, 1.5);
-
 
 		//Mecanicas Juego
 
@@ -467,13 +484,13 @@ private: System::Windows::Forms::Label^ label_Timer;
 			switch (dificultad)
 			{
 			case 'F':
-				shop->mostrar(bg->Graphics, Vendedor2Shop, coinImgHUD, vacunasHUD, player, jugador->getDinero(),jugador->getMunicion());
+				shop->mostrar(bg->Graphics, Vendedor2Shop, coinImgHUD, vacunasHUD, jugador->getDinero(),jugador->getMunicion(),sonidoTienda);
 				break;
 			case 'M':
-				shop->mostrar(bg->Graphics, Vendedor1Shop, coinImgHUD, vacunasHUD, player, jugador->getDinero(), jugador->getMunicion());
+				shop->mostrar(bg->Graphics, Vendedor1Shop, coinImgHUD, vacunasHUD, jugador->getDinero(), jugador->getMunicion(),sonidoTienda);
 				break;
 			case 'D':
-				shop->mostrar(bg->Graphics, Vendedor1Shop, coinImgHUD, vacunasHUD, player, jugador->getDinero(), jugador->getMunicion());
+				shop->mostrar(bg->Graphics, Vendedor1Shop, coinImgHUD, vacunasHUD, jugador->getDinero(), jugador->getMunicion(), sonidoTienda);
 				break;
 
 			default:
@@ -482,6 +499,26 @@ private: System::Windows::Forms::Label^ label_Timer;
 		}
 		else
 		{
+
+			if (shop->getJugadorAtStore() == 'I')
+			{
+				shop->setJugadorAtStore('N');
+				switch (dificultad)
+				{
+				case 'F':
+					MusicaJuegoF->Load();
+					MusicaJuegoF->Play();
+					break;
+				case 'M':
+					break;
+				case 'D':
+					MusicaJuegoD->Load();
+					MusicaJuegoD->Play();
+					break;
+				default:
+					break;
+				}
+			}
 			interfaz->mostrarDinero(bg->Graphics, coinImgHUD, jugador->getDinero());
 			interfaz->mostrarVacunas(bg->Graphics, vacunasHUD, jugador->getMunicion());
 			interfaz->mostrarTiempoRestante(bg->Graphics, tiempoRestante, tiempoJuego);
@@ -549,14 +586,6 @@ private: System::Windows::Forms::Label^ label_Timer;
   				vectVacunas->agregar(jugador->getMunicion(), jugador->getX(), jugador->getY(), (20 + (aliadaAtaque->getEtapas() == 'U') * 40), (30 + (aliadaAtaque->getEtapas() == 'U') * 40), jugador->getIndexWidth());
 			}
 			break;
-			/*
-		case Keys::G:
-			finalizacionJuego('W');
-			break;
-		case Keys::F:
-			finalizacionJuego('L');
-			break;
-			*/
 		default:
 			break;
 		}
@@ -606,13 +635,17 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		shop->setCantidadVacunas(10);
 		shop->setCostoVacunas(5);
 		vectBebes->setTotalBebes(30);
+
 		aliadaAtaque->setContadorEtapaI(20);
 		aliadaAtaque->setContadorEtapaU(5);
 		aliadaAtaque->setContadorEtapaC(5);
+
 		aliadaVelocidad->setContadorEtapaI(20);
 		aliadaVelocidad->setContadorEtapaU(5);
 		aliadaVelocidad->setContadorEtapaC(5);
 
+		MusicaJuegoF->Load();
+		MusicaJuegoF->Play();
 		break;
 	case 'M':
 		//Modifica el tiempo del juego dependiendo de la dificultad;
@@ -653,12 +686,14 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		aliadaVelocidad->setContadorEtapaI(20);
 		aliadaVelocidad->setContadorEtapaU(5);
 		aliadaVelocidad->setContadorEtapaC(10);
+
+		MusicaJuegoD->Load();
+		MusicaJuegoD->Play();
 		break;
 
 	default:
 		break;
 	}
-
 }
 
 private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::EventArgs^ e)
@@ -746,6 +781,19 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 }
 
 private: System::Void Juego_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+	switch (dificultad)
+	{
+	case 'F':
+		MusicaJuegoF->Stop();
+		break;
+	case 'M':
+		break;
+	case 'D':
+		MusicaJuegoD->Stop();
+		break;
+	default:
+		break;
+	}
 }
 };
 }

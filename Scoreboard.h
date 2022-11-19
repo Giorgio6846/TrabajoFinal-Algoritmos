@@ -59,6 +59,10 @@ namespace TrabajoFinal {
 			less30MBabyImg = gcnew Bitmap("Recursos/Imagenes\\Bebes.png");
 			more30MBabyImg = gcnew Bitmap("Recursos/Imagenes\\BigBabies.png");
 
+			sonidoWin = gcnew SoundPlayer("Recursos/Musica\\YouWin.wav");
+			sonidoLose = gcnew SoundPlayer("Recursos/Musica\\YouLose.wav");
+
+
 			arrDatos = new vector <datosPuestos*>;
 			modo = 'A';
 			modoEscritura = 'A';
@@ -87,6 +91,17 @@ namespace TrabajoFinal {
 
 		void setModo(char modo)
 		{
+			if (modo == 'W') 
+			{
+				sonidoWin->Load();
+				sonidoWin->Play();
+			}
+			if (modo == 'L') 
+			{
+				sonidoLose->Load();
+				sonidoLose->Play();
+			}
+
 			this->modo = modo;
 		}
 
@@ -286,6 +301,9 @@ namespace TrabajoFinal {
 			delete more30MBabyImg;
 			delete vectBebes;
 
+			delete sonidoWin;
+			delete sonidoLose;
+
 			if (components)
 			{
 				delete components;
@@ -299,6 +317,10 @@ namespace TrabajoFinal {
 		Bitmap^ less30MBabyImg;
 		Bitmap^ more30MBabyImg;
 		VectorBebes* vectBebes;
+
+		SoundPlayer^ sonidoWin;
+		SoundPlayer^ sonidoLose;
+
 
 		char modo;
 		char modoEscritura;
