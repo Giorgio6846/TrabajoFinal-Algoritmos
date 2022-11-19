@@ -88,6 +88,7 @@ namespace TrabajoFinal {
 
 			//SonidosJuego
 
+			sonidoMenu = gcnew SoundPlayer("Recursos/Musica\\MenuJuego.wav");
 			sonidoTienda = gcnew SoundPlayer("Recursos/Musica\\TiendaEntrada.wav");
 			MusicaJuegoF = gcnew SoundPlayer("Recursos/Musica\\MusicaJuegoF.wav");
 			MusicaJuegoD = gcnew SoundPlayer("Recursos/Musica\\MusicaJuegoD.wav");
@@ -225,6 +226,8 @@ namespace TrabajoFinal {
 		Bitmap^ coinImgHUD;
 
 		//Datos Tienda
+		
+		SoundPlayer^ sonidoMenu;
 		SoundPlayer^ sonidoTienda;
 		SoundPlayer^ MusicaJuegoF;
 		SoundPlayer^ MusicaJuegoD;
@@ -785,11 +788,13 @@ private: System::Void Juego_FormClosing(System::Object^ sender, System::Windows:
 	{
 	case 'F':
 		MusicaJuegoF->Stop();
+		sonidoMenu->Play();
 		break;
 	case 'M':
 		break;
 	case 'D':
 		MusicaJuegoD->Stop();
+		sonidoMenu->Play();
 		break;
 	default:
 		break;
