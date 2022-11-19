@@ -323,7 +323,6 @@ namespace TrabajoFinal {
 		SoundPlayer^ sonidoWin;
 		SoundPlayer^ sonidoLose;
 
-
 		char modo;
 		char modoEscritura;
 		char modoTecla;
