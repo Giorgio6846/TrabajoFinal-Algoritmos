@@ -72,6 +72,8 @@ namespace TrabajoFinal {
 			posChar = 0;
 			posLetra = 'A';
 
+			vectBebes->setTotalMesVida(30);
+
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -333,6 +335,7 @@ namespace TrabajoFinal {
 
 	private: System::Windows::Forms::Timer^ TiempoRespuesta;
 private: System::Windows::Forms::Timer^ TiempoBebe;
+private: System::Windows::Forms::Timer^ EliminarBebes;
 	private: System::ComponentModel::IContainer^ components;
 
 
@@ -346,6 +349,7 @@ private: System::Windows::Forms::Timer^ TiempoBebe;
 			this->components = (gcnew System::ComponentModel::Container());
 			this->TiempoRespuesta = (gcnew System::Windows::Forms::Timer(this->components));
 			this->TiempoBebe = (gcnew System::Windows::Forms::Timer(this->components));
+			this->EliminarBebes = (gcnew System::Windows::Forms::Timer(this->components));
 			this->SuspendLayout();
 			// 
 			// TiempoRespuesta
@@ -359,6 +363,11 @@ private: System::Windows::Forms::Timer^ TiempoBebe;
 			this->TiempoBebe->Enabled = true;
 			this->TiempoBebe->Interval = 1500;
 			this->TiempoBebe->Tick += gcnew System::EventHandler(this, &Scoreboard::TiempoBebe_Tick);
+			// 
+			// EliminarBebes
+			// 
+			this->EliminarBebes->Interval = 5000;
+			this->EliminarBebes->Tick += gcnew System::EventHandler(this, &Scoreboard::EliminarBebes_Tick);
 			// 
 			// Scoreboard
 			// 
@@ -479,9 +488,9 @@ private: System::Windows::Forms::Timer^ TiempoBebe;
 			}
 			break;
 		case 'W':
+			vectBebes->eliminar();
 			vectBebes->mostrar(bg->Graphics, less30MBabyImg, more30MBabyImg);
 			vectBebes->mover();
-			vectBebes->eliminar();
 			for (int i = 0; i < arrDatos->size(); i++)
 			{
 				if (i + 1 <= 9)
@@ -524,13 +533,12 @@ private: System::Windows::Forms::Timer^ TiempoBebe;
 	private: System::Void TiempoBebe_Tick(System::Object^ sender, System::EventArgs^ e) {
 		if (modo == 'W')
 		{
+			vectBebes->agregarMesVida();
 			vectBebes->agregar();
-			for (int i = 0; i < 10; i++)
-			{
-				vectBebes->agregarMesVida();
-			}
 		}
 	}
+private: System::Void EliminarBebes_Tick(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
 

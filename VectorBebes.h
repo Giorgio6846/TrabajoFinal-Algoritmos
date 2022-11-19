@@ -33,6 +33,8 @@ public:
 
 	void Vacunado(int pos) { arrBebes->at(pos)->setEsVacunado(true); }
 
+	void setTotalMesVida(int totalMesVida) { this->totalMesVida = totalMesVida; };
+
 private:
 
 	int EntidadAreaIzqSupX = 0;
@@ -42,6 +44,7 @@ private:
 
 	vector<Bebes*>* arrBebes;
 
+	int totalMesVida;
 	int totalBebesGenerados;
 	int totalBebes;
 	int bebesVacunados;
@@ -50,6 +53,7 @@ private:
 VectorBebes::VectorBebes()
 {
 	//toIntPorcentaje = 0;
+	totalMesVida = 60;
 	arrBebes = new vector <Bebes*>();
 	totalBebesGenerados = 0;
 	totalBebes = 0;
@@ -168,7 +172,7 @@ void VectorBebes::eliminar()
 {
 	for (int i = 0; i < arrBebes->size(); i++)
 	{
-		if (arrBebes->at(i)->getEsVacunado() || arrBebes->at(i)->getMesVida() == 60)
+		if (arrBebes->at(i)->getEsVacunado() || arrBebes->at(i)->getMesVida() == totalMesVida)
 		{
 			if (arrBebes->at(i)->getEsVacunado())
 			{
