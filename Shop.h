@@ -71,17 +71,25 @@ void Shop :: mostrar(Graphics^ gr, Bitmap^ Vendedor, Bitmap ^ Moneda, Bitmap ^ V
 	Rectangle ImagenMonedaTransformada = Rectangle(*posXHUD + 80, *posYHUD + 145, Moneda->Size.Width * 0.18, Moneda->Size.Height * 0.18);
 
 	Rectangle ImagenVacuna = Rectangle(0, 0, Vacuna->Size.Width, Vacuna->Size.Height);
-	Rectangle ImagenVacunaTransformada = Rectangle(*posXHUD+55, *posYHUD + 30, Vacuna->Size.Width * 0.6, Vacuna->Size.Height * 0.6);
+	Rectangle ImagenVacunaTransformada = Rectangle(*posXHUD+40, *posYHUD + 30, Vacuna->Size.Width * 0.6, Vacuna->Size.Height * 0.6);
+
+	Rectangle ImagenVacuna2 = Rectangle(0, 0, Vacuna->Size.Width, Vacuna->Size.Height);
+	Rectangle ImagenVacunaTransformada2 = Rectangle(*posXHUD + 50, *posYHUD + 30, Vacuna->Size.Width * 0.6, Vacuna->Size.Height * 0.6);
 
 	gr->DrawString("TIENDA", myFont, Brushes::White, *posXHUD+5, *posYHUD -55);
 
-	gr->DrawString("Presiona la tecla ' C '", myFont2, Brushes::White, *posXHUD-6, *posYHUD+260);
+	gr->DrawString("Presiona la tecla ' C '", myFont2, Brushes::White, *posXHUD-6, *posYHUD+255);
 
 	gr->DrawImage(Vendedor, 960, 350, Vendedor->Size.Width, Vendedor->Size.Height);
 
-	gr->DrawImage(Vacuna, ImagenVacunaTransformada, ImagenVacuna, GraphicsUnit::Pixel);
-	gr->DrawString(Convert::ToString(cantidadVacunas), myFont, Brushes::White, *posXHUD + 75, *posYHUD + 40);
-
+	if (cantidadVacunas<10) {
+		gr->DrawImage(Vacuna, ImagenVacunaTransformada2, ImagenVacuna2, GraphicsUnit::Pixel);
+		gr->DrawString("x" + Convert::ToString(cantidadVacunas), myFont, Brushes::White, *posXHUD + 75, *posYHUD + 39);
+	}
+	else {
+		gr->DrawImage(Vacuna, ImagenVacunaTransformada, ImagenVacuna, GraphicsUnit::Pixel);
+		gr->DrawString("x" + Convert::ToString(cantidadVacunas), myFont, Brushes::White, *posXHUD + 65, *posYHUD + 39);
+	}
 	gr->DrawImage(Moneda, ImagenMonedaTransformada, ImagenMoneda, GraphicsUnit::Pixel);
 	gr->DrawString(Convert::ToString(costoVacunas), myFont, Brushes::White, *posXHUD + 42, *posYHUD + 142);
 
