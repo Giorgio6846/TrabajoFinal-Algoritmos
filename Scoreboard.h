@@ -449,7 +449,8 @@ private: System::Windows::Forms::Timer^ EliminarBebes;
 		switch (modo)
 		{
 		case 'V':
-			bg->Graphics->DrawString("Scoreboard", Title, TitleColor, 250, 50);
+			if (dificultad == 'F') 	bg->Graphics->DrawString("Scoreboard FACIL", Title, TitleColor, 250, 50);
+			if (dificultad == 'D') 	bg->Graphics->DrawString("Scoreboard DIFICIL", Title, TitleColor, 250, 50);
 			break;
 		case 'W':
 			bg->Graphics->DrawString("YOU WIN", Title, TitleColor, 400, 50);
