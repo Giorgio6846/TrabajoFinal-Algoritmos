@@ -487,7 +487,7 @@ private: System::Windows::Forms::Timer^ EliminarBebes;
 				{
 					bg->Graphics->DrawString(Convert::ToString(i + 1) + ".    " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 300, 200 + i * 40);
 				}
-				if (i + 1 >= 10)
+				if (i + 1 >= CantidadMaxima)
 				{
 					bg->Graphics->DrawString(Convert::ToString(i + 1) + ".  " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 300, 200 + i * 40);
 				}
@@ -503,7 +503,7 @@ private: System::Windows::Forms::Timer^ EliminarBebes;
 				{
 					bg->Graphics->DrawString(Convert::ToString(i + 1) + ".    " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 450, 200 + i * 40);
 				}
-				if (i + 1 >= 10)
+				if (i + 1 >= CantidadMaxima)
 				{
 					bg->Graphics->DrawString(Convert::ToString(i + 1) + ".  " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 450, 200 + i * 40);
 				}
@@ -516,7 +516,7 @@ private: System::Windows::Forms::Timer^ EliminarBebes;
 				{
 					bg->Graphics->DrawString(Convert::ToString(i + 1) + ".    " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 450, 200 + i * 40);
 				}
-				if (i + 1 >= 10)
+				if (i + 1 >= CantidadMaxima)
 				{
 					bg->Graphics->DrawString(Convert::ToString(i + 1) + ".  " + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[0])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[1])) + Convert::ToString(Convert::ToChar(arrDatos->at(i)->nombre[2])) + "  " + Convert::ToString(arrDatos->at(i)->tiempoRealizado), Body, BodyColor, 450, 200 + i * 40);
 				}
