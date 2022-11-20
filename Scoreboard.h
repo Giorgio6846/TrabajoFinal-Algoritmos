@@ -81,14 +81,20 @@ namespace TrabajoFinal {
 			lecturaDatos();
 		}
 
-		void setPuntaje(int tiempo, char dificultad)
+		void setPuntaje(int tiempo)
 		{
-			this->dificultad = dificultad;
 			datosJugador.tiempoRealizado = tiempo;
 			datosJugador.nombre[0] = 'A';
 			datosJugador.nombre[1] = 'A';
 			datosJugador.nombre[2] = 'A';
 			this -> modoEscritura = verificacionJugadorGanador();
+		}
+
+		void setDificultad(char dificultad) 
+		{
+			this->dificultad = dificultad;
+			arrDatos->clear();
+			lecturaDatos();
 		}
 
 		void setModo(char modo)

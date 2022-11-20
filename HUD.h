@@ -59,7 +59,7 @@ public:
 
 		System::Drawing::Font^ tipoLetra = gcnew System::Drawing::Font("Arial Black", 12);
 		SolidBrush^ pincel = gcnew SolidBrush(Color::White);
-		if ((tiempoTotal - tiempoActual) <= 180 && (tiempoTotal - tiempoActual) >= 100) {
+		if ((tiempoTotal - tiempoActual) <= 999 && (tiempoTotal - tiempoActual) >= 100) {
 			gr->DrawString(Convert::ToString(tiempoTotal - tiempoActual), tipoLetra, pincel, *posHUDX + 5, *posHUDY + 13);
 		}
 		if ((tiempoTotal - tiempoActual) <= 99 && (tiempoTotal - tiempoActual) >= 10) {
@@ -72,24 +72,13 @@ public:
 		delete angFinal;
 	}
 
-	void mostrarVacunados(Graphics^ gr, Bitmap^ Vacunados, char dificultad, int bebesVacunados)
+	void mostrarVacunados(Graphics^ gr, Bitmap^ Vacunados, char dificultad, int bebesVacunados, int totalBebes)
 	{
 		int* porcentaje = new int;
 		int* posXHUD = new int(975);
 		int* posYHUD = new int(230);
-		int* totalBebes = new int;
-
-		switch (dificultad)
-		{
-		case 'F': *totalBebes = 30;
-			break;
-		case 'D': *totalBebes = 50;
-			break;
-		default:
-			break;
-		}
-
-		*porcentaje = (bebesVacunados * 100) / *totalBebes;
+		
+		*porcentaje = (bebesVacunados * 100) / totalBebes;
 
 		Font^ myFont = gcnew Font("Times new Roman", 35);
 

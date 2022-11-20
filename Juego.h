@@ -123,10 +123,12 @@ namespace TrabajoFinal {
 			Scoreboard^ puntajes = gcnew Scoreboard();
 			Juego::Hide();
 
+			puntajes->setDificultad(dificultad);
+
 			if (estado == 'W')
 			{
 				puntajes->setModo('W');
-				puntajes->setPuntaje(tiempoJuego, dificultad);
+				puntajes->setPuntaje(tiempoJuego);
 			}
 			
 			if (estado == 'L')
@@ -386,8 +388,6 @@ private: System::Windows::Forms::Label^ label_Timer;
 		if (aliada3->getEtapas() == 'I' || aliada3->getEtapas() == 'U')  aliada3->mostrar(bg->Graphics, AliadaRemImg, 4, 3, 1.5, 1.5);
 
 		//Mecanicas Juego
-
-		vectEnemigos->agregarEnemigo(dificultad);
 				
 			//Movimiento Objetos
 			vectBebes->mover();
@@ -525,10 +525,10 @@ private: System::Windows::Forms::Label^ label_Timer;
 			interfaz->mostrarDinero(bg->Graphics, coinImgHUD, jugador->getDinero());
 			interfaz->mostrarVacunas(bg->Graphics, vacunasHUD, jugador->getMunicion());
 			interfaz->mostrarTiempoRestante(bg->Graphics, tiempoRestante, tiempoJuego);
-			interfaz->mostrarVacunados(bg->Graphics, vacunadoHUD, dificultad, vectBebes->getBebesVacunados());
+			interfaz->mostrarVacunados(bg->Graphics, vacunadoHUD, dificultad, vectBebes->getBebesVacunados(), vectBebes->getTotalBebes());
 
-			if (aliadaAtaque->getEtapas() == 'C') { aliadaAtaque->mostrarTiempoCooldown(bg->Graphics, 5, aliadaAtaque->getContador(), AliadaRemImg, 980, 700); }
-			if (aliadaVelocidad->getEtapas() == 'C') { aliadaVelocidad->mostrarTiempoCooldown(bg->Graphics, 5, aliadaVelocidad->getContador(), AliadaRamImg, 1060, 700); }
+			if (aliadaAtaque->getEtapas() == 'C') { aliadaAtaque->mostrarTiempoCooldown(bg->Graphics, aliadaAtaque->getContadorEtapaC(), aliadaAtaque->getContador(), AliadaRemImg, 980, 700); }
+			if (aliadaVelocidad->getEtapas() == 'C') { aliadaVelocidad->mostrarTiempoCooldown(bg->Graphics, aliadaVelocidad->getContadorEtapaC(), aliadaVelocidad->getContador(), AliadaRamImg, 1060, 700); }
 		}
 
 		bg->Render(gr);
@@ -638,6 +638,7 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		shop->setCantidadVacunas(10);
 		shop->setCostoVacunas(5);
 		vectBebes->setTotalBebes(30);
+		vectEnemigos->agregarEnemigo(4);
 
 		aliadaAtaque->setContadorEtapaI(20);
 		aliadaAtaque->setContadorEtapaU(5);
@@ -661,6 +662,7 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		shop->setCantidadVacunas(5);
 		shop->setCostoVacunas(10);
 		vectBebes->setTotalBebes(30);
+		vectEnemigos->agregarEnemigo(6);
 		
 		aliadaAtaque->setContadorEtapaI(20);
 		aliadaAtaque->setContadorEtapaU(5);
@@ -672,23 +674,26 @@ private: System::Void Juego_Load(System::Object^ sender, System::EventArgs^ e) {
 		break;
 	case 'D':
 		//Modifica el tiempo del juego dependiendo de la dificultad;
-		this->TiempoSegundos->Interval = 2000;
-		this->ContadorBebes->Interval = 1300;
+		this->TiempoSegundos->Interval = 3300;
+		this->ContadorBebes->Interval = 1800;
 		this->ContadorMonedas->Interval = 1600;
 		this->TiempoHabilidades->Interval = 1000;
-		this->tiempoRestante = 180;
+		
+		this->tiempoRestante = 200;
 		this->jugador->setMunicion(10);
-		shop->setCantidadVacunas(5);
-		shop->setCostoVacunas(8);
-		vectBebes->setTotalBebes(50);
+
+		shop->setCantidadVacunas(8);
+		shop->setCostoVacunas(6);
+		vectBebes->setTotalBebes(40);
+		vectEnemigos->agregarEnemigo(6);
 		
 		aliadaAtaque->setContadorEtapaI(20);
 		aliadaAtaque->setContadorEtapaU(5);
-		aliadaAtaque->setContadorEtapaC(10);
+		aliadaAtaque->setContadorEtapaC(8);
 		
 		aliadaVelocidad->setContadorEtapaI(20);
 		aliadaVelocidad->setContadorEtapaU(5);
-		aliadaVelocidad->setContadorEtapaC(10);
+		aliadaVelocidad->setContadorEtapaC(8);
 
 		MusicaJuegoD->Load();
 		MusicaJuegoD->Play();
@@ -770,7 +775,7 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		break;
 	}
 
-	if ((vectBebes->getBebesVacunados() * 100) / 30 >= 95)
+	if ((vectBebes->getBebesVacunados() * 100) / vectBebes->getTotalBebes() >= 5)
 	{
 		finalizacionJuego('W');
 	}
