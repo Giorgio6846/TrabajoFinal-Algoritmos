@@ -775,7 +775,7 @@ private: System::Void TiempoHabilidades_Tick(System::Object^ sender, System::Eve
 		break;
 	}
 
-	if ((vectBebes->getBebesVacunados() * 100) / vectBebes->getTotalBebes() >= 5)
+	if ((vectBebes->getBebesVacunados() * 100) / vectBebes->getTotalBebes() >= 95)
 	{
 		finalizacionJuego('W');
 	}
