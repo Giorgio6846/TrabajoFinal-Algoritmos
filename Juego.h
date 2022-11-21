@@ -75,7 +75,7 @@ namespace TrabajoFinal {
 			vacunadoHUD = gcnew Bitmap("Recursos/Imagenes\\VacunadoHUD.png");
 
 			BackgroundFacil = gcnew Bitmap("Recursos/Imagenes\\BackgroundFacil.png");
-			BackgroundMedio = gcnew Bitmap("Recursos/Imagenes\\BackgroundMedio.jpg");
+			BackgroundMedio = gcnew Bitmap("Recursos/Imagenes\\BackgroundMedio.png");
 			BackgroundDificil = gcnew Bitmap("Recursos/Imagenes\\BackgroundDificil.png");
 
 			EnemigoImg = gcnew Bitmap("Recursos/Imagenes\\Enemigo.png");
@@ -569,6 +569,13 @@ private: System::Windows::Forms::Label^ label_Timer;
 				aliadaAtaque->setEtapas('I');
 				aliadaAtaque->setContador(0);
 			}
+			break;
+
+		case Keys::F:
+			finalizacionJuego('L');
+			break;
+		case Keys::G:
+			finalizacionJuego('W');
 			break;
 
 		//Tienda Jugador

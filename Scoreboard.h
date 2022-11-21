@@ -83,7 +83,9 @@ namespace TrabajoFinal {
 
 		void setPuntaje(int tiempo)
 		{
-			datosJugador.tiempoRealizado = tiempo;
+			//datosJugador.tiempoRealizado = tiempo;
+			datosJugador.tiempoRealizado = 130;
+
 			datosJugador.nombre[0] = 'A';
 			datosJugador.nombre[1] = 'A';
 			datosJugador.nombre[2] = 'A';
@@ -213,6 +215,12 @@ namespace TrabajoFinal {
 						posJugador = i;
 						return 'S';
 					}
+				}
+				if (arrDatos->size() != 10)
+				{
+					arrDatos->insert(arrDatos->begin() + arrDatos->size(), &datosJugador); 
+					posJugador = arrDatos->size() - 1;
+					return 'S';
 				}
 				return 'N';
 			}
